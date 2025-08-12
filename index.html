@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<!-- 
+    CARLOS'S PORTFOLIO - AI SIDEKICK SETUP
+    
+    To enable OpenAI-powered AI sidekick:
+    1. Get an OpenAI API key from https://platform.openai.com/api-keys
+    2. Open browser console (F12) and run:
+       localStorage.setItem("openai_api_key", "your-api-key-here")
+    3. Reload the page
+    
+    The AI will automatically use OpenAI if available, otherwise fallback to the rule-based system.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Rodriguez - AI Product Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Nuosu+SIL&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Helvetica Neue';
+            src: url('fonts/HelveticaNeue-Light.woff2') format('woff2');
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: 'Helvetica Neue';
+            src: url('fonts/HelveticaNeue-Medium.woff2') format('woff2');
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: 'Helvetica Neue';
+            src: url('fonts/HelveticaNeue-Bold.woff2') format('woff2');
+            font-weight: 700;
+        }
+        .font-helvetica {
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+        .font-nuosu {
+            font-family: 'Nuosu SIL', serif;
+        }
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #000000;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+        .chat-input {
+            background: transparent;
+            border: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 14px;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            outline: none;
+        }
+        .chat-input::placeholder {
+            color: #666;
+        }
+        .typing-indicator::after {
+            content: '';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        
+        /* Ensure line breaks are preserved in chat messages */
+        #chat-messages p {
+            white-space: pre-line;
+        }
+        
+        /* Hide default cursor */
+        * {
+            cursor: none;
+        }
+
+        /* Custom cursor */
+        .cursor {
+            width: 12px;
+            height: 12px;
+            background-color: #5E5E5E;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+
+        /* Cursor hover effect */
+        .cursor.hover {
+            transform: scale(1.5);
+        }
+
+        .cursor.navigating {
+            background-color: #18A000;
+            transform: scale(1.5);
+        }
+
+        /* Exception for text input areas */
+        input, textarea {
+            cursor: text;
+        }
+
+        /* Exception for clickable elements */
+        a, button {
+            cursor: none;
+        }
+        .contact-dropdown {
+            cursor: none;
+        }
+        .contact-dropdown:hover {
+            cursor: none;
+        }
+        .contact-dropdown + div a {
+            cursor: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Custom cursor element -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Main Content Area (75% width) -->
+    <div class="w-3/4 overflow-x-hidden">
+        <!-- Navigation -->
+        <nav class="fixed w-3/4 z-50">
+            <div class="bg-white/80 backdrop-blur-lg px-12 py-6">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    <div class="hidden md:flex space-x-12">
+                        <a href="#" class="text-[16px] font-helvetica font-light nav-link active relative">Home</a>
+                        <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link relative">Projects</a>
+                        <a href="https://docs.google.com/document/d/1obd6Jhs7al1r16HOK-2kXMC05q6xMOPMdzDFUToQgKM/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
+                        <a href="about.html" class="text-[16px] font-helvetica font-light nav-link relative">About</a>
+                        <div class="relative group">
+                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown">Contact</button>
+                            <div class="absolute top-full right-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible contact-dropdown-menu transition-all duration-200 z-[9999]">
+                                <div class="relative pr-4">
+                                    <div class="bg-white/80 backdrop-blur-sm rounded-sm px-3 py-2">
+                                        <div class="space-y-2 text-right">
+                                            <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
+                                            <div class="space-y-1">
+                                                <a href="mailto:c.a.rodriguez1999@gmail.com" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">c.a.rodriguez1999@gmail.com</a>
+                                                <a href="https://linkedin.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                                <a href="https://github.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="absolute top-0 right-0 w-0.5 bg-black h-0 group-hover:h-full transition-all duration-500 ease-out"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content Sections -->
+        <div class="max-w-[960px] mx-auto pt-24" style="padding-left: 48px; padding-right: 48px;">
+            <!-- Hero Section -->
+            <section class="mb-14">
+                <div class="py-20 flex justify-center">
+                    <div class="max-w-[800px]">
+                        <h2 class="text-[32px] font-helvetica font-medium leading-tight">— I am a human-centered AI Product Manager<br>designing transformative experiences that amplify<br>voices too often left unheard.</h2>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Projects -->
+            <section id="projects" class="mb-14">
+                <h2 class="text-[36px] font-nuosu mb-5">Featured Projects</h2>
+                <div class="flex space-x-[25px] overflow-x-auto pb-4 scrollbar-hide">
+                    <div class="flex-shrink-0 w-[calc(33.333%-17px)] pt-4 px-2">
+                        <a href="ai-research-workbook.html">
+                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
+                                <img src="images/BeyondChat.webp" alt="AI Research Workbook" class="w-full h-64 object-cover">
+                            </div>
+                            <h3 class="text-[18px] font-helvetica font-bold mb-1">AI Research Workbook</h3>
+                            <p class="text-[14px] font-helvetica font-light">Product Manager, Northwestern Medicine</p>
+                        </a>
+                    </div>
+                    <div class="flex-shrink-0 w-[calc(33.333%-17px)] pt-4 px-2">
+                        <a href="bachelors-microsoft-health.html">
+                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
+                                <img src="images/BMH-ProjectCard copy.jpg" alt="Bachelors in Microsoft Health" class="w-full h-64 object-cover">
+                            </div>
+                            <h3 class="text-[18px] font-helvetica font-bold mb-1">Bachelors in Microsoft Health</h3>
+                            <p class="text-[14px] font-helvetica font-light">Program Manager, Microsoft Corporation</p>
+                        </a>
+                    </div>
+                    <div class="flex-shrink-0 w-[calc(33.333%-17px)] pt-4 px-2">
+                        <a href="nm-scholars-program.html">
+                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
+                                <img src="images/NM-Scholars-2.jpg" alt="NM Scholars Program" class="w-full h-64 object-cover">
+                            </div>
+                            <h3 class="text-[18px] font-helvetica font-bold mb-1">NM Scholars Program</h3>
+                            <p class="text-[14px] font-helvetica font-light">Design Strategist, Northwestern Medicine</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="resume" class="mb-14">
+                <h2 class="text-[36px] font-nuosu mb-5">Experience</h2>
+                <div class="max-w-[805px]">
+                    <!-- Northwestern Medicine -->
+                    <div class="mb-12">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-[20px] font-helvetica font-bold">Northwestern Medicine</h3>
+                            <span class="text-[16px] font-helvetica font-light">2025 - Present</span>
+                        </div>
+                        <div>
+                            <div class="mb-8">
+                                <h4 class="text-[20px] font-helvetica font-light mb-2">Product Manager <span class="font-light">| AI Research Workbook</span></h4>
+                                <p class="text-[16px] font-helvetica font-light leading-relaxed">Led research and product development for an AI-supported workbook helping first-gen students conduct academic research with confidence. Integrated GPT-4 into scaffolded modules, balancing automation with pedagogical integrity. Piloted across university partners with evidence-based learning outcomes.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-[20px] font-helvetica font-light mb-2">Design Strategist <span class="font-light">| NM Scholars Program</span></h4>
+                                <p class="text-[16px] font-helvetica font-light leading-relaxed">Redesigned program delivery and student engagement strategies as the program scaled. Clarified mentor roles, introduced student-led APC structures, and created visual tools to support stakeholder alignment and equity-driven learning experiences.</p>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-300 mt-4"></div>
+                    </div>
+
+                    <!-- Illinois Tech -->
+                    <div class="mb-12">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-[20px] font-helvetica font-bold">Illinois Institute of Technology</h3>
+                            <span class="text-[16px] font-helvetica font-light">2025 - Present</span>
+                        </div>
+                        <div>
+                            <div>
+                                <h4 class="text-[20px] font-helvetica font-light mb-2">AI Product Manager <span class="font-light">| Decision-Making Agent</span></h4>
+                                <p class="text-[16px] font-helvetica font-light leading-relaxed">Developed and deployed a GPT-4-powered sidekick that helps students apply structured decision-making frameworks. Scaled to 100+ users across institutions, improving research workflow clarity and confidence.</p>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-300 mt-4"></div>
+                    </div>
+
+                                    <!-- Microsoft -->
+                <div class="mb-12">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-[20px] font-helvetica font-bold">Microsoft Corporation</h3>
+                        <span class="text-[16px] font-helvetica font-light">2019 - 2023</span>
+                    </div>
+                        <div>
+                            <div class="mb-8">
+                                <h4 class="text-[20px] font-helvetica font-light mb-2">Customer Success Manager <span class="font-light">| Healthcare + Microsoft Copilot</span></h4>
+                                <p class="text-[16px] font-helvetica font-light leading-relaxed">Drove 392% adoption of Microsoft Teams, Viva, and early Microsoft Copilot features in enterprise health accounts. Co-led a 12-week internal bootcamp (Bachelors in Microsoft Health) serving 1K+ employees to upskill in health systems, AI fluency, and patient-centered design.</p>
+                            </div>
+                            <div class="mb-8">
+                                <h4 class="text-[20px] font-helvetica font-light mb-2">Technical Project Manager <span class="font-light">| Azure & Microsoft Teams</span></h4>
+                                <p class="text-[16px] font-helvetica font-light leading-relaxed">Scrum Master for two cross-functional engineering teams. Improved sprint completion by 48% and built a cross-org dashboard aligning Azure/Teams engineering with executive visibility, cutting backlog by 40%.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-[20px] font-helvetica font-light mb-2">Solution Specialist <span class="font-light">| Azure Growth</span></h4>
+                                <p class="text-[16px] font-helvetica font-light leading-relaxed">Created targeting frameworks and internal enablement strategies that contributed to 14% YoY Azure growth across U.S. health sector partners.</p>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-300 mt-4"></div>
+                    </div>
+
+                    <!-- MyRealFood -->
+                    <div class="mb-12">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-[20px] font-helvetica font-bold">MyRealFood</h3>
+                            <span class="text-[16px] font-helvetica font-light">2019</span>
+                        </div>
+                        <div>
+                            <div>
+                                <h4 class="text-[20px] font-helvetica font-light mb-2">Software Engineer</h4>
+                                <p class="text-[16px] font-helvetica font-light leading-relaxed">Built calendar-based food-logging features for 1M+ users in React Native. Developed backend nutrition tools powering personalized meal plans.</p>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-300 mt-4"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blog Section -->
+            <section id="blog" class="mb-14">
+                <h2 class="text-[36px] font-nuosu mb-5">Blog</h2>
+                <p class="text-[16px] font-helvetica font-light leading-relaxed mb-12">I am the co-founder of <span class="text-[#9a472f]">Better Problems</span>, check us out! Here are some featured articles.</p>
+                <div class="flex space-x-[25px] overflow-x-auto pb-4 scrollbar-hide">
+                    <div class="flex-shrink-0 w-[calc(33.333%-17px)] pt-4 px-2">
+                        <a href="better-problems.html">
+                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
+                                <img src="images/BP-Card2.jpg" alt="Better Problems" class="w-full h-64 object-cover">
+                            </div>
+                            <h3 class="text-[18px] font-helvetica font-bold mb-1">Better Problems</h3>
+                            <p class="text-[14px] font-helvetica font-light">The Power of Reframing Everyday</p>
+                        </a>
+                    </div>
+                    <div class="flex-shrink-0 w-[calc(33.333%-17px)] pt-4 px-2">
+                        <a href="ai-beyond-chat.html">
+                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
+                                <img src="images/BeyondChat-copy.jpg" alt="AI Beyond The Chat" class="w-full h-64 object-cover">
+                            </div>
+                            <h3 class="text-[18px] font-helvetica font-bold mb-1">AI Beyond The Chat</h3>
+                            <p class="text-[14px] font-helvetica font-light">Designing AI tools that teach</p>
+                        </a>
+                    </div>
+                    <div class="flex-shrink-0 w-[calc(33.333%-17px)] pt-4 px-2">
+                        <a href="design-what-you-dont-see.html">
+                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
+                                <img src="images/ST copy.jpg" alt="Design Is What You Don't See" class="w-full h-64 object-cover">
+                            </div>
+                            <h3 class="text-[18px] font-helvetica font-bold mb-1">Design Is What You Don't See</h3>
+                            <p class="text-[14px] font-helvetica font-light">Critical design should linger, not resolve</p>
+                        </a>
+                    </div>
+                    <div class="flex-shrink-0 w-[calc(33.333%-17px)] pt-4 px-2">
+                        <a href="trust-is-the-product.html">
+                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
+                                <img src="images/PMArticle copy.jpeg" alt="Trust Is The Product" class="w-full h-64 object-cover">
+                            </div>
+                            <h3 class="text-[18px] font-helvetica font-bold mb-1">Trust Is The Product</h3>
+                            <p class="text-[14px] font-helvetica font-light">PMs role in responsible AI</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!-- Footer -->
+            <footer class="bg-white border-t border-gray-200 mt-20">
+                <div class="max-w-7xl mx-auto px-12 py-8">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-8">
+                            <div>
+                                <h3 class="text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                                <p class="text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                            </div>
+                            <div class="border-l border-gray-300 h-12"></div>
+                            <div>
+                                <p class="text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                                <div class="flex space-x-4">
+                                    <a href="mailto:c.a.rodriguez1999@gmail.com" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</a>
+                                    <a href="https://linkedin.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                    <a href="https://github.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                                                    <div class="text-right">
+                                <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
+                                <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
+                                <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by CursorAI, Figma, and GPT</p>
+                            </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- AI Sidekick -->
+    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col z-[9999]" id="ai-sidekick">
+        <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
+            <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
+        </div>
+        <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex">
+            <span class="text-black mt-[2px]">></span>
+            <div class="relative flex-1 ml-2">
+                <textarea 
+                    class="bg-transparent border-none font-['IBM_Plex_Mono'] text-[14px] w-full outline-none text-black resize-none overflow-hidden p-0 leading-normal"
+                    placeholder="Ask me anything..."
+                    id="chat-input"
+                    rows="1"
+                    style="height: 20px;"
+                ></textarea>
+            </div>
+        </div>
+        <!-- Debug panel -->
+        <div class="debug-panel" id="debugPanel" style="display: none; margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 5px; font-family: monospace; font-size: 10px; max-height: 150px; overflow-y: auto; border: 1px solid #ccc;">
+            <strong>Debug Logs:</strong>
+            <div id="debugLogs"></div>
+            <button onclick="clearDebugLogs()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #666; color: white; border: none; border-radius: 3px;">Clear Logs</button>
+            <button onclick="clearContext()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #444; color: white; border: none; border-radius: 3px;">Clear Context</button>
+            <button onclick="alert(localStorage.getItem('sidekickContext'))" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #444; color: white; border: none; border-radius: 3px;">Show Raw Context</button>
+            <button onclick="testContext()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #444; color: white; border: none; border-radius: 3px;">Test Context</button>
+            <button onclick="testCursor()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #666; color: white; border: none; border-radius: 3px;">Test Cursor</button>
+        </div>
+        <button onclick="toggleDebugPanel()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #666; color: white; border: none; border-radius: 3px;">Toggle Debug</button>
+        <div class="bg-[#18a000] p-4">
+            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold">AI Sidekick</h3>
+        </div>
+    </div>
+
+            <script src="simple-context-sidekick.js"></script>
+        <script src="openai-sidekick.js"></script>
+    <script>
+        // Initialize Simple Context AI Sidekick
+        let simpleSidekick = null;
+
+        // Debug panel functions
+        function toggleDebugPanel() {
+            const panel = document.getElementById('debugPanel');
+            const logs = document.getElementById('debugLogs');
+            if (panel.style.display === 'none') {
+                panel.style.display = 'block';
+                updateDebugLogs();
+            } else {
+                panel.style.display = 'none';
+            }
+        }
+
+        function updateDebugLogs() {
+            const logs = document.getElementById('debugLogs');
+            if (simpleSidekick) {
+                logs.textContent = simpleSidekick.getDebugLogs();
+            } else {
+                logs.textContent = 'Sidekick not initialized';
+            }
+        }
+
+        function clearDebugLogs() {
+            if (simpleSidekick) {
+                simpleSidekick.clearDebugLogs();
+                updateDebugLogs();
+            }
+        }
+
+        function clearContext() {
+            if (simpleSidekick) {
+                simpleSidekick.forceClearContext();
+                console.log('Context cleared manually');
+            }
+        }
+
+        function testContext() {
+            if (simpleSidekick) {
+                const context = simpleSidekick.getContext();
+                alert(JSON.stringify(context, null, 2));
+            } else {
+                alert('Simple sidekick not initialized.');
+            }
+        }
+
+        function testCursor() {
+            const cursor = document.getElementById('cursor');
+            if (cursor) {
+                console.log('Testing cursor animation');
+                cursor.classList.add('navigating');
+                cursor.style.transition = 'all 1s ease';
+                cursor.style.left = '100px';
+                cursor.style.top = '100px';
+                
+                setTimeout(() => {
+                    cursor.style.left = '200px';
+                    cursor.style.top = '200px';
+                    
+                    setTimeout(() => {
+                        cursor.classList.remove('navigating');
+                        cursor.style.transition = 'transform 0.2s ease, background-color 0.3s ease';
+                    }, 1000);
+                }, 1000);
+            } else {
+                alert('Cursor element not found');
+            }
+        }
+
+        // Cursor functionality
+        const cursor = document.getElementById('cursor');
+        let links = document.querySelectorAll('a');
+        let buttons = document.querySelectorAll('button');
+        let isNavigating = false;
+        let lastAINavigationPosition = null; // Track AI's final position
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isNavigating && !lastAINavigationPosition) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            } else if (!isNavigating && lastAINavigationPosition) {
+                // User is moving the mouse after AI navigation - clear stored position
+                lastAINavigationPosition = null;
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            }
+            // If isNavigating is true, don't update cursor position - let AI control it
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                if (!isNavigating && !lastAINavigationPosition) {
+                    cursor.classList.add('hover');
+                }
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                if (!isNavigating && !lastAINavigationPosition) {
+                    cursor.classList.add('hover');
+                }
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursor.style.display = 'none';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.style.display = 'block';
+        });
+
+        // Function to smoothly transition cursor from AI to user control
+        function transitionCursorFromAI() {
+            if (lastAINavigationPosition) {
+                // Keep cursor at AI's final position
+                cursor.style.left = lastAINavigationPosition.x + 'px';
+                cursor.style.top = lastAINavigationPosition.y + 'px';
+            }
+            // Set isNavigating to false but keep the stored position
+            isNavigating = false;
+            // The stored position will be cleared only when user moves the mouse
+        }
+
+        // Enhanced responses with navigation capabilities and deeper insights
+        const responses = {
+            'microsoft': {
+                keywords: ['microsoft', 'copilot', 'microsoft health', 'bachelors program', 'big tech', 'big tech company', 'tech company', 'large company', 'enterprise'],
+                response: "Carlos worked at Microsoft on their healthcare initiatives! He helped design the Bachelors in Microsoft Health program. What's interesting about his approach is how he balanced enterprise constraints with human-centered design - he often talks about 'designing within the system' rather than against it. He learned to navigate complex stakeholder dynamics while maintaining design integrity. Let me show you that project.",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    const projectsLink = document.querySelector('a[href="projects.html"]');
+                    
+                    // Set isNavigating to true to prevent mouse tracking interference
+                    isNavigating = true;
+                    console.log('Microsoft navigation started, isNavigating set to true');
+                    
+                    cursor.classList.add('navigating');
+                    
+                    const rect = projectsLink.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    
+                    console.log('Cursor positioned at:', rect.left + rect.width/2, rect.top + rect.height/2);
+                    
+                    setTimeout(() => {
+                        // Store the final position before navigation
+                        lastAINavigationPosition = {
+                            x: rect.left + rect.width/2,
+                            y: rect.top + rect.height/2
+                        };
+                        sessionStorage.setItem('isNavigating', 'true');
+                        sessionStorage.setItem('targetProject', 'bachelors-microsoft-health');
+                        sessionStorage.setItem('scrollToProject', 'true');
+                        console.log('Navigating to Microsoft Health project');
+                        window.location.href = 'projects.html';
+                    }, 1000);
+                }
+            },
+            'ai': {
+                keywords: ['ai', 'artificial intelligence', 'gpt', 'chatgpt', 'ai technologies', 'machine learning', 'ai experience', 'chatgpt', 'gpt', 'openai'],
+                response: "Carlos has extensive AI experience! He built an AI Research Workbook at Northwestern Medicine and worked on Microsoft Copilot integration. What's fascinating is his philosophy on AI - he believes in 'human-centered AI' where technology amplifies human judgment rather than replaces it. He often says his goal is to make AI feel more human, not less. His approach focuses on designing AI tools that build user confidence and agency. Let me show you his AI Research Workbook project.",
+                action: () => {
+                    // Set context for AI Research Workbook
+                    if (simpleSidekick) {
+                        simpleSidekick.setContext('ai research workbook', "Carlos built an AI Research Workbook at Northwestern Medicine for AI research documentation and collaboration.");
+                    }
+                    
+                    const cursor = document.getElementById('cursor');
+                    const projectsLink = document.querySelector('a[href="projects.html"]');
+                    
+                    // Set isNavigating to true to prevent mouse tracking interference
+                    isNavigating = true;
+                    console.log('AI navigation started, isNavigating set to true');
+                    
+                    cursor.classList.add('navigating');
+                    
+                    const rect = projectsLink.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    
+                    console.log('Cursor positioned at:', rect.left + rect.width/2, rect.top + rect.height/2);
+                    
+                    setTimeout(() => {
+                        // Store the final position before navigation
+                        lastAINavigationPosition = {
+                            x: rect.left + rect.width/2,
+                            y: rect.top + rect.height/2
+                        };
+                        sessionStorage.setItem('isNavigating', 'true');
+                        sessionStorage.setItem('targetProject', 'ai-research-workbook');
+                        sessionStorage.setItem('scrollToProject', 'true');
+                        console.log('Navigating to AI Research Workbook project');
+                        window.location.href = 'projects.html';
+                    }, 1000);
+                }
+            },
+            'northwestern': {
+                keywords: ['northwestern', 'northwestern medicine', 'nm scholars', 'ai research workbook', 'last project', 'recent work', 'latest project'],
+                response: "I'll show you his Northwestern Medicine projects! He has two major projects there - the AI Research Workbook and the NM Scholars Program. What's really interesting about his Northwestern work is how he thinks about 'equity by design.' He believes that truly inclusive design means building systems that work for the most vulnerable users first, not as an afterthought. His process involves deep stakeholder engagement with communities that are often left out of innovation conversations. Let me show you his most recent work.",
+                action: () => {
+                    // Set context for Northwestern Medicine projects (only for Simple Context sidekick)
+                    if (simpleSidekick && !(simpleSidekick instanceof OpenAISidekick)) {
+                        simpleSidekick.setContext('northwestern medicine', "Carlos has two major projects at Northwestern Medicine - the AI Research Workbook and the NM Scholars Program. Both showcase his ability to bridge AI technology with healthcare needs.");
+                        console.log('Context set before navigation');
+                    }
+                    
+                    const cursor = document.getElementById('cursor');
+                    const projectsLink = document.querySelector('a[href="projects.html"]');
+                    
+                    // Set isNavigating to true to prevent mouse tracking interference
+                    isNavigating = true;
+                    console.log('Northwestern navigation started, isNavigating set to true');
+                    
+                    cursor.classList.add('navigating');
+                    
+                    const rect = projectsLink.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    
+                    console.log('Cursor positioned at:', rect.left + rect.width/2, rect.top + rect.height/2);
+                    
+                    setTimeout(() => {
+                        // Store the final position before navigation
+                        lastAINavigationPosition = {
+                            x: rect.left + rect.width/2,
+                            y: rect.top + rect.height/2
+                        };
+                        sessionStorage.setItem('isNavigating', 'true');
+                        sessionStorage.setItem('targetProject', 'ai-research-workbook');
+                        sessionStorage.setItem('scrollToProject', 'true');
+                        
+                        // Context is automatically maintained by RAG sidekick
+                        console.log('Navigating with context preserved');
+                        
+                        window.location.href = 'projects.html';
+                    }, 1000);
+                }
+            },
+            'healthcare': {
+                keywords: ['healthcare', 'medical', 'clinical', 'health', 'medicine', 'healthcare experience'],
+                response: "Carlos has significant healthcare experience! He worked at Northwestern Medicine on clinical learning programs and AI research tools. What's unique about his healthcare approach is his focus on 'systemic empathy' - he designs for the entire care ecosystem, not just individual touchpoints. He believes that healthcare innovation should reduce cognitive load for clinicians while improving patient outcomes. His work often involves mapping complex clinical workflows and identifying moments where technology can provide meaningful support. Let me show you his NM Scholars Program.",
+                action: () => {
+                    // Set context for NM Scholars Program (only for Simple Context sidekick)
+                    if (simpleSidekick && !(simpleSidekick instanceof OpenAISidekick)) {
+                        simpleSidekick.setContext('nm scholars', "Carlos worked on the NM Scholars Program at Northwestern Medicine, an innovative educational initiative for medical students.");
+                    }
+                    
+                    const cursor = document.getElementById('cursor');
+                    const projectsLink = document.querySelector('a[href="projects.html"]');
+                    
+                    // Set isNavigating to true to prevent mouse tracking interference
+                    isNavigating = true;
+                    console.log('Healthcare navigation started, isNavigating set to true');
+                    
+                    cursor.classList.add('navigating');
+                    
+                    const rect = projectsLink.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    
+                    console.log('Cursor positioned at:', rect.left + rect.width/2, rect.top + rect.height/2);
+                    
+                    setTimeout(() => {
+                        // Store the final position before navigation
+                        lastAINavigationPosition = {
+                            x: rect.left + rect.width/2,
+                            y: rect.top + rect.height/2
+                        };
+                        sessionStorage.setItem('isNavigating', 'true');
+                        sessionStorage.setItem('targetProject', 'nm-scholars-program');
+                        sessionStorage.setItem('scrollToProject', 'true');
+                        console.log('Navigating to NM Scholars Program project');
+                        window.location.href = 'projects.html';
+                    }, 1000);
+                }
+            },
+            'home': {
+                keywords: ['home', 'main page', 'go back', 'return', 'landing page'],
+                response: "Let me take you back to the home page!",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    const homeLink = document.querySelector('a[href="index.html"]');
+                    cursor.classList.add('navigating');
+                    const rect = homeLink.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    setTimeout(() => {
+                        // Store the final position before navigation
+                        lastAINavigationPosition = {
+                            x: rect.left + rect.width/2,
+                            y: rect.top + rect.height/2
+                        };
+                        sessionStorage.setItem('isNavigating', 'true');
+                        window.location.href = 'index.html';
+                    }, 1000);
+                }
+            },
+            'projects': {
+                keywords: ['projects', 'work', 'portfolio', 'case studies', 'what has he built', 'show me his work'],
+                response: "I'll take you to his projects page where you can see all his detailed work!",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    const projectsLink = document.querySelector('a[href="projects.html"]');
+                    
+                    // Set isNavigating to true to prevent mouse tracking interference
+                    isNavigating = true;
+                    console.log('Projects navigation started, isNavigating set to true');
+                    
+                    cursor.classList.add('navigating');
+                    
+                    const rect = projectsLink.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    
+                    console.log('Cursor positioned at:', rect.left + rect.width/2, rect.top + rect.height/2);
+                    
+                    setTimeout(() => {
+                        // Store the final position before navigation
+                        lastAINavigationPosition = {
+                            x: rect.left + rect.width/2,
+                            y: rect.top + rect.height/2
+                        };
+                        sessionStorage.setItem('isNavigating', 'true');
+                        console.log('Navigating to projects.html');
+                        window.location.href = 'projects.html';
+                    }, 1000);
+                }
+            },
+            'experience': {
+                keywords: ['experience', 'work history', 'jobs', 'career', 'background', 'what has he done'],
+                response: "Let me show you his experience! You can see his work history on the home page or explore his specific projects. What's interesting about his career path is how he's consistently worked at the intersection of technology, design, and social impact. He's moved from technical roles to strategic design, always maintaining a focus on how systems can better serve people. His experience spans from hands-on development to strategic consulting, giving him a unique perspective on both implementation and vision.",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    const homeLink = document.querySelector('a[href="index.html"]');
+                    
+                    cursor.classList.add('navigating');
+                    
+                    const rect = homeLink.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    
+                    setTimeout(() => {
+                        // Store the final position before navigation
+                        lastAINavigationPosition = {
+                            x: rect.left + rect.width/2,
+                            y: rect.top + rect.height/2
+                        };
+                        sessionStorage.setItem('isNavigating', 'true');
+                        window.location.href = 'index.html#resume';
+                    }, 1000);
+                }
+            },
+            'about': {
+                keywords: ['about', 'who is', 'tell me about', 'background', 'who is carlos'],
+                response: "Let me show you more about Carlos!",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    const aboutLink = document.querySelector('a[href="about.html"]');
+                    
+                    // Set isNavigating to true to prevent mouse tracking interference
+                    isNavigating = true;
+                    console.log('About navigation started, isNavigating set to true');
+                    
+                    cursor.classList.add('navigating');
+                    const rect = aboutLink.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    
+                    console.log('Cursor positioned at:', rect.left + rect.width/2, rect.top + rect.height/2);
+                    
+                    setTimeout(() => {
+                        // Store the final position before navigation
+                        lastAINavigationPosition = {
+                            x: rect.left + rect.width/2,
+                            y: rect.top + rect.height/2
+                        };
+                        sessionStorage.setItem('isNavigating', 'true');
+                        console.log('Navigating to about.html');
+                        window.location.href = 'about.html';
+                    }, 1000);
+                }
+            },
+            'contact': {
+                keywords: ['contact', 'reach', 'email', 'connect', 'get in touch', 'how to contact'],
+                response: "I'll show you his contact information! You can find his email, LinkedIn, and GitHub in the contact dropdown.",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    const contactButton = document.querySelector('.contact-dropdown');
+                    const contactDropdownMenu = document.querySelector('.contact-dropdown-menu');
+                    
+                    cursor.classList.add('navigating');
+                    
+                    // Move cursor to contact button
+                    const rect = contactButton.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    
+                    setTimeout(() => {
+                        // Store the final position before showing dropdown
+                        lastAINavigationPosition = {
+                            x: rect.left + rect.width/2,
+                            y: rect.top + rect.height/2
+                        };
+                        
+                        // Show the dropdown
+                        contactDropdownMenu.classList.remove('invisible', 'opacity-0');
+                        contactDropdownMenu.classList.add('opacity-100', 'visible');
+                        
+                        setTimeout(() => {
+                            cursor.style.transition = 'transform 0.2s ease, background-color 0.3s ease';
+                            cursor.classList.remove('navigating');
+                            transitionCursorFromAI(); // Use smooth transition
+                        }, 500);
+                    }, 1000);
+                }
+            },
+            'resume': {
+                keywords: ['resume', 'cv', 'experience', 'work history', 'download resume'],
+                response: "I'll open his resume for you! It's a Google Docs link with his full experience and background.",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    const resumeLink = document.querySelector('a[href*="docs.google.com"]');
+                    cursor.classList.add('navigating');
+                    const rect = resumeLink.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    setTimeout(() => {
+                        // Store the final position before clicking
+                        lastAINavigationPosition = {
+                            x: rect.left + rect.width/2,
+                            y: rect.top + rect.height/2
+                        };
+                        resumeLink.click();
+                        setTimeout(() => {
+                            cursor.style.transition = 'transform 0.2s ease, background-color 0.3s ease';
+                            cursor.classList.remove('navigating');
+                            transitionCursorFromAI(); // Use smooth transition
+                        }, 100);
+                    }, 1000);
+                }
+            },
+            'oldest': {
+                keywords: ['oldest', 'older', 'oldest project', 'older project', 'first project', 'earliest project', 'microsoft health'],
+                response: "I'll show you his oldest project - the Microsoft Health Bachelors program! This was his first major project where he learned to balance enterprise constraints with human-centered design.",
+                action: () => {
+                    // Set context for Microsoft Health project (only for Simple Context sidekick)
+                    if (simpleSidekick && !(simpleSidekick instanceof OpenAISidekick)) {
+                        simpleSidekick.setContext('microsoft health', "Carlos worked on the Bachelors in Microsoft Health program, his oldest project where he learned to balance enterprise constraints with human-centered design.");
+                    }
+                    
+                    const cursor = document.getElementById('cursor');
+                    const projectsLink = document.querySelector('a[href="projects.html"]');
+                    
+                    // Set isNavigating to true to prevent mouse tracking interference
+                    isNavigating = true;
+                    console.log('Oldest project navigation started, isNavigating set to true');
+                    
+                    cursor.classList.add('navigating');
+                    
+                    const rect = projectsLink.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    
+                    console.log('Cursor positioned at:', rect.left + rect.width/2, rect.top + rect.height/2);
+                    
+                    setTimeout(() => {
+                        // Store the final position before navigation
+                        lastAINavigationPosition = {
+                            x: rect.left + rect.width/2,
+                            y: rect.top + rect.height/2
+                        };
+                        sessionStorage.setItem('isNavigating', 'true');
+                        sessionStorage.setItem('targetProject', 'bachelors-microsoft-health');
+                        sessionStorage.setItem('scrollToProject', 'true');
+                        
+                        console.log('Navigating to oldest project (Microsoft Health)');
+                        
+                        window.location.href = 'projects.html';
+                    }, 1000);
+                }
+            },
+            'blog': {
+                keywords: ['blog', 'blog posts', 'articles', 'writing', 'blog section'],
+                response: "I'll take you to his blog section on the homepage where you can read his latest articles and insights!",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    console.log('Blog navigation started');
+                    
+                    // If we're not on the homepage, navigate there first
+                    if (window.location.pathname !== '/index.html' && window.location.pathname !== '/' && !window.location.pathname.endsWith('index.html')) {
+                        console.log('Not on homepage, navigating to index.html');
+                        sessionStorage.setItem('scrollToSection', 'blog');
+                        window.location.href = 'index.html';
+                    } else {
+                        // We're already on the homepage, animate cursor to blog section
+                        console.log('On homepage, animating cursor to blog section');
+                        const blogSection = document.querySelector('#blog');
+                        if (blogSection) {
+                            console.log('Blog section found, starting animation');
+                            const rect = blogSection.getBoundingClientRect();
+                            
+                            // Set isNavigating to true to prevent mouse tracking interference
+                            isNavigating = true;
+                            
+                            // Make cursor visible and start animation
+                            cursor.classList.add('navigating');
+                            cursor.style.transition = 'all 1s ease';
+                            cursor.style.left = (rect.left + rect.width/2) + 'px';
+                            cursor.style.top = (rect.top + rect.height/2) + 'px';
+                            
+                            console.log('Cursor positioned at:', rect.left + rect.width/2, rect.top + rect.height/2);
+                            
+                            setTimeout(() => {
+                                console.log('Starting scroll animation');
+                                lastAINavigationPosition = { x: rect.left + rect.width/2, y: rect.top + rect.height/2 };
+                                blogSection.scrollIntoView({ behavior: 'smooth' });
+                                
+                                setTimeout(() => {
+                                    console.log('Animation complete, transitioning cursor');
+                                    cursor.style.transition = 'transform 0.2s ease, background-color 0.3s ease';
+                                    cursor.classList.remove('navigating');
+                                    transitionCursorFromAI();
+                                }, 1000);
+                            }, 1000);
+                        } else {
+                            console.log('Blog section not found');
+                        }
+                    }
+                }
+            },
+            'epicac': {
+                keywords: ['epicac', 'thermal printer', 'poems', 'vonnegut'],
+                response: "Taking you to EPICAC...",
+                action: () => {
+                    sessionStorage.setItem('isNavigating', 'true');
+                    window.location.href = 'epicac.html';
+                }
+            },
+            'gavno': {
+                keywords: ['gavno', 'ga.v.no', 'radio', 'brazilian'],
+                response: "Taking you to GA.V.NO...",
+                action: () => {
+                    sessionStorage.setItem('isNavigating', 'true');
+                    window.location.href = 'gavno.html';
+                }
+            },
+            'better_problems_project': {
+                keywords: ['better problems project', 'independent practice', 'consultancy page'],
+                response: "Opening Better Problems (project)...",
+                action: () => {
+                    sessionStorage.setItem('isNavigating', 'true');
+                    window.location.href = 'better-problems-project.html';
+                }
+            },
+            'article_better_problems': {
+                keywords: ['better problems article', 'better problems essay'],
+                response: "Opening the Better Problems article...",
+                action: () => {
+                    sessionStorage.setItem('isNavigating', 'true');
+                    sessionStorage.setItem('targetProject', 'better-problems');
+                    window.location.href = 'index.html';
+                }
+            },
+            'article_ai_beyond_chat': {
+                keywords: ['ai beyond the chat', 'beyond chat article'],
+                response: "Opening AI Beyond the Chat...",
+                action: () => {
+                    sessionStorage.setItem('isNavigating', 'true');
+                    window.location.href = 'ai-beyond-chat.html';
+                }
+            },
+            'article_design_not_see': {
+                keywords: ["design is what you don't see", 'design what you dont see', 'design is what you dont see'],
+                response: "Opening Design Is What You Don’t See...",
+                action: () => {
+                    sessionStorage.setItem('isNavigating', 'true');
+                    window.location.href = 'design-what-you-dont-see.html';
+                }
+            },
+            'article_trust_product': {
+                keywords: ['trust is the product', 'trust is the product article', 'pm role in responsible ai'],
+                response: "Opening Trust Is The Product...",
+                action: () => {
+                    sessionStorage.setItem('isNavigating', 'true');
+                    window.location.href = 'trust-is-the-product.html';
+                }
+            }
+        };
+
+        async function findResponse(input) {
+            const lowercaseInput = input.toLowerCase();
+            console.log('findResponse called with:', input);
+            
+            // FIRST: Check if this is a context continuation (prioritize context over navigation)
+            if (simpleSidekick) {
+                console.log('Checking for context continuation first...');
+                
+                // Check if this looks like a context continuation
+                const contextContinuationPhrases = ['tell me more about it', 'tell me more', 'more about it', 'more details', 'what else', 'continue', 'go on', 'elaborate', 'explain more', 'more', 'it'];
+                const isContextContinuation = contextContinuationPhrases.some(phrase => lowercaseInput.includes(phrase));
+                
+                if (isContextContinuation) {
+                    console.log('Context continuation detected, using sidekick response');
+                    
+                    // Handle async OpenAI sidekick
+                    if (simpleSidekick instanceof OpenAISidekick) {
+                        const response = await simpleSidekick.getResponse(input);
+                        return response;
+                    } else {
+                        const simpleResponse = simpleSidekick.getResponse(input);
+                        
+                        // Update debug logs if panel is visible
+                        if (document.getElementById('debugPanel').style.display !== 'none') {
+                            updateDebugLogs();
+                        }
+                        
+                        return {
+                            text: simpleResponse,
+                            action: null
+                        };
+                    }
+                }
+            }
+            
+            // SECOND: Check for navigation keywords (but exclude context continuation phrases)
+            const contextContinuationPhrases = ['tell me more about it', 'tell me more', 'more about it', 'more details', 'what else', 'continue', 'go on', 'elaborate', 'explain more', 'more', 'it'];
+            const navigationKeywords = ['take me', 'go to', 'show me', 'navigate', 'latest', 'recent', 'project', 'projects', 'about', 'home', 'contact', 'resume'];
+            
+            // Only check navigation if it's NOT a context continuation
+            const isContextContinuation = contextContinuationPhrases.some(phrase => lowercaseInput.includes(phrase));
+            const isNavigationQuery = !isContextContinuation && navigationKeywords.some(keyword => lowercaseInput.includes(keyword));
+            
+            if (isNavigationQuery) {
+                console.log('Navigation query detected, checking navigation responses first');
+                // Check navigation responses first for navigation queries
+                for (const category in responses) {
+                    if (responses[category].keywords.some(keyword => lowercaseInput.includes(keyword))) {
+                        console.log('Found navigation response for:', category);
+                        
+                        // Update context for navigation responses (only for Simple Context sidekick)
+                        if (simpleSidekick && responses[category].response && !(simpleSidekick instanceof OpenAISidekick)) {
+                            // Extract topic from the navigation response
+                            const topic = simpleSidekick.extractTopicFromResponse(responses[category].response);
+                            if (topic) {
+                                console.log('Updating context for navigation response:', topic);
+                                simpleSidekick.setContext(topic, responses[category].response);
+                            }
+                        }
+                        
+                        return {
+                            text: responses[category].response,
+                            action: responses[category].action
+                        };
+                    }
+                }
+                
+                // If no navigation response found, don't fall through to OpenAI for navigation queries
+                console.log('No navigation response found, but this is a navigation query - not using OpenAI');
+                return {
+                    text: "I can help you navigate to Carlos's projects! Try asking me to 'take me to the Northwestern Medicine projects' or 'show me the AI Research Workbook'.",
+                    action: null
+                };
+            }
+            
+            // THIRD: Try the AI sidekick for insight queries
+            console.log('=== MAIN RESPONSE DEBUG ===');
+            console.log('Input:', input);
+            console.log('AI sidekick available?', !!simpleSidekick);
+            
+            if (simpleSidekick) {
+                console.log('AI sidekick object:', simpleSidekick);
+                
+                // Handle async OpenAI sidekick
+                if (simpleSidekick instanceof OpenAISidekick) {
+                    console.log('Using OpenAI sidekick');
+                    const response = await simpleSidekick.getResponse(input);
+                    console.log('OpenAI response:', response);
+                    return response;
+                } else {
+                    // Handle Simple Context sidekick
+                    console.log('Using Simple Context sidekick');
+                    const simpleResponse = simpleSidekick.getResponse(input);
+                    console.log('Simple response:', simpleResponse);
+                    
+                    // Update debug logs if panel is visible
+                    if (document.getElementById('debugPanel').style.display !== 'none') {
+                        updateDebugLogs();
+                    }
+                    
+                    // Check if we got a meaningful response (not the default)
+                    const defaultResponse = simpleSidekick.getDefaultResponse();
+                    console.log('Default response:', defaultResponse);
+                    console.log('Response matches default?', simpleResponse === defaultResponse);
+                    
+                    if (simpleResponse && simpleResponse !== defaultResponse) {
+                        console.log('Using simple response');
+                        console.log('=== END MAIN DEBUG ===');
+                        return {
+                            text: simpleResponse,
+                            action: null
+                        };
+                    } else {
+                        console.log('Simple response was default, falling back to navigation');
+                        console.log('This means the sidekick returned the default response, so navigation will be used');
+                    }
+                }
+            } else {
+                console.log('AI sidekick not available');
+            }
+            console.log('=== END MAIN DEBUG ===');
+            
+            // Fall back to navigation responses
+            for (const category in responses) {
+                if (responses[category].keywords.some(keyword => lowercaseInput.includes(keyword))) {
+                    return {
+                        text: responses[category].response,
+                        action: responses[category].action
+                    };
+                }
+            }
+            
+            // If no exact match, provide a helpful response
+            return {
+                text: "I can help you navigate through Carlos's portfolio and share insights about his process, values, and strategic thinking! Try asking about his projects, experience, AI work, healthcare experience, Northwestern Medicine projects, or dive deeper into his process, values, strategy, collaboration style, or innovation approach. What would you like to explore?",
+                action: null
+            };
+        }
+
+        // AI Sidekick functionality
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        let isTyping = false;
+
+        // Auto-resize textarea
+        function autoResize() {
+            chatInput.style.height = 'auto';
+            chatInput.style.height = chatInput.scrollHeight + 'px';
+        }
+
+        chatInput.addEventListener('input', autoResize);
+
+        // Load chat history from sessionStorage
+        function loadChatHistory() {
+            const history = JSON.parse(sessionStorage.getItem('chatHistory')) || [];
+            chatMessages.innerHTML = '';
+            if (history.length === 0) {
+                addMessage("Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!", false);
+            } else {
+                history.forEach(msg => {
+                    const p = document.createElement('p');
+                    p.className = msg.isUser ? 'text-black' : 'text-[#18a000]';
+                    if (msg.isUser) {
+                        p.textContent = `> ${msg.text}`;
+                    } else {
+                        // Convert line breaks to HTML br tags for proper formatting
+                        p.innerHTML = msg.text.replace(/\n/g, '<br>');
+                    }
+                    chatMessages.appendChild(p);
+                });
+            }
+        }
+
+        // Session tracking for chat history management
+        function initializeSession() {
+            const isFreshSession = !sessionStorage.getItem('sessionActive');
+            const isAINavigation = sessionStorage.getItem('isNavigating') === 'true';
+            const referrer = document.referrer;
+            const isInternalNavigation = referrer && (
+                referrer.includes('index.html') ||
+                referrer.includes('projects.html') ||
+                referrer.includes('about.html') ||
+                referrer.includes('ai-research-workbook.html') ||
+                referrer.includes('bachelors-microsoft-health.html') ||
+                referrer.includes('nm-scholars-program.html')
+            );
+            
+            // Check if this is a page refresh by looking at performance navigation type
+            const isPageRefresh = performance.navigation.type === 1 || 
+                                (performance.getEntriesByType('navigation')[0] && 
+                                 performance.getEntriesByType('navigation')[0].type === 'reload');
+
+            // Clear chat history if it's a fresh session (page refresh or direct access)
+            // Preserve chat history during any internal navigation (AI or manual)
+            if ((isFreshSession && !isInternalNavigation && !isAINavigation) || isPageRefresh) {
+                sessionStorage.removeItem('chatHistory');
+                sessionStorage.setItem('sessionActive', 'true');
+            }
+        }
+
+        // Load chat history when page loads
+        initializeSession();
+        loadChatHistory();
+
+        // Initialize AI Sidekick (OpenAI if available, fallback to Simple Context)
+        console.log('=== INITIALIZATION DEBUG ===');
+        
+        // Check if OpenAI API key is available
+        const openaiApiKey = localStorage.getItem('openai_api_key');
+        
+        if (openaiApiKey) {
+            console.log('Using OpenAI sidekick');
+            simpleSidekick = new OpenAISidekick(openaiApiKey);
+        } else {
+            console.log('Using Simple Context sidekick (fallback)');
+            console.log('To use OpenAI, set your API key with: localStorage.setItem("openai_api_key", "your-api-key-here")');
+            simpleSidekick = new SimpleContextSidekick();
+        }
+        
+        // Helper function to set OpenAI API key (for easy testing)
+        window.setOpenAIKey = function(apiKey) {
+            localStorage.setItem('openai_api_key', apiKey);
+            console.log('OpenAI API key set. Reload the page to use the new AI sidekick.');
+        };
+        
+        // Only clear test contexts, not real contexts
+        if (simpleSidekick) {
+            try {
+                const savedContext = localStorage.getItem('sidekickContext');
+                if (savedContext) {
+                    const parsedContext = JSON.parse(savedContext);
+                    // Only clear if it's a test context
+                    if (parsedContext && (parsedContext.topic === 'test' || parsedContext.response === 'test response')) {
+                        simpleSidekick.forceClearContext();
+                        console.log('Cleared old test context on page load');
+                    } else {
+                        console.log('Preserved real context on page load:', parsedContext);
+                    }
+                }
+            } catch (error) {
+                console.error('Error checking context on page load:', error);
+            }
+        }
+        
+        // Update debug logs if panel is visible
+        if (document.getElementById('debugPanel').style.display !== 'none') {
+            updateDebugLogs();
+        }
+        console.log('Simple sidekick created:', simpleSidekick);
+        
+        // Give the knowledge base a moment to load
+        setTimeout(() => {
+            console.log('Simple sidekick initialized:', simpleSidekick);
+            console.log('Knowledge base loaded:', simpleSidekick.knowledgeBase ? 'Yes' : 'No');
+            if (simpleSidekick.knowledgeBase) {
+                console.log('Knowledge base sections:', Object.keys(simpleSidekick.knowledgeBase));
+                
+                // Test the simple sidekick
+                console.log('Testing simple sidekick...');
+                const testResponse = simpleSidekick.getResponse('latest project');
+                console.log('Test response for "latest project":', testResponse);
+                
+                // Test context functionality
+                console.log('Testing simple context functionality...');
+                // Removed test context setting to avoid interference
+                console.log('Context functionality ready');
+            } else {
+                console.log('Knowledge base not loaded!');
+            }
+            console.log('=== END INITIALIZATION DEBUG ===');
+        }, 1000);
+        
+        // Wait a moment for knowledge base to load
+        setTimeout(() => {
+        }, 1000);
+
+        // Ensure chat history persists across navigation
+        window.addEventListener('beforeunload', () => {
+            // Don't clear chat history on page navigation
+        });
+
+        function addMessage(text, isUser = false, animate = true) {
+            const p = document.createElement('p');
+            p.className = isUser ? 'text-black' : 'text-[#18a000]';
+            if (isUser) {
+                p.textContent = `> ${text}`;
+            } else if (!animate) {
+                // Convert line breaks to HTML br tags for proper formatting
+                p.innerHTML = text.replace(/\n/g, '<br>');
+            }
+            chatMessages.appendChild(p);
+
+            if (!isUser && animate) {
+                animateText(p, text);
+            }
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Save to sessionStorage
+            const history = JSON.parse(sessionStorage.getItem('chatHistory')) || [];
+            history.push({ text, isUser });
+            sessionStorage.setItem('chatHistory', JSON.stringify(history));
+        }
+
+        // Typing animation for dots
+        function animateTypingDots(element) {
+            let dots = 0;
+            const interval = setInterval(() => {
+                dots = (dots + 1) % 4;
+                element.textContent = '.'.repeat(dots);
+            }, 500);
+            return interval;
+        }
+
+        // Text animation character by character
+        async function animateText(element, text) {
+            let currentText = '';
+            const delay = 30; // ms between each character
+
+            for (let i = 0; i < text.length; i++) {
+                currentText += text[i];
+                // Convert line breaks to HTML br tags for proper formatting
+                element.innerHTML = currentText.replace(/\n/g, '<br>');
+                
+                // Auto-scroll to bottom to show new text as it's being typed
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                await new Promise(resolve => setTimeout(resolve, delay));
+            }
+        }
+
+        async function simulateTyping(text, action = null) {
+            if (isTyping) return;
+            isTyping = true;
+            
+            const typingIndicator = document.createElement('p');
+            typingIndicator.className = 'text-[#18a000] font-mono';
+            typingIndicator.textContent = '.';
+            chatMessages.appendChild(typingIndicator);
+
+            // Animate typing dots
+            const dotsInterval = animateTypingDots(typingIndicator);
+
+            // Wait before starting to type
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Clear typing indicator
+            clearInterval(dotsInterval);
+            chatMessages.removeChild(typingIndicator);
+            
+            // Add and animate the message
+            addMessage(text);
+            isTyping = false;
+
+            // Execute navigation action if provided
+            if (action) {
+                setTimeout(action, 500);
+            }
+        }
+
+        // Handle chat input
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                const message = chatInput.value.trim();
+                if (message && !isTyping) {
+                    addMessage(message, true);
+                    chatInput.value = '';
+                    autoResize();
+                    
+                    isTyping = true;
+                    const typingElement = document.createElement('p');
+                    typingElement.className = 'text-[#18a000]';
+                    chatMessages.appendChild(typingElement);
+                    
+                    const typingInterval = animateTypingDots(typingElement);
+                    
+                    setTimeout(() => {
+                        clearInterval(typingInterval);
+                        chatMessages.removeChild(typingElement);
+                        
+                        try {
+                            // Handle async findResponse
+                            findResponse(message).then(response => {
+                                console.log('Response received:', response);
+                                
+                                if (response && response.text) {
+                                    addMessage(response.text, false);
+                                    
+                                    if (response.action) {
+                                        setTimeout(() => {
+                                            response.action();
+                                        }, 1000);
+                                    }
+                                } else {
+                                    console.error('Invalid response:', response);
+                                    addMessage("I'm sorry, I encountered an error processing your request. Please try again.", false);
+                                }
+                            }).catch(error => {
+                                console.error('Error in findResponse:', error);
+                                addMessage("I'm sorry, I encountered an error processing your request. Please try again.", false);
+                            });
+                        } catch (error) {
+                            console.error('Error in findResponse:', error);
+                            addMessage("I'm sorry, I encountered an error processing your request. Please try again.", false);
+                        }
+                        
+                        isTyping = false;
+                    }, 1000);
+                }
+            }
+        });
+
+        // Add click handling for contact dropdown
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactButton = document.querySelector('.contact-dropdown');
+            const contactDropdownMenu = document.querySelector('.contact-dropdown-menu');
+            
+            if (contactButton && contactDropdownMenu) {
+                contactButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Toggle dropdown visibility
+                    const isVisible = contactDropdownMenu.classList.contains('visible');
+                    
+                    if (isVisible) {
+                        contactDropdownMenu.classList.remove('opacity-100', 'visible');
+                        contactDropdownMenu.classList.add('opacity-0', 'invisible');
+                    } else {
+                        contactDropdownMenu.classList.remove('invisible', 'opacity-0');
+                        contactDropdownMenu.classList.add('opacity-100', 'visible');
+                    }
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (event) => {
+                    if (!contactDropdownMenu.contains(event.target) && !contactButton.contains(event.target)) {
+                        contactDropdownMenu.classList.remove('opacity-100', 'visible');
+                        contactDropdownMenu.classList.add('opacity-0', 'invisible');
+                    }
+                });
+            }
+        });
+
+        // Optional: Scroll to sections when AI mentions them
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const cursor = document.getElementById('cursor');
+            
+            // Check if we need to scroll to a specific section
+            const scrollToSection = sessionStorage.getItem('scrollToSection');
+            if (scrollToSection) {
+                console.log('Found scrollToSection:', scrollToSection);
+                console.log('Current page:', window.location.pathname);
+                console.log('All sections on page:', document.querySelectorAll('section[id]'));
+                
+                setTimeout(() => {
+                    const section = document.getElementById(scrollToSection);
+                    console.log('Looking for section with id:', scrollToSection);
+                    console.log('Section found:', section);
+                    
+                    if (section) {
+                        console.log('Section found, starting cursor animation');
+                        console.log('Section rect:', section.getBoundingClientRect());
+                        
+                        // Animate cursor to the section
+                        const cursor = document.getElementById('cursor');
+                        const rect = section.getBoundingClientRect();
+                        
+                        // Set isNavigating to true to prevent mouse tracking interference
+                        isNavigating = true;
+                        console.log('isNavigating set to true');
+                        
+                        // Make cursor visible and start animation
+                        cursor.classList.add('navigating');
+                        cursor.style.transition = 'all 1s ease';
+                        cursor.style.left = (rect.left + rect.width/2) + 'px';
+                        cursor.style.top = (rect.top + rect.height/2) + 'px';
+                        
+                        console.log('Cursor positioned at:', rect.left + rect.width/2, rect.top + rect.height/2);
+                        console.log('Cursor classes:', cursor.className);
+                        console.log('Cursor style:', cursor.style.cssText);
+                        
+                        setTimeout(() => {
+                            console.log('Starting scroll animation');
+                            lastAINavigationPosition = { x: rect.left + rect.width/2, y: rect.top + rect.height/2 };
+                            section.scrollIntoView({ behavior: 'smooth' });
+                            
+                            setTimeout(() => {
+                                console.log('Animation complete, transitioning cursor');
+                                cursor.style.transition = 'transform 0.2s ease, background-color 0.3s ease';
+                                cursor.classList.remove('navigating');
+                                transitionCursorFromAI();
+                            }, 1000);
+                        }, 1000);
+                    } else {
+                        console.log('Section not found:', scrollToSection);
+                        console.log('Available sections:', Array.from(document.querySelectorAll('section[id]')).map(s => s.id));
+                    }
+                    sessionStorage.removeItem('scrollToSection');
+                }, 1000);
+            }
+            
+            // Check if we're coming from a navigation action
+            if (sessionStorage.getItem('isNavigating') === 'true') {
+                isNavigating = true;
+                cursor.classList.add('navigating');
+                
+                // Position cursor at the projects link position
+                const projectsLink = document.querySelector('a[href="projects.html"]');
+                if (projectsLink) {
+                    const rect = projectsLink.getBoundingClientRect();
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                }
+                
+                setTimeout(() => {
+                    cursor.style.transition = 'transform 0.2s ease, background-color 0.3s ease';
+                    cursor.classList.remove('navigating');
+                    sessionStorage.removeItem('isNavigating');
+                    sessionStorage.removeItem('targetProject'); // Clear targetProject as well
+                    transitionCursorFromAI(); // Use smooth transition
+                }, 100);
+            }
+
+            // Check if we need to navigate to a specific project
+            const targetProject = sessionStorage.getItem('targetProject');
+            if (targetProject) {
+                setTimeout(() => {
+                    const targetLink = document.querySelector(`a[href="${targetProject}.html"]`);
+                    if (targetLink) {
+                        isNavigating = true;
+                        cursor.classList.add('navigating');
+                        
+                        // Scroll to make the target link visible
+                        targetLink.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center',
+                            inline: 'center'
+                        });
+                        
+                        // Wait for scroll to complete before animating cursor
+                        setTimeout(() => {
+                            const rect = targetLink.getBoundingClientRect();
+                            cursor.style.transition = 'all 1s ease';
+                            cursor.style.left = (rect.left + rect.width/2) + 'px';
+                            cursor.style.top = (rect.top + rect.height/2) + 'px';
+                            
+                            setTimeout(() => {
+                                // Store the final position before navigation
+                                lastAINavigationPosition = {
+                                    x: rect.left + rect.width/2,
+                                    y: rect.top + rect.height/2
+                                };
+                                sessionStorage.setItem('isNavigating', 'true');
+                                sessionStorage.setItem('targetProject', targetProject);
+                                window.location.href = `${targetProject}.html`;
+                            }, 1000);
+                        }, 800); // Wait for scroll animation
+                    }
+                    sessionStorage.removeItem('targetProject');
+                }, 500);
+            }
+        });
+    </script>
+
+</body>
+</html> 

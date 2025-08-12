@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Better Problems - Carlos Rodriguez</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Nuosu+SIL&display=swap" rel="stylesheet">
+    <script src="simple-context-sidekick.js"></script>
+    <script src="openai-sidekick.js"></script>
+    <style>
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Light.woff2") format("woff2");
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Medium.woff2") format("woff2");
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Bold.woff2") format("woff2");
+            font-weight: 700;
+        }
+        .font-helvetica { font-family: "Helvetica Neue", sans-serif; }
+        .font-nuosu { font-family: "Nuosu SIL", serif; }
+        .nav-link { position: relative; text-decoration: none; }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #000000;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+        .nav-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+        .nav-link.active::after { transform: scaleX(1); }
+        * { cursor: none; }
+        .cursor {
+            width: 12px; height: 12px; background-color: #5E5E5E; border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+        .cursor.hover { transform: scale(1.5); }
+        .cursor.navigating { background-color: #18A000; transform: scale(1.5); }
+        input, textarea { cursor: text; }
+        a, button { cursor: none; }
+        .contact-dropdown { cursor: none; }
+        .contact-dropdown + div a { cursor: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Custom cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Main Content Area -->
+    <div class="w-3/4 overflow-x-hidden">
+        <!-- Navigation -->
+        <nav class="fixed w-3/4 z-50">
+            <div class="bg-white/80 backdrop-blur-lg px-12 py-6">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    <div class="hidden md:flex space-x-12">
+                        <a href="index.html" class="text-[16px] font-helvetica font-light nav-link relative">Home</a>
+                        <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link active relative">Projects</a>
+                        <a href="https://docs.google.com/document/d/1obd6Jhs7al1r16HOK-2kXMC05q6xMOPMdzDFUToQgKM/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
+                        <a href="about.html" class="text-[16px] font-helvetica font-light nav-link relative">About</a>
+                        <div class="relative group">
+                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown">Contact</button>
+                            <div class="absolute top-full right-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible contact-dropdown-menu transition-all duration-200 z-[9999]">
+                                <div class="relative pr-4">
+                                    <div class="bg-white/80 backdrop-blur-sm rounded-sm px-3 py-2">
+                                        <div class="space-y-2 text-right">
+                                            <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
+                                            <div class="space-y-1">
+                                                <a href="mailto:c.a.rodriguez1999@gmail.com" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">c.a.rodriguez1999@gmail.com</a>
+                                                <a href="https://linkedin.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                                <a href="https://github.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="absolute top-0 right-0 w-0.5 bg-black h-0 group-hover:h-full transition-all duration-500 ease-out"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content Section -->
+        <div class="max-w-[960px] mx-auto pt-24" style="padding-left: 48px; padding-right: 48px;">
+            <!-- Project Header -->
+            <div class="mb-24">
+                <h2 class="text-[32px] font-helvetica font-medium mb-2">Better Problems</h2>
+                <p class="text-[20px] font-helvetica text-gray-800">A blog and design consultancy for those asking harder, better questions.</p>
+            </div>
+
+            <!-- Project Details Grid -->
+            <div class="flex gap-[120px] mb-32">
+                <!-- Left Column - Project Info -->
+                <div class="w-[280px]">
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Role</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Founder, Writer,</p>
+                        <p class="text-[16px] font-helvetica font-light whitespace-nowrap">Principal Strategist</p>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Organization</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Independent Practice</p>
+                        <p class="text-[16px] font-helvetica font-light whitespace-nowrap">Content + Consultancy</p>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Timeline</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Ongoing</p>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Tools</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Writing & Editing</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Systems Mapping</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Facilitation</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Strategy</p>
+                    </div>
+                    <div>
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Focus</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Critical Design</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">HCI & AI Framing</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Ethics & Equity</p>
+                    </div>
+                </div>
+
+                <!-- Right Column - Hero Image -->
+                <div class="w-[740px] h-[538px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                    <img src="images/BP-Card2.jpg" alt="Better Problems Hero" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- Overview -->
+            <div class="flex gap-[120px] mb-32">
+                <div class="w-[280px]">
+                    <h2 class="text-[28px] font-nuosu mb-8">Overview</h2>
+                </div>
+                <div class="w-[740px] space-y-6">
+                    <p class="text-[16px] font-helvetica leading-relaxed">Better Problems is both a content platform and a consulting practice rooted in the belief that design should clarify, not oversimplify — and that good solutions come from better questions.</p>
+                    <p class="text-[16px] font-helvetica leading-relaxed">As a blog, Better Problems publishes essays on culture, technology, systems, and creativity — helping readers reframe how they see the world, one thoughtful provocation at a time.</p>
+                    <p class="text-[16px] font-helvetica leading-relaxed">As a consultancy, it supports mission-driven teams in tackling ambiguity, mapping systemic friction, and designing interventions that balance impact, integrity, and equity.</p>
+                    <p class="text-[16px] font-helvetica leading-relaxed">It’s not about problem-solving faster. It’s about problem-framing deeper.</p>
+                </div>
+            </div>
+
+            <!-- The Blog -->
+            <div class="mb-32">
+                <h2 class="text-[28px] font-nuosu mb-8">The Blog</h2>
+                <div class="grid grid-cols-2 gap-24">
+                    <div class="space-y-4">
+                        <h3 class="text-[20px] font-helvetica font-bold">Better Problems: The Journal</h3>
+                        <p class="text-[16px] font-helvetica leading-relaxed">An evolving set of essays and visual content reflecting on design, AI, cultural systems, and the future of creative practice. Each piece is structured to be short, sharp, and nonlinear — more prompt than prescription.</p>
+                        <h4 class="text-[16px] font-helvetica font-bold mt-6">Selected Articles:</h4>
+                        <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
+                            <li>AI Beyond the Chat — A critique of conversational UX as a shallow default</li>
+                            <li>Scaling Trust Is the Product — On PMs, automation, and the ethics of delegation</li>
+                            <li>Surface Tension — A reflection on Karyn Nakamura and friction as access</li>
+                            <li>What Is a Better Problem? — A statement of ethos, inviting others to question more intentionally</li>
+                        </ul>
+                        <h4 class="text-[16px] font-helvetica font-bold mt-6">Content Style:</h4>
+                        <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
+                            <li>Short essays (2–4 min reads)</li>
+                            <li>Optional audio narration for accessibility</li>
+                            <li>Inspired by cultural criticism, systems thinking, and human–computer interaction</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-[20px] font-helvetica font-bold">The Consultancy</h3>
+                        <p class="text-[16px] font-helvetica leading-relaxed">Better Problems provides strategy and design support to teams navigating complexity — particularly in the fields of education, healthcare, and social innovation.</p>
+                        <h4 class="text-[16px] font-helvetica font-bold mt-6">Services include:</h4>
+                        <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
+                            <li>Strategic problem framing and systems mapping</li>
+                            <li>Stakeholder co-creation and equity-centered facilitation</li>
+                            <li>Narrative synthesis, sensemaking, and strategic storytelling</li>
+                            <li>Responsible AI product framing and behavior modeling</li>
+                        </ul>
+                        <h4 class="text-[16px] font-helvetica font-bold mt-6">Ideal Clients:</h4>
+                        <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
+                            <li>Mission-aligned teams seeking clarity before solutions</li>
+                            <li>Organizations feeling stuck in growth, scale, or change</li>
+                            <li>Institutions facing ethical or cultural tension in their systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Origin -->
+            <div class="flex gap-[120px] mb-32">
+                <div class="w-[280px]">
+                    <h2 class="text-[28px] font-nuosu mb-8">Origin</h2>
+                </div>
+                <div class="w-[740px] space-y-6">
+                    <p class="text-[16px] font-helvetica leading-relaxed">Better Problems emerged from a tension felt in much of today’s design work: a rush toward novelty over nuance, and a bias for solutions over context. It’s a rebellion against “move fast and fix nothing.”</p>
+                    <p class="text-[16px] font-helvetica leading-relaxed">It’s grounded in design ethics, HCI thinking, and lived experience as a first-generation designer working at the intersection of systems, storytelling, and equity.</p>
+                </div>
+            </div>
+
+            <!-- My Role -->
+            <div class="flex gap-[120px] mb-32">
+                <div class="w-[280px]">
+                    <h2 class="text-[28px] font-nuosu mb-8">My Role</h2>
+                </div>
+                <div class="w-[740px]">
+                    <p class="text-[16px] font-helvetica leading-relaxed">Founder, writer, and principal strategist. I lead all editorial content, consultative engagements, and brand voice. The tone is intentional, critical, and curious — meant to provoke reflection, not just agreement.</p>
+                </div>
+            </div>
+
+            <!-- Future Directions -->
+            <div class="mb-32">
+                <h2 class="text-[28px] font-nuosu mb-8">Future Directions</h2>
+                <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
+                    <li>Print zine of the most resonant essays</li>
+                    <li>Workshops and toolkits for reframing problems</li>
+                    <li>Guest writers and collaborators</li>
+                    <li>Curriculum for universities or civic design studios</li>
+                </ul>
+            </div>
+
+            <!-- Quote -->
+            <div class="mb-32 border-l-4 border-[#18a000] pl-8">
+                <blockquote class="text-[24px] font-helvetica font-light italic leading-relaxed">“We don’t need better solutions. We need better problems.”</blockquote>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-end mt-16 mb-8">
+                <a href="epicac.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors group">
+                    <span>EPICAC</span>
+                    <span class="text-[18px] transform group-hover:translate-x-1 transition-transform">></span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-white mt-20">
+            <div class="max-w-[960px] mx-auto px-12 py-8" style="padding-left: 48px; padding-right: 48px;">
+                <div class="border-t border-gray-200 pt-8">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-8">
+                            <div>
+                                <h3 class="text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                                <p class="text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                            </div>
+                            <div class="border-l border-gray-300 h-12"></div>
+                            <div>
+                                <p class="text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                                <div class="flex space-x-4">
+                                    <a href="mailto:c.a.rodriguez1999@gmail.com" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</a>
+                                    <a href="https://linkedin.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                    <a href="https://github.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
+                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
+                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by CursorAI, Figma, and GPT</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- AI Sidekick -->
+    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col" id="ai-sidekick">
+        <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
+            <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
+        </div>
+        <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex">
+            <span class="text-black mt-[2px]">></span>
+            <div class="relative flex-1 ml-2">
+                <textarea class="bg-transparent border-none font-['IBM_Plex_Mono'] text-[14px] w-full outline-none text-black resize-none overflow-hidden p-0 leading-normal" placeholder="Ask me anything..." id="chat-input" rows="1" style="height: 20px;"></textarea>
+            </div>
+        </div>
+        <div class="bg-[#18a000] p-4">
+            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold">AI Sidekick</h3>
+        </div>
+    </div>
+
+    <script>
+        // Cursor functionality
+        const cursor = document.getElementById('cursor');
+        let links = document.querySelectorAll('a');
+        let buttons = document.querySelectorAll('button');
+        let isNavigating = false;
+        let lastAINavigationPosition = null;
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isNavigating && !lastAINavigationPosition) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            } else if (!isNavigating && lastAINavigationPosition) {
+                lastAINavigationPosition = null;
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            }
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => { if (!isNavigating && !lastAINavigationPosition) { cursor.classList.add('hover'); } });
+            link.addEventListener('mouseleave', () => { if (!isNavigating && !lastAINavigationPosition) { cursor.classList.remove('hover'); } });
+        });
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => { if (!isNavigating && !lastAINavigationPosition) { cursor.classList.add('hover'); } });
+            button.addEventListener('mouseleave', () => { if (!isNavigating && !lastAINavigationPosition) { cursor.classList.remove('hover'); } });
+        });
+
+        // AI Sidekick
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        let isTyping = false;
+        let simpleSidekick = new SimpleContextSidekick();
+
+        function addMessage(text, isUser = false, animate = true) {
+            const p = document.createElement('p');
+            p.className = isUser ? 'text-black' : 'text-[#18a000]';
+            if (isUser) { p.textContent = `> ${text}`; }
+            else if (!animate) { p.innerHTML = text.replace(/\n/g, '<br>'); }
+            chatMessages.appendChild(p);
+            if (!isUser && animate) { animateText(p, text); }
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        function animateText(element, text) {
+            element.textContent = '';
+            let i = 0; isTyping = true;
+            function typeChar() {
+                if (i < text.length) { element.textContent += text.charAt(i); i++; setTimeout(typeChar, 20); }
+                else { isTyping = false; }
+            }
+            typeChar();
+        }
+        function findResponse(userInput) {
+            const input = userInput.toLowerCase();
+            if (input.includes('better problems') || input.includes('consultancy') || input.includes('blog')) {
+                return "Better Problems is my independent platform and consultancy focused on reframing problems rather than rushing to solutions. It blends critical design, systems thinking, and responsible AI framing—through essays and strategic engagements.";
+            }
+            if (input.includes('services') || input.includes('client')) {
+                return "Services include strategic problem framing, systems mapping, equity-centered facilitation, narrative synthesis, and responsible AI product framing. Ideal clients are mission-aligned teams navigating growth, scale, or ethical tensions.";
+            }
+            if (input.includes('articles') || input.includes('journal')) {
+                return "Selected essays include 'AI Beyond the Chat', 'Trust Is the Product', 'Surface Tension', and 'What Is a Better Problem?'. Short, sharp, and intended as prompts rather than prescriptions.";
+            }
+            return "Ask me about Better Problems, EPICAC, GA.V.NO, or any other projects—I'll guide you.";
+        }
+        function autoResize() { chatInput.style.height = 'auto'; chatInput.style.height = chatInput.scrollHeight + 'px'; }
+        chatInput.addEventListener('input', autoResize);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                const message = chatInput.value.trim();
+                if (message && !isTyping) {
+                    addMessage(message, true);
+                    chatInput.value = '';
+                    autoResize();
+                    setTimeout(() => { addMessage(findResponse(message)); }, 500);
+                }
+            }
+        });
+
+        // Contact dropdown safeguard
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactDropdown = document.querySelector('.contact-dropdown');
+            const dropdownMenu = document.querySelector('.contact-dropdown-menu');
+            if (contactDropdown && dropdownMenu) {
+                contactDropdown.addEventListener('click', function (e) { e.preventDefault(); });
+            }
+        });
+    </script>
+</body>
+</html> 

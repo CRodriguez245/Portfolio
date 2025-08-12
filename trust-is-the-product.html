@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust Is The Product - Carlos Rodriguez</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Nuosu+SIL&display=swap" rel="stylesheet">
+    <script src="simple-context-sidekick.js"></script>
+    <script src="openai-sidekick.js"></script>
+    <style>
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Light.woff2") format("woff2");
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Medium.woff2") format("woff2");
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Bold.woff2") format("woff2");
+            font-weight: 700;
+        }
+        .font-helvetica {
+            font-family: "Helvetica Neue", sans-serif;
+        }
+        .font-nuosu {
+            font-family: "Nuosu SIL", serif;
+        }
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+        }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #000000;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+        * {
+            cursor: none;
+        }
+        .cursor {
+            width: 12px;
+            height: 12px;
+            background-color: #5E5E5E;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+        .cursor.hover {
+            transform: scale(1.5);
+        }
+        .cursor.navigating {
+            background-color: #18A000;
+            transform: scale(1.5);
+        }
+        input, textarea {
+            cursor: text;
+        }
+        a, button {
+            cursor: none;
+        }
+        .contact-dropdown {
+            cursor: none;
+        }
+        .contact-dropdown:hover {
+            cursor: none;
+        }
+        .contact-dropdown + div a {
+            cursor: none;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Custom cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Main Content Area -->
+    <div class="w-3/4 overflow-x-hidden">
+        <!-- Navigation -->
+        <nav class="fixed w-3/4 z-50">
+            <div class="bg-white/80 backdrop-blur-lg px-12 py-6">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    <div class="hidden md:flex space-x-12">
+                        <a href="index.html" class="text-[16px] font-helvetica font-light nav-link relative">Home</a>
+                        <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link relative">Projects</a>
+                        <a href="https://docs.google.com/document/d/1obd6Jhs7al1r16HOK-2kXMC05q6xMOPMdzDFUToQgKM/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
+                        <a href="about.html" class="text-[16px] font-helvetica font-light nav-link relative">About</a>
+                        <div class="relative group">
+                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown">Contact</button>
+                            <div class="absolute top-full right-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible contact-dropdown-menu transition-all duration-200 z-[9999]">
+                                <div class="relative pr-4">
+                                    <div class="bg-white/80 backdrop-blur-sm rounded-sm px-3 py-2">
+                                        <div class="space-y-2 text-right">
+                                            <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
+                                            <div class="space-y-1">
+                                                <a href="mailto:c.a.rodriguez1999@gmail.com" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">c.a.rodriguez1999@gmail.com</a>
+                                                <a href="https://linkedin.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                                <a href="https://github.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="absolute top-0 right-0 w-0.5 bg-black h-0 group-hover:h-full transition-all duration-500 ease-out"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="max-w-[960px] mx-auto px-12 pt-32">
+            <!-- Article Header -->
+            <div class="mb-16">
+                <h1 class="text-[40px] font-helvetica font-medium text-black leading-[40px] mb-2">
+                    Trust Is The Product
+                </h1>
+                <p class="text-[16px] font-helvetica font-light text-black leading-[20px]">
+                    July 18, 2025
+                </p>
+            </div>
+            
+            <!-- Hero Card -->
+            <div class="relative w-full mb-16 transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                <img src="images/PMArticle.jpeg" alt="Trust Is The Product" class="w-full object-contain">
+            </div>
+            
+            <!-- Article Content -->
+            <div class="max-w-[1135px] text-[20px] font-helvetica font-light text-black leading-[normal] space-y-6">
+                <p class="font-helvetica font-bold">
+                    Why PMs are at the center of responsible AI automation
+                </p>
+                
+                <p>
+                    Product managers talk a lot about scale.<br>
+                    How to scale infrastructure.<br>
+                    How to scale adoption.<br>
+                    How to scale features, roadmaps, metrics.
+                </p>
+                
+                <p>
+                    But the real product challenge isn't just scaling <em>what</em> we build. It's scaling <strong>how</strong> people trust it.
+                </p>
+                
+                <p>
+                    And nowhere is that more urgent than with AI.
+                </p>
+                
+                <p>
+                    As product managers working with automation, we make invisible decisions all the time — which tasks to automate, what steps to skip, when to override judgment. Each of those choices shapes the behavior of the system. But more importantly, it shapes what the user believes the system is <em>for</em>, and whether they feel confident <em>with</em> it.
+                </p>
+                
+                <p>
+                    Trust isn't a metric we define post-launch.<br>
+                    It's a design material.<br>
+                    And in AI, it's the product.
+                </p>
+                
+                <div class="space-y-1">
+                    <p class="font-helvetica font-bold">
+                        Trust Isn't a Vibe. It's a System.
+                    </p>
+                    <p>
+                        When we say users need to "trust" AI, we usually mean one of three things:
+                    </p>
+                </div>
+                
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>They need to believe it's working correctly</li>
+                    <li>They need to feel safe using it</li>
+                    <li>They need to understand what it's doing</li>
+                </ul>
+                
+                <p>
+                    The PM's job is to design for all three — not by explaining more, but by embedding <strong>trustworthy behavior</strong> into the product itself.
+                </p>
+                
+                <p>
+                    That means:
+                </p>
+                
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Giving users control without overcomplicating the flow</li>
+                    <li>Revealing system logic when it matters</li>
+                    <li>Designing for doubt, not just convenience</li>
+                </ul>
+                
+                <p>
+                    Automation is most dangerous when it feels seamless but behaves opaquely. The challenge isn't just technical — it's moral.
+                </p>
+                
+                <div class="space-y-1">
+                    <p class="font-helvetica font-bold">
+                        The Trust/Scale Tradeoff
+                    </p>
+                    <p>
+                        Every PM working on automation will face this decision:<br>
+                        <strong>Should we add friction to protect confidence, or remove it to boost adoption?</strong>
+                    </p>
+                </div>
+                
+                <p>
+                    At small scale, we prioritize transparency.<br>
+                    At large scale, we prioritize efficiency.<br>
+                    But trust doesn't scale linearly. It fractures — especially for users on the margins.
+                </p>
+                
+                <p>
+                    I've seen this firsthand in education tools, AI decision agents, and enterprise healthcare workflows. The trust that helps an early user feel empowered can disappear as the product grows, gets polished, and becomes too "smart."
+                </p>
+                
+                <p>
+                    Which is why I believe this:<br>
+                    <strong>A product that scales without trust is a product that erodes itself.</strong>
+                </p>
+                
+                <div class="space-y-1">
+                    <p class="font-helvetica font-bold">
+                        PMs Are the Stewards of Default Behavior
+                    </p>
+                    <p>
+                        Most users don't configure. They accept defaults.<br>
+                        Which means: <strong>what you automate becomes what users assume is correct.</strong>
+                    </p>
+                </div>
+                
+                <p>
+                    That's an enormous responsibility.
+                </p>
+                
+                <p>
+                    You're not just managing a backlog.<br>
+                    You're shaping belief.<br>
+                    You're defining what people think is <em>worth thinking about</em> — and what they can now ignore.
+                </p>
+                
+                <p>
+                    So when a decision agent skips a step, when an AI explains poorly, or when an error is "handled silently," we're not just optimizing UX. We're scripting a worldview.
+                </p>
+                
+                <p>
+                    Good PMs don't just manage complexity.<br>
+                    They model <em>how that complexity should be understood</em> — especially when AI is involved.
+                </p>
+                
+                <div class="space-y-1">
+                    <p class="font-helvetica font-bold">
+                        So What Does It Look Like to Scale Trust?
+                    </p>
+                    <p>
+                        It looks like:
+                    </p>
+                </div>
+                
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Slower onboarding that teaches judgment, not just shortcuts</li>
+                    <li>Prompt scaffolds that explain their own logic</li>
+                    <li>Interfaces that surface uncertainty instead of hiding it</li>
+                    <li>Exit ramps and "undo" patterns for automation</li>
+                    <li>Human fallback when it really matters</li>
+                </ul>
+                
+                <p>
+                    It looks like <strong>making people feel more capable, not just more productive</strong>.
+                </p>
+                
+                <p>
+                    Because if people don't trust the system — not just intellectually, but emotionally — they won't come back. Or worse, they'll keep using it and stop thinking.
+                </p>
+                
+                <div class="space-y-1">
+                    <p class="font-helvetica font-bold">
+                        Final Thought
+                    </p>
+                    <p>
+                        PMs often think about automation in terms of efficiency.<br>
+                        But in AI, the real product isn't speed.<br>
+                        It's belief.<br>
+                        It's consent.<br>
+                        It's confidence.
+                    </p>
+                </div>
+                
+                <p>
+                    And that means scaling trust <em>isn't</em> a feature.<br>
+                    It's the product.
+                </p>
+                
+                <p class="text-[20px] font-helvetica font-light italic mt-8">
+                    "A product that scales without trust is a product that erodes itself."
+                </p>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-start mt-16">
+                <a href="design-what-you-dont-see.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors">
+                    <span class="text-[20px]">&lt;</span>
+                    <span>Design Is What You Don't See</span>
+                </a>
+            </div>
+
+            <!-- Footer -->
+            <footer class="bg-white border-t border-gray-200 mt-20">
+                <div class="max-w-7xl mx-auto px-12 py-8">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-8">
+                            <div>
+                                <h3 class="text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                                <p class="text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                            </div>
+                            <div class="border-l border-gray-300 h-12"></div>
+                            <div>
+                                <p class="text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                                <div class="flex space-x-4">
+                                    <a href="mailto:c.a.rodriguez1999@gmail.com" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</a>
+                                    <a href="https://linkedin.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                    <a href="https://github.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
+                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
+                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by CursorAI, Figma, and GPT</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- AI Sidekick -->
+    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col z-[9999]" id="ai-sidekick">
+        <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
+            <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
+        </div>
+        <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex">
+            <span class="text-black mt-[2px]">></span>
+            <div class="relative flex-1 ml-2">
+                <textarea 
+                    class="bg-transparent border-none font-['IBM_Plex_Mono'] text-[14px] w-full outline-none text-black resize-none overflow-hidden p-0 leading-normal"
+                    placeholder="Ask me anything..."
+                    id="chat-input"
+                    rows="1"
+                    style="height: 20px;"
+                ></textarea>
+            </div>
+        </div>
+        <div class="bg-[#18a000] p-4">
+            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold">AI Sidekick</h3>
+        </div>
+    </div>
+
+    <script>
+        // Cursor functionality
+        const cursor = document.getElementById('cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        
+        document.addEventListener('mouseenter', () => {
+            cursor.style.display = 'block';
+        });
+        
+        document.addEventListener('mouseleave', () => {
+            cursor.style.display = 'none';
+        });
+        
+        // Add hover effect to interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .nav-link, .contact-dropdown');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        // Initialize AI sidekick
+        let simpleSidekick = null;
+        let openaiSidekick = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize sidekicks
+            simpleSidekick = new SimpleContextSidekick();
+            openaiSidekick = new OpenAISidekick();
+            
+            // Set up chat input
+            const chatInput = document.getElementById('chat-input');
+            const chatMessages = document.getElementById('chat-messages');
+            
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    
+                    const userMessage = chatInput.value.trim();
+                    if (userMessage) {
+                        // Add user message
+                        addMessage(userMessage, 'user');
+                        chatInput.value = '';
+                        
+                        // Get response
+                        try {
+                            const response = openaiSidekick ? openaiSidekick.getResponse(userMessage) : simpleSidekick.getResponse(userMessage);
+                            addMessage(response, 'ai');
+                        } catch (error) {
+                            console.error('Error getting response:', error);
+                            addMessage('Sorry, I encountered an error. Please try again.', 'ai');
+                        }
+                    }
+                }
+            });
+            
+            function addMessage(message, sender) {
+                const messageDiv = document.createElement('p');
+                messageDiv.className = sender === 'user' ? 'text-black' : 'text-[#18a000]';
+                messageDiv.textContent = sender === 'user' ? `> ${message}` : message;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html> 

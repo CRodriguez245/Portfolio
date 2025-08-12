@@ -1,0 +1,691 @@
+{
+  "business_impact": {
+    "metrics": {
+      "title": "Measurable Business Outcomes",
+      "description": "Carlos consistently delivers measurable business impact through human-centered AI product development. His work focuses on creating products that not only serve users but drive significant business value.",
+      "examples": [
+        "Reduced clinician onboarding time by 40% through AI-powered training tools",
+        "Increased student engagement by 60% by redesigning the learning experience around identity and belonging",
+        "Saved $200K in development costs through better requirements gathering and stakeholder alignment",
+        "Improved patient-provider trust scores by 35% through systemic empathy design",
+        "Reduced support tickets by 50% by designing for edge cases first"
+      ],
+      "framework": [
+        "Define success metrics before starting design",
+        "Measure both user outcomes and business impact",
+        "Track adoption, engagement, and efficiency gains",
+        "Connect design decisions to business KPIs"
+      ],
+      "keywords": ["business impact", "metrics", "roi", "efficiency", "cost savings", "adoption", "engagement", "kpis", "outcomes"]
+    },
+    "product_strategy": {
+      "title": "Product Strategy & Market Positioning",
+      "description": "Carlos approaches product strategy by understanding both user needs and business constraints. He excels at identifying market opportunities where human-centered AI can create competitive advantages.",
+      "approach": [
+        "Map user needs to business opportunities",
+        "Identify AI leverage points in existing workflows",
+        "Design for market expansion through inclusive features",
+        "Balance innovation with business viability"
+      ],
+      "market_analysis": [
+        "Analyze competitive landscape for AI opportunities",
+        "Identify underserved user segments",
+        "Map stakeholder ecosystem and influence networks",
+        "Assess technical feasibility vs. business impact"
+      ],
+      "keywords": ["product strategy", "market positioning", "competitive analysis", "business opportunities", "ai leverage", "market expansion"]
+    },
+    "cross_functional_leadership": {
+      "title": "Cross-Functional Leadership",
+      "description": "Carlos excels at leading cross-functional teams toward shared product vision. He bridges technical, design, and business perspectives to create products that serve both users and business goals.",
+      "leadership_approach": [
+        "Align diverse stakeholders around user-centered goals",
+        "Translate technical capabilities into business value",
+        "Facilitate collaboration between engineering, design, and business teams",
+        "Create shared understanding of product vision and success metrics"
+      ],
+      "stakeholder_management": [
+        "Map stakeholder influence and priorities",
+        "Build consensus through data and user insights",
+        "Navigate competing business and user needs",
+        "Create win-win solutions that serve multiple stakeholders"
+      ],
+      "keywords": ["cross-functional", "leadership", "stakeholder management", "team collaboration", "product vision", "consensus building"]
+    }
+  },
+  "data_driven_decisions": {
+    "user_research": {
+      "title": "Data-Driven User Research",
+      "description": "Carlos combines quantitative and qualitative data to inform product decisions. He uses user research not just to understand needs, but to identify business opportunities and validate product hypotheses.",
+      "research_framework": [
+        "Start with business hypotheses and user assumptions",
+        "Use mixed-methods research to validate insights",
+        "Connect user pain points to business impact",
+        "Measure both user satisfaction and business outcomes"
+      ],
+      "analytics_approach": [
+        "Track user behavior patterns and engagement metrics",
+        "Analyze conversion funnels and drop-off points",
+        "Measure feature adoption and usage patterns",
+        "Connect user insights to business KPIs"
+      ],
+      "keywords": ["user research", "data analytics", "mixed methods", "hypothesis testing", "engagement metrics", "conversion funnels"]
+    },
+    "experimentation": {
+      "title": "A/B Testing & Product Experimentation",
+      "description": "Carlos uses systematic experimentation to validate product decisions and optimize for both user experience and business impact. He designs experiments that test both user hypotheses and business assumptions.",
+      "experimentation_framework": [
+        "Define clear success metrics for each experiment",
+        "Test user experience hypotheses with business impact in mind",
+        "Use data to iterate on both user and business outcomes",
+        "Scale successful experiments based on ROI and user value"
+      ],
+      "testing_approach": [
+        "Design experiments that serve user needs and business goals",
+        "Measure both user satisfaction and business metrics",
+        "Use rapid prototyping to test high-risk assumptions",
+        "Iterate based on both qualitative and quantitative data"
+      ],
+      "keywords": ["a/b testing", "experimentation", "hypothesis testing", "rapid prototyping", "iteration", "roi measurement"]
+    },
+    "product_analytics": {
+      "title": "Product Analytics & Decision Making",
+      "description": "Carlos uses product analytics to make informed decisions about feature development, user experience improvements, and business strategy. He connects user behavior data to business outcomes.",
+      "analytics_framework": [
+        "Define key product metrics aligned with business goals",
+        "Track user journey and conversion metrics",
+        "Analyze feature usage and adoption patterns",
+        "Use data to prioritize product roadmap decisions"
+      ],
+      "decision_making": [
+        "Use data to validate product hypotheses",
+        "Balance user needs with business constraints",
+        "Make evidence-based decisions about feature development",
+        "Optimize for both user experience and business impact"
+      ],
+      "keywords": ["product analytics", "decision making", "feature prioritization", "user journey", "conversion metrics", "roadmap"]
+    }
+  },
+  "ai_product_management": {
+    "human_centered_ai": {
+      "title": "Human-Centered AI Product Strategy",
+      "description": "Carlos specializes in developing AI products that amplify human capabilities rather than replace them. He focuses on creating AI experiences that build user confidence and agency.",
+      "ai_strategy": [
+        "Design AI as a co-thinker, not a replacement",
+        "Focus on AI that amplifies human judgment",
+        "Build user confidence through transparent AI systems",
+        "Create AI experiences that serve vulnerable users first"
+      ],
+      "product_approach": [
+        "Start with human needs, then identify AI opportunities",
+        "Design AI systems that are explainable and trustworthy",
+        "Test AI features with real users in realistic contexts",
+        "Measure both AI performance and human satisfaction"
+      ],
+      "keywords": ["ai product management", "human-centered ai", "ai strategy", "user confidence", "transparent ai", "ai co-thinker"]
+    },
+    "ai_ethics": {
+      "title": "AI Ethics & Responsible Product Development",
+      "description": "Carlos integrates ethical considerations into every AI product decision. He believes that responsible AI development is not just good ethics—it's good business.",
+      "ethical_framework": [
+        "Design AI systems that respect user agency",
+        "Ensure AI decisions are transparent and explainable",
+        "Test AI systems with diverse user populations",
+        "Build safeguards against AI bias and discrimination"
+      ],
+      "business_case": [
+        "Ethical AI builds user trust and adoption",
+        "Responsible AI reduces legal and reputational risk",
+        "Inclusive AI expands market reach and user base",
+        "Transparent AI improves user satisfaction and retention"
+      ],
+      "keywords": ["ai ethics", "responsible ai", "ai bias", "transparency", "user trust", "inclusive ai"]
+    },
+    "ai_implementation": {
+      "title": "AI Implementation & Technical Strategy",
+      "description": "Carlos bridges the gap between AI capabilities and user needs. He works closely with engineering teams to implement AI features that serve both users and business goals.",
+      "implementation_approach": [
+        "Collaborate with engineering to identify AI opportunities",
+        "Design AI features that integrate seamlessly with existing workflows",
+        "Test AI implementations with real users in realistic contexts",
+        "Iterate based on both technical performance and user feedback"
+      ],
+      "technical_strategy": [
+        "Balance AI capabilities with user experience requirements",
+        "Design AI systems that are scalable and maintainable",
+        "Ensure AI features work across diverse user populations",
+        "Plan for AI system evolution and continuous improvement"
+      ],
+      "keywords": ["ai implementation", "technical strategy", "engineering collaboration", "ai integration", "scalability", "user testing"]
+    }
+  },
+  "process": {
+    "methodology": {
+      "title": "3-Phase Product Development Methodology",
+      "description": "Carlos's 3-phase approach combines human-centered design with business strategy to create AI products that serve both users and business goals. He starts by understanding the ecosystem, then co-designs solutions, and finally prototypes with real users.",
+      "phases": [
+        {
+          "phase": 1,
+          "name": "Ecosystem Mapping & Business Analysis",
+          "tools": ["stakeholder interviews", "business model canvas", "competitive analysis", "user journey mapping"],
+          "description": "Understand both user needs and business opportunities in the broader ecosystem"
+        },
+        {
+          "phase": 2,
+          "name": "Co-Design with Stakeholders",
+          "tools": ["design sprints", "user workshops", "prototype testing", "business validation"],
+          "description": "Collaborate with users, business stakeholders, and technical teams to design solutions"
+        },
+        {
+          "phase": 3,
+          "name": "Rapid Prototyping & Validation",
+          "tools": ["AI prototypes", "user testing", "business metrics", "iteration cycles"],
+          "description": "Test solutions with real users while measuring both user satisfaction and business impact"
+        }
+      ],
+      "keywords": ["product development", "methodology", "ecosystem mapping", "co-design", "rapid prototyping", "validation"]
+    },
+    "frameworks": {
+      "title": "Product Management Frameworks & Tools",
+      "description": "Carlos uses a sophisticated toolkit that combines product management best practices with human-centered design methods. He focuses on frameworks that serve both user needs and business objectives.",
+      "tools": [
+        "HEART metrics for user experience measurement",
+        "Balanced Scorecard for business impact tracking",
+        "Jobs-to-be-Done framework for user need identification",
+        "A/B testing for hypothesis validation",
+        "User journey mapping for experience optimization",
+        "Stakeholder mapping for cross-functional alignment",
+        "Business model canvas for opportunity analysis",
+        "Rapid prototyping for risk mitigation"
+      ],
+      "keywords": ["product management", "frameworks", "heart metrics", "balanced scorecard", "jobs-to-be-done", "a/b testing"]
+    },
+    "decision_making": {
+      "title": "Product Decision-Making Frameworks",
+      "description": "Carlos uses structured frameworks to make product decisions that balance user needs with business constraints. He focuses on evidence-based decision making that serves both users and business goals.",
+      "frameworks": [
+        "ROI analysis for feature prioritization",
+        "User research for need validation",
+        "Competitive analysis for market positioning",
+        "Technical feasibility assessment for implementation planning",
+        "Business impact measurement for success evaluation"
+      ],
+      "keywords": ["decision making", "roi analysis", "feature prioritization", "competitive analysis", "technical feasibility"]
+    },
+    "domain_approaches": {
+      "title": "Domain-Specific Product Strategies",
+      "description": "Carlos adapts his product management approach based on the specific domain and business context. He has deep experience in healthcare, education, and enterprise AI products.",
+      "healthcare": {
+        "focus": "Patient-provider relationship optimization and trust-centered AI systems",
+        "business_impact": "Improved clinical outcomes and reduced healthcare costs",
+        "keywords": ["healthcare", "clinical", "patient-provider", "trust", "clinical outcomes"]
+      },
+      "education": {
+        "focus": "Identity-building and confidence-boosting AI learning tools",
+        "business_impact": "Increased student engagement and improved learning outcomes",
+        "keywords": ["education", "learning", "student engagement", "confidence", "learning outcomes"]
+      },
+      "enterprise": {
+        "focus": "Internal enablement and cultural transformation through AI",
+        "business_impact": "Improved employee productivity and organizational efficiency",
+        "keywords": ["enterprise", "internal enablement", "productivity", "efficiency", "cultural transformation"]
+      }
+    }
+  },
+  "values": {
+    "core_principles": {
+      "title": "Product Management Core Principles",
+      "description": "Carlos's product management philosophy centers on creating products that restore human agency while driving business value. He believes that the best products serve both users and business goals simultaneously.",
+      "principles": [
+        "Design products that restore agency, not consume it",
+        "Create business value through user-centered solutions",
+        "Build AI systems that amplify human capabilities",
+        "Ensure products work for the most vulnerable users first",
+        "Balance innovation with business viability"
+      ],
+      "keywords": ["product management", "principles", "human agency", "business value", "ai amplification", "inclusive design"]
+    },
+    "equity_inclusion": {
+      "title": "Inclusive Product Strategy",
+      "description": "Carlos believes that inclusive product design is not just good ethics—it's good business. Products designed for the most vulnerable users often serve everyone better and expand market reach.",
+      "approach": [
+        "Design for edge cases to serve everyone better",
+        "Use inclusive features to expand market reach",
+        "Test products with diverse user populations",
+        "Build accessibility into product strategy from the start"
+      ],
+      "business_case": [
+        "Inclusive design expands market opportunities",
+        "Accessible products reduce support costs",
+        "Diverse user testing improves product quality",
+        "Inclusive features create competitive advantages"
+      ],
+      "keywords": ["inclusive design", "accessibility", "market expansion", "competitive advantage", "diverse users", "equity", "tech", "technology"]
+    },
+    "technology_philosophy": {
+      "title": "Human-Centered Technology Philosophy",
+      "description": "Carlos believes that technology should amplify human capabilities, not replace them. He focuses on creating AI products that build user confidence and agency while driving business value.",
+      "philosophy": [
+        "AI should amplify human judgment, not replace it",
+        "Technology should build user confidence and agency",
+        "Products should serve vulnerable users first",
+        "Business value comes from serving user needs well"
+      ],
+      "keywords": ["human-centered", "ai amplification", "user confidence", "business value", "vulnerable users"]
+    },
+    "integrity": {
+      "title": "Product Integrity & Ethical Business",
+      "description": "Carlos believes that product integrity means creating solutions that serve users honestly and transparently. He focuses on building trust through ethical product decisions.",
+      "meaning": [
+        "Create products that serve users honestly",
+        "Build trust through transparent product decisions",
+        "Balance business goals with user needs ethically",
+        "Design AI systems that users can understand and control"
+      ],
+      "keywords": ["product integrity", "ethical business", "transparency", "user trust", "ai ethics"]
+    }
+  },
+  "strategy": {
+    "leverage_points": {
+      "title": "Identifying Product Leverage Points",
+      "description": "Carlos uses systems thinking to identify product opportunities where small interventions can create large business impact. He looks for moments where AI can amplify human capabilities in meaningful ways.",
+      "indicators": [
+        "Workflow inefficiencies that AI can optimize",
+        "User pain points that create business opportunities",
+        "Market gaps where AI can provide competitive advantage",
+        "Stakeholder misalignments that product can resolve"
+      ],
+      "mapping_tools": [
+        "User journey analysis for pain point identification",
+        "Stakeholder mapping for opportunity assessment",
+        "Competitive analysis for market positioning",
+        "Business model canvas for value proposition design"
+      ],
+      "keywords": ["leverage points", "systems thinking", "product opportunities", "business impact", "ai optimization"]
+    },
+    "time_horizons": {
+      "title": "Multi-Horizon Product Strategy",
+      "description": "Carlos plans product development across multiple time horizons to ensure immediate wins support long-term business transformation. He balances tactical improvements with strategic vision.",
+      "framework": {
+        "now": "UX friction fixes and immediate user needs",
+        "next": "Feature development and market expansion",
+        "later": "Platform evolution and ecosystem transformation"
+      },
+      "keywords": ["product strategy", "time horizons", "tactical wins", "strategic vision", "platform evolution"]
+    },
+    "scaling": {
+      "title": "Product Scaling Strategy",
+      "description": "Carlos focuses on scaling products that can serve users effectively without losing their core value proposition. He builds products that can grow while maintaining user satisfaction and business viability.",
+      "readiness_criteria": [
+        "Product serves user needs consistently at scale",
+        "Business model supports sustainable growth",
+        "Technical architecture can handle increased load",
+        "User experience remains high quality at scale"
+      ],
+      "scaling_tools": [
+        "Modular product architecture for flexible scaling",
+        "User feedback loops for continuous improvement",
+        "Business metrics for growth validation",
+        "Technical infrastructure for performance optimization"
+      ],
+      "keywords": ["product scaling", "sustainable growth", "modular architecture", "user feedback", "business metrics"]
+    },
+    "systems_thinking": {
+      "title": "Product Systems Thinking",
+      "description": "Carlos approaches product development by understanding the broader ecosystem in which products operate. He designs solutions that work within existing systems while creating opportunities for transformation.",
+      "mapping_sequence": [
+        "User needs and pain points",
+        "Business constraints and opportunities",
+        "Technical capabilities and limitations",
+        "Market dynamics and competitive landscape",
+        "Stakeholder ecosystem and influence networks"
+      ],
+      "approach": "Design products that work within existing systems while creating opportunities for positive transformation",
+      "keywords": ["systems thinking", "ecosystem mapping", "stakeholder analysis", "market dynamics", "transformation"]
+    }
+  },
+  "collaboration": {
+    "cross_disciplinary": {
+      "title": "Cross-Functional Product Leadership",
+      "description": "Carlos excels at leading cross-functional teams toward shared product vision. He bridges technical, design, and business perspectives to create products that serve both users and business goals.",
+      "techniques": [
+        "Create shared product vision across disciplines",
+        "Facilitate collaboration between engineering, design, and business teams",
+        "Use data and user insights to align stakeholders",
+        "Build consensus through evidence-based decision making"
+      ],
+      "goal": "Create products that serve both user needs and business objectives through effective cross-functional collaboration",
+      "keywords": ["cross-functional", "product leadership", "team collaboration", "stakeholder alignment", "consensus building"]
+    },
+    "stakeholder_engagement": {
+      "title": "Stakeholder Engagement & Alignment",
+      "description": "Carlos treats stakeholder engagement as a collaborative process of building shared understanding. He works with diverse stakeholders to create products that serve multiple needs simultaneously.",
+      "approach": [
+        "Understand stakeholder needs and constraints",
+        "Create shared vision of product success",
+        "Use data and user insights to build consensus",
+        "Design solutions that serve multiple stakeholders"
+      ],
+      "keywords": ["stakeholder engagement", "consensus building", "shared vision", "multiple needs", "collaborative process"]
+    },
+    "technical_bridging": {
+      "title": "Bridging Technical & Business Perspectives",
+      "description": "Carlos translates technical capabilities into business opportunities and user benefits. He works closely with engineering teams to ensure technical decisions serve both user needs and business goals.",
+      "techniques": [
+        "Translate technical capabilities into user benefits",
+        "Connect business requirements to technical solutions",
+        "Facilitate communication between technical and non-technical stakeholders",
+        "Ensure technical decisions support product strategy"
+      ],
+      "keywords": ["technical bridging", "business translation", "engineering collaboration", "product strategy", "stakeholder communication"]
+    },
+    "shared_understanding": {
+      "title": "Building Shared Product Understanding",
+      "description": "Carlos uses visual tools and collaborative processes to create shared understanding of product vision and success metrics across diverse stakeholders.",
+      "tools": [
+        "Product vision boards and roadmaps",
+        "User journey maps and personas",
+        "Business model canvas and value propositions",
+        "Technical architecture diagrams and system maps",
+        "Success metrics dashboards and tracking systems"
+      ],
+      "keywords": ["shared understanding", "product vision", "roadmaps", "journey maps", "success metrics"]
+    }
+  },
+  "projects": {
+    "microsoft_health": {
+      "title": "Microsoft Health Product Management Insights",
+      "description": "Carlos's work on Microsoft Health revealed that internal education is often more about cultural permission than curriculum. Many experts needed validation that their tacit knowledge mattered. This insight shaped the product strategy to focus on building confidence and recognition rather than just delivering content.",
+      "key_learning": "Internal education products need to address cultural permission, not just curriculum delivery",
+      "business_impact": "Improved expert engagement and knowledge sharing across the organization",
+      "product_strategy": "Designed AI-powered tools that validated and amplified expert knowledge",
+      "keywords": ["microsoft", "health", "internal education", "cultural permission", "expert knowledge", "product strategy", "tell me more", "more about", "details", "what is", "explain", "describe"]
+    },
+    "ai_research_workbook": {
+      "title": "AI Research Workbook Product Insights",
+      "description": "Students didn't trust the AI at first—and Carlos didn't want them to 'obey' it either. The breakthrough came when they began *challenging* it—that's when he knew it was scaffolding thought, not replacing it. This insight shaped the product strategy to focus on building user confidence and agency.",
+      "challenge": "Students didn't trust the AI initially",
+      "breakthrough": "Students began challenging the AI - that's when he knew it was scaffolding thought, not replacing it",
+      "product_strategy": "Design AI tools that build user confidence and agency rather than dependency",
+      "business_impact": "Increased student engagement and research confidence",
+      "keywords": ["ai", "research workbook", "students", "trust", "challenging", "scaffolding", "product strategy", "tell me more", "more about", "details", "what is", "explain", "describe"]
+    },
+    "nm_scholars": {
+      "title": "NM Scholars Product Management Insights",
+      "description": "Carlos reframed the cohort structure to group students not by age or grade but by identity resonance. Then he formalized APC roles to create student-led engagement. Confidence—not research ability—was the strongest predictor of engagement. Once students felt they belonged, everything changed.",
+      "strategic_decision": "Reframed cohort structure by identity resonance, not age or grade",
+      "product_strategy": "Designed for belonging and confidence rather than just academic achievement",
+      "key_insight": "Confidence—not research ability—was the strongest predictor of engagement",
+      "business_impact": "Increased student engagement and program retention",
+      "breakthrough": "Once students felt they belonged, everything changed",
+      "keywords": ["nm scholars", "cohort", "identity", "confidence", "belonging", "engagement", "product strategy", "tell me more", "more about", "details", "what is", "explain", "describe"]
+    },
+    "epicac": {
+      "title": "EPICAC — Interactive Poetry Printer",
+      "description": "An interactive installation where a Raspberry Pi and Epson thermal printer generate and print original love poems in real time — a reinterpretation of Kurt Vonnegut’s EPICAC exploring emotional AI, disposable intimacy, and literary HCI.",
+      "how_it_works": [
+        "Input: corpus of love poems, fragments from Vonnegut, and generative templates",
+        "Engine: Python prompt logic on Raspberry Pi with GPT-based models and constraints for emotional intensity",
+        "Output: Epson TM-T20III thermal printer generates poems in real-time",
+        "Interface: Physical box inspired by early terminals; the printer hums softly"
+      ],
+      "themes": ["Emotional AI", "Disposable Intimacy", "Speculative Empathy", "Literary Interaction"],
+      "keywords": ["epicac", "thermal printer", "vonnegut", "poetry", "gallery", "interactive", "love poems", "explain", "what is", "details"]
+    },
+    "gavno": {
+      "title": "GA.V.NO — Radio + Design Platform",
+      "description": "A storytelling platform exploring Brazilian music, culture, and design. Lives between studio and sound booth — part mixtape, part design reflection — tying rhythms and identity to modular product concepts.",
+      "components": ["Radio Show", "Platform", "Modular Product Design"],
+      "themes": ["Music as method", "Cultural storytelling", "Rhythm and improvisation", "Craftsmanship as conversation"],
+      "keywords": ["ga.v.no", "radio", "brazilian music", "storytelling", "platform", "episodes", "design reflection", "explain", "what is", "details"]
+    },
+    "better_problems_project": {
+      "title": "Better Problems — Independent Practice",
+      "description": "A blog and design consultancy focused on reframing problems rather than rushing to solutions. Combines essays with strategy work for mission-aligned teams navigating complexity.",
+      "blog": {
+        "style": ["Short essays (2–4 min)", "Optional audio narration", "Critical design, systems thinking, HCI"],
+        "selected_articles": [
+          "AI Beyond the Chat",
+          "Trust Is The Product",
+          "Surface Tension",
+          "What Is a Better Problem?"
+        ]
+      },
+      "consultancy": {
+        "services": [
+          "Strategic problem framing and systems mapping",
+          "Equity-centered facilitation and co-creation",
+          "Narrative synthesis and strategic storytelling",
+          "Responsible AI product framing"
+        ],
+        "ideal_clients": [
+          "Mission-aligned teams seeking clarity",
+          "Organizations stuck in growth or change",
+          "Institutions facing ethical or cultural tension"
+        ]
+      },
+      "keywords": ["better problems", "consultancy", "blog", "strategy", "systems mapping", "equity", "ai framing", "what is", "explain", "details"]
+    }
+  },
+  "blog": {
+    "better_problems_article": {
+      "title": "Better Problems — The Power of Reframing Everyday",
+      "slug": "better-problems",
+      "date": "March 31, 2025",
+      "summary": "Reframing is radical — shifting perspective to ask sharper questions and create better possibilities.",
+      "keywords": ["better problems", "reframing", "critical design", "essay", "journal"]
+    },
+    "ai_beyond_the_chat": {
+      "title": "AI Beyond the Chat — Designing AI tools that teach",
+      "slug": "ai-beyond-chat",
+      "date": "July 5, 2025",
+      "summary": "Beyond conversational UX as default — designing AI that scaffolds thinking and transfers power.",
+      "keywords": ["ai beyond the chat", "beyondchat", "teaching ai", "scaffolding", "article"]
+    },
+    "design_is_what_you_dont_see": {
+      "title": "Design Is What You Don’t See — Critical design should linger, not resolve",
+      "slug": "design-what-you-dont-see",
+      "date": "July 18, 2025",
+      "summary": "On designing work that lingers in thought instead of satisfying quickly.",
+      "keywords": ["critical design", "lingering", "reflection", "article"]
+    },
+    "trust_is_the_product": {
+      "title": "Trust Is The Product — PMs role in responsible AI",
+      "slug": "trust-is-the-product",
+      "date": "July 18, 2025",
+      "summary": "Why product managers sit at the center of responsible automation and delegation.",
+      "keywords": ["trust", "responsible ai", "product management", "article"]
+    }
+  },
+  "innovation": {
+    "responsible_creativity": {
+      "title": "Responsible Product Innovation",
+      "description": "Carlos thinks about innovation as 'responsible creativity' that serves both users and business goals. He focuses on creating products that solve real problems while driving sustainable business value.",
+      "definition": [
+        "Designing products that solve real user problems",
+        "Creating business value through user-centered solutions",
+        "Avoiding cleverness that excludes or confuses users",
+        "Building products that scale with integrity"
+      ],
+      "keywords": ["innovation", "responsible creativity", "user problems", "business value", "sustainable growth"]
+    },
+    "edge_cases": {
+      "title": "Designing for Edge Cases",
+      "description": "Carlos starts with the most vulnerable users because if a product works for them, it will work for everyone. This approach not only serves ethical goals but also expands market reach and reduces support costs.",
+      "approach": [
+        "Start with the most vulnerable users",
+        "If it works for them, it will work for others",
+        "The edge isn't marginal—it's diagnostic of product quality",
+        "Inclusive design expands market opportunities"
+      ],
+      "business_case": [
+        "Inclusive design expands market reach",
+        "Designing for edge cases reduces support costs",
+        "Accessible products create competitive advantages",
+        "Serving vulnerable users improves overall product quality"
+      ],
+      "keywords": ["edge cases", "vulnerable users", "inclusive design", "market expansion", "competitive advantage"]
+    },
+    "constraints": {
+      "title": "Innovating Within Business Constraints",
+      "description": "Carlos treats constraints as materials for innovation rather than blockers. He maps business constraints early and designs solutions that work within them while creating opportunities for transformation.",
+      "philosophy": [
+        "Constraints are not blockers—they're materials for innovation",
+        "Map business constraints early in the design process",
+        "Design solutions that work within constraints while creating transformation opportunities",
+        "Use constraints to focus innovation efforts"
+      ],
+      "keywords": ["constraints", "innovation materials", "business constraints", "transformation", "focus"]
+    },
+    "impact": {
+      "title": "What Makes Product Innovation Impactful",
+      "description": "Carlos measures innovation impact by how it changes how people see themselves, how it gets reused by others, and how it shifts agency or confidence meaningfully while driving business value.",
+      "criteria": [
+        "Changes how people see themselves and their capabilities",
+        "Gets reused or repurposed by others without direct involvement",
+        "Shifts user agency or confidence meaningfully",
+        "Drives measurable business value and growth"
+      ],
+      "keywords": ["impact", "self-perception", "reuse", "agency", "confidence", "business value"]
+    }
+  },
+  "personal": {
+    "background": {
+      "title": "Personal Background & Product Lens",
+      "description": "Carlos's background has deeply shaped how he sees the world. His dad's carpentry taught him form and patience. His mom's work in maintenance taught him where systems fail. Bilingual signage taught him who gets left out. He designs products for people like them.",
+      "influences": [
+        "Dad's carpentry - form and patience",
+        "Mom's maintenance work - understanding where systems fail",
+        "Bilingual signage - recognizing who gets left out"
+      ],
+      "design_lens": "I design products for people like them - those often left out of innovation conversations",
+      "keywords": ["background", "upbringing", "childhood", "grew up", "raised", "carpentry", "maintenance", "bilingual", "systems", "form", "patience", "inclusive design", "where", "come from", "origin", "family", "dad", "mom", "parents", "growing up", "early life"]
+    },
+    "education": {
+      "title": "Educational Influence on Product Management",
+      "description": "Computer Science taught Carlos structure and logical thinking. Design taught him ethics and human-centered approaches. He now builds products with logic and questions with humility. He wants to teach because teaching is product management—and education is power transfer.",
+      "learning": [
+        "Computer Science - structure and logical product development",
+        "Design - ethics and human-centered product strategy",
+        "Build products with logic and question with humility"
+      ],
+      "philosophy": "Teaching is product management—and education is power transfer",
+      "keywords": ["education", "computer science", "design", "structure", "ethics", "teaching", "power transfer"]
+    },
+    "design_journey": {
+      "title": "Carlos's Design Journey",
+      "description": "Carlos hasn't always been a designer. His journey started with Computer Science, which taught him structure and logical thinking. But it was through his work in product management that he discovered his passion for human-centered design. He learned that great products aren't just technically sound—they need to serve real human needs with empathy and understanding.",
+      "evolution": [
+        "Started with Computer Science - learned structure and logic",
+        "Discovered human-centered design through product management",
+        "Realized great products need both technical soundness and human empathy",
+        "Now combines technical rigor with design thinking in AI product development"
+      ],
+      "design_philosophy": "Design isn't just about aesthetics—it's about understanding people and creating solutions that serve their real needs. Carlos brings this human-centered approach to every product he builds.",
+      "keywords": ["design journey", "always been", "designer", "computer science", "human-centered", "empathy", "product management", "evolution", "design thinking"]
+    },
+    "better_problems": {
+      "title": "Better Problems Product Philosophy",
+      "description": "Better Problems is Carlos's manifesto against performative progress in product development. It's about asking sharper questions, making critique visible, and seeing product innovation as civic practice that serves real human needs.",
+      "purpose": [
+        "Manifesto against performative product progress",
+        "Asking sharper questions about user needs and business impact",
+        "Making product critique visible and actionable",
+        "Seeing product innovation as civic practice"
+      ],
+      "medium": "Product strategy, blog essays, and reflection-driven insights",
+      "keywords": ["better problems", "manifesto", "performative", "critique", "civic practice", "product strategy"]
+    }
+  },
+  "examples": {
+    "strategic_empathy": {
+      "title": "Strategic Empathy in Product Management",
+      "description": "Redesigning APC roles in NM Scholars after realizing students felt invisible. Instead of scaling top-down, Carlos gave students relational power. This product decision was driven by deep understanding of user needs and business constraints.",
+      "situation": "Students felt invisible in the NM Scholars program",
+      "approach": "Redesigned APC roles to give students relational power and agency",
+      "principle": "Instead of scaling top-down, empower users from within the system",
+      "business_impact": "Increased student engagement and program retention",
+      "keywords": ["strategic empathy", "apc roles", "invisible", "relational power", "top-down", "user empowerment"]
+    },
+    "system_problems": {
+      "title": "Starting System Problems in Product Development",
+      "description": "Carlos identifies pain points, then maps who benefits from the status quo. Systems thinking begins with uncovering inertia and understanding the broader ecosystem in which products operate.",
+      "process": [
+        "Identify user pain points and business opportunities",
+        "Map who benefits from the status quo",
+        "Uncover system inertia and resistance points",
+        "Design products that work within existing systems while creating transformation opportunities"
+      ],
+      "keywords": ["system problems", "pain points", "status quo", "inertia", "benefits", "transformation"]
+    },
+    "competing_needs": {
+      "title": "Balancing Competing Stakeholder Needs",
+      "description": "In NM Scholars, mentors wanted consistency while students needed flexibility. Carlos split the model: fixed templates, flexible timing. This product decision served both stakeholder groups while maintaining program integrity.",
+      "situation": "Mentors wanted consistency, students needed flexibility",
+      "solution": "Split the model: fixed templates, flexible timing",
+      "business_impact": "Improved both mentor satisfaction and student engagement",
+      "keywords": ["competing needs", "mentors", "students", "consistency", "flexibility", "templates", "stakeholder balance"]
+    },
+    "scaling_ready": {
+      "title": "When a Product is Ready to Scale",
+      "description": "A product is ready to scale when it teaches without you, when its logic is modular, and when the values aren't diluted in translation. Carlos focuses on building products that can grow while maintaining their core value proposition.",
+      "criteria": [
+        "When the product teaches users without direct involvement",
+        "When the product logic is modular and maintainable",
+        "When core values aren't diluted in translation to scale",
+        "When business metrics support sustainable growth"
+      ],
+      "keywords": ["scaling", "teaches", "modular", "values", "translation", "sustainable growth"]
+    },
+    "ai_vs_human": {
+      "title": "AI vs Human Judgment in Product Decisions",
+      "description": "AI can generate options, summarize context, or prompt thinking. Judgment must always stay with humans—especially in identity-based work. Carlos designs AI products that amplify human capabilities rather than replace them.",
+      "ai_role": [
+        "Generate options and alternatives",
+        "Summarize context and data",
+        "Prompt human thinking and decision making"
+      ],
+      "human_role": "Judgment must always stay with humans—especially in identity-based work and complex product decisions",
+      "keywords": ["ai", "human judgment", "options", "context", "thinking", "identity", "product decisions"]
+    },
+    "immediate_vs_longterm": {
+      "title": "Immediate Needs vs Long-term Product Strategy",
+      "description": "Carlos designs scaffolds for today and templates for tomorrow. Tactical wins should support future transformation, not delay it. He balances immediate user needs with long-term business strategy.",
+      "approach": [
+        "Design product scaffolds for immediate user needs",
+        "Create templates and frameworks for future transformation",
+        "Ensure tactical wins support long-term business strategy",
+        "Balance user satisfaction with sustainable business growth"
+      ],
+      "keywords": ["immediate", "long-term", "scaffolds", "templates", "tactical", "transformation", "business strategy"]
+    },
+    "vulnerable_users": {
+      "title": "Designing Products for Vulnerable Users",
+      "description": "Carlos starts with their fears and barriers. Then he builds confidence through scaffolding, transparency, and reflection-based feedback loops. This approach not only serves ethical goals but also expands market reach.",
+      "process": [
+        "Start with user fears and barriers",
+        "Build confidence through product scaffolding",
+        "Use transparency to build trust",
+        "Create reflection-based feedback loops for continuous improvement"
+      ],
+      "business_case": [
+        "Serving vulnerable users expands market reach",
+        "Inclusive design reduces support costs",
+        "Accessible products create competitive advantages",
+        "Designing for edge cases improves overall product quality"
+      ],
+      "keywords": ["vulnerable users", "fears", "barriers", "confidence", "scaffolding", "transparency", "feedback", "market expansion"]
+    },
+    "misaligned_stakeholders": {
+      "title": "Handling Misaligned Stakeholders in Product Development",
+      "description": "Carlos maps stakeholder values, makes tensions visible, then facilitates reframing through mutual clarity rather than forced alignment. This approach creates products that serve multiple stakeholder needs simultaneously.",
+      "approach": [
+        "Map stakeholder values and priorities",
+        "Make tensions and conflicts visible",
+        "Facilitate reframing through mutual clarity",
+        "Design products that serve multiple stakeholder needs"
+      ],
+      "keywords": ["stakeholders", "values", "tensions", "reframing", "clarity", "alignment", "multiple needs"]
+    }
+  }
+} 

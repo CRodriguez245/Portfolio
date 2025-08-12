@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NM Scholars Program - Carlos Rodriguez</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Nuosu+SIL&display=swap" rel="stylesheet">
+    <script src="simple-context-sidekick.js"></script>
+    <script src="openai-sidekick.js"></script>
+    <style>
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Light.woff2") format("woff2");
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Medium.woff2") format("woff2");
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Bold.woff2") format("woff2");
+            font-weight: 700;
+        }
+        .font-helvetica {
+            font-family: "Helvetica Neue", sans-serif;
+        }
+        .font-nuosu {
+            font-family: "Nuosu SIL", serif;
+        }
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+        }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #000000;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+        * {
+            cursor: none;
+        }
+        .cursor {
+            width: 12px;
+            height: 12px;
+            background-color: #5E5E5E;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+        .cursor.hover {
+            transform: scale(1.5);
+        }
+        .cursor.navigating {
+            background-color: #18A000;
+            transform: scale(1.5);
+        }
+        input, textarea {
+            cursor: text;
+        }
+        a, button {
+            cursor: none;
+        }
+        .contact-dropdown {
+            cursor: none;
+        }
+        .contact-dropdown:hover {
+            cursor: none;
+        }
+        .contact-dropdown + div a {
+            cursor: none;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Custom cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Main Content Area -->
+    <div class="w-3/4 overflow-x-hidden">
+        <!-- Navigation -->
+        <nav class="fixed w-3/4 z-50">
+            <div class="bg-white/80 backdrop-blur-lg px-12 py-6">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    <div class="hidden md:flex space-x-12">
+                        <a href="index.html" class="text-[16px] font-helvetica font-light nav-link relative">Home</a>
+                        <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link active relative">Projects</a>
+                        <a href="https://docs.google.com/document/d/1obd6Jhs7al1r16HOK-2kXMC05q6xMOPMdzDFUToQgKM/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
+                        <a href="about.html" class="text-[16px] font-helvetica font-light nav-link relative">About</a>
+                        <div class="relative group">
+                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown">Contact</button>
+                            <div class="absolute top-full right-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible contact-dropdown-menu transition-all duration-200 z-[9999]">
+                                <div class="relative pr-4">
+                                    <div class="bg-white/80 backdrop-blur-sm rounded-sm px-3 py-2">
+                                        <div class="space-y-2 text-right">
+                                            <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
+                                            <div class="space-y-1">
+                                                <a href="mailto:c.a.rodriguez1999@gmail.com" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">c.a.rodriguez1999@gmail.com</a>
+                                                <a href="https://linkedin.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                                <a href="https://github.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="absolute top-0 right-0 w-0.5 bg-black h-0 group-hover:h-full transition-all duration-500 ease-out"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content Section -->
+        <div class="max-w-[960px] mx-auto pt-24" style="padding-left: 48px; padding-right: 48px;">
+            <!-- Project Header -->
+            <div class="mb-24">
+                <h2 class="text-[32px] font-helvetica font-medium mb-2">Northwestern Medicine Scholars Program</h2>
+                <p class="text-[20px] font-helvetica text-gray-800">Programs like NM Scholars don't just scale by adding more students. They scale through intentional systems design that ensures equity, structure, and community stay intact as complexity grows.</p>
+            </div>
+
+            <!-- Project Details Grid -->
+            <div class="flex gap-[120px] mb-32">
+                <!-- Left Column - Project Info -->
+                <div class="w-[280px]">
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Role</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Design Strategist</p>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Organization</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Northwestern Medicine</p>
+                        <p class="text-[16px] font-helvetica font-light whitespace-nowrap">Youth Programming</p>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Timeline</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">3 months</p>
+                        <p class="text-[16px] font-helvetica font-light whitespace-nowrap">Summer 2025</p>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Tools</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Figma</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Mural</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">CursorAI</p>
+                    </div>
+                    <div>
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Focus</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Systems Mapping</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Instructional Coordination</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Scalable Learning Equity</p>
+                    </div>
+                </div>
+
+                <!-- Right Column - Hero Image -->
+                <div class="w-[740px] h-[538px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                    <img src="images/NM-Scholars-2.jpg" alt="NM Scholars Program Hero" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- Summary Section -->
+            <div class="flex gap-24 mb-32">
+                <div class="w-[435px] h-[435px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                    <img src="images/NMScholars3.jpg" alt="Summary" class="w-full h-full object-cover">
+                </div>
+                <div class="w-[450px]">
+                    <h2 class="text-[28px] font-nuosu mb-4">Summary</h2>
+                    <div class="text-[16px] font-helvetica space-y-4 mb-8">
+                        <p>I led design strategy for a rapidly growing healthcare research program supporting 40+ underrepresented high school students.</p>
+                        <p>As the program doubled in size over the past year, I used systems mapping and curriculum design to resolve bottlenecks, clarify team roles, and reframe cohort grouping around student needs. These interventions resulted in smoother delivery, more confident students, and a repeatable framework now adopted across cohorts.</p>
+                    </div>
+                    <div class="flex gap-20">
+                        <div class="w-[179px]">
+                            <p class="text-[20px] font-helvetica font-bold">50%</p>
+                            <p class="text-[16px] font-helvetica whitespace-nowrap">Boost in student participation</p>
+                        </div>
+                        <div class="w-[190px]">
+                            <p class="text-[20px] font-helvetica font-bold">35%</p>
+                            <p class="text-[16px] font-helvetica whitespace-nowrap">Improved student clarity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quote Section -->
+            <div class="mb-32">
+                <p class="text-[32px] font-nuosu">Scaling equity-focused programs requires more than adding seats. It demands rethinking structure, roles, and rhythms to keep students supported as the system grows.</p>
+            </div>
+
+            <!-- Challenge Section -->
+            <div class="flex gap-12 mb-32">
+                <div class="w-[450px]">
+                    <h2 class="text-[28px] font-nuosu mb-4">Challenge</h2>
+                    <div class="text-[16px] font-helvetica space-y-4">
+                        <p>NM Scholars empowers first-generation and underrepresented high school students to conduct real healthcare research. But as enrollment scaled, we faced structural breakdowns: fragmented communication, inconsistent instruction, unclear mentor roles, and disengagement from students in larger cohorts.</p>
+                    </div>
+                </div>
+                <div class="w-[700px] h-[361px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                    <img src="images/NM-Scholars-Class.jpg" alt="Challenge" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- Solution Section -->
+            <div class="mb-32">
+                <h2 class="text-[28px] font-nuosu mb-4">Solution</h2>
+                <div class="text-[16px] font-helvetica max-w-[600px] space-y-4">
+                    <p>I led a systems-level design response to improve clarity, collaboration, and scalability. Key interventions included:</p>
+                    <ul class="list-disc pl-8 space-y-2">
+                        <li>Systems mapping of all program actors (students, APCs, mentors, instructors) to identify gaps in responsibility and timing</li>
+                        <li>Cohort grouping redesign, shifting from static groupings to interest-based and skill-balanced pods</li>
+                        <li>Slide + poster card templates to reduce prep anxiety and increase consistency across student deliverables</li>
+                        <li>A rubric-aligned feedback system to clarify APC expectations and reduce weekly review friction</li>
+                        <li>A milestone-based schedule and visual planning board to coordinate across instructional leads</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Impact Section -->
+            <div class="mb-32">
+                <h2 class="text-[28px] font-nuosu mb-4">Impact</h2>
+                <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2 max-w-[600px]">
+                    <li>Reduced instructional misalignment by formalizing roles across teams</li>
+                    <li>Increased student participation in peer critique by 50%</li>
+                    <li>Cohort restructuring resulted in more equitable workload distribution</li>
+                    <li>Framework now used to onboard new instructors and scale to future NM Scholar cohorts</li>
+                    <li>+35% improvement in post-program student clarity scores (schedule, expectations, roles)</li>
+                </ul>
+            </div>
+
+            <!-- Key Decisions -->
+            <div class="max-w-[600px] mb-4">
+                <h2 class="text-[28px] font-nuosu mb-4">Key Decisions</h2>
+                <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
+                    <li>Scoped GPT prompts to build confidence, not just speed</li>
+                    <li>Removed open-ended tasks after testing showed cognitive overload</li>
+                    <li>Integrated reflection questions to surface ethical reasoning</li>
+                </ul>
+            </div>
+
+            <!-- Additional Image Section -->
+            <div class="flex justify-center">
+                <div class="w-[600px] h-[250px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 bg-transparent">
+                    <img src="images/nm-scholars-2023.jpg" alt="NM Scholars 2023" class="w-full h-full object-contain">
+                </div>
+            </div>
+
+            <!-- Project Navigation -->
+            <div class="flex justify-between mt-16 mb-8">
+                <a href="ai-research-workbook.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors group">
+                    <span class="text-[18px] transform group-hover:-translate-x-1 transition-transform"><</span>
+                    <span>AI Research Workbook</span>
+                </a>
+                <a href="bachelors-microsoft-health.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors group">
+                    <span>Bachelors in Microsoft Health</span>
+                    <span class="text-[18px] transform group-hover:translate-x-1 transition-transform">></span>
+                </a>
+            </div>
+
+            <!-- Footer -->
+            <footer class="bg-white border-t border-gray-200 mt-20">
+                <div class="max-w-7xl mx-auto px-12 py-8">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-8">
+                            <div>
+                                <h3 class="text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                                <p class="text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                            </div>
+                            <div class="border-l border-gray-300 h-12"></div>
+                            <div>
+                                <p class="text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                                <div class="flex space-x-4">
+                                    <a href="mailto:c.a.rodriguez1999@gmail.com" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</a>
+                                    <a href="https://linkedin.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                    <a href="https://github.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
+                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
+                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by CursorAI, Figma, and GPT</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- AI Sidekick -->
+    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col" id="ai-sidekick">
+        <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
+            <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
+        </div>
+        <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex">
+            <span class="text-black mt-[2px]">></span>
+            <div class="relative flex-1 ml-2">
+                <textarea 
+                    class="bg-transparent border-none font-['IBM_Plex_Mono'] text-[14px] w-full outline-none text-black resize-none overflow-hidden p-0 leading-normal"
+                    placeholder="Ask me anything..."
+                    id="chat-input"
+                    rows="1"
+                    style="height: 20px;"
+                ></textarea>
+            </div>
+        </div>
+        <div class="bg-[#18a000] p-4">
+            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold">AI Sidekick</h3>
+        </div>
+    </div>
+
+    <script>
+        // Cursor functionality
+        const cursor = document.getElementById('cursor');
+        let links = document.querySelectorAll('a');
+        let buttons = document.querySelectorAll('button');
+        let isNavigating = false;
+        let lastAINavigationPosition = null; // Track AI's final position
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isNavigating && !lastAINavigationPosition) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            } else if (!isNavigating && lastAINavigationPosition) {
+                // User is moving the mouse after AI navigation - clear stored position
+                lastAINavigationPosition = null;
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            }
+            // If isNavigating is true or lastAINavigationPosition exists, don't update cursor position
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                if (!isNavigating && !lastAINavigationPosition) {
+                    cursor.classList.add('hover');
+                }
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                if (!isNavigating && !lastAINavigationPosition) {
+                    cursor.classList.add('hover');
+                }
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursor.style.display = 'none';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.style.display = 'block';
+        });
+
+        // Function to smoothly transition cursor from AI to user control
+        function transitionCursorFromAI() {
+            if (lastAINavigationPosition) {
+                // Keep cursor at AI's final position
+                cursor.style.left = lastAINavigationPosition.x + 'px';
+                cursor.style.top = lastAINavigationPosition.y + 'px';
+            }
+            // Set isNavigating to false but keep the stored position
+            isNavigating = false;
+            // The stored position will be cleared only when user moves the mouse
+        }
+
+        // AI Sidekick functionality
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        let isTyping = false;
+
+        // Auto-resize textarea
+        function autoResize() {
+            chatInput.style.height = 'auto';
+            chatInput.style.height = chatInput.scrollHeight + 'px';
+        }
+
+        chatInput.addEventListener('input', autoResize);
+
+        // Enhanced responses with navigation capabilities
+        const responses = {
+            'microsoft': {
+                keywords: ['microsoft', 'copilot', 'microsoft health', 'bachelors program', 'big tech', 'big tech company', 'tech company', 'large company', 'enterprise'],
+                response: "Great! Let me show you his Bachelors in Microsoft Health project - it's a systems-led academic program he helped design.",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    const projectsLink = document.querySelector('a[href="projects.html"]');
+                    cursor.classList.add('navigating');
+                    
+                    if (projectsLink) {
+                        // Move cursor to projects link for visual feedback
+                        const rect = projectsLink.getBoundingClientRect();
+                        cursor.style.transition = 'all 1s ease';
+                        cursor.style.left = (rect.left + rect.width/2) + 'px';
+                        cursor.style.top = (rect.top + rect.height/2) + 'px';
+                        
+                        setTimeout(() => {
+                            // Set navigation instruction for the next page
+                            sessionStorage.setItem('autoClickProject', 'bachelors-microsoft-health');
+                            // Navigate to projects page
+                            projectsLink.click();
+                        }, 1000);
+                    } else {
+                        // Fallback: direct navigation if link not found
+                        cursor.style.transition = 'all 1s ease';
+                        cursor.style.left = '50%';
+                        cursor.style.top = '50%';
+                        
+                        setTimeout(() => {
+                            sessionStorage.setItem('autoClickProject', 'bachelors-microsoft-health');
+                            window.location.href = 'projects.html';
+                        }, 1000);
+                    }
+                }
+            },
+            'ai': {
+                keywords: ['ai', 'artificial intelligence', 'gpt', 'chatgpt', 'ai technologies', 'machine learning', 'ai experience', 'best example of ai work', 'chatgpt', 'gpt', 'openai'],
+                response: "Perfect! Let me show you his AI Research Workbook project - it's a GPT-supported research tool he built at Northwestern Medicine.",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    cursor.classList.add('navigating');
+                    
+                    // Move cursor to center of screen for visual feedback
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = '50%';
+                    cursor.style.top = '50%';
+                    
+                    setTimeout(() => {
+                        sessionStorage.setItem('isNavigating', 'true');
+                        window.location.href = 'ai-research-workbook.html';
+                    }, 1000);
+                }
+            },
+            'northwestern': {
+                keywords: ['northwestern', 'northwestern medicine', 'nm scholars', 'ai research workbook', 'last project', 'recent work', 'latest project'],
+                response: "You're in the right place! Let me show you his most recent Northwestern Medicine work - the AI Research Workbook.",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    const projectsLink = document.querySelector('a[href="projects.html"]');
+                    cursor.classList.add('navigating');
+                    
+                    if (projectsLink) {
+                        // Move cursor to projects link for visual feedback
+                        const rect = projectsLink.getBoundingClientRect();
+                        cursor.style.transition = 'all 1s ease';
+                        cursor.style.left = (rect.left + rect.width/2) + 'px';
+                        cursor.style.top = (rect.top + rect.height/2) + 'px';
+                        
+                        setTimeout(() => {
+                            // Set navigation instruction for the next page
+                            sessionStorage.setItem('autoClickProject', 'ai-research-workbook');
+                            // Navigate to projects page
+                            projectsLink.click();
+                        }, 1000);
+                    } else {
+                        // Fallback: direct navigation if link not found
+                        cursor.style.transition = 'all 1s ease';
+                        cursor.style.left = '50%';
+                        cursor.style.top = '50%';
+                        
+                        setTimeout(() => {
+                            sessionStorage.setItem('autoClickProject', 'ai-research-workbook');
+                            window.location.href = 'projects.html';
+                        }, 1000);
+                    }
+                }
+            },
+            'healthcare': {
+                keywords: ['healthcare', 'medical', 'clinical', 'health', 'medicine', 'healthcare experience'],
+                response: "Carlos has significant healthcare experience! He worked at Northwestern Medicine on clinical learning programs and AI research tools. Let me show you his NM Scholars Program.",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    const nmScholarsLink = document.querySelector('a[href="nm-scholars-program.html"]');
+                    cursor.classList.add('navigating');
+                    nmScholarsLink.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+                    setTimeout(() => {
+                        const rect = nmScholarsLink.getBoundingClientRect();
+                        cursor.style.transition = 'all 1s ease';
+                        cursor.style.left = (rect.left + rect.width/2) + 'px';
+                        cursor.style.top = (rect.top + rect.height/2) + 'px';
+                        setTimeout(() => {
+                            sessionStorage.setItem('isNavigating', 'true');
+                            window.location.href = 'nm-scholars-program.html';
+                        }, 1000);
+                    }, 800);
+                }
+            },
+            'home': {
+                keywords: ['home', 'main page', 'go back', 'return', 'landing page'],
+                response: "Let me take you back to the home page!",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    const homeLink = document.querySelector('a[href="index.html"]');
+                    cursor.classList.add('navigating');
+                    const rect = homeLink.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    setTimeout(() => {
+                        sessionStorage.setItem('isNavigating', 'true');
+                        window.location.href = 'index.html';
+                    }, 1000);
+                }
+            },
+            'projects': {
+                keywords: ['projects', 'work', 'portfolio', 'case studies', 'what has he built', 'show me his work'],
+                response: "I'll take you to his projects page where you can see all his detailed work!",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    const projectsLink = document.querySelector('a[href="projects.html"]');
+                    cursor.classList.add('navigating');
+                    const rect = projectsLink.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    setTimeout(() => {
+                        sessionStorage.setItem('isNavigating', 'true');
+                        window.location.href = 'projects.html';
+                    }, 1000);
+                }
+            },
+            'about': {
+                keywords: ['about', 'who is', 'tell me about', 'background', 'who is carlos'],
+                response: "Let me show you more about Carlos!",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    const aboutLink = document.querySelector('a[href="about.html"]');
+                    cursor.classList.add('navigating');
+                    const rect = aboutLink.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    setTimeout(() => {
+                        sessionStorage.setItem('isNavigating', 'true');
+                        window.location.href = 'about.html';
+                    }, 1000);
+                }
+            },
+            'contact': {
+                keywords: ['contact', 'reach', 'email', 'connect', 'get in touch', 'how to contact'],
+                response: "I'll show you his contact information! You can find his email, LinkedIn, and GitHub in the contact dropdown.",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    const contactButton = document.querySelector('.contact-dropdown');
+                    const contactDropdownMenu = document.querySelector('.contact-dropdown-menu');
+                    
+                    cursor.classList.add('navigating');
+                    
+                    // Move cursor to contact button
+                    const rect = contactButton.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    
+                    setTimeout(() => {
+                        // Store the final position before showing dropdown
+                        lastAINavigationPosition = {
+                            x: rect.left + rect.width/2,
+                            y: rect.top + rect.height/2
+                        };
+                        
+                        // Show the dropdown
+                        contactDropdownMenu.classList.remove('invisible', 'opacity-0');
+                        contactDropdownMenu.classList.add('opacity-100', 'visible');
+                        
+                        setTimeout(() => {
+                            cursor.style.transition = 'transform 0.2s ease, background-color 0.3s ease';
+                            cursor.classList.remove('navigating');
+                            transitionCursorFromAI(); // Use smooth transition
+                        }, 500);
+                    }, 1000);
+                }
+            },
+            'resume': {
+                keywords: ['resume', 'cv', 'experience', 'work history', 'download resume'],
+                response: "I'll open his resume for you! It's a Google Docs link with his full experience and background.",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    const resumeLink = document.querySelector('a[href*="docs.google.com"]');
+                    cursor.classList.add('navigating');
+                    const rect = resumeLink.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    setTimeout(() => {
+                        resumeLink.click();
+                        cursor.style.transition = 'transform 0.2s ease, background-color 0.3s ease';
+                        cursor.classList.remove('navigating');
+                    }, 1000);
+                }
+            },
+            'oldest': {
+                keywords: ['oldest', 'older', 'oldest project', 'older project', 'first project', 'earliest project', 'microsoft health'],
+                response: "I'll show you his oldest project - the Microsoft Health Bachelors program! This was his first major project where he learned to balance enterprise constraints with human-centered design.",
+                action: () => {
+                    // Set context for Microsoft Health project (only for Simple Context sidekick)
+                    if (simpleSidekick && !(simpleSidekick instanceof OpenAISidekick)) {
+                        simpleSidekick.setContext('microsoft health', "Carlos worked on the Bachelors in Microsoft Health program, his oldest project where he learned to balance enterprise constraints with human-centered design.");
+                    }
+                    
+                    const cursor = document.getElementById('cursor');
+                    const projectsLink = document.querySelector('a[href="projects.html"]');
+                    
+                    cursor.classList.add('navigating');
+                    
+                    const rect = projectsLink.getBoundingClientRect();
+                    cursor.style.transition = 'all 1s ease';
+                    cursor.style.left = (rect.left + rect.width/2) + 'px';
+                    cursor.style.top = (rect.top + rect.height/2) + 'px';
+                    
+                    setTimeout(() => {
+                        // Store the final position before navigation
+                        lastAINavigationPosition = {
+                            x: rect.left + rect.width/2,
+                            y: rect.top + rect.height/2
+                        };
+                        sessionStorage.setItem('isNavigating', 'true');
+                        sessionStorage.setItem('targetProject', 'bachelors-microsoft-health');
+                        sessionStorage.setItem('scrollToProject', 'true');
+                        
+                        console.log('Navigating to oldest project (Microsoft Health)');
+                        
+                        window.location.href = 'projects.html';
+                    }, 1000);
+                }
+            },
+            'blog': {
+                keywords: ['blog', 'blog posts', 'articles', 'writing', 'blog section'],
+                response: "I'll take you to his blog section on the homepage where you can read his latest articles and insights!",
+                action: () => {
+                    const cursor = document.getElementById('cursor');
+                    
+                    cursor.classList.add('navigating');
+                    
+                    // Scroll to blog section on homepage
+                    const blogSection = document.querySelector('#blog');
+                    if (blogSection) {
+                        const rect = blogSection.getBoundingClientRect();
+                        cursor.style.transition = 'all 1s ease';
+                        cursor.style.left = (rect.left + rect.width/2) + 'px';
+                        cursor.style.top = (rect.top + rect.height/2) + 'px';
+                        
+                        setTimeout(() => {
+                            // Store the final position before scrolling
+                            lastAINavigationPosition = {
+                                x: rect.left + rect.width/2,
+                                y: rect.top + rect.height/2
+                            };
+                            
+                            // Smooth scroll to blog section
+                            blogSection.scrollIntoView({ behavior: 'smooth' });
+                            
+                            setTimeout(() => {
+                                cursor.style.transition = 'transform 0.2s ease, background-color 0.3s ease';
+                                cursor.classList.remove('navigating');
+                                transitionCursorFromAI(); // Use smooth transition
+                            }, 1000);
+                        }, 1000);
+                    } else {
+                        // If we're not on homepage, navigate to it and scroll to blog
+                        sessionStorage.setItem('scrollToSection', 'blog');
+                        window.location.href = 'index.html';
+                    }
+                }
+            }
+        };
+
+        function findResponse(input) {
+            const lowercaseInput = input.toLowerCase();
+            console.log('findResponse called with:', input);
+            
+            // FIRST: Check if this is a context continuation (prioritize context over navigation)
+            if (simpleSidekick) {
+                console.log("Checking for context continuation first...");
+                
+                // Check if this looks like a context continuation
+                const contextContinuationPhrases = ["tell me more about it", "tell me more", "more about it", "more details", "what else", "continue", "go on", "elaborate", "explain more", "more", "it"];
+                const isContextContinuation = contextContinuationPhrases.some(phrase => lowercaseInput.includes(phrase));
+                
+                if (isContextContinuation) {
+                    console.log("Context continuation detected, using sidekick response");
+                    const simpleResponse = simpleSidekick.getResponse(input);
+                    return {
+                        text: simpleResponse,
+                        action: null
+                    };
+                }
+            }
+            
+            // SECOND: Check for navigation keywords (but exclude context continuation phrases)
+            const contextContinuationPhrases = ['tell me more about it', 'tell me more', 'more about it', 'more details', 'what else', 'continue', 'go on', 'elaborate', 'explain more', 'more', 'it'];
+            const navigationKeywords = ['take me', 'go to', 'show me', 'navigate', 'latest', 'recent', 'project', 'projects', 'about', 'home', 'contact', 'resume'];
+            
+            // Only check navigation if it's NOT a context continuation
+            const isContextContinuation = contextContinuationPhrases.some(phrase => lowercaseInput.includes(phrase));
+            const isNavigationQuery = !isContextContinuation && navigationKeywords.some(keyword => lowercaseInput.includes(keyword));
+            
+            if (isNavigationQuery) {
+                console.log('Navigation query detected, checking navigation responses first');
+                // Check navigation responses first for navigation queries
+                for (const category in responses) {
+                    if (responses[category].keywords.some(keyword => lowercaseInput.includes(keyword))) {
+                        console.log('Found navigation response for:', category);
+                        
+                        // Update context for navigation responses (only for Simple Context sidekick)
+                        if (simpleSidekick && responses[category].response && !(simpleSidekick instanceof OpenAISidekick)) {
+                            // Extract topic from the navigation response
+                            const topic = simpleSidekick.extractTopicFromResponse(responses[category].response);
+                            if (topic) {
+                                console.log('Updating context for navigation response:', topic);
+                                simpleSidekick.setContext(topic, responses[category].response);
+                            }
+                        }
+                        
+                        return {
+                            text: responses[category].response,
+                            action: responses[category].action
+                        };
+                    }
+                }
+                
+                // If no navigation response found, don't fall through to OpenAI for navigation queries
+                console.log('No navigation response found, but this is a navigation query - not using OpenAI');
+                return {
+                    text: "I can help you navigate to Carlos's projects! Try asking me to 'take me to the Northwestern Medicine projects' or 'show me the AI Research Workbook'.",
+                    action: null
+                };
+            }
+            
+            // THIRD: Try the enhanced knowledge base for insight queries
+            if (simpleSidekick) {
+                console.log('Enhanced sidekick available, searching...');
+                console.log('Enhanced sidekick object:', simpleSidekick);
+                
+                // Get conversation history from sessionStorage
+                const history = JSON.parse(sessionStorage.getItem('chatHistory')) || [];
+                const conversationHistory = history.map(msg => msg.text);
+                
+                const enhancedResponse = simpleSidekick.getResponse(input);
+                console.log('Enhanced response:', enhancedResponse);
+                
+                // Check if we got a meaningful response (not the default)
+                const defaultResponse = simpleSidekick.getDefaultResponse();
+                console.log('Default response:', defaultResponse);
+                console.log('Response matches default?', enhancedResponse === defaultResponse);
+                
+                if (enhancedResponse && enhancedResponse !== defaultResponse) {
+                    console.log('Using enhanced response');
+                    return {
+                        text: enhancedResponse,
+                        action: null
+                    };
+                } else {
+                    console.log('Enhanced response was default, falling back to navigation');
+                }
+            } else {
+                console.log('Enhanced sidekick not available');
+            }
+            
+            // Fall back to navigation responses
+            for (const category in responses) {
+                if (responses[category].keywords.some(keyword => lowercaseInput.includes(keyword))) {
+                    return {
+                        text: responses[category].response,
+                        action: responses[category].action
+                    };
+                }
+            }
+            
+            // If no exact match, provide a helpful response
+            return {
+                text: "I can help you navigate through Carlos's portfolio and share insights about his process, values, and strategic thinking! Try asking about his projects, experience, AI work, healthcare experience, Northwestern Medicine projects, or dive deeper into his process, values, strategy, collaboration style, or innovation approach. What would you like to explore?",
+                action: null
+            };
+        }
+
+        // Load chat history from sessionStorage
+        function loadChatHistory() {
+            const history = JSON.parse(sessionStorage.getItem('chatHistory')) || [];
+            chatMessages.innerHTML = '';
+            if (history.length === 0) {
+                addMessage("Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!", false);
+            } else {
+                history.forEach(msg => {
+                    const p = document.createElement('p');
+                    p.className = msg.isUser ? 'text-black' : 'text-[#18a000]';
+                    if (msg.isUser) {
+                        p.textContent = `> ${msg.text}`;
+                    } else {
+                        p.innerHTML = msg.text.replace(/\n/g, '<br>');
+                    }
+                    chatMessages.appendChild(p);
+                });
+            }
+        }
+
+        // Session tracking for chat history management
+        function initializeSession() {
+            const isFreshSession = !sessionStorage.getItem('sessionActive');
+            const isAINavigation = sessionStorage.getItem('isNavigating') === 'true';
+            const referrer = document.referrer;
+            const isInternalNavigation = referrer && (
+                referrer.includes('index.html') ||
+                referrer.includes('projects.html') ||
+                referrer.includes('about.html') ||
+                referrer.includes('ai-research-workbook.html') ||
+                referrer.includes('bachelors-microsoft-health.html') ||
+                referrer.includes('nm-scholars-program.html')
+            );
+            
+            // Check if this is a page refresh by looking at performance navigation type
+            const isPageRefresh = performance.navigation.type === 1 || 
+                                (performance.getEntriesByType('navigation')[0] && 
+                                 performance.getEntriesByType('navigation')[0].type === 'reload');
+
+            // Clear chat history if it's a fresh session (page refresh or direct access)
+            // Preserve chat history during any internal navigation (AI or manual)
+            if ((isFreshSession && !isInternalNavigation && !isAINavigation) || isPageRefresh) {
+                sessionStorage.removeItem('chatHistory');
+                sessionStorage.setItem('sessionActive', 'true');
+            }
+        }
+
+        // Load chat history when page loads
+        initializeSession();
+        loadChatHistory();
+
+        // Initialize enhanced AI Sidekick
+        let simpleSidekick = null;
+        simpleSidekick = new SimpleContextSidekick();
+
+        function addMessage(text, isUser = false, animate = true) {
+            const p = document.createElement('p');
+            p.className = isUser ? 'text-black' : 'text-[#18a000]';
+            if (isUser) {
+                p.textContent = `> ${text}`;
+            } else if (!animate) {
+                p.innerHTML = text.replace(/\n/g, '<br>');
+            }
+            chatMessages.appendChild(p);
+
+            if (!isUser && animate) {
+                animateText(p, text);
+            }
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Save to sessionStorage
+            const history = JSON.parse(sessionStorage.getItem('chatHistory')) || [];
+            history.push({ text, isUser });
+            sessionStorage.setItem('chatHistory', JSON.stringify(history));
+        }
+
+        // Typing animation for dots
+        function animateTypingDots(element) {
+            let dots = 0;
+            const interval = setInterval(() => {
+                dots = (dots + 1) % 4;
+                element.textContent = 'Typing' + '.'.repeat(dots);
+            }, 500);
+            return interval;
+        }
+
+        // Animate text typing
+        function animateText(element, text) {
+            element.innerHTML = '';
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index < text.length) {
+                    element.innerHTML += text[index];
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    index++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 30);
+        }
+
+        // Handle chat input
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                const message = chatInput.value.trim();
+                if (message && !isTyping) {
+                    addMessage(message, true);
+                    chatInput.value = '';
+                    autoResize();
+                    
+                    isTyping = true;
+                    const typingElement = document.createElement('p');
+                    typingElement.className = 'text-[#18a000]';
+                    chatMessages.appendChild(typingElement);
+                    
+                    const typingInterval = animateTypingDots(typingElement);
+                    
+                    setTimeout(() => {
+                        clearInterval(typingInterval);
+                        chatMessages.removeChild(typingElement);
+                        
+                        try {
+                            const response = findResponse(message);
+                            console.log('Response received:', response);
+                            
+                            if (response && response.text) {
+                                addMessage(response.text, false);
+                                
+                                if (response.action) {
+                                    setTimeout(() => {
+                                        response.action();
+                                    }, 1000);
+                                }
+                            } else {
+                                console.error('Invalid response:', response);
+                                addMessage("I'm sorry, I encountered an error processing your request. Please try again.", false);
+                            }
+                        } catch (error) {
+                            console.error('Error in findResponse:', error);
+                            addMessage("I'm sorry, I encountered an error processing your request. Please try again.", false);
+                        }
+                        
+                        isTyping = false;
+                    }, 1000);
+                }
+            }
+        });
+
+        // Ensure chat history persists across navigation
+        window.addEventListener('beforeunload', () => {
+            // Don't clear chat history on page navigation
+        });
+
+        // Add click handling for contact dropdown
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactButton = document.querySelector('.contact-dropdown');
+            const contactDropdownMenu = document.querySelector('.contact-dropdown-menu');
+            
+            if (contactButton && contactDropdownMenu) {
+                contactButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Toggle dropdown visibility
+                    const isVisible = contactDropdownMenu.classList.contains('visible');
+                    
+                    if (isVisible) {
+                        contactDropdownMenu.classList.remove('opacity-100', 'visible');
+                        contactDropdownMenu.classList.add('opacity-0', 'invisible');
+                    } else {
+                        contactDropdownMenu.classList.remove('invisible', 'opacity-0');
+                        contactDropdownMenu.classList.add('opacity-100', 'visible');
+                    }
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (event) => {
+                    if (!contactDropdownMenu.contains(event.target) && !contactButton.contains(event.target)) {
+                        contactDropdownMenu.classList.remove('opacity-100', 'visible');
+                        contactDropdownMenu.classList.add('opacity-0', 'invisible');
+                    }
+                });
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const cursor = document.getElementById('cursor');
+            // Check if we're coming from a navigation action
+            if (sessionStorage.getItem('isNavigating') === 'true') {
+                isNavigating = true;
+                cursor.classList.add('navigating');
+                setTimeout(() => {
+                    cursor.style.transition = 'transform 0.2s ease, background-color 0.3s ease';
+                    cursor.classList.remove('navigating');
+                    sessionStorage.removeItem('isNavigating');
+                    sessionStorage.removeItem('targetProject'); // Clear targetProject as well
+                    transitionCursorFromAI(); // Use smooth transition
+                }, 100);
+            }
+        });
+    </script>
+    <style>
+        /* Add custom scrollbar styling */
+        #chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        #chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        #chat-messages::-webkit-scrollbar-thumb {
+            background: #6b7280;
+            border-radius: 3px;
+        }
+        
+        #chat-messages::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+
+        #chat-messages p {
+            white-space: pre-line;
+        }
+    </style>
+</body>
+</html>

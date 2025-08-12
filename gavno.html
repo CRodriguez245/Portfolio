@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GA.V.NO - Carlos Rodriguez</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Nuosu+SIL&display=swap" rel="stylesheet">
+    <script src="simple-context-sidekick.js"></script>
+    <script src="openai-sidekick.js"></script>
+    <style>
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Light.woff2") format("woff2");
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Medium.woff2") format("woff2");
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Bold.woff2") format("woff2");
+            font-weight: 700;
+        }
+        .font-helvetica {
+            font-family: "Helvetica Neue", sans-serif;
+        }
+        .font-nuosu {
+            font-family: "Nuosu SIL", serif;
+        }
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+        }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #000000;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+        * {
+            cursor: none;
+        }
+        .cursor {
+            width: 12px;
+            height: 12px;
+            background-color: #5E5E5E;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+        .cursor.hover {
+            transform: scale(1.5);
+        }
+        .cursor.navigating {
+            background-color: #18A000;
+            transform: scale(1.5);
+        }
+        input, textarea {
+            cursor: text;
+        }
+        a, button {
+            cursor: none;
+        }
+        .contact-dropdown {
+            cursor: none;
+        }
+        .contact-dropdown:hover {
+            cursor: none;
+        }
+        .contact-dropdown + div a {
+            cursor: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Custom cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Main Content Area -->
+    <div class="w-3/4 overflow-x-hidden">
+        <!-- Navigation -->
+        <nav class="fixed w-3/4 z-50">
+            <div class="bg-white/80 backdrop-blur-lg px-12 py-6">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    <div class="hidden md:flex space-x-12">
+                        <a href="index.html" class="text-[16px] font-helvetica font-light nav-link relative">Home</a>
+                        <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link active relative">Projects</a>
+                        <a href="https://docs.google.com/document/d/1obd6Jhs7al1r16HOK-2kXMC05q6xMOPMdzDFUToQgKM/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
+                        <a href="about.html" class="text-[16px] font-helvetica font-light nav-link relative">About</a>
+                        <div class="relative group">
+                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown">Contact</button>
+                            <div class="absolute top-full right-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible contact-dropdown-menu transition-all duration-200 z-[9999]">
+                                <div class="relative pr-4">
+                                    <div class="bg-white/80 backdrop-blur-sm rounded-sm px-3 py-2">
+                                        <div class="space-y-2 text-right">
+                                            <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
+                                            <div class="space-y-1">
+                                                <a href="mailto:c.a.rodriguez1999@gmail.com" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">c.a.rodriguez1999@gmail.com</a>
+                                                <a href="https://linkedin.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                                <a href="https://github.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="absolute top-0 right-0 w-0.5 bg-black h-0 group-hover:h-full transition-all duration-500 ease-out"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content Section -->
+        <div class="max-w-[960px] mx-auto pt-24" style="padding-left: 48px; padding-right: 48px;">
+            <!-- Project Header -->
+            <div class="mb-24">
+                <h2 class="text-[32px] font-helvetica font-medium mb-2">GA.V.NO</h2>
+                <p class="text-[20px] font-helvetica text-gray-800">A storytelling platform exploring music, culture, and design.</p>
+            </div>
+
+            <!-- Project Details Grid -->
+            <div class="flex gap-[120px] mb-32">
+                <!-- Left Column - Project Info -->
+                <div class="w-[280px]">
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Role</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Creative Director</p>
+                        <p class="text-[16px] font-helvetica font-light whitespace-nowrap">and Founder</p>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Organization</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Independent</p>
+                        <p class="text-[16px] font-helvetica font-light whitespace-nowrap">Platform</p>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Timeline</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Ongoing</p>
+                        <p class="text-[16px] font-helvetica font-light whitespace-nowrap">2024-Present</p>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Tools</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Audio Production</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Product Design</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Storytelling</p>
+                    </div>
+                    <div>
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Focus</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Brazilian Music</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Cultural Narrative</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Modular Design</p>
+                    </div>
+                </div>
+
+                            <!-- Right Column - Hero Image -->
+            <div class="w-[740px] h-[538px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                <img src="images/gavnoheroimages/square2.jpg" alt="GA.V.NO Hero" class="w-full h-full object-cover">
+            </div>
+            </div>
+
+            <!-- Summary Section -->
+            <div class="flex gap-24 mb-32">
+                <div class="w-[435px] h-[435px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                    <img src="images/gavnoradiologocenter copy.jpg" alt="Summary" class="w-full h-full object-contain">
+                </div>
+                <div class="w-[450px]">
+                    <h2 class="text-[28px] font-nuosu mb-4">Summary</h2>
+                    <div class="text-[16px] font-helvetica space-y-4 mb-8">
+                        <p>GA.V.NO is a multidisciplinary audio project that uses Brazilian music and narrative as a lens for creative exploration.</p>
+                        <p>At its core, it's a radio show — part mixtape, part design reflection — that dives into rhythms, identity, and everyday materials. Each episode features curated playlists, personal storytelling, and cultural observations that tie back to modular product concepts and themes like improvisation, craftsmanship, and community.</p>
+                    </div>
+                    <div class="flex gap-20">
+                        <div class="w-[179px]">
+                            <p class="text-[20px] font-helvetica font-bold">Multidisciplinary</p>
+                            <p class="text-[16px] font-helvetica whitespace-nowrap">Audio & Design</p>
+                        </div>
+                        <div class="w-[190px]">
+                            <p class="text-[20px] font-helvetica font-bold">Cultural</p>
+                            <p class="text-[16px] font-helvetica whitespace-nowrap">Storytelling</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Components -->
+            <div class="mb-32">
+                <h2 class="text-[28px] font-nuosu mb-8">Featured Components</h2>
+                <div class="grid grid-cols-2 gap-24">
+                    <div>
+                        <h3 class="text-[20px] font-helvetica font-bold mb-4">Radio Show</h3>
+                        <p class="text-[16px] font-helvetica leading-relaxed mb-4">Curated Brazilian rhythms, cultural commentary, design reflections</p>
+                        <p class="text-[14px] font-helvetica font-light text-gray-600">Platform: [e.g., Substack, Mixcloud, embedded player]</p>
+                    </div>
+                    <div>
+                        <h3 class="text-[20px] font-helvetica font-bold mb-4">Modular Product Design</h3>
+                        <p class="text-[16px] font-helvetica leading-relaxed mb-4">Prototypes inspired by music structure, repetition, and handmade craft</p>
+                        <p class="text-[14px] font-helvetica font-light text-gray-600">(e.g., Jenga-inspired lamp, potential kit-based products)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Carousel -->
+            <div class="mb-32">
+                <h2 class="text-[28px] font-nuosu mb-2">Episodes</h2>
+                <div class="flex space-x-[25px] overflow-x-auto pb-24 scrollbar-hide">
+                    <div class="flex-shrink-0 w-[300px] h-[280px] pt-8 px-4">
+                        <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                            <img src="images/gavnoheroimages/square0.JPG" alt="GA.V.NO Gallery" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 w-[300px] h-[280px] pt-8 px-4">
+                        <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                            <img src="images/gavnoheroimages/square1.jpg" alt="GA.V.NO Gallery" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 w-[300px] h-[280px] pt-8 px-4">
+                        <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                            <img src="images/gavnoheroimages/square2.jpg" alt="GA.V.NO Gallery" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 w-[300px] h-[280px] pt-8 px-4">
+                        <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                            <img src="images/gavnoheroimages/square3.jpg" alt="GA.V.NO Gallery" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 w-[300px] h-[280px] pt-8 px-4">
+                        <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                            <img src="images/gavnoheroimages/square4.jpg" alt="GA.V.NO Gallery" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 w-[300px] h-[280px] pt-8 px-4">
+                        <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                            <img src="images/gavnoheroimages/square5.jpg" alt="GA.V.NO Gallery" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 w-[300px] h-[280px] pt-8 px-4">
+                        <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                            <img src="images/gavnoheroimages/square6.jpg" alt="GA.V.NO Gallery" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Themes -->
+            <div class="mb-32">
+                <h2 class="text-[28px] font-nuosu mb-8">Key Themes</h2>
+                <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
+                    <li>Music as creative method</li>
+                    <li>Cultural storytelling through sound</li>
+                    <li>Design through repetition, rhythm, and improvisation</li>
+                    <li>Craftsmanship as conversation</li>
+                </ul>
+            </div>
+
+            <!-- Pull Quote -->
+            <div class="mb-32 border-l-4 border-[#18a000] pl-8">
+                <blockquote class="text-[24px] font-helvetica font-light italic leading-relaxed">
+                    "GA.V.NO is what happens when a product is scored like a record."
+                </blockquote>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between mt-16 mb-8">
+                <a href="epicac.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors group">
+                    <span class="text-[18px] transform group-hover:-translate-x-1 transition-transform"><</span>
+                    <span>EPICAC</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-white mt-20">
+            <div class="max-w-[960px] mx-auto px-12 py-8" style="padding-left: 48px; padding-right: 48px;">
+                <div class="border-t border-gray-200 pt-8">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-8">
+                        <div>
+                            <h3 class="text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                            <p class="text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                        </div>
+                        <div class="border-l border-gray-300 h-12"></div>
+                        <div>
+                            <p class="text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                            <div class="flex space-x-4">
+                                <a href="mailto:c.a.rodriguez1999@gmail.com" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</a>
+                                <a href="https://linkedin.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                <a href="https://github.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by CursorAI, Figma, and GPT</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- AI Sidekick -->
+    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col" id="ai-sidekick">
+        <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
+            <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
+        </div>
+        <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex">
+            <span class="text-black mt-[2px]">></span>
+            <div class="relative flex-1 ml-2">
+                <textarea 
+                    class="bg-transparent border-none font-['IBM_Plex_Mono'] text-[14px] w-full outline-none text-black resize-none overflow-hidden p-0 leading-normal"
+                    placeholder="Ask me anything..."
+                    id="chat-input"
+                    rows="1"
+                    style="height: 20px;"
+                ></textarea>
+            </div>
+        </div>
+        <div class="bg-[#18a000] p-4">
+            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold">AI Sidekick</h3>
+        </div>
+    </div>
+
+    <script>
+        // Cursor functionality
+        const cursor = document.getElementById('cursor');
+        let links = document.querySelectorAll('a');
+        let buttons = document.querySelectorAll('button');
+        let isNavigating = false;
+        let lastAINavigationPosition = null;
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isNavigating && !lastAINavigationPosition) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            } else if (!isNavigating && lastAINavigationPosition) {
+                lastAINavigationPosition = null;
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            }
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                if (!isNavigating && !lastAINavigationPosition) {
+                    cursor.classList.add('hover');
+                }
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                if (!isNavigating && !lastAINavigationPosition) {
+                    cursor.classList.remove('hover');
+                }
+            });
+        });
+
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                if (!isNavigating && !lastAINavigationPosition) {
+                    cursor.classList.add('hover');
+                }
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                if (!isNavigating && !lastAINavigationPosition) {
+                    cursor.classList.remove('hover');
+                }
+            });
+        });
+
+        // AI Sidekick functionality
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        let isTyping = false;
+
+        // Initialize enhanced AI Sidekick
+        let simpleSidekick = null;
+        simpleSidekick = new SimpleContextSidekick();
+
+        function addMessage(text, isUser = false, animate = true) {
+            const p = document.createElement('p');
+            p.className = isUser ? 'text-black' : 'text-[#18a000]';
+            if (isUser) {
+                p.textContent = `> ${text}`;
+            } else if (!animate) {
+                p.innerHTML = text.replace(/\n/g, '<br>');
+            }
+            chatMessages.appendChild(p);
+
+            if (!isUser && animate) {
+                animateText(p, text);
+            }
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Save to sessionStorage
+            const history = JSON.parse(sessionStorage.getItem('chatHistory')) || [];
+            history.push({ text, isUser });
+            sessionStorage.setItem('chatHistory', JSON.stringify(history));
+        }
+
+        // Typing animation for dots
+        function animateTypingDots(element) {
+            let dots = 0;
+            const interval = setInterval(() => {
+                dots = (dots + 1) % 4;
+                element.textContent = 'Typing' + '.'.repeat(dots);
+            }, 500);
+            return interval;
+        }
+
+        // Animate text typing
+        function animateText(element, text) {
+            element.innerHTML = '';
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index < text.length) {
+                    element.innerHTML += text[index];
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    index++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 30);
+        }
+
+        // Handle chat input
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                const message = chatInput.value.trim();
+                if (message && !isTyping) {
+                    addMessage(message, true);
+                    chatInput.value = '';
+                    autoResize();
+                    
+                    isTyping = true;
+                    const typingElement = document.createElement('p');
+                    typingElement.className = 'text-[#18a000]';
+                    chatMessages.appendChild(typingElement);
+                    
+                    const typingInterval = animateTypingDots(typingElement);
+                    
+                    setTimeout(() => {
+                        clearInterval(typingInterval);
+                        chatMessages.removeChild(typingElement);
+                        
+                        try {
+                            const response = findResponse(message);
+                            console.log('Response received:', response);
+                            
+                            if (response && response.text) {
+                                addMessage(response.text, false);
+                                
+                                if (response.action) {
+                                    setTimeout(() => {
+                                        response.action();
+                                    }, 1000);
+                                }
+                            } else {
+                                console.error('Invalid response:', response);
+                                addMessage("I'm sorry, I encountered an error processing your request. Please try again.", false);
+                            }
+                        } catch (error) {
+                            console.error('Error in findResponse:', error);
+                            addMessage("I'm sorry, I encountered an error processing your request. Please try again.", false);
+                        }
+                        
+                        isTyping = false;
+                    }, 1000);
+                }
+            }
+        });
+
+        // Auto-resize textarea
+        chatInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+        });
+
+        function autoResize() {
+            chatInput.style.height = 'auto';
+            chatInput.style.height = chatInput.scrollHeight + 'px';
+        }
+
+        // Find response function
+        function findResponse(input) {
+            const lowercaseInput = input.toLowerCase();
+            
+            // Navigation responses
+            const responses = {
+                home: {
+                    keywords: ['home', 'main', 'landing', 'index'],
+                    response: "Taking you to the homepage...",
+                    action: () => {
+                        sessionStorage.setItem('isNavigating', 'true');
+                        sessionStorage.setItem('targetProject', 'home');
+                        window.location.href = 'index.html';
+                    }
+                },
+                projects: {
+                    keywords: ['projects', 'work', 'portfolio'],
+                    response: "Taking you to the projects page...",
+                    action: () => {
+                        sessionStorage.setItem('isNavigating', 'true');
+                        sessionStorage.setItem('targetProject', 'projects');
+                        window.location.href = 'projects.html';
+                    }
+                },
+                epicac: {
+                    keywords: ['epicac', 'thermal printer', 'poem', 'vonnegut'],
+                    response: "Opening EPICAC...",
+                    action: () => {
+                        sessionStorage.setItem('isNavigating', 'true');
+                        window.location.href = 'epicac.html';
+                    }
+                },
+                better_problems_project: {
+                    keywords: ['better problems project', 'independent practice', 'consultancy page'],
+                    response: "Opening Better Problems (project)...",
+                    action: () => {
+                        sessionStorage.setItem('isNavigating', 'true');
+                        window.location.href = 'better-problems-project.html';
+                    }
+                },
+                article_ai_beyond_chat: {
+                    keywords: ['ai beyond the chat'],
+                    response: "Opening AI Beyond the Chat...",
+                    action: () => {
+                        sessionStorage.setItem('isNavigating', 'true');
+                        window.location.href = 'ai-beyond-chat.html';
+                    }
+                },
+                article_design_not_see: {
+                    keywords: ["design is what you don't see", 'design what you dont see', 'design is what you dont see'],
+                    response: "Opening Design Is What You Don’t See...",
+                    action: () => {
+                        sessionStorage.setItem('isNavigating', 'true');
+                        window.location.href = 'design-what-you-dont-see.html';
+                    }
+                },
+                article_trust_product: {
+                    keywords: ['trust is the product'],
+                    response: "Opening Trust Is The Product...",
+                    action: () => {
+                        sessionStorage.setItem('isNavigating', 'true');
+                        window.location.href = 'trust-is-the-product.html';
+                    }
+                },
+                about: {
+                    keywords: ['about', 'who', 'background'],
+                    response: "Taking you to the about page...",
+                    action: () => {
+                        sessionStorage.setItem('isNavigating', 'true');
+                        sessionStorage.setItem('targetProject', 'about');
+                        window.location.href = 'about.html';
+                    }
+                },
+                gavno: {
+                    keywords: ['gavno', 'ga.v.no', 'radio', 'music', 'brazilian'],
+                    response: "GA.V.NO is Carlos's multidisciplinary audio project that explores Brazilian music and narrative as a lens for creative exploration. It's a radio show — part mixtape, part design reflection — that dives into rhythms, identity, and everyday materials. Each episode features curated playlists, personal storytelling, and cultural observations that tie back to modular product concepts.",
+                    action: null
+                }
+            };
+
+            // FIRST: Check for context continuation if enhanced sidekick is available
+            if (simpleSidekick) {
+                console.log("Checking for context continuation first...");
+                
+                // Check if this looks like a context continuation
+                const contextContinuationPhrases = ["tell me more about it", "tell me more", "more about it", "more details", "what else", "continue", "go on", "elaborate", "explain more", "more", "it"];
+                const isContextContinuation = contextContinuationPhrases.some(phrase => lowercaseInput.includes(phrase));
+                
+                if (isContextContinuation) {
+                    console.log("Context continuation detected, using sidekick response");
+                    const simpleResponse = simpleSidekick.getResponse(input);
+                    return {
+                        text: simpleResponse,
+                        action: null
+                    };
+                }
+            }
+            
+            // SECOND: Check for navigation keywords
+            const navigationKeywords = ['take me', 'go to', 'show me', 'navigate', 'latest', 'recent', 'project', 'projects', 'about', 'home', 'contact', 'resume'];
+            const isNavigationQuery = navigationKeywords.some(keyword => lowercaseInput.includes(keyword));
+            
+            if (isNavigationQuery) {
+                console.log('Navigation query detected, checking navigation responses first');
+                for (const category in responses) {
+                    if (responses[category].keywords.some(keyword => lowercaseInput.includes(keyword))) {
+                        console.log('Found navigation response for:', category);
+                        return {
+                            text: responses[category].response,
+                            action: responses[category].action
+                        };
+                    }
+                }
+                
+                return {
+                    text: "I can help you navigate to Carlos's projects! Try asking me to 'take me to the projects' or 'show me the GA.V.NO project'.",
+                    action: null
+                };
+            }
+            
+            // THIRD: Try the enhanced knowledge base for insight queries
+            if (simpleSidekick) {
+                console.log('Enhanced sidekick available, searching...');
+                const enhancedResponse = simpleSidekick.getResponse(input);
+                console.log('Enhanced response:', enhancedResponse);
+                
+                if (enhancedResponse && enhancedResponse !== simpleSidekick.getDefaultResponse()) {
+                    console.log('Using enhanced response');
+                    return {
+                        text: enhancedResponse,
+                        action: null
+                    };
+                }
+            }
+            
+            // Fall back to navigation responses
+            for (const category in responses) {
+                if (responses[category].keywords.some(keyword => lowercaseInput.includes(keyword))) {
+                    return {
+                        text: responses[category].response,
+                        action: responses[category].action
+                    };
+                }
+            }
+            
+            // If no exact match, provide a helpful response
+            return {
+                text: "I can help you navigate through Carlos's portfolio and share insights about his process, values, and strategic thinking! Try asking about his projects, experience, or dive deeper into his approach. What would you like to explore?",
+                action: null
+            };
+        }
+
+        // Load chat history from sessionStorage
+        function loadChatHistory() {
+            const history = JSON.parse(sessionStorage.getItem('chatHistory')) || [];
+            chatMessages.innerHTML = '';
+            if (history.length === 0) {
+                addMessage("Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!", false);
+            } else {
+                history.forEach(msg => {
+                    const p = document.createElement('p');
+                    p.className = msg.isUser ? 'text-black' : 'text-[#18a000]';
+                    if (msg.isUser) {
+                        p.textContent = `> ${msg.text}`;
+                    } else {
+                        p.innerHTML = msg.text.replace(/\n/g, '<br>');
+                    }
+                    chatMessages.appendChild(p);
+                });
+            }
+        }
+
+        // Session tracking for chat history management
+        function initializeSession() {
+            const isFreshSession = !sessionStorage.getItem('sessionActive');
+            const isAINavigation = sessionStorage.getItem('isNavigating') === 'true';
+            const referrer = document.referrer;
+            const isInternalNavigation = referrer && (
+                referrer.includes('index.html') ||
+                referrer.includes('projects.html') ||
+                referrer.includes('about.html') ||
+                referrer.includes('ai-research-workbook.html') ||
+                referrer.includes('bachelors-microsoft-health.html') ||
+                referrer.includes('nm-scholars-program.html') ||
+                referrer.includes('gavno.html')
+            );
+            
+            const isPageRefresh = performance.navigation.type === 1 || 
+                                (performance.getEntriesByType('navigation')[0] && 
+                                 performance.getEntriesByType('navigation')[0].type === 'reload');
+
+            if ((isFreshSession && !isInternalNavigation && !isAINavigation) || isPageRefresh) {
+                sessionStorage.removeItem('chatHistory');
+                sessionStorage.setItem('sessionActive', 'true');
+            }
+        }
+
+        // Load chat history when page loads
+        initializeSession();
+        loadChatHistory();
+
+        // Ensure chat history persists across navigation
+        window.addEventListener('beforeunload', () => {
+            // Don't clear chat history on page navigation
+        });
+
+        // Add click handling for contact dropdown
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactButton = document.querySelector('.contact-dropdown');
+            const contactDropdownMenu = document.querySelector('.contact-dropdown-menu');
+            
+            if (contactButton && contactDropdownMenu) {
+                contactButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Toggle dropdown visibility
+                    const isVisible = contactDropdownMenu.classList.contains('visible');
+                    
+                    if (isVisible) {
+                        contactDropdownMenu.classList.remove('opacity-100', 'visible');
+                        contactDropdownMenu.classList.add('opacity-0', 'invisible');
+                    } else {
+                        contactDropdownMenu.classList.remove('invisible', 'opacity-0');
+                        contactDropdownMenu.classList.add('opacity-100', 'visible');
+                    }
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (event) => {
+                    if (!contactDropdownMenu.contains(event.target) && !contactButton.contains(event.target)) {
+                        contactDropdownMenu.classList.remove('opacity-100', 'visible');
+                        contactDropdownMenu.classList.add('opacity-0', 'invisible');
+                    }
+                });
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const cursor = document.getElementById('cursor');
+            // Check if we're coming from a navigation action
+            if (sessionStorage.getItem('isNavigating') === 'true') {
+                isNavigating = true;
+                cursor.classList.add('navigating');
+                setTimeout(() => {
+                    cursor.style.transition = 'transform 0.2s ease, background-color 0.3s ease';
+                    cursor.classList.remove('navigating');
+                    sessionStorage.removeItem('isNavigating');
+                    sessionStorage.removeItem('targetProject'); // Clear targetProject as well
+                    transitionCursorFromAI(); // Use smooth transition
+                }, 100);
+            }
+        });
+    </script>
+    <style>
+        /* Add custom scrollbar styling */
+        #chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        #chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        #chat-messages::-webkit-scrollbar-thumb {
+            background: #6b7280;
+            border-radius: 3px;
+        }
+        
+        #chat-messages::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+
+        #chat-messages p {
+            white-space: pre-line;
+        }
+    </style>
+</body>
+</html> 

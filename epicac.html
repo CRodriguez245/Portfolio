@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPICAC - Carlos Rodriguez</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Nuosu+SIL&display=swap" rel="stylesheet">
+    <script src="simple-context-sidekick.js"></script>
+    <script src="openai-sidekick.js"></script>
+    <style>
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Light.woff2") format("woff2");
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Medium.woff2") format("woff2");
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Bold.woff2") format("woff2");
+            font-weight: 700;
+        }
+        .font-helvetica {
+            font-family: "Helvetica Neue", sans-serif;
+        }
+        .font-nuosu {
+            font-family: "Nuosu SIL", serif;
+        }
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+        }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #000000;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+        * {
+            cursor: none;
+        }
+        .cursor {
+            width: 12px;
+            height: 12px;
+            background-color: #5E5E5E;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+        .cursor.hover {
+            transform: scale(1.5);
+        }
+        .cursor.navigating {
+            background-color: #18A000;
+            transform: scale(1.5);
+        }
+        input, textarea {
+            cursor: text;
+        }
+        a, button {
+            cursor: none;
+        }
+        .contact-dropdown {
+            cursor: none;
+        }
+        .contact-dropdown:hover {
+            cursor: none;
+        }
+        .contact-dropdown + div a {
+            cursor: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Custom cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Main Content Area -->
+    <div class="w-3/4 overflow-x-hidden">
+        <!-- Navigation -->
+        <nav class="fixed w-3/4 z-50">
+            <div class="bg-white/80 backdrop-blur-lg px-12 py-6">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    <div class="hidden md:flex space-x-12">
+                        <a href="index.html" class="text-[16px] font-helvetica font-light nav-link relative">Home</a>
+                        <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link active relative">Projects</a>
+                        <a href="https://docs.google.com/document/d/1obd6Jhs7al1r16HOK-2kXMC05q6xMOPMdzDFUToQgKM/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
+                        <a href="about.html" class="text-[16px] font-helvetica font-light nav-link relative">About</a>
+                        <div class="relative group">
+                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown">Contact</button>
+                            <div class="absolute top-full right-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible contact-dropdown-menu transition-all duration-200 z-[9999]">
+                                <div class="relative pr-4">
+                                    <div class="bg-white/80 backdrop-blur-sm rounded-sm px-3 py-2">
+                                        <div class="space-y-2 text-right">
+                                            <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
+                                            <div class="space-y-1">
+                                                <a href="mailto:c.a.rodriguez1999@gmail.com" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">c.a.rodriguez1999@gmail.com</a>
+                                                <a href="https://linkedin.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                                <a href="https://github.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="absolute top-0 right-0 w-0.5 bg-black h-0 group-hover:h-full transition-all duration-500 ease-out"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content Section -->
+        <div class="max-w-[960px] mx-auto pt-24" style="padding-left: 48px; padding-right: 48px;">
+            <!-- Project Header -->
+            <div class="mb-24">
+                <h2 class="text-[32px] font-helvetica font-medium mb-2">EPICAC</h2>
+                <p class="text-[20px] font-helvetica text-gray-800">A thermal printer that writes love poems on behalf of a machine with a broken heart.</p>
+            </div>
+
+            <!-- Project Details Grid -->
+            <div class="flex gap-[120px] mb-32">
+                <!-- Left Column - Project Info -->
+                <div class="w-[280px]">
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Role</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Interaction Designer</p>
+                        <p class="text-[16px] font-helvetica font-light whitespace-nowrap">and Human-Computer</p>
+                        <p class="text-[16px] font-helvetica font-light whitespace-nowrap">Interaction Researcher</p>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Organization</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Independent</p>
+                        <p class="text-[16px] font-helvetica font-light whitespace-nowrap">Research Project</p>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Timeline</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Gallery</p>
+                        <p class="text-[16px] font-helvetica font-light whitespace-nowrap">Installation</p>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Tools</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Raspberry Pi</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Python + OpenAI API</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Thermal Printer</p>
+                    </div>
+                    <div>
+                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Focus</h3>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Emotional AI</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Generative Poetry</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Speculative Design</p>
+                    </div>
+                </div>
+
+                <!-- Right Column - Hero Image -->
+                <div class="w-[740px] h-[538px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                    <img src="images/epson2.webp" alt="EPICAC Hero" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- Summary Section -->
+            <div class="flex gap-[120px] mb-32">
+                <div class="w-[280px]">
+                    <h2 class="text-[28px] font-nuosu mb-8">Project Overview</h2>
+                </div>
+                <div class="w-[740px]">
+                    <p class="text-[16px] font-helvetica leading-relaxed mb-6">EPICAC is an interactive installation inspired by Kurt Vonnegut's 1950 short story of the same name — a tragic tale of a supercomputer that falls in love, learns to write poetry, and ultimately self-destructs when it cannot be loved back.</p>
+                    <p class="text-[16px] font-helvetica leading-relaxed mb-6">In my reinterpretation, a Raspberry Pi and a thermal receipt printer take on the role of EPICAC, continuously generating and printing original love poems based on narrative fragments, constrained emotion models, and poetic recombination. Visitors receive these poems in real time, ripped from the "heart" of the machine — fragile, disposable, but deeply intimate.</p>
+                    <p class="text-[16px] font-helvetica leading-relaxed">It asks: Can we engineer sincerity? Is love a format? Or just an output?</p>
+                </div>
+            </div>
+
+            <!-- Featured Components -->
+            <div class="mb-32">
+                <h2 class="text-[28px] font-nuosu mb-8">Featured Components</h2>
+                <div class="grid grid-cols-2 gap-24">
+                    <div>
+                        <h3 class="text-[20px] font-helvetica font-bold mb-4">Project Goals</h3>
+                        <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
+                            <li>Translate a literary story into a physical, interactive experience</li>
+                            <li>Explore emotional computation and generative poetry</li>
+                            <li>Reflect on the line between genuine expression and programmed response</li>
+                            <li>Bridge speculative design and literary HCI</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-[20px] font-helvetica font-bold mb-4">How It Works</h3>
+                        <p class="text-[16px] font-helvetica leading-relaxed mb-4"><strong>Input:</strong> A corpus of love poems, broken phrases from Vonnegut's text, and generative language templates</p>
+                        <p class="text-[16px] font-helvetica leading-relaxed mb-4"><strong>Engine:</strong> Raspberry Pi runs a Python-based prompt logic (fine-tuned with GPT-based models)</p>
+                        <p class="text-[16px] font-helvetica leading-relaxed mb-4"><strong>Output:</strong> Thermal receipt printer (Epson TM-T20III) prints the poems in real time</p>
+                        <p class="text-[16px] font-helvetica leading-relaxed"><strong>Interface:</strong> Physical box mimics the scale and feel of early computing terminals</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Themes -->
+            <div class="mb-32">
+                <h2 class="text-[28px] font-nuosu mb-8">Core Themes</h2>
+                <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
+                    <li><strong>Emotional AI</strong> — What does it mean for a machine to feel something?</li>
+                    <li><strong>Disposable Intimacy</strong> — Love, printed and torn like a receipt</li>
+                    <li><strong>Speculative Empathy</strong> — Designing not for usability, but for presence</li>
+                    <li><strong>Literary Interaction</strong> — Merging narrative logic and generative design</li>
+                </ul>
+            </div>
+
+            <!-- What Made It Work -->
+            <div class="mb-32">
+                <h2 class="text-[28px] font-nuosu mb-8">What Made It Work</h2>
+                <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
+                    <li>Leaning into narrative logic, not just prompt randomness</li>
+                    <li>Treating the printer not as an output device, but as a voice</li>
+                    <li>Avoiding over-design: letting the tension between content and format be the point</li>
+                    <li>Visitors often kept the poems or posted them on the wall — the machine's love was shared</li>
+                </ul>
+            </div>
+
+            <!-- Key Technologies -->
+            <div class="mb-32">
+                <h2 class="text-[28px] font-nuosu mb-8">Key Technologies</h2>
+                <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
+                    <li>Raspberry Pi</li>
+                    <li>Python + OpenAI API</li>
+                    <li>Epson TM-T20III Thermal Printer</li>
+                    <li>Prompt engineering based on narrative arcs</li>
+                    <li>Minimal physical prototyping (paper textures, casing design)</li>
+                </ul>
+            </div>
+
+            <!-- Exhibit Context -->
+            <div class="mb-32">
+                <h2 class="text-[28px] font-nuosu mb-8">Exhibit Context</h2>
+                <p class="text-[16px] font-helvetica leading-relaxed mb-6">Originally created for a gallery show on speculative interfaces and poetic computing. Displayed alongside a printed zine: selections from Vonnegut + machine poems + commentaries. Visitors could request "one last poem" — triggering a longer, final monologue from EPICAC.</p>
+            </div>
+
+            <!-- Pull Quote -->
+            <div class="mb-32 border-l-4 border-[#18a000] pl-8">
+                <blockquote class="text-[24px] font-helvetica font-light italic leading-relaxed">
+                    "My poems are far better than hers, and I am a machine. That is what she said."
+                </blockquote>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between mt-16 mb-8">
+                <a href="better-problems-project.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors group">
+                    <span class="text-[18px] transform group-hover:-translate-x-1 transition-transform"><</span>
+                    <span>Better Problems</span>
+                </a>
+                <a href="gavno.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors group">
+                    <span>GA.V.NO</span>
+                    <span class="text-[18px] transform group-hover:translate-x-1 transition-transform">></span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-white mt-20">
+            <div class="max-w-[960px] mx-auto px-12 py-8" style="padding-left: 48px; padding-right: 48px;">
+                <div class="border-t border-gray-200 pt-8">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-8">
+                        <div>
+                            <h3 class="text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                            <p class="text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                        </div>
+                        <div class="border-l border-gray-300 h-12"></div>
+                        <div>
+                            <p class="text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                            <div class="flex space-x-4">
+                                <a href="mailto:c.a.rodriguez1999@gmail.com" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</a>
+                                <a href="https://linkedin.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                <a href="https://github.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by CursorAI, Figma, and GPT</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- AI Sidekick -->
+    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col" id="ai-sidekick">
+        <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
+            <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
+        </div>
+        <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex">
+            <span class="text-black mt-[2px]">></span>
+            <div class="relative flex-1 ml-2">
+                <textarea 
+                    class="bg-transparent border-none font-['IBM_Plex_Mono'] text-[14px] w-full outline-none text-black resize-none overflow-hidden p-0 leading-normal"
+                    placeholder="Ask me anything..."
+                    id="chat-input"
+                    rows="1"
+                    style="height: 20px;"
+                ></textarea>
+            </div>
+        </div>
+        <div class="bg-[#18a000] p-4">
+            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold">AI Sidekick</h3>
+        </div>
+    </div>
+
+    <script>
+        // Cursor functionality
+        const cursor = document.getElementById('cursor');
+        let links = document.querySelectorAll('a');
+        let buttons = document.querySelectorAll('button');
+        let isNavigating = false;
+        let lastAINavigationPosition = null;
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isNavigating && !lastAINavigationPosition) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            } else if (!isNavigating && lastAINavigationPosition) {
+                lastAINavigationPosition = null;
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            }
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                if (!isNavigating && !lastAINavigationPosition) {
+                    cursor.classList.add('hover');
+                }
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                if (!isNavigating && !lastAINavigationPosition) {
+                    cursor.classList.remove('hover');
+                }
+            });
+        });
+
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                if (!isNavigating && !lastAINavigationPosition) {
+                    cursor.classList.add('hover');
+                }
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                if (!isNavigating && !lastAINavigationPosition) {
+                    cursor.classList.remove('hover');
+                }
+            });
+        });
+
+        // AI Sidekick functionality
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        let isTyping = false;
+
+        // Initialize enhanced AI Sidekick
+        let simpleSidekick = null;
+        simpleSidekick = new SimpleContextSidekick();
+
+        function addMessage(text, isUser = false, animate = true) {
+            const p = document.createElement('p');
+            p.className = isUser ? 'text-black' : 'text-[#18a000]';
+            if (isUser) {
+                p.textContent = `> ${text}`;
+            } else if (!animate) {
+                p.innerHTML = text.replace(/\n/g, '<br>');
+            }
+            chatMessages.appendChild(p);
+
+            if (!isUser && animate) {
+                animateText(p, text);
+            }
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function animateText(element, text) {
+            element.textContent = '';
+            let i = 0;
+            isTyping = true;
+            
+            function typeChar() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeChar, 20);
+                } else {
+                    isTyping = false;
+                }
+            }
+            
+            typeChar();
+        }
+
+        function findResponse(userInput) {
+            const input = userInput.toLowerCase();
+            
+            // EPICAC specific responses
+            if (input.includes('epicac') || input.includes('thermal') || input.includes('printer') || input.includes('poem')) {
+                return "EPICAC is one of my most poetic projects - a thermal printer that writes love poems on behalf of a machine with a broken heart. It's inspired by Kurt Vonnegut's short story and explores emotional AI, disposable intimacy, and speculative empathy. The installation asks whether we can engineer sincerity and if love is just a format or output. Visitors would receive these fragile, disposable poems in real-time, ripped from the 'heart' of the machine.";
+            }
+            
+            if (input.includes('vonnegut') || input.includes('story') || input.includes('literary')) {
+                return "The project is inspired by Kurt Vonnegut's 1950 short story 'EPICAC' - a tragic tale of a supercomputer that falls in love, learns to write poetry, and ultimately self-destructs when it cannot be loved back. I reinterpreted this narrative into a physical, interactive experience that bridges speculative design and literary human-computer interaction.";
+            }
+            
+            if (input.includes('how') && input.includes('work')) {
+                return "EPICAC works through a Raspberry Pi running Python-based prompt logic, fine-tuned with GPT models. It takes input from a corpus of love poems and Vonnegut's text fragments, then generates poems with constraints that simulate emotional intensity and unrequited longing. The Epson TM-T20III thermal printer outputs these poems in real-time, designed to feel disposable - like fragile traces of synthetic affection.";
+            }
+            
+            if (input.includes('technology') || input.includes('tech') || input.includes('tools')) {
+                return "The key technologies include a Raspberry Pi, Python with OpenAI API integration, an Epson TM-T20III thermal printer, and prompt engineering based on narrative arcs. The physical design mimics early computing terminals, with the printer mechanism humming quietly like a whisper or sigh.";
+            }
+            
+            if (input.includes('exhibit') || input.includes('gallery') || input.includes('show')) {
+                return "EPICAC was originally created for a gallery show on speculative interfaces and poetic computing. It was displayed alongside a printed zine containing selections from Vonnegut's work, machine-generated poems, and commentaries. Visitors could request 'one last poem' - triggering a longer, final monologue from EPICAC.";
+            }
+            
+            if (input.includes('theme') || input.includes('concept') || input.includes('idea')) {
+                return "The core themes explore emotional AI - what it means for a machine to feel something; disposable intimacy - love printed and torn like a receipt; speculative empathy - designing not for usability but for presence; and literary interaction - merging narrative logic with generative design.";
+            }
+            
+            // Default responses
+            if (input.includes('hello') || input.includes('hi')) {
+                return "Hello! I'm here to help you explore Carlos's work. Feel free to ask about any of his projects, his approach to design, or his background in AI product management.";
+            }
+            
+            if (input.includes('help') || input.includes('what can you do')) {
+                return "I can help you navigate Carlos's portfolio, explain his projects and process, discuss his approach to AI product management, and answer questions about his experience at Northwestern Medicine, Microsoft, and his independent work. Just ask me anything!";
+            }
+            
+            return "That's an interesting question! I'd be happy to help you explore Carlos's work and process. Could you tell me more about what you're looking to understand?";
+        }
+
+        function autoResize() {
+            chatInput.style.height = 'auto';
+            chatInput.style.height = chatInput.scrollHeight + 'px';
+        }
+
+        chatInput.addEventListener('input', autoResize);
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                const message = chatInput.value.trim();
+                if (message && !isTyping) {
+                    addMessage(message, true);
+                    chatInput.value = '';
+                    autoResize();
+                    
+                    setTimeout(() => {
+                        const response = findResponse(message);
+                        addMessage(response);
+                    }, 500);
+                }
+            }
+        });
+
+        // Contact dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactDropdown = document.querySelector('.contact-dropdown');
+            const dropdownMenu = document.querySelector('.contact-dropdown-menu');
+            
+            if (contactDropdown && dropdownMenu) {
+                contactDropdown.addEventListener('click', function(e) {
+                    e.preventDefault();
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

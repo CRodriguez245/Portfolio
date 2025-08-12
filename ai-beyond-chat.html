@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Beyond the Chat - Carlos Rodriguez</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Nuosu+SIL&display=swap" rel="stylesheet">
+    <script src="simple-context-sidekick.js"></script>
+    <script src="openai-sidekick.js"></script>
+    <style>
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Light.woff2") format("woff2");
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Medium.woff2") format("woff2");
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: "Helvetica Neue";
+            src: url("fonts/HelveticaNeue-Bold.woff2") format("woff2");
+            font-weight: 700;
+        }
+        .font-helvetica {
+            font-family: "Helvetica Neue", sans-serif;
+        }
+        .font-nuosu {
+            font-family: "Nuosu SIL", serif;
+        }
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+        }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #000000;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+        * {
+            cursor: none;
+        }
+        .cursor {
+            width: 12px;
+            height: 12px;
+            background-color: #5E5E5E;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+        .cursor.hover {
+            transform: scale(1.5);
+        }
+        .cursor.navigating {
+            background-color: #18A000;
+            transform: scale(1.5);
+        }
+        input, textarea {
+            cursor: text;
+        }
+        a, button {
+            cursor: none;
+        }
+        .contact-dropdown {
+            cursor: none;
+        }
+        .contact-dropdown:hover {
+            cursor: none;
+        }
+        .contact-dropdown + div a {
+            cursor: none;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Custom cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Main Content Area -->
+    <div class="w-3/4 overflow-x-hidden">
+        <!-- Navigation -->
+        <nav class="fixed w-3/4 z-50">
+            <div class="bg-white/80 backdrop-blur-lg px-12 py-6">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    <div class="hidden md:flex space-x-12">
+                        <a href="index.html" class="text-[16px] font-helvetica font-light nav-link relative">Home</a>
+                        <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link relative">Projects</a>
+                        <a href="https://docs.google.com/document/d/1obd6Jhs7al1r16HOK-2kXMC05q6xMOPMdzDFUToQgKM/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
+                        <a href="about.html" class="text-[16px] font-helvetica font-light nav-link relative">About</a>
+                        <div class="relative group">
+                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown">Contact</button>
+                            <div class="absolute top-full right-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible contact-dropdown-menu transition-all duration-200 z-[9999]">
+                                <div class="relative pr-4">
+                                    <div class="bg-white/80 backdrop-blur-sm rounded-sm px-3 py-2">
+                                        <div class="space-y-2 text-right">
+                                            <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
+                                            <div class="space-y-1">
+                                                <a href="mailto:c.a.rodriguez1999@gmail.com" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">c.a.rodriguez1999@gmail.com</a>
+                                                <a href="https://linkedin.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                                <a href="https://github.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="absolute top-0 right-0 w-0.5 bg-black h-0 group-hover:h-full transition-all duration-500 ease-out"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="max-w-[960px] mx-auto px-12 pt-32">
+            <!-- Article Header -->
+            <div class="mb-16">
+                <h1 class="text-[40px] font-helvetica font-medium text-black leading-[40px] mb-2">
+                    AI Beyond the Chat
+                </h1>
+                <p class="text-[16px] font-helvetica font-light text-black leading-[20px]">
+                    July 5, 2025
+                </p>
+            </div>
+            
+            <!-- Hero Card -->
+            <div class="relative w-full mb-16 transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                <img src="images/BeyondChat.webp" alt="AI Beyond the Chat" class="w-full object-contain">
+            </div>
+            
+            <!-- Article Content -->
+            <div class="max-w-[1135px] text-[20px] font-helvetica font-light text-black leading-[normal] space-y-6">
+                <p>
+                    Why conversational design needs more pedagogy and less personality
+                </p>
+                
+                <p>
+                    We've trained AI to talk like us. But we forgot to teach it how to teach.
+                </p>
+                
+                <p>
+                    Every new chatbot or assistant is pitched as more "natural," more "human," more "fluent." But fluency without function is performative intelligence. What if, instead of optimizing for tone and charm, we designed for clarity, confidence, and learning?
+                </p>
+                
+                <p>
+                    When I think about AI product design, I'm not interested in whether it sounds like a person. I care about whether it helps people become more capable thinkers. Not just faster answer-seekers, but more reflective decision-makers.
+                </p>
+                
+                <p>
+                    Too often, conversational UX is treated like a style guide. Choose the right voice. Add a few emojis. Tweak your fallback phrases. But that isn't conversation. That's branding. If we believe in human-centered design, then we have to ask a better question: What makes a conversation meaningful?
+                </p>
+                
+                <p>
+                    The answer isn't personality. It's pedagogy.
+                </p>
+                
+                <div class="space-y-1">
+                    <p class="font-helvetica font-bold">
+                        Teaching is the Interface
+                    </p>
+                    <p>
+                        Teaching, in any medium, means revealing your thought process. It means supporting reflection, not just output. It means knowing when to step back and when to challenge. It means asking follow-up questions that expand the user's awareness of what's possible.
+                    </p>
+                </div>
+                
+                <p>
+                    These aren't common features in today's AI tools.
+                </p>
+                
+                <p>
+                    An AI that teaches doesn't just say, "Here's what you should do." It says, "Here's how I arrived at that." It invites critique. It makes its reasoning visible. It supports confidence, not compliance. And it leaves room for the user to challenge, reflect, and explore.
+                </p>
+                
+                <p>
+                    If AI is going to act as a co-pilot, it needs to stop navigating for users and start navigating with them.
+                </p>
+                
+                <div class="space-y-1">
+                    <p class="font-helvetica font-bold">
+                        Natural Isn't the Same as Nurturing
+                    </p>
+                    <p>
+                        Being "natural" doesn't make a conversation helpful. An assistant that sounds like your coworker might be charming, but charm doesn't scaffold understanding. Sometimes, "natural" conversation can feel too fast, too smooth, too agreeable.
+                    </p>
+                </div>
+                
+                <p>
+                    Good teaching is not always smooth. It pauses. It adapts. It redirects. It makes you think.
+                </p>
+                
+                <p>
+                    Helpful AI isn't about being clever or casual. It's about being constructively curious. It asks you why you made a certain choice. It encourages you to try another perspective. It slows you down in the moments that matter.
+                </p>
+                
+                <div class="space-y-1">
+                    <p class="font-helvetica font-bold">
+                        What This Could Look Like
+                    </p>
+                    <p>
+                        Imagine a writing assistant that asks what you're trying to say emotionally before suggesting edits. It doesn't just fix your grammar — it shows the pattern behind your argument and asks whether it reflects your intent. It highlights what's missing based on the purpose of your writing, not just sentence structure.
+                    </p>
+                </div>
+                
+                <p>
+                    Or imagine a research assistant that shows you not just sources, but perspectives. One that flags when your citations come from a single worldview. One that suggests opposing views and invites deeper reflection instead of simplifying the issue into one answer.
+                </p>
+                
+                <p>
+                    This kind of AI doesn't just respond. It reveals. It doesn't just serve. It scaffolds.
+                </p>
+                
+                <div class="space-y-1">
+                    <p class="font-helvetica font-bold">
+                        What We Need Now
+                    </p>
+                    <p>
+                        We don't need AI that sounds louder, faster, or more confident. We need AI that helps us pause, reflect, and learn. We need wiser tools, not smoother ones.
+                    </p>
+                </div>
+                
+                <p>
+                    Most designers are still asking how AI should sound. But we should be asking: How should it help us think?
+                </p>
+                
+                <p>
+                    That's the future worth building.
+                </p>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between mt-16">
+                <a href="better-problems.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors">
+                    <span class="text-[20px]">&lt;</span>
+                    <span>Better Problems</span>
+                </a>
+                <a href="design-what-you-dont-see.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors">
+                    <span>Design is What You Don't See</span>
+                    <span class="text-[20px]">&gt;</span>
+                </a>
+            </div>
+
+            <!-- Footer -->
+            <footer class="bg-white border-t border-gray-200 mt-20">
+                <div class="max-w-7xl mx-auto px-12 py-8">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-8">
+                            <div>
+                                <h3 class="text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                                <p class="text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                            </div>
+                            <div class="border-l border-gray-300 h-12"></div>
+                            <div>
+                                <p class="text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                                <div class="flex space-x-4">
+                                    <a href="mailto:c.a.rodriguez1999@gmail.com" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</a>
+                                    <a href="https://linkedin.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                    <a href="https://github.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
+                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
+                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by CursorAI, Figma, and GPT</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- AI Sidekick -->
+    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col z-[9999]" id="ai-sidekick">
+        <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
+            <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
+        </div>
+        <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex">
+            <span class="text-black mt-[2px]">></span>
+            <div class="relative flex-1 ml-2">
+                <textarea 
+                    class="bg-transparent border-none font-['IBM_Plex_Mono'] text-[14px] w-full outline-none text-black resize-none overflow-hidden p-0 leading-normal"
+                    placeholder="Ask me anything..."
+                    id="chat-input"
+                    rows="1"
+                    style="height: 20px;"
+                ></textarea>
+            </div>
+        </div>
+        <div class="bg-[#18a000] p-4">
+            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold">AI Sidekick</h3>
+        </div>
+    </div>
+
+    <script>
+        // Cursor functionality
+        const cursor = document.getElementById('cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        
+        document.addEventListener('mouseenter', () => {
+            cursor.style.display = 'block';
+        });
+        
+        document.addEventListener('mouseleave', () => {
+            cursor.style.display = 'none';
+        });
+        
+        // Add hover effect to interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .nav-link, .contact-dropdown');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        // Initialize AI sidekick
+        let simpleSidekick = null;
+        let openaiSidekick = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize sidekicks
+            simpleSidekick = new SimpleContextSidekick();
+            openaiSidekick = new OpenAISidekick();
+            
+            // Set up chat input
+            const chatInput = document.getElementById('chat-input');
+            const chatMessages = document.getElementById('chat-messages');
+            
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    
+                    const userMessage = chatInput.value.trim();
+                    if (userMessage) {
+                        // Add user message
+                        addMessage(userMessage, 'user');
+                        chatInput.value = '';
+                        
+                        // Get response
+                        try {
+                            const response = openaiSidekick ? openaiSidekick.getResponse(userMessage) : simpleSidekick.getResponse(userMessage);
+                            addMessage(response, 'ai');
+                        } catch (error) {
+                            console.error('Error getting response:', error);
+                            addMessage('Sorry, I encountered an error. Please try again.', 'ai');
+                        }
+                    }
+                }
+            });
+            
+            function addMessage(message, sender) {
+                const messageDiv = document.createElement('p');
+                messageDiv.className = sender === 'user' ? 'text-black' : 'text-[#18a000]';
+                messageDiv.textContent = sender === 'user' ? `> ${message}` : message;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html> 
