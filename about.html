@@ -138,9 +138,35 @@
 
             <!-- About Content -->
             <div>
-                <!-- Profile Image -->
-                <div class="w-full group mb-8">
-                    <div class="w-full transition-all duration-300 ease-out group-hover:scale-[1.05] group-hover:shadow-2xl">
+                <!-- Profile Image with Animation -->
+                <div class="w-full group mb-8 relative">
+                    <!-- Animation Area (Left Side) -->
+                    <div class="absolute left-0 top-0 w-1/2 h-full overflow-hidden group z-10" id="about-animation">
+                        <!-- Image Protection Zone (exclude from animation) -->
+                        <div class="absolute top-0 right-0 w-full h-full pointer-events-none"></div>
+                        
+                        <!-- Hover Zones -->
+                        <div class="absolute top-0 left-0 w-full h-1/3 cursor-pointer" data-zone="top-left"></div>
+                        <div class="absolute top-1/3 left-0 w-full h-1/3 cursor-pointer" data-zone="middle-left"></div>
+                        <div class="absolute bottom-0 left-0 w-full h-1/3 cursor-pointer" data-zone="bottom-left"></div>
+                        
+                        <!-- Animation Lines -->
+                        <div class="absolute top-4 left-4 w-1/4 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-500 ease-out origin-left" data-animation="about-line-1"></div>
+                        <div class="absolute top-8 left-4 w-px h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-400 ease-out origin-top" data-animation="about-line-2"></div>
+                        <div class="absolute top-12 left-8 w-1/6 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-600 ease-out origin-left" data-animation="about-line-3"></div>
+                        <div class="absolute top-16 left-4 w-0.5 h-1/6 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="about-line-4"></div>
+                        <div class="absolute top-20 left-8 w-1/8 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-700 ease-out origin-left" data-animation="about-line-5"></div>
+                        <div class="absolute top-24 left-4 w-px h-1/8 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="about-line-6"></div>
+                        <div class="absolute top-28 left-8 w-1/6 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-500 ease-out origin-left" data-animation="about-line-7"></div>
+                        <div class="absolute top-32 left-4 w-0.5 h-1/6 bg-[#18A000] transform scale-y-0 transition-transform duration-700 ease-out origin-top" data-animation="about-line-8"></div>
+                        <div class="absolute top-36 left-8 w-1/4 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-600 ease-out origin-left" data-animation="about-line-9"></div>
+                        <div class="absolute top-40 left-4 w-px h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="about-line-10"></div>
+                        <div class="absolute top-44 left-8 w-1/6 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-700 ease-out origin-left" data-animation="about-line-11"></div>
+                        <div class="absolute top-48 left-4 w-0.5 h-1/6 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="about-line-12"></div>
+                    </div>
+                    
+                    <!-- Image Container -->
+                    <div class="w-full">
                         <img src="images/aboutmeedges copy.jpeg" alt="Carlos Rodriguez" class="w-full object-contain">
                     </div>
                 </div>
@@ -912,6 +938,113 @@
                 action: null
             };
         }
+        
+        // About Me Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const aboutAnimation = document.getElementById('about-animation');
+            if (!aboutAnimation) return;
+            
+            const zones = aboutAnimation.querySelectorAll('[data-zone]');
+            const animations = aboutAnimation.querySelectorAll('[data-animation]');
+            
+            let isHovering = false;
+            let activeAnimations = new Set();
+            
+            // Handle mouse enter for the entire animation section
+            aboutAnimation.addEventListener('mouseenter', () => {
+                isHovering = true;
+                activeAnimations.clear();
+            });
+            
+            // Handle mouse leave for the entire animation section
+            aboutAnimation.addEventListener('mouseleave', () => {
+                isHovering = false;
+                
+                // Roll away all animations with staggered timing
+                const allAnimations = Array.from(animations);
+                allAnimations.forEach((anim, index) => {
+                    setTimeout(() => {
+                        if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                            anim.style.transform = 'scaleY(0)';
+                        } else {
+                            anim.style.transform = 'scaleX(0)';
+                        }
+                    }, index * 50);
+                });
+            });
+            
+            let mouseX = 0;
+            let mouseY = 0;
+            
+            // Track mouse position
+            aboutAnimation.addEventListener('mousemove', (e) => {
+                const rect = aboutAnimation.getBoundingClientRect();
+                mouseX = e.clientX - rect.left;
+                mouseY = e.clientY - rect.top;
+            });
+            
+            zones.forEach(zone => {
+                zone.addEventListener('mouseenter', () => {
+                    if (!isHovering) return;
+                    
+                    // Get all available animations
+                    const allAnimations = Array.from(animations);
+                    const availableAnimations = allAnimations.filter(anim => !activeAnimations.has(anim.dataset.animation));
+                    
+                    // Randomly select 2-3 animations to trigger
+                    const numToTrigger = Math.floor(Math.random() * 2) + 2;
+                    const selectedAnimations = [];
+                    
+                    for (let i = 0; i < numToTrigger && availableAnimations.length > 0; i++) {
+                        const randomIndex = Math.floor(Math.random() * availableAnimations.length);
+                        const selectedAnim = availableAnimations.splice(randomIndex, 1)[0];
+                        selectedAnimations.push(selectedAnim);
+                    }
+                    
+                    // Trigger selected animations with random delays
+                    selectedAnimations.forEach((anim, index) => {
+                        if (!activeAnimations.has(anim.dataset.animation)) {
+                            activeAnimations.add(anim.dataset.animation);
+                            const randomDelay = Math.random() * 200 + 100;
+                            
+                            setTimeout(() => {
+                                // Generate random opacity between 0.6 and 1.0
+                                const randomOpacity = Math.random() * 0.4 + 0.6;
+                                anim.style.opacity = randomOpacity;
+                                
+                                // Generate random line length scaling between 50% and 150%
+                                const randomLengthScale = Math.random() * 1.0 + 0.5;
+                                
+                                // Apply random length scaling
+                                if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                                    const currentHeight = anim.style.height || '25%';
+                                    const newHeight = `calc(${currentHeight} * ${randomLengthScale})`;
+                                    anim.style.height = newHeight;
+                                } else {
+                                    const currentWidth = anim.style.width || '25%';
+                                    const newWidth = `calc(${currentWidth} * ${randomLengthScale})`;
+                                    anim.style.width = newWidth;
+                                }
+                                
+                                // Position near cursor but stay within animation area
+                                const rect = aboutAnimation.getBoundingClientRect();
+                                const maxLeft = rect.width * 0.9; // Stay within 90% of animation area
+                                
+                                if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                                    const newLeft = Math.max(4, Math.min(maxLeft, mouseX - 10));
+                                    anim.style.left = newLeft + 'px';
+                                    anim.style.transform = 'scaleY(1)';
+                                } else {
+                                    const newTop = Math.max(4, Math.min(rect.height - 20, mouseY - 10));
+                                    anim.style.top = newTop + 'px';
+                                    anim.style.transform = 'scaleX(1)';
+                                }
+                            }, randomDelay);
+                        }
+                    });
+                });
+            });
+        });
     </script>
     <style>
         /* Add custom scrollbar styling */

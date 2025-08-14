@@ -103,6 +103,8 @@
             pointer-events: none;
             z-index: 99999;
             transition: transform 0.2s ease, background-color 0.3s ease;
+            left: -100px;
+            top: -100px;
         }
 
         /* Cursor hover effect */
@@ -189,9 +191,90 @@
                     <h2 class="text-[32px] font-helvetica font-medium leading-tight">I am a human-centered AI Product Manager<br>designing transformative experiences<br>that amplify unheard voices.</h2>
                 </div>
                 
-                <!-- Hero Section Logo -->
-                <div class="absolute bottom-0 right-0 w-64 h-48 opacity-80">
-                    <img src="images/hero section logo.png" alt="Hero Section Logo" class="w-full h-full object-cover">
+                <!-- Hero Animation Area -->
+                <div class="absolute inset-0 overflow-hidden group" id="hero-animation">
+                    <!-- Text Protection Zone (exclude from animation) -->
+                    <div class="absolute top-0 left-0 w-full h-48 pointer-events-none"></div>
+                    
+                    <!-- Hover Zones - Expanded Coverage -->
+                    <div class="absolute top-32 left-0 w-1/3 h-1/3 cursor-pointer" data-zone="top-left"></div>
+                    <div class="absolute top-32 right-0 w-1/3 h-1/3 cursor-pointer" data-zone="top-right"></div>
+                    <div class="absolute bottom-0 left-0 w-1/3 h-1/3 cursor-pointer" data-zone="bottom-left"></div>
+                    <div class="absolute bottom-0 right-0 w-1/3 h-1/3 cursor-pointer" data-zone="bottom-right"></div>
+                    <div class="absolute top-1/2 left-1/3 w-1/3 h-1/3 cursor-pointer" data-zone="center"></div>
+                    
+                    <!-- Additional Zones for Full Coverage -->
+                    <div class="absolute top-32 left-1/3 w-1/3 h-1/3 cursor-pointer" data-zone="top-center"></div>
+                    <div class="absolute bottom-0 left-1/3 w-1/3 h-1/3 cursor-pointer" data-zone="bottom-center"></div>
+                    <div class="absolute top-1/2 left-0 w-1/3 h-1/3 cursor-pointer" data-zone="middle-left"></div>
+                    <div class="absolute top-1/2 right-0 w-1/3 h-1/3 cursor-pointer" data-zone="middle-right"></div>
+                    
+                                                                    <!-- Random Animation Lines with Extreme Thickness Variation -->
+                        <!-- Ultra Thin Lines -->
+                        <div class="absolute top-72 left-4 w-1/3 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-500 ease-out origin-left" data-animation="line-1"></div>
+                        <div class="absolute top-80 left-4 w-px h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-400 ease-out origin-top" data-animation="line-2"></div>
+                        <div class="absolute top-88 left-8 w-1/4 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-600 ease-out origin-left" data-animation="line-3"></div>
+                        
+                        <!-- Very Thin Lines -->
+                        <div class="absolute top-72 right-4 w-1/3 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-700 ease-out origin-right" data-animation="line-4"></div>
+                        <div class="absolute top-80 right-4 w-0.5 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-5"></div>
+                        <div class="absolute top-88 right-12 w-1/4 h-1 bg-[#18A000] transform scale-x-0 transition-transform duration-800 ease-out origin-right" data-animation="line-6"></div>
+                    
+
+                    
+
+                    
+                    
+                    
+                    <!-- Mixed Thickness Lines -->
+                    <div class="absolute bottom-4 left-1/3 w-1/3 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-650 ease-out origin-left" data-animation="line-19"></div>
+                    <div class="absolute bottom-12 left-1/2 w-0.5 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-bottom" data-animation="line-20"></div>
+                    
+                    
+                    
+                    <!-- Super Thin Lines -->
+                    <div class="absolute top-3/4 right-4 w-1/3 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-600 ease-out origin-right" data-animation="line-23"></div>
+                    <div class="absolute top-2/3 right-4 w-px h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-24"></div>
+                    
+                    
+                        <div class="absolute bottom-1/3 left-2/3 w-1/5 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-850 ease-out origin-left" data-animation="line-31"></div>
+                        <div class="absolute bottom-1/3 right-2/3 w-px h-1/5 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-top" data-animation="line-32"></div>
+                        
+                        <!-- Additional Vertical Lines for Better Balance -->
+                        <div class="absolute top-1/3 left-1/6 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-33"></div>
+                        <div class="absolute top-1/2 left-1/5 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-34"></div>
+                        <div class="absolute top-2/3 left-3/4 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-700 ease-out origin-top" data-animation="line-35"></div>
+                        <div class="absolute top-1/4 left-2/3 w-0.5 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-top" data-animation="line-36"></div>
+                        <div class="absolute top-3/4 left-1/8 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-650 ease-out origin-top" data-animation="line-37"></div>
+                        <div class="absolute top-1/2 left-4/5 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-750 ease-out origin-top" data-animation="line-38"></div>
+                        <div class="absolute top-1/3 left-5/6 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-39"></div>
+                        <div class="absolute top-2/3 left-1/12 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-40"></div>
+                        <div class="absolute top-1/4 left-7/8 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-700 ease-out origin-top" data-animation="line-41"></div>
+                        <div class="absolute top-3/4 left-2/5 w-0.5 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-top" data-animation="line-42"></div>
+                        <div class="absolute top-1/2 left-1/12 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-650 ease-out origin-top" data-animation="line-43"></div>
+                        <div class="absolute top-1/3 left-9/10 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-44"></div>
+                        <div class="absolute top-2/3 left-3/5 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-750 ease-out origin-top" data-animation="line-45"></div>
+                        <div class="absolute top-1/4 left-1/3 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-46"></div>
+                        <div class="absolute top-3/4 left-7/10 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-700 ease-out origin-top" data-animation="line-47"></div>
+                        <div class="absolute top-1/2 left-1/4 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-48"></div>
+                        
+                        <!-- More Vertical Lines for Better Balance -->
+                        <div class="absolute top-1/3 left-1/10 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-top" data-animation="line-49"></div>
+                        <div class="absolute top-2/3 left-1/7 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-650 ease-out origin-top" data-animation="line-50"></div>
+                        <div class="absolute top-1/4 left-3/7 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-51"></div>
+                        <div class="absolute top-3/4 left-4/7 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-700 ease-out origin-top" data-animation="line-52"></div>
+                        <div class="absolute top-1/2 left-5/7 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-53"></div>
+                        <div class="absolute top-1/3 left-6/7 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-top" data-animation="line-54"></div>
+                        <div class="absolute top-2/3 left-1/9 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-650 ease-out origin-top" data-animation="line-55"></div>
+                        <div class="absolute top-1/4 left-2/9 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-56"></div>
+                        <div class="absolute top-3/4 left-3/9 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-700 ease-out origin-top" data-animation="line-57"></div>
+                        <div class="absolute top-1/2 left-4/9 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-58"></div>
+                        <div class="absolute top-1/3 left-5/9 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-top" data-animation="line-59"></div>
+                        <div class="absolute top-2/3 left-6/9 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-650 ease-out origin-top" data-animation="line-60"></div>
+                        <div class="absolute top-1/4 left-7/9 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-61"></div>
+                        <div class="absolute top-3/4 left-8/9 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-700 ease-out origin-top" data-animation="line-62"></div>
+                        <div class="absolute top-1/2 left-1/11 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-63"></div>
+                        <div class="absolute top-1/3 left-2/11 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-top" data-animation="line-64"></div>
                 </div>
                 
 
@@ -1602,6 +1685,113 @@
                     sessionStorage.removeItem('targetProject');
                 }, 500);
             }
+        });
+        
+        // Hero Animation Zone Interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroAnimation = document.getElementById('hero-animation');
+            if (!heroAnimation) return;
+            
+            const zones = heroAnimation.querySelectorAll('[data-zone]');
+            const animations = heroAnimation.querySelectorAll('[data-animation]');
+            
+            let isHovering = false;
+            let activeAnimations = new Set();
+            
+            // Handle mouse enter for the entire hero section
+            heroAnimation.addEventListener('mouseenter', () => {
+                isHovering = true;
+                activeAnimations.clear();
+            });
+            
+            // Handle mouse leave for the entire hero section
+            heroAnimation.addEventListener('mouseleave', () => {
+                isHovering = false;
+                
+                // Roll away all animations with staggered timing
+                const allAnimations = Array.from(animations);
+                allAnimations.forEach((anim, index) => {
+                    setTimeout(() => {
+                        if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                            anim.style.transform = 'scaleY(0)';
+                        } else {
+                            anim.style.transform = 'scaleX(0)';
+                        }
+                    }, index * 50); // Faster roll away
+                });
+            });
+            
+            let mouseX = 0;
+            let mouseY = 0;
+            
+            // Track mouse position
+            heroAnimation.addEventListener('mousemove', (e) => {
+                const rect = heroAnimation.getBoundingClientRect();
+                mouseX = e.clientX - rect.left;
+                mouseY = e.clientY - rect.top;
+            });
+            
+            zones.forEach(zone => {
+                zone.addEventListener('mouseenter', () => {
+                    if (!isHovering) return;
+                    
+                    // Get all available animations
+                    const allAnimations = Array.from(animations);
+                    const availableAnimations = allAnimations.filter(anim => !activeAnimations.has(anim.dataset.animation));
+                    
+                    // Randomly select 2-3 animations to trigger
+                    const numToTrigger = Math.floor(Math.random() * 2) + 2;
+                    const selectedAnimations = [];
+                    
+                    for (let i = 0; i < numToTrigger && availableAnimations.length > 0; i++) {
+                        const randomIndex = Math.floor(Math.random() * availableAnimations.length);
+                        const selectedAnim = availableAnimations.splice(randomIndex, 1)[0];
+                        selectedAnimations.push(selectedAnim);
+                    }
+                    
+                    // Trigger selected animations with random delays
+                    selectedAnimations.forEach((anim, index) => {
+                        if (!activeAnimations.has(anim.dataset.animation)) {
+                            activeAnimations.add(anim.dataset.animation);
+                            const randomDelay = Math.random() * 200 + 100;
+                            
+                            setTimeout(() => {
+                                // Generate random opacity between 0.6 and 1.0
+                                const randomOpacity = Math.random() * 0.4 + 0.6;
+                                anim.style.opacity = randomOpacity;
+                                
+                                // Generate random line length scaling between 50% and 150%
+                                const randomLengthScale = Math.random() * 1.0 + 0.5;
+                                
+                                // Apply random length scaling
+                                if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                                    const currentHeight = anim.style.height || '33.333%';
+                                    const newHeight = `calc(${currentHeight} * ${randomLengthScale})`;
+                                    anim.style.height = newHeight;
+                                } else {
+                                    const currentWidth = anim.style.width || '33.333%';
+                                    const newWidth = `calc(${currentWidth} * ${randomLengthScale})`;
+                                    anim.style.width = newWidth;
+                                }
+                                
+                                // Position near cursor but respect text protection zone
+                                const rect = heroAnimation.getBoundingClientRect();
+                                const minTop = 192; // Text protection zone
+                                
+                                if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                                    const newLeft = Math.max(4, Math.min(rect.width - 20, mouseX - 10));
+                                    anim.style.left = newLeft + 'px';
+                                    anim.style.transform = 'scaleY(1)';
+                                } else {
+                                    const newTop = Math.max(minTop, Math.min(rect.height - 20, mouseY - 10));
+                                    anim.style.top = newTop + 'px';
+                                    anim.style.transform = 'scaleX(1)';
+                                }
+                            }, randomDelay);
+                        }
+                    });
+                });
+            });
         });
     </script>
 
