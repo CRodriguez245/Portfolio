@@ -162,20 +162,7 @@
             overflow: visible !important;
         }
         
-        /* Chat messages should display from bottom to top */
-        #chat-messages {
-            display: flex;
-            flex-direction: column-reverse;
-            justify-content: flex-start;
-            min-height: 0;
-        }
-        
-        /* Ensure new messages appear at the bottom */
-        #chat-messages p {
-            margin: 0;
-            padding: 8px 0;
-            flex-shrink: 0;
-        }
+
         
         /* Mobile full-screen sidekick styles */
         @media (max-width: 768px) {
@@ -246,6 +233,13 @@
                 display: flex !important;
                 flex-direction: column-reverse !important;
                 min-height: 0 !important;
+            }
+            
+            /* Mobile-only: Chat messages display from bottom to top */
+            #ai-sidekick.mobile-fullscreen #chat-messages p {
+                margin: 0 !important;
+                padding: 8px 0 !important;
+                flex-shrink: 0 !important;
             }
             
             #ai-sidekick.mobile-fullscreen #chat-input-container {
@@ -1780,6 +1774,22 @@
             // Don't clear chat history on page navigation
         });
 
+        // Mobile-specific scroll function
+        function scrollToLatestMessage() {
+            const chatMessages = document.getElementById('chat-messages');
+            const isMobile = window.innerWidth <= 768;
+            const aiSidekick = document.getElementById('ai-sidekick');
+            const isMobileFullscreen = aiSidekick && aiSidekick.classList.contains('mobile-fullscreen');
+            
+            if (isMobile && isMobileFullscreen) {
+                // Mobile full-screen: scroll to top (0) for column-reverse layout
+                chatMessages.scrollTop = 0;
+            } else {
+                // Desktop: scroll to bottom as usual
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }
+        
         function addMessage(text, isUser = false, animate = true) {
             const p = document.createElement('p');
             p.className = isUser ? 'text-black' : 'text-[#18a000]';
@@ -1795,8 +1805,7 @@
                 animateText(p, text);
             }
 
-            // Scroll to show the latest message (with column-reverse, scroll to top)
-            chatMessages.scrollTop = 0;
+            scrollToLatestMessage();
 
             // Save to sessionStorage
             const history = JSON.parse(sessionStorage.getItem('chatHistory')) || [];
@@ -1824,8 +1833,8 @@
                 // Convert line breaks to HTML br tags for proper formatting
                 element.innerHTML = currentText.replace(/\n/g, '<br>');
                 
-                // Auto-scroll to show new text as it's being typed (with column-reverse, scroll to top)
-                chatMessages.scrollTop = 0;
+                // Auto-scroll to show new text as it's being typed
+                scrollToLatestMessage();
                 
                 await new Promise(resolve => setTimeout(resolve, delay));
             }
