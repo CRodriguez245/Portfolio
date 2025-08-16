@@ -161,6 +161,50 @@
             max-height: calc(100vh - 200px) !important;
             overflow: visible !important;
         }
+        
+        /* Mobile full-screen sidekick styles */
+        @media (max-width: 768px) {
+            #ai-sidekick.mobile-fullscreen {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                z-index: 10000 !important;
+                background: white !important;
+                border-radius: 0 !important;
+                margin: 0 !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-container {
+                flex: 1 !important;
+                max-height: calc(100vh - 80px) !important;
+                padding: 20px !important;
+                background: white !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #sidekick-button {
+                position: absolute !important;
+                top: 20px !important;
+                right: 20px !important;
+                width: auto !important;
+                padding: 8px 16px !important;
+                border-radius: 20px !important;
+                background: #18a000 !important;
+                z-index: 10001 !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #sidekick-text {
+                font-size: 14px !important;
+            }
+            
+            /* Hide main content when sidekick is fullscreen on mobile */
+            #main-content.mobile-hidden {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -578,15 +622,26 @@
                 if (aiSidekick && chatContainer && sidekickText && mainContent) {
                     // Set initial collapsed state
                     console.log('Setting collapsed state...');
-                    chatContainer.style.display = 'none';
-                    aiSidekick.style.width = '80px';
-                    aiSidekick.style.maxWidth = '80px';
-                    sidekickText.style.fontSize = '14px';
-                    sidekickText.textContent = 'AI';
-                    mainContent.style.width = '75%';
-                    mainContent.style.marginLeft = '12.5%'; // Center the 75% content
-                    sidekickCollapsed = true;
+                    const isMobile = window.innerWidth <= 768;
                     
+                    if (isMobile) {
+                        // Mobile: Ensure we're not in full-screen mode
+                        aiSidekick.classList.remove('mobile-fullscreen');
+                        mainContent.classList.remove('mobile-hidden');
+                        chatContainer.style.display = 'none';
+                        sidekickText.textContent = 'AI';
+                    } else {
+                        // Desktop: Original collapsed state
+                        chatContainer.style.display = 'none';
+                        aiSidekick.style.width = '80px';
+                        aiSidekick.style.maxWidth = '80px';
+                        sidekickText.style.fontSize = '14px';
+                        sidekickText.textContent = 'AI';
+                        mainContent.style.width = '75%';
+                        mainContent.style.marginLeft = '12.5%'; // Center the 75% content
+                    }
+                    
+                    sidekickCollapsed = true;
                     console.log('Applied collapsed state successfully');
                 } else {
                     console.error('Some elements not found during initialization');
@@ -619,30 +674,56 @@
                 chatInput: !!chatInput
             });
             
+            // Check if we're on mobile
+            const isMobile = window.innerWidth <= 768;
+            
             if (sidekickCollapsed) {
                 console.log('Expanding sidekick...');
                 
-                // Simple direct approach - just show the container
-                chatContainer.style.display = 'block';
-                chatContainer.style.visibility = 'visible';
-                chatContainer.style.opacity = '1';
-                chatContainer.style.maxHeight = 'none';
-                chatContainer.style.overflow = 'visible';
-                
-                aiSidekick.style.width = '25%';
-                aiSidekick.style.maxWidth = '394px';
-                sidekickText.style.fontSize = '14px';
-                sidekickText.textContent = 'AI Sidekick';
-                mainContent.style.width = '75%';
-                mainContent.style.marginLeft = '0';
-                
-                // Ensure input is visible and functional
-                if (chatInput) {
-                    chatInput.style.display = 'block';
-                    chatInput.style.visibility = 'visible';
-                    chatInput.style.opacity = '1';
-                    chatInput.focus();
-                    console.log('Input field restored successfully');
+                if (isMobile) {
+                    // Mobile: Full-screen mode
+                    console.log('Mobile: Expanding to full-screen mode');
+                    aiSidekick.classList.add('mobile-fullscreen');
+                    mainContent.classList.add('mobile-hidden');
+                    chatContainer.style.display = 'block';
+                    chatContainer.style.visibility = 'visible';
+                    chatContainer.style.opacity = '1';
+                    sidekickText.textContent = 'Close';
+                    
+                    // Ensure input is visible and functional
+                    if (chatInput) {
+                        chatInput.style.display = 'block';
+                        chatInput.style.visibility = 'visible';
+                        chatInput.style.opacity = '1';
+                        setTimeout(() => {
+                            chatInput.focus();
+                        }, 100);
+                        console.log('Mobile input field restored successfully');
+                    }
+                } else {
+                    // Desktop: Original behavior
+                    console.log('Desktop: Expanding to sidebar mode');
+                    chatContainer.style.display = 'block';
+                    chatContainer.style.visibility = 'visible';
+                    chatContainer.style.opacity = '1';
+                    chatContainer.style.maxHeight = 'none';
+                    chatContainer.style.overflow = 'visible';
+                    
+                    aiSidekick.style.width = '25%';
+                    aiSidekick.style.maxWidth = '394px';
+                    sidekickText.style.fontSize = '14px';
+                    sidekickText.textContent = 'AI Sidekick';
+                    mainContent.style.width = '75%';
+                    mainContent.style.marginLeft = '0';
+                    
+                    // Ensure input is visible and functional
+                    if (chatInput) {
+                        chatInput.style.display = 'block';
+                        chatInput.style.visibility = 'visible';
+                        chatInput.style.opacity = '1';
+                        chatInput.focus();
+                        console.log('Desktop input field restored successfully');
+                    }
                 }
                 
                 sidekickCollapsed = false;
@@ -650,14 +731,26 @@
                 console.log('Sidekick expanded, state saved');
             } else {
                 console.log('Collapsing sidekick...');
-                // Collapse sidekick - hide the container
-                chatContainer.style.display = 'none';
-                aiSidekick.style.width = '80px';
-                aiSidekick.style.maxWidth = '80px';
-                sidekickText.style.fontSize = '14px';
-                sidekickText.textContent = 'AI';
-                mainContent.style.width = '75%';
-                mainContent.style.marginLeft = '12.5%'; // Center the 75% content
+                
+                if (isMobile) {
+                    // Mobile: Exit full-screen mode
+                    console.log('Mobile: Exiting full-screen mode');
+                    aiSidekick.classList.remove('mobile-fullscreen');
+                    mainContent.classList.remove('mobile-hidden');
+                    chatContainer.style.display = 'none';
+                    sidekickText.textContent = 'AI';
+                } else {
+                    // Desktop: Original collapse behavior
+                    console.log('Desktop: Collapsing to sidebar mode');
+                    chatContainer.style.display = 'none';
+                    aiSidekick.style.width = '80px';
+                    aiSidekick.style.maxWidth = '80px';
+                    sidekickText.style.fontSize = '14px';
+                    sidekickText.textContent = 'AI';
+                    mainContent.style.width = '75%';
+                    mainContent.style.marginLeft = '12.5%'; // Center the 75% content
+                }
+                
                 sidekickCollapsed = true;
                 sessionStorage.setItem('sidekickCollapsed', 'true');
                 console.log('Sidekick collapsed, state saved');
@@ -2194,6 +2287,22 @@
         // Call on load and resize
         window.addEventListener('load', updateCursorBehavior);
         window.addEventListener('resize', updateCursorBehavior);
+        
+        // Handle mobile orientation changes and screen size changes
+        window.addEventListener('resize', function() {
+            const isMobile = window.innerWidth <= 768;
+            const aiSidekick = document.getElementById('ai-sidekick');
+            const mainContent = document.getElementById('main-content');
+            
+            // If switching from mobile to desktop or vice versa, reset sidekick state
+            if (aiSidekick && mainContent) {
+                if (!isMobile) {
+                    // Switching to desktop - ensure mobile classes are removed
+                    aiSidekick.classList.remove('mobile-fullscreen');
+                    mainContent.classList.remove('mobile-hidden');
+                }
+            }
+        });
         
 
     </script>
