@@ -292,13 +292,7 @@
                 display: none !important;
             }
             
-            /* When keyboard is active (viewport height reduced) */
-            @media screen and (max-height: 600px) {
-                #ai-sidekick.mobile-fullscreen #sidekick-button {
-                    top: 10px !important;
-                    right: 10px !important;
-                }
-            }
+
             
 
         }
@@ -2381,6 +2375,39 @@
             return window.innerWidth <= 768;
         }
         
+        // Keyboard detection and X button positioning for mobile
+        let initialViewportHeight = window.innerHeight;
+        let isKeyboardVisible = false;
+        
+        function updateXButtonPosition() {
+            if (!isMobile()) return;
+            
+            const aiSidekick = document.getElementById('ai-sidekick');
+            const sidekickButton = document.getElementById('sidekick-button');
+            
+            if (!aiSidekick || !sidekickButton || !aiSidekick.classList.contains('mobile-fullscreen')) return;
+            
+            const currentViewportHeight = window.innerHeight;
+            const heightDifference = initialViewportHeight - currentViewportHeight;
+            
+            // If viewport height decreased significantly, keyboard is likely visible
+            if (heightDifference > 150) {
+                if (!isKeyboardVisible) {
+                    isKeyboardVisible = true;
+                    sidekickButton.style.top = '10px';
+                    sidekickButton.style.right = '10px';
+                    console.log('Keyboard detected, adjusting X button position');
+                }
+            } else {
+                if (isKeyboardVisible) {
+                    isKeyboardVisible = false;
+                    sidekickButton.style.top = '20px';
+                    sidekickButton.style.right = '20px';
+                    console.log('Keyboard hidden, resetting X button position');
+                }
+            }
+        }
+        
         // Update cursor behavior based on screen size
         function updateCursorBehavior() {
             const cursor = document.getElementById('cursor');
@@ -2400,6 +2427,21 @@
         // Call on load and resize
         window.addEventListener('load', updateCursorBehavior);
         window.addEventListener('resize', updateCursorBehavior);
+        
+        // Initialize viewport height and set up keyboard detection
+        window.addEventListener('load', function() {
+            initialViewportHeight = window.innerHeight;
+        });
+        
+        // Monitor viewport changes for keyboard detection
+        window.addEventListener('resize', updateXButtonPosition);
+        window.addEventListener('orientationchange', function() {
+            // Reset initial height on orientation change
+            setTimeout(() => {
+                initialViewportHeight = window.innerHeight;
+                updateXButtonPosition();
+            }, 100);
+        });
         
         // Handle mobile orientation changes and screen size changes
         window.addEventListener('resize', function() {
