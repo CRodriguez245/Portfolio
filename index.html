@@ -2556,6 +2556,33 @@
                     mobileMenu.classList.add('hidden');
                 }
             });
+            
+            // Mobile touch support for Featured Projects animations
+            const projectCards = document.querySelectorAll('#projects .overflow-hidden');
+            
+            projectCards.forEach(card => {
+                let isAnimating = false;
+                
+                // Touch start - trigger animation
+                card.addEventListener('touchstart', function(e) {
+                    if (isAnimating) return;
+                    isAnimating = true;
+                    
+                    // Add hover classes to trigger animation
+                    this.classList.add('hover:shadow-2xl', 'hover:scale-105');
+                    
+                    // Remove classes after animation duration
+                    setTimeout(() => {
+                        this.classList.remove('hover:shadow-2xl', 'hover:scale-105');
+                        isAnimating = false;
+                    }, 300); // Match the transition duration
+                });
+                
+                // Prevent default touch behavior to avoid conflicts
+                card.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                });
+            });
         });
         
         // Disable custom cursor on mobile devices
