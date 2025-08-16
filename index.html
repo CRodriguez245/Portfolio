@@ -434,6 +434,14 @@
                     <div class="absolute top-144 left-4 w-px h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-10"></div>
                     <div class="absolute top-152 left-8 w-1/6 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-700 ease-out origin-left" data-animation="line-11"></div>
                     <div class="absolute top-160 left-4 w-0.5 h-1/6 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-12"></div>
+                    
+                    <!-- Additional animation lines for extended mobile area -->
+                    <div class="absolute top-168 left-8 w-1/4 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-500 ease-out origin-left" data-animation="line-13"></div>
+                    <div class="absolute top-176 left-4 w-px h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-400 ease-out origin-top" data-animation="line-14"></div>
+                    <div class="absolute top-184 left-8 w-1/6 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-600 ease-out origin-left" data-animation="line-15"></div>
+                    <div class="absolute top-192 left-4 w-0.5 h-1/6 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-16"></div>
+                    <div class="absolute top-200 left-8 w-1/8 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-700 ease-out origin-left" data-animation="line-17"></div>
+                    <div class="absolute top-208 left-4 w-px h-1/8 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-18"></div>
                 </div>
                 
 
@@ -2257,7 +2265,7 @@
                         
                         // Position near touch point but respect text protection zone
                         const rect = heroAnimation.getBoundingClientRect();
-                        const minTop = 192; // Text protection zone
+                        const minTop = window.innerWidth <= 768 ? 120 : 192; // Reduced text protection zone on mobile
                         
                         if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
                             const newLeft = Math.max(4, Math.min(rect.width - 20, x - 10));
@@ -2347,7 +2355,7 @@
             // Initial random animation on page load
             function triggerInitialAnimation() {
                 const rect = heroAnimation.getBoundingClientRect();
-                const minTop = 192; // Text protection zone
+                const minTop = window.innerWidth <= 768 ? 120 : 192; // Reduced text protection zone on mobile
                 
                 // Get all available animations
                 const allAnimations = Array.from(animations);
