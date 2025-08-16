@@ -2156,6 +2156,8 @@
             
             let mouseX = 0;
             let mouseY = 0;
+            let touchX = 0;
+            let touchY = 0;
             
             // Track mouse position
             heroAnimation.addEventListener('mousemove', (e) => {
@@ -2163,6 +2165,122 @@
                 mouseX = e.clientX - rect.left;
                 mouseY = e.clientY - rect.top;
             });
+            
+            // Track touch position for mobile
+            heroAnimation.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                isHovering = true;
+                activeAnimations.clear();
+                
+                const rect = heroAnimation.getBoundingClientRect();
+                const touch = e.touches[0];
+                touchX = touch.clientX - rect.left;
+                touchY = touch.clientY - rect.top;
+                
+                // Trigger animation on touch start
+                triggerTouchAnimation(touchX, touchY);
+            });
+            
+            // Handle touch end for mobile hover state
+            heroAnimation.addEventListener('touchend', () => {
+                isHovering = false;
+                
+                // Roll away all animations with staggered timing
+                const allAnimations = Array.from(animations);
+                allAnimations.forEach((anim, index) => {
+                    setTimeout(() => {
+                        if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                            anim.style.transform = 'scaleY(0)';
+                        } else {
+                            anim.style.transform = 'scaleX(0)';
+                        }
+                    }, index * 50); // Faster roll away
+                });
+            });
+            
+            heroAnimation.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                const rect = heroAnimation.getBoundingClientRect();
+                const touch = e.touches[0];
+                touchX = touch.clientX - rect.left;
+                touchY = touch.clientY - rect.top;
+                
+                // Trigger animation on touch move (with throttling)
+                if (!heroAnimation.touchThrottle) {
+                    heroAnimation.touchThrottle = setTimeout(() => {
+                        triggerTouchAnimation(touchX, touchY);
+                        heroAnimation.touchThrottle = null;
+                    }, 100); // Throttle to every 100ms
+                }
+            });
+            
+            // Function to trigger animation on touch
+            function triggerTouchAnimation(x, y) {
+                if (!isHovering) return;
+                
+                // Get all available animations
+                const allAnimations = Array.from(animations);
+                const availableAnimations = allAnimations.filter(anim => !activeAnimations.has(anim.dataset.animation));
+                
+                // Randomly select 1-2 animations to trigger
+                const numToTrigger = Math.floor(Math.random() * 2) + 1;
+                const selectedAnimations = [];
+                
+                for (let i = 0; i < numToTrigger && availableAnimations.length > 0; i++) {
+                    const randomIndex = Math.floor(Math.random() * availableAnimations.length);
+                    const selectedAnim = availableAnimations.splice(randomIndex, 1)[0];
+                    selectedAnimations.push(selectedAnim);
+                }
+                
+                // Trigger selected animations
+                selectedAnimations.forEach((anim) => {
+                    if (!activeAnimations.has(anim.dataset.animation)) {
+                        activeAnimations.add(anim.dataset.animation);
+                        
+                        // Generate random opacity between 0.6 and 1.0
+                        const randomOpacity = Math.random() * 0.4 + 0.6;
+                        anim.style.opacity = randomOpacity;
+                        
+                        // Generate random line length scaling between 50% and 150%
+                        const randomLengthScale = Math.random() * 1.0 + 0.5;
+                        
+                        // Apply random length scaling
+                        if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                            const currentHeight = anim.style.height || '33.333%';
+                            const newHeight = `calc(${currentHeight} * ${randomLengthScale})`;
+                            anim.style.height = newHeight;
+                        } else {
+                            const currentWidth = anim.style.width || '33.333%';
+                            const newWidth = `calc(${currentWidth} * ${randomLengthScale})`;
+                            anim.style.width = newWidth;
+                        }
+                        
+                        // Position near touch point but respect text protection zone
+                        const rect = heroAnimation.getBoundingClientRect();
+                        const minTop = 192; // Text protection zone
+                        
+                        if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                            const newLeft = Math.max(4, Math.min(rect.width - 20, x - 10));
+                            anim.style.left = newLeft + 'px';
+                            anim.style.transform = 'scaleY(1)';
+                        } else {
+                            const newTop = Math.max(minTop, Math.min(rect.height - 20, y - 10));
+                            anim.style.top = newTop + 'px';
+                            anim.style.transform = 'scaleX(1)';
+                        }
+                        
+                        // Auto-remove after 2-3 seconds
+                        setTimeout(() => {
+                            if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                                anim.style.transform = 'scaleY(0)';
+                            } else {
+                                anim.style.transform = 'scaleX(0)';
+                            }
+                            activeAnimations.delete(anim.dataset.animation);
+                        }, Math.random() * 1000 + 2000); // 2-3 seconds
+                    }
+                });
+            }
             
             zones.forEach(zone => {
                 zone.addEventListener('mouseenter', () => {
