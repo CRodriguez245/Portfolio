@@ -234,7 +234,7 @@
             
             #ai-sidekick.mobile-fullscreen #chat-messages {
                 flex: 1 !important;
-                padding: 80px 20px 0 20px !important;
+                padding: 100px 20px 0 20px !important;
                 overflow-y: auto !important;
                 max-height: none !important;
                 width: 100% !important;
@@ -263,13 +263,13 @@
             
             #ai-sidekick.mobile-fullscreen #sidekick-button {
                 position: fixed !important;
-                top: 20px !important;
-                right: 20px !important;
+                top: 10px !important;
+                right: 10px !important;
                 width: 40px !important;
                 height: 40px !important;
                 padding: 0 !important;
                 border-radius: 0 !important;
-                background: transparent !important;
+                background: rgba(255, 255, 255, 0.9) !important;
                 z-index: 99999 !important;
                 display: flex !important;
                 align-items: center !important;
@@ -2408,8 +2408,8 @@
             } else {
                 if (isKeyboardVisible) {
                     isKeyboardVisible = false;
-                    sidekickButton.style.top = '20px';
-                    sidekickButton.style.right = '20px';
+                    sidekickButton.style.top = '10px';
+                    sidekickButton.style.right = '10px';
                     console.log('Keyboard hidden, resetting X button position');
                 }
             }
