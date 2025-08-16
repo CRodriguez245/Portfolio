@@ -233,13 +233,14 @@
             
             #ai-sidekick.mobile-fullscreen #chat-messages {
                 flex: 1 !important;
-                padding: 60px 20px 20px 20px !important;
+                padding: 60px 20px 0 20px !important;
                 overflow-y: auto !important;
                 max-height: none !important;
                 width: 100% !important;
                 display: flex !important;
                 flex-direction: column !important;
                 min-height: 0 !important;
+                justify-content: flex-end !important;
             }
             
             /* Mobile-only: Chat messages display from bottom to top */
@@ -256,6 +257,7 @@
                 padding: 20px !important;
                 border-top: 1px solid #e5e7eb !important;
                 width: 100% !important;
+                flex-shrink: 0 !important;
             }
             
             #ai-sidekick.mobile-fullscreen #sidekick-button {
