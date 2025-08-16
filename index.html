@@ -392,7 +392,7 @@
         <!-- Content Sections -->
         <div class="max-w-[960px] mx-auto pt-20 md:pt-24 px-4 md:px-12">
             <!-- Hero Section -->
-            <section class="mb-8 md:mb-14 relative h-64 md:h-96">
+            <section class="mb-8 md:mb-14 relative h-80 md:h-96">
                 <div class="mb-8 md:mb-16">
                     <h2 class="text-[24px] md:text-[32px] font-helvetica font-medium leading-tight">I am a human-centered AI Product Manager.</h2>
                     <h3 class="text-[16px] md:text-[20px] font-helvetica font-light leading-tight mt-2 md:mt-4">Designing transformative experiences to amplify unheard voices.</h3>
@@ -2265,7 +2265,7 @@
                         
                         // Position near touch point but respect text protection zone
                         const rect = heroAnimation.getBoundingClientRect();
-                        const minTop = window.innerWidth <= 768 ? 120 : 192; // Reduced text protection zone on mobile
+                        const minTop = window.innerWidth <= 768 ? 192 : 192; // Text protection zone (restored for mobile)
                         
                         if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
                             const newLeft = Math.max(4, Math.min(rect.width - 20, x - 10));
@@ -2355,7 +2355,7 @@
             // Initial random animation on page load
             function triggerInitialAnimation() {
                 const rect = heroAnimation.getBoundingClientRect();
-                const minTop = window.innerWidth <= 768 ? 120 : 192; // Reduced text protection zone on mobile
+                const minTop = window.innerWidth <= 768 ? 192 : 192; // Text protection zone (restored for mobile)
                 
                 // Get all available animations
                 const allAnimations = Array.from(animations);
