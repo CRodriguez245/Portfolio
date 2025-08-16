@@ -467,7 +467,7 @@
                 <div class="flex flex-col md:flex-row md:space-x-[25px] space-y-4 md:space-y-0 overflow-x-auto pb-4 scrollbar-hide">
                     <div class="flex-shrink-0 w-full md:w-[calc(33.333%-17px)] pt-4 px-2">
                         <a href="ai-research-workbook.html">
-                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
+                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-3">
                                 <img src="images/BeyondChat.webp" alt="AI Research Workbook" class="w-full h-64 object-cover">
                             </div>
                             <h3 class="text-[18px] font-helvetica font-bold mb-1">AI Research Workbook</h3>
@@ -476,7 +476,7 @@
                     </div>
                     <div class="flex-shrink-0 w-full md:w-[calc(33.333%-17px)] pt-4 px-2">
                         <a href="bachelors-microsoft-health.html">
-                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
+                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-3">
                                 <img src="images/BMH-ProjectCard copy.jpg" alt="Bachelors in Microsoft Health" class="w-full h-64 object-cover">
                             </div>
                             <h3 class="text-[18px] font-helvetica font-bold mb-1">Bachelors in Microsoft Health</h3>
@@ -485,7 +485,7 @@
                     </div>
                     <div class="flex-shrink-0 w-full md:w-[calc(33.333%-17px)] pt-4 px-2">
                         <a href="nm-scholars-program.html">
-                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
+                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-3">
                                 <img src="images/NM-Scholars-2.jpg" alt="NM Scholars Program" class="w-full h-64 object-cover">
                             </div>
                             <h3 class="text-[18px] font-helvetica font-bold mb-1">NM Scholars Program</h3>
@@ -580,7 +580,7 @@
                 <div class="flex flex-col md:flex-row md:space-x-[25px] space-y-4 md:space-y-0 overflow-x-auto pb-4 scrollbar-hide">
                     <div class="flex-shrink-0 w-full md:w-[calc(33.333%-17px)] pt-4 px-2">
                         <a href="better-problems.html">
-                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
+                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-3">
                                 <img src="images/BP-Card2.jpg" alt="Better Problems" class="w-full h-64 object-cover">
                             </div>
                             <h3 class="text-[18px] font-helvetica font-bold mb-1">Better Problems</h3>
@@ -589,7 +589,7 @@
                     </div>
                     <div class="flex-shrink-0 w-full md:w-[calc(33.333%-17px)] pt-4 px-2">
                         <a href="ai-beyond-chat.html">
-                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
+                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-3">
                                 <img src="images/BeyondChat-copy.jpg" alt="AI Beyond The Chat" class="w-full h-64 object-cover">
                             </div>
                             <h3 class="text-[18px] font-helvetica font-bold mb-1">AI Beyond The Chat</h3>
@@ -598,7 +598,7 @@
                     </div>
                     <div class="flex-shrink-0 w-full md:w-[calc(33.333%-17px)] pt-4 px-2">
                         <a href="design-what-you-dont-see.html">
-                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
+                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-3">
                                 <img src="images/ST copy.jpg" alt="Design Is What You Don't See" class="w-full h-64 object-cover">
                             </div>
                             <h3 class="text-[18px] font-helvetica font-bold mb-1">Design Is What You Don't See</h3>
@@ -607,7 +607,7 @@
                     </div>
                     <div class="flex-shrink-0 w-full md:w-[calc(33.333%-17px)] pt-4 px-2">
                         <a href="trust-is-the-product.html">
-                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
+                            <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-3">
                                 <img src="images/PMArticle copy.jpeg" alt="Trust Is The Product" class="w-full h-64 object-cover">
                             </div>
                             <h3 class="text-[18px] font-helvetica font-bold mb-1">Trust Is The Product</h3>
@@ -2561,6 +2561,33 @@
             const projectCards = document.querySelectorAll('#projects .overflow-hidden');
             
             projectCards.forEach(card => {
+                let isAnimating = false;
+                
+                // Touch start - trigger animation
+                card.addEventListener('touchstart', function(e) {
+                    if (isAnimating) return;
+                    isAnimating = true;
+                    
+                    // Add hover classes to trigger animation
+                    this.classList.add('hover:shadow-2xl', 'hover:scale-105');
+                    
+                    // Remove classes after animation duration
+                    setTimeout(() => {
+                        this.classList.remove('hover:shadow-2xl', 'hover:scale-105');
+                        isAnimating = false;
+                    }, 300); // Match the transition duration
+                });
+                
+                // Prevent default touch behavior to avoid conflicts
+                card.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                });
+            });
+            
+            // Mobile touch support for Blog section animations
+            const blogCards = document.querySelectorAll('#blog .overflow-hidden');
+            
+            blogCards.forEach(card => {
                 let isAnimating = false;
                 
                 // Touch start - trigger animation
