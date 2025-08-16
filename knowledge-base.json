@@ -200,6 +200,31 @@
       ],
       "keywords": ["product management", "frameworks", "heart metrics", "balanced scorecard", "jobs-to-be-done", "a/b testing"]
     },
+    "tools_technologies": {
+      "title": "Tools & Technologies",
+      "description": "Carlos uses a modern toolkit that combines AI-powered development tools with traditional design and product management software. He leverages these tools to create efficient, high-quality products that serve both users and business needs.",
+      "development_tools": [
+                  "Cursor AI - AI-powered code editor for rapid development and prototyping",
+        "GitHub - Version control and collaboration",
+        "VS Code - Code editing and development environment"
+      ],
+      "design_tools": [
+        "Figma - UI/UX design and prototyping",
+        "Adobe Creative Suite - Graphic design and visual assets",
+        "Miro - Collaborative design and whiteboarding"
+      ],
+      "product_tools": [
+        "Notion - Product documentation and knowledge management",
+        "Slack - Team communication and collaboration",
+        "Linear - Project management and issue tracking"
+      ],
+      "ai_tools": [
+        "GPT-4 - AI content generation and analysis",
+        "OpenAI API - AI integration and development",
+        "Claude - AI research and writing assistance"
+      ],
+              "keywords": ["cursor", "cursor ai", "figma", "gpt", "openai", "notion", "slack", "linear", "github", "vscode", "adobe", "miro", "claude", "tools", "technologies", "software", "platforms"]
+    },
     "decision_making": {
       "title": "Product Decision-Making Frameworks",
       "description": "Carlos uses structured frameworks to make product decisions that balance user needs with business constraints. He focuses on evidence-based decision making that serves both users and business goals.",

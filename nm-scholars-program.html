@@ -94,10 +94,10 @@
     <!-- Custom cursor -->
     <div class="cursor" id="cursor"></div>
 
-    <!-- Main Content Area -->
-    <div class="w-3/4 overflow-x-hidden">
+    <!-- Main Content Area (responsive width) -->
+    <div class="w-3/4 overflow-x-hidden transition-all duration-500 ease-in-out" id="main-content">
         <!-- Navigation -->
-        <nav class="fixed w-3/4 z-50">
+        <nav class="fixed w-3/4 z-50 transition-all duration-500 ease-in-out" id="main-nav">
             <div class="bg-white/80 backdrop-blur-lg px-12 py-6">
                 <div class="flex justify-between items-center">
                     <h1 class="text-[28px] font-nuosu">Carlos Rodriguez</h1>
@@ -114,9 +114,9 @@
                                         <div class="space-y-2 text-right">
                                             <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
                                             <div class="space-y-1">
-                                                <a href="mailto:c.a.rodriguez1999@gmail.com" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">c.a.rodriguez1999@gmail.com</a>
-                                                <a href="https://linkedin.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                                <a href="https://github.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-right w-full">c.a.rodriguez1999@gmail.com</button>
+                                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
                                             </div>
                                         </div>
                                     </div>
@@ -159,7 +159,7 @@
                         <h3 class="text-[20px] font-helvetica font-bold mb-1">Tools</h3>
                         <p class="text-[16px] font-helvetica whitespace-nowrap">Figma</p>
                         <p class="text-[16px] font-helvetica whitespace-nowrap">Mural</p>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">CursorAI</p>
+                        <p class="text-[16px] font-helvetica whitespace-nowrap">Cursor AI</p>
                     </div>
                     <div>
                         <h3 class="text-[20px] font-helvetica font-bold mb-1">Focus</h3>
@@ -286,16 +286,16 @@
                             <div>
                                 <p class="text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
                                 <div class="flex space-x-4">
-                                    <a href="mailto:c.a.rodriguez1999@gmail.com" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</a>
-                                    <a href="https://linkedin.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                    <a href="https://github.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                                    <button onclick="copyEmail()" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
+                                    <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                    <a href="https://github.com/CRodriguez245" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
                                 </div>
                             </div>
                         </div>
                         <div class="text-right">
                             <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
                             <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
-                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by CursorAI, Figma, and GPT</p>
+                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by Cursor AI, Figma, and GPT</p>
                         </div>
                     </div>
                 </div>
@@ -303,25 +303,34 @@
         </div>
     </div>
 
+    <!-- Email Copy Popup -->
+    <div id="email-popup" class="fixed top-4 right-4 text-gray-700 px-3 py-2 font-helvetica text-[12px] z-[10000] transition-all duration-300 ease-in-out" style="display: none; opacity: 0; transform: translateY(-10px);">
+        <span>Email copied to clipboard</span>
+        <!-- Rolling line animation -->
+        <div class="absolute top-0 right-0 w-1 h-full bg-black transform scale-y-0 transition-transform duration-500 ease-out origin-top" id="popup-line"></div>
+    </div>
+
     <!-- AI Sidekick -->
-    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col" id="ai-sidekick">
-        <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
-            <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
-        </div>
-        <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex">
-            <span class="text-black mt-[2px]">></span>
-            <div class="relative flex-1 ml-2">
-                <textarea 
-                    class="bg-transparent border-none font-['IBM_Plex_Mono'] text-[14px] w-full outline-none text-black resize-none overflow-hidden p-0 leading-normal"
-                    placeholder="Ask me anything..."
-                    id="chat-input"
-                    rows="1"
-                    style="height: 20px;"
-                ></textarea>
+    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col z-[9999] transition-all duration-500 ease-in-out" id="ai-sidekick">
+        <div class="transition-all duration-500 ease-in-out" id="chat-container">
+            <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
+                <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
+            </div>
+            <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex">
+                <span class="text-black mt-[2px]">></span>
+                <div class="relative flex-1 ml-2">
+                    <textarea 
+                        class="bg-transparent border-none font-['IBM_Plex_Mono'] text-[14px] w-full outline-none text-black resize-none overflow-hidden p-0 leading-normal"
+                        placeholder="Ask me anything..."
+                        id="chat-input"
+                        rows="1"
+                        style="height: 20px;"
+                    ></textarea>
+                </div>
             </div>
         </div>
-        <div class="bg-[#18a000] p-4">
-            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold">AI Sidekick</h3>
+        <div class="bg-[#18a000] p-4 cursor-pointer transition-all duration-500 ease-in-out" id="sidekick-button" onclick="toggleSidekick()">
+            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold transition-all duration-500 ease-in-out" id="sidekick-text">AI Sidekick</h3>
         </div>
     </div>
 
@@ -854,6 +863,158 @@
         // Initialize enhanced AI Sidekick
         let simpleSidekick = null;
         simpleSidekick = new SimpleContextSidekick();
+        
+        // Sidekick toggle state
+        let sidekickCollapsed = false;
+        
+        // Track if this is a navigation (not refresh)
+        let isNavigation = false;
+        
+        // Set up beforeunload listener to detect navigation vs refresh
+        window.addEventListener('beforeunload', function() {
+            // If we're navigating to another page in our site, mark it as navigation
+            const currentUrl = window.location.href;
+            const nextUrl = sessionStorage.getItem('nextUrl');
+            
+            if (nextUrl && nextUrl !== currentUrl) {
+                isNavigation = true;
+                sessionStorage.setItem('isNavigation', 'true');
+            }
+        });
+        
+        // Set up click listeners for navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href]');
+            links.forEach(link => {
+                link.addEventListener('click', function() {
+                    const href = this.getAttribute('href');
+                    if (href && !href.startsWith('http') && !href.startsWith('#')) {
+                        sessionStorage.setItem('nextUrl', window.location.origin + href);
+                    }
+                });
+            });
+        });
+        
+        // Initialize sidekick state from sessionStorage
+        function initializeSidekickState() {
+            console.log('=== INITIALIZATION DEBUG ===');
+            const savedState = sessionStorage.getItem('sidekickCollapsed');
+            const wasNavigation = sessionStorage.getItem('isNavigation');
+            
+            console.log('Initializing sidekick state:', savedState);
+            console.log('Was navigation:', wasNavigation);
+            
+            // Clear the navigation flag
+            sessionStorage.removeItem('isNavigation');
+            sessionStorage.removeItem('nextUrl');
+            
+            // Apply collapsed state if it was a navigation and sidekick was collapsed
+            if (savedState === 'true' && wasNavigation === 'true') {
+                console.log('Applying collapsed state from navigation...');
+                // Apply collapsed state on page load
+                const aiSidekick = document.getElementById('ai-sidekick');
+                const chatContainer = document.getElementById('chat-container');
+                const sidekickText = document.getElementById('sidekick-text');
+                const mainContent = document.getElementById('main-content');
+                
+                console.log('Elements found during initialization:', {
+                    aiSidekick: !!aiSidekick,
+                    chatContainer: !!chatContainer,
+                    sidekickText: !!sidekickText,
+                    mainContent: !!mainContent
+                });
+                
+                if (aiSidekick && chatContainer && sidekickText && mainContent) {
+                    // Set initial collapsed state
+                    console.log('Setting collapsed state...');
+                    chatContainer.style.display = 'none';
+                    aiSidekick.style.width = '80px';
+                    aiSidekick.style.maxWidth = '80px';
+                    sidekickText.style.fontSize = '14px';
+                    sidekickText.textContent = 'AI';
+                    mainContent.style.width = '75%';
+                    mainContent.style.marginLeft = '12.5%'; // Center the 75% content
+                    sidekickCollapsed = true;
+                    
+                    console.log('Applied collapsed state successfully');
+                } else {
+                    console.error('Some elements not found during initialization');
+                }
+            } else {
+                console.log('Not navigation or no saved state - resetting to expanded state');
+                // Reset to expanded state on refresh, direct access, or external navigation
+                sessionStorage.setItem('sidekickCollapsed', 'false');
+                sidekickCollapsed = false;
+            }
+            console.log('=== END INITIALIZATION DEBUG ===');
+        }
+        
+        // Toggle AI Sidekick function
+        function toggleSidekick() {
+            console.log('=== TOGGLE SIDEKICK DEBUG ===');
+            console.log('Toggle sidekick called, current state:', sidekickCollapsed);
+            
+            const aiSidekick = document.getElementById('ai-sidekick');
+            const chatContainer = document.getElementById('chat-container');
+            const sidekickText = document.getElementById('sidekick-text');
+            const mainContent = document.getElementById('main-content');
+            const chatInput = document.getElementById('chat-input');
+            
+            console.log('Elements found:', {
+                aiSidekick: !!aiSidekick,
+                chatContainer: !!chatContainer,
+                sidekickText: !!sidekickText,
+                mainContent: !!mainContent,
+                chatInput: !!chatInput
+            });
+            
+            if (sidekickCollapsed) {
+                console.log('Expanding sidekick...');
+                
+                // Force show the container - remove all conflicting styles
+                chatContainer.style.display = 'block';
+                chatContainer.style.visibility = 'visible';
+                chatContainer.style.opacity = '1';
+                chatContainer.style.maxHeight = 'none';
+                chatContainer.style.overflow = 'visible';
+                chatContainer.style.height = 'auto';
+                chatContainer.style.width = '100%';
+                
+                aiSidekick.style.width = '25%';
+                aiSidekick.style.maxWidth = '394px';
+                sidekickText.style.fontSize = '14px';
+                sidekickText.textContent = 'AI Sidekick';
+                mainContent.style.width = '75%';
+                mainContent.style.marginLeft = '0';
+                
+                // Ensure input is visible and functional
+                if (chatInput) {
+                    chatInput.style.display = 'block';
+                    chatInput.style.visibility = 'visible';
+                    chatInput.style.opacity = '1';
+                    chatInput.focus();
+                    console.log('Input field restored successfully');
+                }
+                
+                sidekickCollapsed = false;
+                sessionStorage.setItem('sidekickCollapsed', 'false');
+                console.log('Sidekick expanded, state saved');
+            } else {
+                console.log('Collapsing sidekick...');
+                // Collapse sidekick - hide the container
+                chatContainer.style.display = 'none';
+                aiSidekick.style.width = '80px';
+                aiSidekick.style.maxWidth = '80px';
+                sidekickText.style.fontSize = '14px';
+                sidekickText.textContent = 'AI';
+                mainContent.style.width = '75%';
+                mainContent.style.marginLeft = '12.5%'; // Center the 75% content
+                sidekickCollapsed = true;
+                sessionStorage.setItem('sidekickCollapsed', 'true');
+                console.log('Sidekick collapsed, state saved');
+            }
+            console.log('=== END TOGGLE DEBUG ===');
+        }
 
         function addMessage(text, isUser = false, animate = true) {
             const p = document.createElement('p');
@@ -955,8 +1116,11 @@
             // Don't clear chat history on page navigation
         });
 
-        // Add click handling for contact dropdown
+        // Add click handling for contact dropdown and initialize sidekick
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize sidekick state from sessionStorage AFTER DOM is ready
+            initializeSidekickState();
+            
             const contactButton = document.querySelector('.contact-dropdown');
             const contactDropdownMenu = document.querySelector('.contact-dropdown-menu');
             
@@ -1002,6 +1166,81 @@
                 }, 100);
             }
         });
+
+        // Copy email to clipboard
+        function copyEmail() {
+            const email = 'c.a.rodriguez1999@gmail.com';
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(email).then(() => {
+                    showEmailPopup();
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                    fallbackCopyEmail(email);
+                });
+            } else {
+                fallbackCopyEmail(email);
+            }
+        }
+
+        // Fallback copy method for older browsers
+        function fallbackCopyEmail(email) {
+            const textArea = document.createElement('textarea');
+            textArea.value = email;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showEmailPopup();
+            } catch (err) {
+                console.error('Fallback copy failed: ', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // Show email copy popup
+        function showEmailPopup() {
+            const popup = document.getElementById('email-popup');
+            const popupLine = document.getElementById('popup-line');
+            
+            // Reset any existing timeouts
+            if (popup.timeoutId) {
+                clearTimeout(popup.timeoutId);
+            }
+            
+            // Show popup with fade-in animation
+            popup.style.display = 'block';
+            
+            // Trigger animation after a brief delay to ensure display is set
+            setTimeout(() => {
+                popup.style.opacity = '1';
+                popup.style.transform = 'translateY(0)';
+                
+                // Start rolling line animation down as text appears
+                setTimeout(() => {
+                    popupLine.style.transform = 'scaleY(1)';
+                }, 100);
+            }, 10);
+            
+            // Hide popup after 3 seconds
+            popup.timeoutId = setTimeout(() => {
+                // Start rolling line animation up and fade out popup simultaneously
+                popupLine.style.transform = 'scaleY(0)';
+                popup.style.opacity = '0';
+                popup.style.transform = 'translateY(-10px)';
+                
+                // Hide completely after fade
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 300);
+            }, 3000);
+        }
     </script>
     <style>
         /* Add custom scrollbar styling */

@@ -114,9 +114,9 @@
                                         <div class="space-y-2 text-right">
                                             <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
                                             <div class="space-y-1">
-                                                <a href="mailto:c.a.rodriguez1999@gmail.com" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">c.a.rodriguez1999@gmail.com</a>
-                                                <a href="https://linkedin.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                                <a href="https://github.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-right w-full">c.a.rodriguez1999@gmail.com</button>
+                                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
                                             </div>
                                         </div>
                                     </div>
@@ -258,21 +258,28 @@
                             <div>
                                 <p class="text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
                                 <div class="flex space-x-4">
-                                    <a href="mailto:c.a.rodriguez1999@gmail.com" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</a>
-                                    <a href="https://linkedin.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                    <a href="https://github.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                                    <button onclick="copyEmail()" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
+                                    <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                    <a href="https://github.com/CRodriguez245" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
                                 </div>
                             </div>
                         </div>
                         <div class="text-right">
                             <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
                             <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
-                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by CursorAI, Figma, and GPT</p>
+                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by Cursor AI, Figma, and GPT</p>
                         </div>
                     </div>
                 </div>
             </footer>
         </div>
+    </div>
+
+    <!-- Email Copy Popup -->
+    <div id="email-popup" class="fixed top-4 right-4 text-gray-700 px-3 py-2 font-helvetica text-[12px] z-[10000] transition-all duration-300 ease-in-out" style="display: none; opacity: 0; transform: translateY(-10px);">
+        <span>Email copied to clipboard</span>
+        <!-- Rolling line animation -->
+        <div class="absolute top-0 right-0 w-1 h-full bg-black transform scale-y-0 transition-transform duration-500 ease-out origin-top" id="popup-line"></div>
     </div>
 
     <!-- AI Sidekick -->
@@ -368,6 +375,81 @@
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }
         });
+
+        // Copy email to clipboard
+        function copyEmail() {
+            const email = 'c.a.rodriguez1999@gmail.com';
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(email).then(() => {
+                    showEmailPopup();
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                    fallbackCopyEmail(email);
+                });
+            } else {
+                fallbackCopyEmail(email);
+            }
+        }
+
+        // Fallback copy method for older browsers
+        function fallbackCopyEmail(email) {
+            const textArea = document.createElement('textarea');
+            textArea.value = email;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showEmailPopup();
+            } catch (err) {
+                console.error('Fallback copy failed: ', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // Show email copy popup
+        function showEmailPopup() {
+            const popup = document.getElementById('email-popup');
+            const popupLine = document.getElementById('popup-line');
+            
+            // Reset any existing timeouts
+            if (popup.timeoutId) {
+                clearTimeout(popup.timeoutId);
+            }
+            
+            // Show popup with fade-in animation
+            popup.style.display = 'block';
+            
+            // Trigger animation after a brief delay to ensure display is set
+            setTimeout(() => {
+                popup.style.opacity = '1';
+                popup.style.transform = 'translateY(0)';
+                
+                // Start rolling line animation down as text appears
+                setTimeout(() => {
+                    popupLine.style.transform = 'scaleY(1)';
+                }, 100);
+            }, 10);
+            
+            // Hide popup after 3 seconds
+            popup.timeoutId = setTimeout(() => {
+                // Start rolling line animation up and fade out popup simultaneously
+                popupLine.style.transform = 'scaleY(0)';
+                popup.style.opacity = '0';
+                popup.style.transform = 'translateY(-10px)';
+                
+                // Hide completely after fade
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 300);
+            }, 3000);
+        }
     </script>
 </body>
 </html> 

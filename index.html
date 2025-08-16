@@ -92,6 +92,8 @@
         * {
             cursor: none;
         }
+        
+
 
         /* Custom cursor */
         .cursor {
@@ -126,6 +128,8 @@
         a, button {
             cursor: none;
         }
+        
+
         .contact-dropdown {
             cursor: none;
         }
@@ -142,16 +146,27 @@
         .scrollbar-hide::-webkit-scrollbar {
             display: none;
         }
+        
+        /* Force sidekick styles */
+        #chat-container.collapsed {
+            max-height: 0px !important;
+            overflow: hidden !important;
+        }
+        
+        #chat-container.expanded {
+            max-height: calc(100vh - 200px) !important;
+            overflow: visible !important;
+        }
     </style>
 </head>
 <body class="bg-white">
     <!-- Custom cursor element -->
     <div class="cursor" id="cursor"></div>
 
-    <!-- Main Content Area (75% width) -->
-    <div class="w-3/4 overflow-x-hidden">
+    <!-- Main Content Area (responsive width) -->
+    <div class="w-3/4 overflow-x-hidden transition-all duration-500 ease-in-out" id="main-content">
         <!-- Navigation -->
-        <nav class="fixed w-3/4 z-50">
+        <nav class="fixed w-3/4 z-50 transition-all duration-500 ease-in-out" id="main-nav">
             <div class="bg-white/80 backdrop-blur-lg px-12 py-6">
                 <div class="flex justify-between items-center">
                     <h1 class="text-[28px] font-nuosu">Carlos Rodriguez</h1>
@@ -168,9 +183,9 @@
                                         <div class="space-y-2 text-right">
                                             <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
                                             <div class="space-y-1">
-                                                <a href="mailto:c.a.rodriguez1999@gmail.com" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">c.a.rodriguez1999@gmail.com</a>
-                                                <a href="https://linkedin.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                                <a href="https://github.com" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-right w-full">c.a.rodriguez1999@gmail.com</button>
+                                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
                                             </div>
                                         </div>
                                     </div>
@@ -187,8 +202,14 @@
         <div class="max-w-[960px] mx-auto pt-24" style="padding-left: 48px; padding-right: 48px;">
             <!-- Hero Section -->
             <section class="mb-14 relative h-96">
+                <div class="mb-16">
+                    <h2 class="text-[32px] font-helvetica font-medium leading-tight">I am a human-centered AI Product Manager.</h2>
+                    <h3 class="text-[20px] font-helvetica font-light leading-tight mt-4">Designing transformative experiences to amplify unheard voices.</h3>
+                </div>
+                
                 <div class="mb-32">
-                    <h2 class="text-[32px] font-helvetica font-medium leading-tight">I am a human-centered AI Product Manager<br>designing transformative experiences<br>that amplify unheard voices.</h2>
+                    <p class="text-[16px] font-helvetica font-light leading-tight text-right">Currently at Northwestern Medicine.</p>
+                    <p class="text-[16px] font-helvetica font-light leading-tight mt-1 text-right">Previously at Microsoft.</p>
                 </div>
                 
                 <!-- Hero Animation Area -->
@@ -209,72 +230,19 @@
                     <div class="absolute top-1/2 left-0 w-1/3 h-1/3 cursor-pointer" data-zone="middle-left"></div>
                     <div class="absolute top-1/2 right-0 w-1/3 h-1/3 cursor-pointer" data-zone="middle-right"></div>
                     
-                                                                    <!-- Random Animation Lines with Extreme Thickness Variation -->
-                        <!-- Ultra Thin Lines -->
-                        <div class="absolute top-72 left-4 w-1/3 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-500 ease-out origin-left" data-animation="line-1"></div>
-                        <div class="absolute top-80 left-4 w-px h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-400 ease-out origin-top" data-animation="line-2"></div>
-                        <div class="absolute top-88 left-8 w-1/4 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-600 ease-out origin-left" data-animation="line-3"></div>
-                        
-                        <!-- Very Thin Lines -->
-                        <div class="absolute top-72 right-4 w-1/3 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-700 ease-out origin-right" data-animation="line-4"></div>
-                        <div class="absolute top-80 right-4 w-0.5 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-5"></div>
-                        <div class="absolute top-88 right-12 w-1/4 h-1 bg-[#18A000] transform scale-x-0 transition-transform duration-800 ease-out origin-right" data-animation="line-6"></div>
-                    
-
-                    
-
-                    
-                    
-                    
-                    <!-- Mixed Thickness Lines -->
-                    <div class="absolute bottom-4 left-1/3 w-1/3 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-650 ease-out origin-left" data-animation="line-19"></div>
-                    <div class="absolute bottom-12 left-1/2 w-0.5 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-bottom" data-animation="line-20"></div>
-                    
-                    
-                    
-                    <!-- Super Thin Lines -->
-                    <div class="absolute top-3/4 right-4 w-1/3 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-600 ease-out origin-right" data-animation="line-23"></div>
-                    <div class="absolute top-2/3 right-4 w-px h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-24"></div>
-                    
-                    
-                        <div class="absolute bottom-1/3 left-2/3 w-1/5 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-850 ease-out origin-left" data-animation="line-31"></div>
-                        <div class="absolute bottom-1/3 right-2/3 w-px h-1/5 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-top" data-animation="line-32"></div>
-                        
-                        <!-- Additional Vertical Lines for Better Balance -->
-                        <div class="absolute top-1/3 left-1/6 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-33"></div>
-                        <div class="absolute top-1/2 left-1/5 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-34"></div>
-                        <div class="absolute top-2/3 left-3/4 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-700 ease-out origin-top" data-animation="line-35"></div>
-                        <div class="absolute top-1/4 left-2/3 w-0.5 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-top" data-animation="line-36"></div>
-                        <div class="absolute top-3/4 left-1/8 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-650 ease-out origin-top" data-animation="line-37"></div>
-                        <div class="absolute top-1/2 left-4/5 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-750 ease-out origin-top" data-animation="line-38"></div>
-                        <div class="absolute top-1/3 left-5/6 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-39"></div>
-                        <div class="absolute top-2/3 left-1/12 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-40"></div>
-                        <div class="absolute top-1/4 left-7/8 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-700 ease-out origin-top" data-animation="line-41"></div>
-                        <div class="absolute top-3/4 left-2/5 w-0.5 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-top" data-animation="line-42"></div>
-                        <div class="absolute top-1/2 left-1/12 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-650 ease-out origin-top" data-animation="line-43"></div>
-                        <div class="absolute top-1/3 left-9/10 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-44"></div>
-                        <div class="absolute top-2/3 left-3/5 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-750 ease-out origin-top" data-animation="line-45"></div>
-                        <div class="absolute top-1/4 left-1/3 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-46"></div>
-                        <div class="absolute top-3/4 left-7/10 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-700 ease-out origin-top" data-animation="line-47"></div>
-                        <div class="absolute top-1/2 left-1/4 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-48"></div>
-                        
-                        <!-- More Vertical Lines for Better Balance -->
-                        <div class="absolute top-1/3 left-1/10 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-top" data-animation="line-49"></div>
-                        <div class="absolute top-2/3 left-1/7 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-650 ease-out origin-top" data-animation="line-50"></div>
-                        <div class="absolute top-1/4 left-3/7 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-51"></div>
-                        <div class="absolute top-3/4 left-4/7 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-700 ease-out origin-top" data-animation="line-52"></div>
-                        <div class="absolute top-1/2 left-5/7 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-53"></div>
-                        <div class="absolute top-1/3 left-6/7 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-top" data-animation="line-54"></div>
-                        <div class="absolute top-2/3 left-1/9 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-650 ease-out origin-top" data-animation="line-55"></div>
-                        <div class="absolute top-1/4 left-2/9 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-56"></div>
-                        <div class="absolute top-3/4 left-3/9 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-700 ease-out origin-top" data-animation="line-57"></div>
-                        <div class="absolute top-1/2 left-4/9 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-58"></div>
-                        <div class="absolute top-1/3 left-5/9 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-top" data-animation="line-59"></div>
-                        <div class="absolute top-2/3 left-6/9 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-650 ease-out origin-top" data-animation="line-60"></div>
-                        <div class="absolute top-1/4 left-7/9 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-61"></div>
-                        <div class="absolute top-3/4 left-8/9 w-1 h-1/2 bg-[#18A000] transform scale-y-0 transition-transform duration-700 ease-out origin-top" data-animation="line-62"></div>
-                        <div class="absolute top-1/2 left-1/11 w-1 h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-63"></div>
-                        <div class="absolute top-1/3 left-2/11 w-1 h-1/3 bg-[#18A000] transform scale-y-0 transition-transform duration-550 ease-out origin-top" data-animation="line-64"></div>
+                                                                    <!-- Balanced Animation Lines (matching About page) -->
+                    <div class="absolute top-72 left-4 w-1/4 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-500 ease-out origin-left" data-animation="line-1"></div>
+                    <div class="absolute top-80 left-4 w-px h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-400 ease-out origin-top" data-animation="line-2"></div>
+                    <div class="absolute top-88 left-8 w-1/6 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-600 ease-out origin-left" data-animation="line-3"></div>
+                    <div class="absolute top-96 left-4 w-0.5 h-1/6 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-4"></div>
+                    <div class="absolute top-104 left-8 w-1/8 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-700 ease-out origin-left" data-animation="line-5"></div>
+                    <div class="absolute top-112 left-4 w-px h-1/8 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-6"></div>
+                    <div class="absolute top-120 left-8 w-1/6 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-500 ease-out origin-left" data-animation="line-7"></div>
+                    <div class="absolute top-128 left-4 w-0.5 h-1/6 bg-[#18A000] transform scale-y-0 transition-transform duration-700 ease-out origin-top" data-animation="line-8"></div>
+                    <div class="absolute top-136 left-8 w-1/4 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-600 ease-out origin-left" data-animation="line-9"></div>
+                    <div class="absolute top-144 left-4 w-px h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-10"></div>
+                    <div class="absolute top-152 left-8 w-1/6 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-700 ease-out origin-left" data-animation="line-11"></div>
+                    <div class="absolute top-160 left-4 w-0.5 h-1/6 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-12"></div>
                 </div>
                 
 
@@ -320,7 +288,7 @@
                 <div class="max-w-[805px]">
                     <!-- Northwestern Medicine -->
                     <div class="mb-12">
-                        <div class="flex justify-between items-center mb-4">
+                        <div class="flex justify-between items-center mb-2">
                             <h3 class="text-[20px] font-helvetica font-bold">Northwestern Medicine</h3>
                             <span class="text-[16px] font-helvetica font-light">2025 - Present</span>
                         </div>
@@ -339,7 +307,7 @@
 
                     <!-- Illinois Tech -->
                     <div class="mb-12">
-                        <div class="flex justify-between items-center mb-4">
+                        <div class="flex justify-between items-center mb-2">
                             <h3 class="text-[20px] font-helvetica font-bold">Illinois Institute of Technology</h3>
                             <span class="text-[16px] font-helvetica font-light">2025 - Present</span>
                         </div>
@@ -354,7 +322,7 @@
 
                                     <!-- Microsoft -->
                 <div class="mb-12">
-                    <div class="flex justify-between items-center mb-4">
+                    <div class="flex justify-between items-center mb-2">
                         <h3 class="text-[20px] font-helvetica font-bold">Microsoft Corporation</h3>
                         <span class="text-[16px] font-helvetica font-light">2019 - 2023</span>
                     </div>
@@ -377,7 +345,7 @@
 
                     <!-- MyRealFood -->
                     <div class="mb-12">
-                        <div class="flex justify-between items-center mb-4">
+                        <div class="flex justify-between items-center mb-2">
                             <h3 class="text-[20px] font-helvetica font-bold">MyRealFood</h3>
                             <span class="text-[16px] font-helvetica font-light">2019</span>
                         </div>
@@ -451,16 +419,16 @@
                             <div>
                                 <p class="text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
                                 <div class="flex space-x-4">
-                                    <a href="mailto:c.a.rodriguez1999@gmail.com" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</a>
-                                    <a href="https://linkedin.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                    <a href="https://github.com" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                                    <button onclick="copyEmail()" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
+                                    <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                    <a href="https://github.com/CRodriguez245" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
                                 </div>
                             </div>
                         </div>
                                                     <div class="text-right">
                                 <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
                                 <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
-                                <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by CursorAI, Figma, and GPT</p>
+                                <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by Cursor AI, Figma, and GPT</p>
                             </div>
                     </div>
                 </div>
@@ -468,36 +436,45 @@
         </div>
     </div>
 
+    <!-- Email Copy Popup -->
+    <div id="email-popup" class="fixed top-4 right-4 text-gray-700 px-3 py-2 font-helvetica text-[12px] z-[10000] transition-all duration-300 ease-in-out" style="display: none; opacity: 0; transform: translateY(-10px);">
+        <span>Email copied to clipboard</span>
+        <!-- Rolling line animation -->
+        <div class="absolute top-0 right-0 w-1 h-full bg-black transform scale-y-0 transition-transform duration-500 ease-out origin-top" id="popup-line"></div>
+    </div>
+
     <!-- AI Sidekick -->
-    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col z-[9999]" id="ai-sidekick">
-        <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
-            <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
-        </div>
-        <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex">
-            <span class="text-black mt-[2px]">></span>
-            <div class="relative flex-1 ml-2">
-                <textarea 
-                    class="bg-transparent border-none font-['IBM_Plex_Mono'] text-[14px] w-full outline-none text-black resize-none overflow-hidden p-0 leading-normal"
-                    placeholder="Ask me anything..."
-                    id="chat-input"
-                    rows="1"
-                    style="height: 20px;"
-                ></textarea>
+    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col z-[9999] transition-all duration-500 ease-in-out" id="ai-sidekick">
+        <div class="overflow-hidden transition-all duration-500 ease-in-out" id="chat-container">
+            <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
+                <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
+            </div>
+            <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex">
+                <span class="text-black mt-[2px]">></span>
+                <div class="relative flex-1 ml-2">
+                    <textarea 
+                        class="bg-transparent border-none font-['IBM_Plex_Mono'] text-[14px] w-full outline-none text-black resize-none overflow-hidden p-0 leading-normal"
+                        placeholder="Ask me anything..."
+                        id="chat-input"
+                        rows="1"
+                        style="height: 20px;"
+                    ></textarea>
+                </div>
+            </div>
+            <!-- Debug panel -->
+            <div class="debug-panel" id="debugPanel" style="display: none; margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 5px; font-family: monospace; font-size: 10px; max-height: 150px; overflow-y: auto; border: 1px solid #ccc;">
+                <strong>Debug Logs:</strong>
+                <div id="debugLogs"></div>
+                <button onclick="clearDebugLogs()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #666; color: white; border: none; border-radius: 3px;">Clear Logs</button>
+                <button onclick="clearContext()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #444; color: white; border: none; border-radius: 3px;">Clear Context</button>
+                <button onclick="alert(localStorage.getItem('sidekickContext'))" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #444; color: white; border: none; border-radius: 3px;">Show Raw Context</button>
+                <button onclick="testContext()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #444; color: white; border: none; border-radius: 3px;">Test Context</button>
+                <button onclick="testCursor()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #666; color: white; border: none; border-radius: 3px;">Test Cursor</button>
+                <button onclick="testSidekickExpansion()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #18a000; color: white; border: none; border-radius: 3px;">Test Sidekick</button>
             </div>
         </div>
-        <!-- Debug panel -->
-        <div class="debug-panel" id="debugPanel" style="display: none; margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 5px; font-family: monospace; font-size: 10px; max-height: 150px; overflow-y: auto; border: 1px solid #ccc;">
-            <strong>Debug Logs:</strong>
-            <div id="debugLogs"></div>
-            <button onclick="clearDebugLogs()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #666; color: white; border: none; border-radius: 3px;">Clear Logs</button>
-            <button onclick="clearContext()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #444; color: white; border: none; border-radius: 3px;">Clear Context</button>
-            <button onclick="alert(localStorage.getItem('sidekickContext'))" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #444; color: white; border: none; border-radius: 3px;">Show Raw Context</button>
-            <button onclick="testContext()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #444; color: white; border: none; border-radius: 3px;">Test Context</button>
-            <button onclick="testCursor()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #666; color: white; border: none; border-radius: 3px;">Test Cursor</button>
-        </div>
-        <button onclick="toggleDebugPanel()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #666; color: white; border: none; border-radius: 3px;">Toggle Debug</button>
-        <div class="bg-[#18a000] p-4">
-            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold">AI Sidekick</h3>
+        <div class="bg-[#18a000] p-4 cursor-pointer transition-all duration-500 ease-in-out" id="sidekick-button" onclick="toggleSidekick()">
+            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold transition-all duration-500 ease-in-out" id="sidekick-text">AI Sidekick</h3>
         </div>
     </div>
 
@@ -506,6 +483,156 @@
     <script>
         // Initialize Simple Context AI Sidekick
         let simpleSidekick = null;
+        
+        // Sidekick toggle state
+        let sidekickCollapsed = false;
+        
+        // Track if this is a navigation (not refresh)
+        let isNavigation = false;
+        
+        // Set up beforeunload listener to detect navigation vs refresh
+        window.addEventListener('beforeunload', function() {
+            // If we're navigating to another page in our site, mark it as navigation
+            const currentUrl = window.location.href;
+            const nextUrl = sessionStorage.getItem('nextUrl');
+            
+            if (nextUrl && nextUrl !== currentUrl) {
+                isNavigation = true;
+                sessionStorage.setItem('isNavigation', 'true');
+            }
+        });
+        
+        // Set up click listeners for navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href]');
+            links.forEach(link => {
+                link.addEventListener('click', function() {
+                    const href = this.getAttribute('href');
+                    if (href && !href.startsWith('http') && !href.startsWith('#')) {
+                        sessionStorage.setItem('nextUrl', window.location.origin + href);
+                    }
+                });
+            });
+        });
+        
+        // Initialize sidekick state from sessionStorage
+        function initializeSidekickState() {
+            console.log('=== INITIALIZATION DEBUG ===');
+            const savedState = sessionStorage.getItem('sidekickCollapsed');
+            const wasNavigation = sessionStorage.getItem('isNavigation');
+            
+            console.log('Initializing sidekick state:', savedState);
+            console.log('Was navigation:', wasNavigation);
+            
+            // Clear the navigation flag
+            sessionStorage.removeItem('isNavigation');
+            sessionStorage.removeItem('nextUrl');
+            
+            // Apply collapsed state if it was a navigation and sidekick was collapsed
+            if (savedState === 'true' && wasNavigation === 'true') {
+                console.log('Applying collapsed state from navigation...');
+                // Apply collapsed state on page load
+                const aiSidekick = document.getElementById('ai-sidekick');
+                const chatContainer = document.getElementById('chat-container');
+                const sidekickText = document.getElementById('sidekick-text');
+                const mainContent = document.getElementById('main-content');
+                
+                console.log('Elements found during initialization:', {
+                    aiSidekick: !!aiSidekick,
+                    chatContainer: !!chatContainer,
+                    sidekickText: !!sidekickText,
+                    mainContent: !!mainContent
+                });
+                
+                if (aiSidekick && chatContainer && sidekickText && mainContent) {
+                    // Set initial collapsed state
+                    console.log('Setting collapsed state...');
+                    chatContainer.style.display = 'none';
+                    aiSidekick.style.width = '80px';
+                    aiSidekick.style.maxWidth = '80px';
+                    sidekickText.style.fontSize = '14px';
+                    sidekickText.textContent = 'AI';
+                    mainContent.style.width = '75%';
+                    mainContent.style.marginLeft = '12.5%'; // Center the 75% content
+                    sidekickCollapsed = true;
+                    
+                    console.log('Applied collapsed state successfully');
+                } else {
+                    console.error('Some elements not found during initialization');
+                }
+            } else {
+                console.log('Not navigation or no saved state - resetting to expanded state');
+                // Reset to expanded state on refresh, direct access, or external navigation
+                sessionStorage.setItem('sidekickCollapsed', 'false');
+                sidekickCollapsed = false;
+            }
+            console.log('=== END INITIALIZATION DEBUG ===');
+        }
+        
+        // Toggle AI Sidekick function
+        function toggleSidekick() {
+            console.log('=== TOGGLE SIDEKICK DEBUG ===');
+            console.log('Toggle sidekick called, current state:', sidekickCollapsed);
+            
+            const aiSidekick = document.getElementById('ai-sidekick');
+            const chatContainer = document.getElementById('chat-container');
+            const sidekickText = document.getElementById('sidekick-text');
+            const mainContent = document.getElementById('main-content');
+            const chatInput = document.getElementById('chat-input');
+            
+            console.log('Elements found:', {
+                aiSidekick: !!aiSidekick,
+                chatContainer: !!chatContainer,
+                sidekickText: !!sidekickText,
+                mainContent: !!mainContent,
+                chatInput: !!chatInput
+            });
+            
+            if (sidekickCollapsed) {
+                console.log('Expanding sidekick...');
+                
+                // Simple direct approach - just show the container
+                chatContainer.style.display = 'block';
+                chatContainer.style.visibility = 'visible';
+                chatContainer.style.opacity = '1';
+                chatContainer.style.maxHeight = 'none';
+                chatContainer.style.overflow = 'visible';
+                
+                aiSidekick.style.width = '25%';
+                aiSidekick.style.maxWidth = '394px';
+                sidekickText.style.fontSize = '14px';
+                sidekickText.textContent = 'AI Sidekick';
+                mainContent.style.width = '75%';
+                mainContent.style.marginLeft = '0';
+                
+                // Ensure input is visible and functional
+                if (chatInput) {
+                    chatInput.style.display = 'block';
+                    chatInput.style.visibility = 'visible';
+                    chatInput.style.opacity = '1';
+                    chatInput.focus();
+                    console.log('Input field restored successfully');
+                }
+                
+                sidekickCollapsed = false;
+                sessionStorage.setItem('sidekickCollapsed', 'false');
+                console.log('Sidekick expanded, state saved');
+            } else {
+                console.log('Collapsing sidekick...');
+                // Collapse sidekick - hide the container
+                chatContainer.style.display = 'none';
+                aiSidekick.style.width = '80px';
+                aiSidekick.style.maxWidth = '80px';
+                sidekickText.style.fontSize = '14px';
+                sidekickText.textContent = 'AI';
+                mainContent.style.width = '75%';
+                mainContent.style.marginLeft = '12.5%'; // Center the 75% content
+                sidekickCollapsed = true;
+                sessionStorage.setItem('sidekickCollapsed', 'true');
+                console.log('Sidekick collapsed, state saved');
+            }
+            console.log('=== END TOGGLE DEBUG ===');
+        }
 
         // Debug panel functions
         function toggleDebugPanel() {
@@ -1112,6 +1239,11 @@
                     sessionStorage.setItem('isNavigating', 'true');
                     window.location.href = 'trust-is-the-product.html';
                 }
+            },
+            'cursor': {
+                keywords: ['cursor', 'cursor ai', 'code editor', 'development tools', 'tools', 'software'],
+                response: "Yes, Carlos definitely uses Cursor! It's one of his primary development tools. He uses Cursor AI as his main code editor for rapid development and prototyping. It's listed as one of the tools he used in his AI Research Workbook project at Northwestern Medicine, and it's also mentioned in the footer of his portfolio as one of the technologies powering this site. Carlos values Cursor for its AI-powered development capabilities, which aligns with his philosophy of using AI to amplify human capabilities rather than replace them.",
+                action: null
             }
         };
 
@@ -1318,6 +1450,12 @@
         // Load chat history when page loads
         initializeSession();
         loadChatHistory();
+        
+        // Initialize sidekick state from sessionStorage after DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing sidekick state...');
+            initializeSidekickState();
+        });
 
         // Initialize AI Sidekick (OpenAI if available, fallback to Simple Context)
         console.log('=== INITIALIZATION DEBUG ===');
@@ -1338,6 +1476,45 @@
         window.setOpenAIKey = function(apiKey) {
             localStorage.setItem('openai_api_key', apiKey);
             console.log('OpenAI API key set. Reload the page to use the new AI sidekick.');
+        };
+        
+        // Test function for debugging sidekick expansion
+        window.testSidekickExpansion = function() {
+            console.log('=== MANUAL TEST ===');
+            console.log('Current sidekickCollapsed state:', sidekickCollapsed);
+            console.log('Session storage value:', sessionStorage.getItem('sidekickCollapsed'));
+            
+            const aiSidekick = document.getElementById('ai-sidekick');
+            const chatContainer = document.getElementById('chat-container');
+            const sidekickText = document.getElementById('sidekick-text');
+            const mainContent = document.getElementById('main-content');
+            const chatInput = document.getElementById('chat-input');
+            
+            console.log('All elements found:', {
+                aiSidekick: !!aiSidekick,
+                chatContainer: !!chatContainer,
+                sidekickText: !!sidekickText,
+                mainContent: !!mainContent,
+                chatInput: !!chatInput
+            });
+            
+            if (chatContainer) {
+                console.log('Chat container current styles:', {
+                    maxHeight: chatContainer.style.maxHeight,
+                    overflow: chatContainer.style.overflow,
+                    transition: chatContainer.style.transition
+                });
+            }
+            
+            // Try to force expand
+            if (sidekickCollapsed && chatContainer) {
+                console.log('Attempting to force expand...');
+                chatContainer.style.display = 'block';
+                chatContainer.style.visibility = 'visible';
+                chatContainer.style.opacity = '1';
+                sidekickCollapsed = false;
+                console.log('Force expand completed');
+            }
         };
         
         // Only clear test contexts, not real contexts
@@ -1792,7 +1969,158 @@
                     });
                 });
             });
+            
+            // Initial random animation on page load
+            function triggerInitialAnimation() {
+                const rect = heroAnimation.getBoundingClientRect();
+                const minTop = 192; // Text protection zone
+                
+                // Get all available animations
+                const allAnimations = Array.from(animations);
+                
+                // Randomly select 3-4 animations to trigger
+                const numToTrigger = Math.floor(Math.random() * 2) + 3;
+                const selectedAnimations = [];
+                
+                for (let i = 0; i < numToTrigger && allAnimations.length > 0; i++) {
+                    const randomIndex = Math.floor(Math.random() * allAnimations.length);
+                    const selectedAnim = allAnimations.splice(randomIndex, 1)[0];
+                    selectedAnimations.push(selectedAnim);
+                }
+                
+                // Trigger selected animations with staggered delays
+                selectedAnimations.forEach((anim, index) => {
+                    const delay = index * 300 + 500; // Start after 500ms, then every 300ms
+                    
+                    setTimeout(() => {
+                        // Generate random opacity between 0.6 and 1.0
+                        const randomOpacity = Math.random() * 0.4 + 0.6;
+                        anim.style.opacity = randomOpacity;
+                        
+                        // Generate random line length scaling between 50% and 150%
+                        const randomLengthScale = Math.random() * 1.0 + 0.5;
+                        
+                        // Apply random length scaling
+                        if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                            const currentHeight = anim.style.height || '33.333%';
+                            const newHeight = `calc(${currentHeight} * ${randomLengthScale})`;
+                            anim.style.height = newHeight;
+                        } else {
+                            const currentWidth = anim.style.width || '33.333%';
+                            const newWidth = `calc(${currentWidth} * ${randomLengthScale})`;
+                            anim.style.width = newWidth;
+                        }
+                        
+                        // Position randomly in the animation area (respecting text protection zone)
+                        if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                            const newLeft = Math.max(4, Math.min(rect.width - 20, Math.random() * rect.width));
+                            anim.style.left = newLeft + 'px';
+                            anim.style.transform = 'scaleY(1)';
+                        } else {
+                            const newTop = Math.max(minTop, Math.min(rect.height - 20, Math.random() * rect.height));
+                            anim.style.top = newTop + 'px';
+                            anim.style.transform = 'scaleX(1)';
+                        }
+                        
+                        // Add to active animations
+                        activeAnimations.add(anim.dataset.animation);
+                        
+                        // Auto-remove after 3-5 seconds
+                        setTimeout(() => {
+                            if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                                anim.style.transform = 'scaleY(0)';
+                            } else {
+                                anim.style.transform = 'scaleX(0)';
+                            }
+                            activeAnimations.delete(anim.dataset.animation);
+                        }, Math.random() * 2000 + 3000); // 3-5 seconds
+                        
+                    }, delay);
+                });
+            }
+            
+            // Trigger initial animation after a short delay
+            setTimeout(triggerInitialAnimation, 1000);
         });
+        
+        // Copy email to clipboard function
+        function copyEmail() {
+            const email = 'c.a.rodriguez1999@gmail.com';
+            
+            // Use the modern clipboard API if available
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(email).then(() => {
+                    showEmailPopup();
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                    fallbackCopyEmail(email);
+                });
+            } else {
+                // Fallback for older browsers or non-secure contexts
+                fallbackCopyEmail(email);
+            }
+        }
+        
+        // Fallback copy method for older browsers
+        function fallbackCopyEmail(email) {
+            const textArea = document.createElement('textarea');
+            textArea.value = email;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showEmailPopup();
+            } catch (err) {
+                console.error('Fallback copy failed: ', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+        
+        // Show email copy popup
+        function showEmailPopup() {
+            const popup = document.getElementById('email-popup');
+            const popupLine = document.getElementById('popup-line');
+            
+            // Reset any existing timeouts
+            if (popup.timeoutId) {
+                clearTimeout(popup.timeoutId);
+            }
+            
+            // Show popup with fade-in animation
+            popup.style.display = 'block';
+            
+            // Trigger animation after a brief delay to ensure display is set
+            setTimeout(() => {
+                popup.style.opacity = '1';
+                popup.style.transform = 'translateY(0)';
+                
+                // Start rolling line animation down as text appears
+                setTimeout(() => {
+                    popupLine.style.transform = 'scaleY(1)';
+                }, 100);
+            }, 10);
+            
+            // Hide popup after 3 seconds
+            popup.timeoutId = setTimeout(() => {
+                // Start rolling line animation up and fade out popup simultaneously
+                popupLine.style.transform = 'scaleY(0)';
+                popup.style.opacity = '0';
+                popup.style.transform = 'translateY(-10px)';
+                
+                // Hide completely after fade
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 300);
+            }, 3000);
+        }
+        
+
     </script>
 
 </body>
