@@ -88,9 +88,11 @@
             white-space: pre-line;
         }
         
-        /* Hide default cursor */
-        * {
-            cursor: none;
+        /* Hide default cursor on desktop only */
+        @media (min-width: 769px) {
+            * {
+                cursor: none;
+            }
         }
         
 
@@ -124,9 +126,11 @@
             cursor: text;
         }
 
-        /* Exception for clickable elements */
-        a, button {
-            cursor: none;
+        /* Exception for clickable elements on desktop */
+        @media (min-width: 769px) {
+            a, button {
+                cursor: none;
+            }
         }
         
 
@@ -164,12 +168,14 @@
     <div class="cursor" id="cursor"></div>
 
     <!-- Main Content Area (responsive width) -->
-    <div class="w-3/4 overflow-x-hidden transition-all duration-500 ease-in-out" id="main-content">
+    <div class="w-full md:w-3/4 overflow-x-hidden transition-all duration-500 ease-in-out" id="main-content">
         <!-- Navigation -->
-        <nav class="fixed w-3/4 z-50 transition-all duration-500 ease-in-out" id="main-nav">
-            <div class="bg-white/80 backdrop-blur-lg px-12 py-6">
+        <nav class="fixed w-full md:w-3/4 z-50 transition-all duration-500 ease-in-out" id="main-nav">
+            <div class="bg-white/80 backdrop-blur-lg px-4 md:px-12 py-4 md:py-6">
                 <div class="flex justify-between items-center">
-                    <h1 class="text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    <h1 class="text-[20px] md:text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    
+                    <!-- Desktop Navigation -->
                     <div class="hidden md:flex space-x-12">
                         <a href="#" class="text-[16px] font-helvetica font-light nav-link active relative">Home</a>
                         <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link relative">Projects</a>
@@ -194,28 +200,53 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden text-black">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Mobile Navigation Menu -->
+                <div id="mobile-menu" class="md:hidden hidden mt-4 pt-4 border-t border-gray-200">
+                    <div class="flex flex-col space-y-4">
+                        <a href="#" class="text-[16px] font-helvetica font-light nav-link active relative">Home</a>
+                        <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link relative">Projects</a>
+                        <a href="https://docs.google.com/document/d/1RXj2iDbQUYEA5Zh2meN2EXdoaU2CWZfN_qSqDnq9CNY/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
+                        <a href="about.html" class="text-[16px] font-helvetica font-light nav-link relative">About</a>
+                        <div class="pt-2">
+                            <p class="text-[14px] font-helvetica font-bold text-black mb-2">Contact</p>
+                            <div class="space-y-2">
+                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-left w-full">c.a.rodriguez1999@gmail.com</button>
+                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
 
         <!-- Content Sections -->
-        <div class="max-w-[960px] mx-auto pt-24" style="padding-left: 48px; padding-right: 48px;">
+        <div class="max-w-[960px] mx-auto pt-20 md:pt-24 px-4 md:px-12">
             <!-- Hero Section -->
-            <section class="mb-14 relative h-96">
-                <div class="mb-16">
-                    <h2 class="text-[32px] font-helvetica font-medium leading-tight">I am a human-centered AI Product Manager.</h2>
-                    <h3 class="text-[20px] font-helvetica font-light leading-tight mt-4">Designing transformative experiences to amplify unheard voices.</h3>
+            <section class="mb-8 md:mb-14 relative h-64 md:h-96">
+                <div class="mb-8 md:mb-16">
+                    <h2 class="text-[24px] md:text-[32px] font-helvetica font-medium leading-tight">I am a human-centered AI Product Manager.</h2>
+                    <h3 class="text-[16px] md:text-[20px] font-helvetica font-light leading-tight mt-2 md:mt-4">Designing transformative experiences to amplify unheard voices.</h3>
                 </div>
                 
-                <div class="mb-32">
-                    <p class="text-[16px] font-helvetica font-light leading-tight text-right">Currently at Northwestern Medicine.</p>
-                    <p class="text-[16px] font-helvetica font-light leading-tight mt-1 text-right">Previously at Microsoft.</p>
+                <div class="mb-16 md:mb-32">
+                    <p class="text-[14px] md:text-[16px] font-helvetica font-light leading-tight text-right">Currently at Northwestern Medicine.</p>
+                    <p class="text-[14px] md:text-[16px] font-helvetica font-light leading-tight mt-1 text-right">Previously at Microsoft.</p>
                 </div>
                 
                 <!-- Hero Animation Area -->
                 <div class="absolute inset-0 overflow-hidden group" id="hero-animation">
                     <!-- Text Protection Zone (exclude from animation) -->
-                    <div class="absolute top-0 left-0 w-full h-48 pointer-events-none"></div>
+                    <div class="absolute top-0 left-0 w-full h-32 md:h-48 pointer-events-none"></div>
                     
                     <!-- Hover Zones - Expanded Coverage -->
                     <div class="absolute top-32 left-0 w-1/3 h-1/3 cursor-pointer" data-zone="top-left"></div>
@@ -249,10 +280,10 @@
             </section>
 
             <!-- Featured Projects -->
-            <section id="projects" class="mb-14">
-                <h2 class="text-[36px] font-nuosu mb-5">Featured Projects</h2>
-                <div class="flex space-x-[25px] overflow-x-auto pb-4 scrollbar-hide">
-                    <div class="flex-shrink-0 w-[calc(33.333%-17px)] pt-4 px-2">
+            <section id="projects" class="mb-8 md:mb-14">
+                <h2 class="text-[28px] md:text-[36px] font-nuosu mb-4 md:mb-5">Featured Projects</h2>
+                <div class="flex flex-col md:flex-row md:space-x-[25px] space-y-4 md:space-y-0 overflow-x-auto pb-4 scrollbar-hide">
+                    <div class="flex-shrink-0 w-full md:w-[calc(33.333%-17px)] pt-4 px-2">
                         <a href="ai-research-workbook.html">
                             <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
                                 <img src="images/BeyondChat.webp" alt="AI Research Workbook" class="w-full h-64 object-cover">
@@ -261,7 +292,7 @@
                             <p class="text-[14px] font-helvetica font-light">Product Manager, Northwestern Medicine</p>
                         </a>
                     </div>
-                    <div class="flex-shrink-0 w-[calc(33.333%-17px)] pt-4 px-2">
+                    <div class="flex-shrink-0 w-full md:w-[calc(33.333%-17px)] pt-4 px-2">
                         <a href="bachelors-microsoft-health.html">
                             <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
                                 <img src="images/BMH-ProjectCard copy.jpg" alt="Bachelors in Microsoft Health" class="w-full h-64 object-cover">
@@ -270,7 +301,7 @@
                             <p class="text-[14px] font-helvetica font-light">Program Manager, Microsoft Corporation</p>
                         </a>
                     </div>
-                    <div class="flex-shrink-0 w-[calc(33.333%-17px)] pt-4 px-2">
+                    <div class="flex-shrink-0 w-full md:w-[calc(33.333%-17px)] pt-4 px-2">
                         <a href="nm-scholars-program.html">
                             <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
                                 <img src="images/NM-Scholars-2.jpg" alt="NM Scholars Program" class="w-full h-64 object-cover">
@@ -283,19 +314,19 @@
             </section>
 
             <!-- Experience Section -->
-            <section id="resume" class="mb-14">
-                <h2 class="text-[36px] font-nuosu mb-5">Experience</h2>
+            <section id="resume" class="mb-8 md:mb-14">
+                <h2 class="text-[28px] md:text-[36px] font-nuosu mb-4 md:mb-5">Experience</h2>
                 <div class="max-w-[805px]">
                     <!-- Northwestern Medicine -->
-                    <div class="mb-12">
-                        <div class="flex justify-between items-center mb-2">
-                            <h3 class="text-[20px] font-helvetica font-bold">Northwestern Medicine</h3>
-                            <span class="text-[16px] font-helvetica font-light">2025 - Present</span>
+                    <div class="mb-8 md:mb-12">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
+                            <h3 class="text-[18px] md:text-[20px] font-helvetica font-bold">Northwestern Medicine</h3>
+                            <span class="text-[14px] md:text-[16px] font-helvetica font-light mt-1 md:mt-0">2025 - Present</span>
                         </div>
                         <div>
-                            <div class="mb-8">
-                                <h4 class="text-[20px] font-helvetica font-light mb-2">Product Manager <span class="font-light">| AI Research Workbook</span></h4>
-                                <p class="text-[16px] font-helvetica font-light leading-relaxed">Led research and product development for an AI-supported workbook helping first-gen students conduct academic research with confidence. Integrated GPT-4 into scaffolded modules, balancing automation with pedagogical integrity. Piloted across university partners with evidence-based learning outcomes.</p>
+                            <div class="mb-6 md:mb-8">
+                                <h4 class="text-[16px] md:text-[20px] font-helvetica font-light mb-2">Product Manager <span class="font-light">| AI Research Workbook</span></h4>
+                                <p class="text-[14px] md:text-[16px] font-helvetica font-light leading-relaxed">Led research and product development for an AI-supported workbook helping first-gen students conduct academic research with confidence. Integrated GPT-4 into scaffolded modules, balancing automation with pedagogical integrity. Piloted across university partners with evidence-based learning outcomes.</p>
                             </div>
                             <div>
                                 <h4 class="text-[20px] font-helvetica font-light mb-2">Design Strategist <span class="font-light">| NM Scholars Program</span></h4>
@@ -361,11 +392,11 @@
             </section>
 
             <!-- Blog Section -->
-            <section id="blog" class="mb-14">
-                <h2 class="text-[36px] font-nuosu mb-5">Blog</h2>
-                <p class="text-[16px] font-helvetica font-light leading-relaxed mb-12">I am the co-founder of <span class="text-[#9a472f]">Better Problems</span>, check us out! Here are some featured articles.</p>
-                <div class="flex space-x-[25px] overflow-x-auto pb-4 scrollbar-hide">
-                    <div class="flex-shrink-0 w-[calc(33.333%-17px)] pt-4 px-2">
+            <section id="blog" class="mb-8 md:mb-14">
+                <h2 class="text-[28px] md:text-[36px] font-nuosu mb-4 md:mb-5">Blog</h2>
+                <p class="text-[14px] md:text-[16px] font-helvetica font-light leading-relaxed mb-8 md:mb-12">I am the co-founder of <span class="text-[#9a472f]">Better Problems</span>, check us out! Here are some featured articles.</p>
+                <div class="flex flex-col md:flex-row md:space-x-[25px] space-y-4 md:space-y-0 overflow-x-auto pb-4 scrollbar-hide">
+                    <div class="flex-shrink-0 w-full md:w-[calc(33.333%-17px)] pt-4 px-2">
                         <a href="better-problems.html">
                             <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
                                 <img src="images/BP-Card2.jpg" alt="Better Problems" class="w-full h-64 object-cover">
@@ -374,7 +405,7 @@
                             <p class="text-[14px] font-helvetica font-light">The Power of Reframing Everyday</p>
                         </a>
                     </div>
-                    <div class="flex-shrink-0 w-[calc(33.333%-17px)] pt-4 px-2">
+                    <div class="flex-shrink-0 w-full md:w-[calc(33.333%-17px)] pt-4 px-2">
                         <a href="ai-beyond-chat.html">
                             <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
                                 <img src="images/BeyondChat-copy.jpg" alt="AI Beyond The Chat" class="w-full h-64 object-cover">
@@ -383,7 +414,7 @@
                             <p class="text-[14px] font-helvetica font-light">Designing AI tools that teach</p>
                         </a>
                     </div>
-                    <div class="flex-shrink-0 w-[calc(33.333%-17px)] pt-4 px-2">
+                    <div class="flex-shrink-0 w-full md:w-[calc(33.333%-17px)] pt-4 px-2">
                         <a href="design-what-you-dont-see.html">
                             <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
                                 <img src="images/ST copy.jpg" alt="Design Is What You Don't See" class="w-full h-64 object-cover">
@@ -392,7 +423,7 @@
                             <p class="text-[14px] font-helvetica font-light">Critical design should linger, not resolve</p>
                         </a>
                     </div>
-                    <div class="flex-shrink-0 w-[calc(33.333%-17px)] pt-4 px-2">
+                    <div class="flex-shrink-0 w-full md:w-[calc(33.333%-17px)] pt-4 px-2">
                         <a href="trust-is-the-product.html">
                             <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 mb-5">
                                 <img src="images/PMArticle copy.jpeg" alt="Trust Is The Product" class="w-full h-64 object-cover">
@@ -407,25 +438,25 @@
 
 
             <!-- Footer -->
-            <footer class="bg-white border-t border-gray-200 mt-20">
-                <div class="max-w-7xl mx-auto px-12 py-8">
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-8">
+            <footer class="bg-white border-t border-gray-200 mt-12 md:mt-20">
+                <div class="max-w-7xl mx-auto px-4 md:px-12 py-6 md:py-8">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
+                        <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8">
                             <div>
-                                <h3 class="text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
-                                <p class="text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                                <h3 class="text-[18px] md:text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                                <p class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
                             </div>
-                            <div class="border-l border-gray-300 h-12"></div>
+                            <div class="hidden md:block border-l border-gray-300 h-12"></div>
                             <div>
-                                <p class="text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                                <p class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
                                 <div class="flex space-x-4">
-                                    <button onclick="copyEmail()" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
-                                    <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                    <a href="https://github.com/CRodriguez245" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                                    <button onclick="copyEmail()" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
+                                    <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                    <a href="https://github.com/CRodriguez245" target="_blank" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
                                 </div>
                             </div>
                         </div>
-                                                    <div class="text-right">
+                        <div class="text-center md:text-right">
                                 <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
                                 <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
                                 <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by Cursor AI, Figma, and GPT</p>
@@ -444,7 +475,7 @@
     </div>
 
     <!-- AI Sidekick -->
-    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col z-[9999] transition-all duration-500 ease-in-out" id="ai-sidekick">
+    <div class="fixed bottom-0 right-2 md:right-8 w-[calc(100vw-16px)] md:w-1/4 md:max-w-[394px] flex flex-col z-[9999] transition-all duration-500 ease-in-out" id="ai-sidekick">
         <div class="overflow-hidden transition-all duration-500 ease-in-out" id="chat-container">
             <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
                 <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
@@ -1226,7 +1257,7 @@
             },
             'article_design_not_see': {
                 keywords: ["design is what you don't see", 'design what you dont see', 'design is what you dont see'],
-                response: "Opening Design Is What You Don’t See...",
+                response: "Opening Design Is What You Don't See...",
                 action: () => {
                     sessionStorage.setItem('isNavigating', 'true');
                     window.location.href = 'design-what-you-dont-see.html';
@@ -2119,6 +2150,50 @@
                 }, 300);
             }, 3000);
         }
+        
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Disable custom cursor on mobile devices
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+        
+        // Update cursor behavior based on screen size
+        function updateCursorBehavior() {
+            const cursor = document.getElementById('cursor');
+            if (isMobile()) {
+                // Hide custom cursor on mobile
+                if (cursor) cursor.style.display = 'none';
+                // Re-enable default cursor
+                document.body.style.cursor = 'auto';
+            } else {
+                // Show custom cursor on desktop
+                if (cursor) cursor.style.display = 'block';
+                // Disable default cursor
+                document.body.style.cursor = 'none';
+            }
+        }
+        
+        // Call on load and resize
+        window.addEventListener('load', updateCursorBehavior);
+        window.addEventListener('resize', updateCursorBehavior);
         
 
     </script>
