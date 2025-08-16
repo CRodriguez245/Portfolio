@@ -166,6 +166,13 @@
         
         /* Mobile full-screen sidekick styles */
         @media (max-width: 768px) {
+            /* Prevent zoom on mobile input focus */
+            #ai-sidekick.mobile-fullscreen input,
+            #ai-sidekick.mobile-fullscreen textarea {
+                font-size: 16px !important;
+                transform: none !important;
+            }
+            
             /* Mobile collapsed state - small square button */
             #ai-sidekick {
                 width: 60px !important;
@@ -231,7 +238,7 @@
                 max-height: none !important;
                 width: 100% !important;
                 display: flex !important;
-                flex-direction: column-reverse !important;
+                flex-direction: column !important;
                 min-height: 0 !important;
             }
             
@@ -267,12 +274,14 @@
                 border: none !important;
                 left: auto !important;
                 transform: none !important;
+                pointer-events: auto !important;
             }
             
             #ai-sidekick.mobile-fullscreen #sidekick-text {
                 font-size: 24px !important;
                 font-weight: bold !important;
                 color: #18a000 !important;
+                z-index: 10002 !important;
             }
             
             /* Hide main content when sidekick is fullscreen on mobile */
@@ -1782,8 +1791,8 @@
             const isMobileFullscreen = aiSidekick && aiSidekick.classList.contains('mobile-fullscreen');
             
             if (isMobile && isMobileFullscreen) {
-                // Mobile full-screen: scroll to top (0) for column-reverse layout
-                chatMessages.scrollTop = 0;
+                // Mobile full-screen: scroll to bottom for normal column layout
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             } else {
                 // Desktop: scroll to bottom as usual
                 chatMessages.scrollTop = chatMessages.scrollHeight;
