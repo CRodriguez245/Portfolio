@@ -234,7 +234,7 @@
             
             #ai-sidekick.mobile-fullscreen #chat-messages {
                 flex: 1 !important;
-                padding: 100px 20px 0 20px !important;
+                padding: 80px 20px 0 20px !important;
                 overflow-y: auto !important;
                 max-height: none !important;
                 width: 100% !important;
@@ -278,6 +278,19 @@
                 left: auto !important;
                 transform: none !important;
                 pointer-events: auto !important;
+            }
+            
+            /* White bar to cut off chat log before X button */
+            #ai-sidekick.mobile-fullscreen::before {
+                content: '' !important;
+                position: fixed !important;
+                top: 0 !important;
+                right: 0 !important;
+                width: 60px !important;
+                height: 60px !important;
+                background: white !important;
+                z-index: 99998 !important;
+                pointer-events: none !important;
             }
             
             #ai-sidekick.mobile-fullscreen #sidekick-text {
