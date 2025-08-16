@@ -169,7 +169,7 @@
                 width: 60px !important;
                 height: 60px !important;
                 max-width: 60px !important;
-                border-radius: 8px !important;
+                border-radius: 0 !important;
                 bottom: 20px !important;
                 right: 20px !important;
                 margin: 0 !important;
@@ -182,7 +182,7 @@
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
-                border-radius: 8px !important;
+                border-radius: 0 !important;
             }
             
             #ai-sidekick #sidekick-text {
@@ -214,6 +214,7 @@
                 padding: 0 !important;
                 background: white !important;
                 position: relative !important;
+                width: 100% !important;
             }
             
             #ai-sidekick.mobile-fullscreen #chat-messages {
@@ -221,6 +222,7 @@
                 padding: 60px 20px 20px 20px !important;
                 overflow-y: auto !important;
                 max-height: none !important;
+                width: 100% !important;
             }
             
             #ai-sidekick.mobile-fullscreen #chat-input-container {
@@ -229,17 +231,18 @@
                 background: white !important;
                 padding: 20px !important;
                 border-top: 1px solid #e5e7eb !important;
+                width: 100% !important;
             }
             
             #ai-sidekick.mobile-fullscreen #sidekick-button {
                 position: absolute !important;
                 top: 20px !important;
                 right: 20px !important;
-                width: 40px !important;
-                height: 40px !important;
+                width: auto !important;
+                height: auto !important;
                 padding: 0 !important;
-                border-radius: 50% !important;
-                background: #18a000 !important;
+                border-radius: 0 !important;
+                background: transparent !important;
                 z-index: 10001 !important;
                 display: flex !important;
                 align-items: center !important;
@@ -248,9 +251,9 @@
             }
             
             #ai-sidekick.mobile-fullscreen #sidekick-text {
-                font-size: 18px !important;
+                font-size: 24px !important;
                 font-weight: bold !important;
-                color: white !important;
+                color: #18a000 !important;
             }
             
             /* Hide main content when sidekick is fullscreen on mobile */
