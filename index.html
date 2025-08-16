@@ -2390,8 +2390,15 @@
             const currentViewportHeight = window.innerHeight;
             const heightDifference = initialViewportHeight - currentViewportHeight;
             
+            console.log('Viewport check:', {
+                initial: initialViewportHeight,
+                current: currentViewportHeight,
+                difference: heightDifference,
+                isKeyboardVisible: isKeyboardVisible
+            });
+            
             // If viewport height decreased significantly, keyboard is likely visible
-            if (heightDifference > 150) {
+            if (heightDifference > 100) {
                 if (!isKeyboardVisible) {
                     isKeyboardVisible = true;
                     sidekickButton.style.top = '10px';
@@ -2442,6 +2449,25 @@
                 updateXButtonPosition();
             }, 100);
         });
+        
+        // Also check when input is focused (keyboard likely to appear)
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatInput = document.getElementById('chat-input');
+            if (chatInput) {
+                chatInput.addEventListener('focus', function() {
+                    console.log('Input focused, checking for keyboard...');
+                    setTimeout(updateXButtonPosition, 300); // Check after keyboard animation
+                });
+                
+                chatInput.addEventListener('blur', function() {
+                    console.log('Input blurred, checking for keyboard...');
+                    setTimeout(updateXButtonPosition, 300); // Check after keyboard animation
+                });
+            }
+        });
+        
+        // Periodic check for viewport changes
+        setInterval(updateXButtonPosition, 500);
         
         // Handle mobile orientation changes and screen size changes
         window.addEventListener('resize', function() {
