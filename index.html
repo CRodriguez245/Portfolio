@@ -785,10 +785,33 @@
                     console.error('Some elements not found during initialization');
                 }
             } else {
-                console.log('Not navigation or no saved state - resetting to expanded state');
-                // Reset to expanded state on refresh, direct access, or external navigation
-                sessionStorage.setItem('sidekickCollapsed', 'false');
-                sidekickCollapsed = false;
+                console.log('Not navigation or no saved state - checking mobile default');
+                const isMobile = window.innerWidth <= 768;
+                
+                if (isMobile) {
+                    // Mobile: Start collapsed by default
+                    console.log('Mobile detected - starting collapsed by default');
+                    const aiSidekick = document.getElementById('ai-sidekick');
+                    const chatContainer = document.getElementById('chat-container');
+                    const sidekickText = document.getElementById('sidekick-text');
+                    const mainContent = document.getElementById('main-content');
+                    
+                    if (aiSidekick && chatContainer && sidekickText && mainContent) {
+                        // Ensure we're not in full-screen mode
+                        aiSidekick.classList.remove('mobile-fullscreen');
+                        mainContent.classList.remove('mobile-hidden');
+                        chatContainer.style.display = 'none';
+                        sidekickText.textContent = 'AI';
+                        sidekickCollapsed = true;
+                        sessionStorage.setItem('sidekickCollapsed', 'true');
+                        console.log('Applied mobile collapsed state successfully');
+                    }
+                } else {
+                    // Desktop: Reset to expanded state on refresh, direct access, or external navigation
+                    sessionStorage.setItem('sidekickCollapsed', 'false');
+                    sidekickCollapsed = false;
+                    console.log('Desktop - resetting to expanded state');
+                }
             }
             console.log('=== END INITIALIZATION DEBUG ===');
         }
