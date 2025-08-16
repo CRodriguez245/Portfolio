@@ -164,6 +164,33 @@
         
         /* Mobile full-screen sidekick styles */
         @media (max-width: 768px) {
+            /* Mobile collapsed state - small square button */
+            #ai-sidekick {
+                width: 60px !important;
+                height: 60px !important;
+                max-width: 60px !important;
+                border-radius: 8px !important;
+                bottom: 20px !important;
+                right: 20px !important;
+                margin: 0 !important;
+            }
+            
+            #ai-sidekick #sidekick-button {
+                width: 100% !important;
+                height: 100% !important;
+                padding: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                border-radius: 8px !important;
+            }
+            
+            #ai-sidekick #sidekick-text {
+                font-size: 12px !important;
+                font-weight: bold !important;
+            }
+            
+            /* Mobile full-screen mode */
             #ai-sidekick.mobile-fullscreen {
                 position: fixed !important;
                 top: 0 !important;
@@ -176,28 +203,54 @@
                 background: white !important;
                 border-radius: 0 !important;
                 margin: 0 !important;
+                display: flex !important;
+                flex-direction: column !important;
             }
             
             #ai-sidekick.mobile-fullscreen #chat-container {
                 flex: 1 !important;
-                max-height: calc(100vh - 80px) !important;
-                padding: 20px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                padding: 0 !important;
                 background: white !important;
+                position: relative !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-messages {
+                flex: 1 !important;
+                padding: 60px 20px 20px 20px !important;
+                overflow-y: auto !important;
+                max-height: none !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-input-container {
+                position: sticky !important;
+                bottom: 0 !important;
+                background: white !important;
+                padding: 20px !important;
+                border-top: 1px solid #e5e7eb !important;
             }
             
             #ai-sidekick.mobile-fullscreen #sidekick-button {
                 position: absolute !important;
                 top: 20px !important;
                 right: 20px !important;
-                width: auto !important;
-                padding: 8px 16px !important;
-                border-radius: 20px !important;
+                width: 40px !important;
+                height: 40px !important;
+                padding: 0 !important;
+                border-radius: 50% !important;
                 background: #18a000 !important;
                 z-index: 10001 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                border: none !important;
             }
             
             #ai-sidekick.mobile-fullscreen #sidekick-text {
-                font-size: 14px !important;
+                font-size: 18px !important;
+                font-weight: bold !important;
+                color: white !important;
             }
             
             /* Hide main content when sidekick is fullscreen on mobile */
@@ -524,7 +577,7 @@
             <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
                 <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
             </div>
-            <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex">
+            <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex" id="chat-input-container">
                 <span class="text-black mt-[2px]">></span>
                 <div class="relative flex-1 ml-2">
                     <textarea 
@@ -688,7 +741,7 @@
                     chatContainer.style.display = 'block';
                     chatContainer.style.visibility = 'visible';
                     chatContainer.style.opacity = '1';
-                    sidekickText.textContent = 'Close';
+                    sidekickText.textContent = '×';
                     
                     // Ensure input is visible and functional
                     if (chatInput) {
