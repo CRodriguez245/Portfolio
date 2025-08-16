@@ -162,6 +162,21 @@
             overflow: visible !important;
         }
         
+        /* Chat messages should display from bottom to top */
+        #chat-messages {
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: flex-start;
+            min-height: 0;
+        }
+        
+        /* Ensure new messages appear at the bottom */
+        #chat-messages p {
+            margin: 0;
+            padding: 8px 0;
+            flex-shrink: 0;
+        }
+        
         /* Mobile full-screen sidekick styles */
         @media (max-width: 768px) {
             /* Mobile collapsed state - small square button */
@@ -228,6 +243,9 @@
                 overflow-y: auto !important;
                 max-height: none !important;
                 width: 100% !important;
+                display: flex !important;
+                flex-direction: column-reverse !important;
+                min-height: 0 !important;
             }
             
             #ai-sidekick.mobile-fullscreen #chat-input-container {
@@ -1777,7 +1795,8 @@
                 animateText(p, text);
             }
 
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            // Scroll to show the latest message (with column-reverse, scroll to top)
+            chatMessages.scrollTop = 0;
 
             // Save to sessionStorage
             const history = JSON.parse(sessionStorage.getItem('chatHistory')) || [];
@@ -1805,8 +1824,8 @@
                 // Convert line breaks to HTML br tags for proper formatting
                 element.innerHTML = currentText.replace(/\n/g, '<br>');
                 
-                // Auto-scroll to bottom to show new text as it's being typed
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                // Auto-scroll to show new text as it's being typed (with column-reverse, scroll to top)
+                chatMessages.scrollTop = 0;
                 
                 await new Promise(resolve => setTimeout(resolve, delay));
             }
