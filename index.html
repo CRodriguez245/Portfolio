@@ -392,7 +392,7 @@
         <!-- Content Sections -->
         <div class="max-w-[960px] mx-auto pt-20 md:pt-24 px-4 md:px-12">
             <!-- Hero Section -->
-            <section class="mb-8 md:mb-14 relative h-80 md:h-96">
+            <section class="mb-8 md:mb-14 relative h-96 md:h-96">
                 <div class="mb-8 md:mb-16">
                     <h2 class="text-[24px] md:text-[32px] font-helvetica font-medium leading-tight">I am a human-centered AI Product Manager.</h2>
                     <h3 class="text-[16px] md:text-[20px] font-helvetica font-light leading-tight mt-2 md:mt-4">Designing transformative experiences to amplify unheard voices.</h3>
@@ -442,6 +442,20 @@
                     <div class="absolute top-192 left-4 w-0.5 h-1/6 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-16"></div>
                     <div class="absolute top-200 left-8 w-1/8 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-700 ease-out origin-left" data-animation="line-17"></div>
                     <div class="absolute top-208 left-4 w-px h-1/8 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-18"></div>
+                    
+                    <!-- Even more animation lines for larger mobile area -->
+                    <div class="absolute top-216 left-8 w-1/4 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-500 ease-out origin-left" data-animation="line-19"></div>
+                    <div class="absolute top-224 left-4 w-px h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-400 ease-out origin-top" data-animation="line-20"></div>
+                    <div class="absolute top-232 left-8 w-1/6 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-600 ease-out origin-left" data-animation="line-21"></div>
+                    <div class="absolute top-240 left-4 w-0.5 h-1/6 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-22"></div>
+                    <div class="absolute top-248 left-8 w-1/8 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-700 ease-out origin-left" data-animation="line-23"></div>
+                    <div class="absolute top-256 left-4 w-px h-1/8 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-24"></div>
+                    <div class="absolute top-264 left-8 w-1/4 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-500 ease-out origin-left" data-animation="line-25"></div>
+                    <div class="absolute top-272 left-4 w-px h-1/4 bg-[#18A000] transform scale-y-0 transition-transform duration-400 ease-out origin-top" data-animation="line-26"></div>
+                    <div class="absolute top-280 left-8 w-1/6 h-0.5 bg-[#18A000] transform scale-x-0 transition-transform duration-600 ease-out origin-left" data-animation="line-27"></div>
+                    <div class="absolute top-288 left-4 w-0.5 h-1/6 bg-[#18A000] transform scale-y-0 transition-transform duration-500 ease-out origin-top" data-animation="line-28"></div>
+                    <div class="absolute top-296 left-8 w-1/8 h-px bg-[#18A000] transform scale-x-0 transition-transform duration-700 ease-out origin-left" data-animation="line-29"></div>
+                    <div class="absolute top-304 left-4 w-px h-1/8 bg-[#18A000] transform scale-y-0 transition-transform duration-600 ease-out origin-top" data-animation="line-30"></div>
                 </div>
                 
 
@@ -2360,8 +2374,8 @@
                 // Get all available animations
                 const allAnimations = Array.from(animations);
                 
-                // Randomly select 3-4 animations to trigger
-                const numToTrigger = Math.floor(Math.random() * 2) + 3;
+                // Randomly select 5-7 animations to trigger (more prominent on mobile)
+                const numToTrigger = Math.floor(Math.random() * 3) + 5;
                 const selectedAnimations = [];
                 
                 for (let i = 0; i < numToTrigger && allAnimations.length > 0; i++) {
@@ -2372,7 +2386,7 @@
                 
                 // Trigger selected animations with staggered delays
                 selectedAnimations.forEach((anim, index) => {
-                    const delay = index * 300 + 500; // Start after 500ms, then every 300ms
+                    const delay = index * 200 + 100; // Start after 100ms, then every 200ms (faster and earlier)
                     
                     setTimeout(() => {
                         // Generate random opacity between 0.6 and 1.0
@@ -2421,8 +2435,8 @@
                 });
             }
             
-            // Trigger initial animation after a short delay
-            setTimeout(triggerInitialAnimation, 1000);
+            // Trigger initial animation immediately to show interactivity
+            setTimeout(triggerInitialAnimation, 100);
         });
         
         // Copy email to clipboard function
