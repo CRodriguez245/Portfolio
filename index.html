@@ -219,6 +219,9 @@
                 max-width: none !important;
                 max-height: none !important;
                 transform: none !important;
+                /* Safari-specific viewport fixes */
+                height: -webkit-fill-available !important;
+                min-height: -webkit-fill-available !important;
             }
             
             #ai-sidekick.mobile-fullscreen #chat-container {
@@ -243,6 +246,10 @@
                 min-height: 0 !important;
                 justify-content: flex-end !important;
                 margin-top: 60px !important;
+                /* Safari-specific fixes */
+                -webkit-overflow-scrolling: touch !important;
+                -webkit-transform: translateZ(0) !important;
+                transform: translateZ(0) !important;
             }
             
             /* Mobile-only: Chat messages display from bottom to top */
@@ -260,6 +267,9 @@
                 border-top: 1px solid #e5e7eb !important;
                 width: 100% !important;
                 flex-shrink: 0 !important;
+                /* Safari-specific fixes */
+                -webkit-transform: translateZ(0) !important;
+                transform: translateZ(0) !important;
             }
             
             #ai-sidekick.mobile-fullscreen #sidekick-button {
