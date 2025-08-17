@@ -268,9 +268,23 @@
             
             /* Mobile email popup positioning */
             #email-popup {
-                bottom: 180px !important;
-                right: 16px !important;
-                top: auto !important;
+                position: fixed !important;
+                top: 16px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                bottom: auto !important;
+                right: auto !important;
+                z-index: 10001 !important;
+                background: rgba(255, 255, 255, 0.95) !important;
+                backdrop-filter: blur(10px) !important;
+                border: 1px solid #e5e7eb !important;
+                border-radius: 8px !important;
+                padding: 8px 12px !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+                font-size: 12px !important;
+                font-weight: 500 !important;
+                color: #374151 !important;
+                white-space: nowrap !important;
             }
         }
         .tab-button {
@@ -352,6 +366,9 @@
             <div class="bg-white/80 backdrop-blur-lg px-4 md:px-12 py-4 md:py-6">
                 <div class="flex justify-between items-center">
                     <h1 class="text-[20px] md:text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    
+                    <!-- Mobile Email Popup Space -->
+                    <div class="md:hidden flex-1 mx-4"></div>
                     
                     <!-- Desktop Navigation -->
                     <div class="hidden md:flex space-x-12">
