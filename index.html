@@ -2655,9 +2655,10 @@
                     }, 300); // Match the transition duration
                 });
                 
-                // Prevent default touch behavior to avoid conflicts
+                // Allow link to work while keeping animation
                 card.addEventListener('touchend', function(e) {
-                    e.preventDefault();
+                    // Don't prevent default - allow the link to work
+                    // The animation will still play from touchstart
                 });
             });
             
@@ -2682,9 +2683,10 @@
                 }, 300); // Match the transition duration
             });
             
-            // Prevent default touch behavior to avoid conflicts
+            // Allow link to work while keeping animation
             card.addEventListener('touchend', function(e) {
-                e.preventDefault();
+                // Don't prevent default - allow the link to work
+                // The animation will still play from touchstart
             });
         });
     });
