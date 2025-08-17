@@ -74,6 +74,12 @@
                 transform: scaleX(1);
                 transform-origin: bottom left;
             }
+            
+            /* Mobile email popup positioning */
+            #email-popup {
+                top: 120px !important;
+                right: 16px !important;
+            }
         }
         .nav-link:hover::after {
             transform: scaleX(1);
@@ -405,7 +411,7 @@
                             <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown" onclick="toggleMobileContact()">Contact</button>
                             <div class="mt-2 opacity-0 invisible contact-dropdown-menu transition-all duration-200" id="mobile-contact-menu">
                                 <div class="relative pl-2">
-                                    <div class="bg-white/80 backdrop-blur-sm rounded-sm px-3 py-2">
+                                    <div class="px-3 py-2">
                                         <div class="space-y-2 text-left">
                                             <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
                                             <div class="space-y-1">
@@ -685,7 +691,7 @@
     </div>
 
     <!-- Email Copy Popup -->
-    <div id="email-popup" class="fixed top-4 right-4 text-gray-700 px-3 py-2 font-helvetica text-[12px] z-[10000] transition-all duration-300 ease-in-out" style="display: none; opacity: 0; transform: translateY(-10px);">
+    <div id="email-popup" class="fixed top-4 right-4 md:top-4 md:right-4 text-gray-700 px-3 py-2 font-helvetica text-[12px] z-[10000] transition-all duration-300 ease-in-out" style="display: none; opacity: 0; transform: translateY(-10px);">
         <span>Email copied to clipboard</span>
         <!-- Rolling line animation -->
         <div class="absolute top-0 right-0 w-1 h-full bg-black transform scale-y-0 transition-transform duration-500 ease-out origin-top" id="popup-line"></div>
