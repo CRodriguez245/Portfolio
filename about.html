@@ -1845,15 +1845,30 @@
         // Initialize sidekick state for mobile
         function initializeSidekickState() {
             const savedState = sessionStorage.getItem('sidekickCollapsed');
+            const isMobile = window.innerWidth <= 768;
+            const aiSidekick = document.getElementById('ai-sidekick');
+            const chatContainer = document.getElementById('chat-container');
+            const sidekickText = document.getElementById('sidekick-text');
+            const mainContent = document.getElementById('main-content');
+            
             if (savedState === null) {
                 // Default to collapsed on mobile
-                const isMobile = window.innerWidth <= 768;
                 if (isMobile) {
                     sidekickCollapsed = true;
                     sessionStorage.setItem('sidekickCollapsed', 'true');
                     
+                    // Ensure mobile styling is applied immediately
+                    if (aiSidekick) {
+                        aiSidekick.classList.remove('mobile-fullscreen');
+                    }
+                    if (mainContent) {
+                        mainContent.classList.remove('mobile-hidden');
+                    }
+                    if (chatContainer) {
+                        chatContainer.style.display = 'none';
+                    }
+                    
                     // Set the text to "AI" for mobile
-                    const sidekickText = document.getElementById('sidekick-text');
                     if (sidekickText) {
                         sidekickText.textContent = 'AI';
                     }
@@ -1861,13 +1876,40 @@
             } else {
                 sidekickCollapsed = savedState === 'true';
                 
-                // Ensure correct text is displayed
-                const isMobile = window.innerWidth <= 768;
-                const sidekickText = document.getElementById('sidekick-text');
-                if (sidekickText) {
-                    if (isMobile) {
-                        sidekickText.textContent = sidekickCollapsed ? 'AI' : '×';
+                // Ensure correct styling and text is displayed
+                if (isMobile) {
+                    if (sidekickCollapsed) {
+                        // Collapsed state
+                        if (aiSidekick) {
+                            aiSidekick.classList.remove('mobile-fullscreen');
+                        }
+                        if (mainContent) {
+                            mainContent.classList.remove('mobile-hidden');
+                        }
+                        if (chatContainer) {
+                            chatContainer.style.display = 'none';
+                        }
+                        if (sidekickText) {
+                            sidekickText.textContent = 'AI';
+                        }
                     } else {
+                        // Expanded state
+                        if (aiSidekick) {
+                            aiSidekick.classList.add('mobile-fullscreen');
+                        }
+                        if (mainContent) {
+                            mainContent.classList.add('mobile-hidden');
+                        }
+                        if (chatContainer) {
+                            chatContainer.style.display = 'block';
+                        }
+                        if (sidekickText) {
+                            sidekickText.textContent = '×';
+                        }
+                    }
+                } else {
+                    // Desktop state
+                    if (sidekickText) {
                         sidekickText.textContent = sidekickCollapsed ? 'AI' : 'AI Sidekick';
                     }
                 }
@@ -1897,6 +1939,14 @@
         document.addEventListener('DOMContentLoaded', () => {
             initializeSidekickState();
         });
+        
+        // Also initialize immediately if DOM is already ready
+        if (document.readyState === 'loading') {
+            // DOM is still loading, wait for DOMContentLoaded
+        } else {
+            // DOM is already ready, initialize immediately
+            initializeSidekickState();
+        }
     </script>
     <style>
         /* Add custom scrollbar styling */
