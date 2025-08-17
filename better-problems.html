@@ -88,6 +88,187 @@
         .contact-dropdown + div a {
             cursor: none;
         }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-link::after {
+                display: none !important;
+            }
+            
+            #ai-sidekick {
+                width: 60px !important;
+                height: 60px !important;
+                max-width: 60px !important;
+                border-radius: 0 !important;
+                bottom: 20px !important;
+                right: 20px !important;
+                margin: 0 !important;
+                left: auto !important;
+            }
+            
+            #ai-sidekick #sidekick-button {
+                width: 100% !important;
+                height: 100% !important;
+                padding: 0 !important;
+                border-radius: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            
+            #ai-sidekick #sidekick-text {
+                font-size: 12px !important;
+                font-weight: bold !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                z-index: 10000 !important;
+                background: white !important;
+                border-radius: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                max-width: none !important;
+                max-height: none !important;
+                transform: none !important;
+                height: -webkit-fill-available !important;
+                min-height: -webkit-fill-available !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-container {
+                display: flex !important;
+                flex-direction: column !important;
+                height: 100% !important;
+                padding: 0 !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-messages {
+                padding: 80px 20px 0 20px !important;
+                flex-direction: column !important;
+                justify-content: flex-end !important;
+                margin-top: 60px !important;
+                -webkit-overflow-scrolling: touch !important;
+                -webkit-transform: translateZ(0) !important;
+                transform: translateZ(0) !important;
+                overflow-y: auto !important;
+                max-height: none !important;
+                width: 100% !important;
+                display: flex !important;
+                min-height: 0 !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-messages p {
+                margin: 0 0 16px 0 !important;
+                padding: 0 !important;
+                flex-shrink: 0 !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-input-container {
+                position: sticky !important;
+                bottom: 0 !important;
+                background: white !important;
+                padding: 20px !important;
+                border-top: 1px solid #e5e7eb !important;
+                width: 100% !important;
+                flex-shrink: 0 !important;
+                -webkit-transform: translateZ(0) !important;
+                transform: translateZ(0) !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #sidekick-button {
+                position: fixed !important;
+                top: 10px !important;
+                right: 10px !important;
+                width: 40px !important;
+                height: 40px !important;
+                padding: 0 !important;
+                border-radius: 0 !important;
+                background: rgba(255, 255, 255, 0.9) !important;
+                z-index: 99999 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                border: none !important;
+                left: auto !important;
+                transform: none !important;
+                pointer-events: auto !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen::before {
+                content: '' !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                width: 100% !important;
+                height: 60px !important;
+                background: white !important;
+                z-index: 99998 !important;
+                pointer-events: none !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #sidekick-text {
+                font-size: 24px !important;
+                font-weight: bold !important;
+                color: #18a000 !important;
+                z-index: 99999 !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen input, #ai-sidekick.mobile-fullscreen textarea {
+                font-size: 16px !important;
+                transform: translateZ(0) !important;
+            }
+            
+            #main-content.mobile-hidden {
+                display: none !important;
+            }
+            
+            #email-popup {
+                position: fixed !important;
+                top: 16px !important;
+                left: 65% !important;
+                transform: translateX(-50%) !important;
+                bottom: auto !important;
+                right: auto !important;
+                z-index: 10001 !important;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                border: none !important;
+                border-radius: 0 !important;
+                padding: 8px 12px !important;
+                box-shadow: none !important;
+                font-size: 12px !important;
+                font-weight: 500 !important;
+                color: #374151 !important;
+                white-space: nowrap !important;
+            }
+            
+            /* Mobile navigation text wrapping */
+            .flex.justify-between a:last-child span:first-child {
+                max-width: 120px;
+                word-wrap: break-word;
+                white-space: normal;
+                line-height: 1.2;
+                margin-right: 4px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            * {
+                cursor: auto;
+            }
+            .cursor {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -95,12 +276,14 @@
     <div class="cursor" id="cursor"></div>
 
     <!-- Main Content Area -->
-    <div class="w-3/4 overflow-x-hidden">
+    <div class="w-full md:w-3/4 overflow-x-hidden" id="main-content">
         <!-- Navigation -->
-        <nav class="fixed w-3/4 z-50">
-            <div class="bg-white/80 backdrop-blur-lg px-12 py-6">
+        <nav class="fixed w-full md:w-3/4 z-50">
+            <div class="bg-white/80 backdrop-blur-lg px-4 md:px-12 py-4 md:py-6">
                 <div class="flex justify-between items-center">
-                    <h1 class="text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    <h1 class="text-[20px] md:text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    <!-- Mobile Email Popup Space -->
+                    <div class="md:hidden flex-1 mx-4"></div>
                     <div class="hidden md:flex space-x-12">
                         <a href="index.html" class="text-[16px] font-helvetica font-light nav-link relative">Home</a>
                         <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link relative">Projects</a>
@@ -125,37 +308,72 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-button" class="md:hidden flex flex-col space-y-1">
+                        <div class="w-6 h-0.5 bg-black transition-all duration-300"></div>
+                        <div class="w-6 h-0.5 bg-black transition-all duration-300"></div>
+                        <div class="w-6 h-0.5 bg-black transition-all duration-300"></div>
+                    </button>
+                </div>
+                
+                <!-- Mobile Navigation Menu -->
+                <div id="mobile-menu" class="md:hidden hidden pt-4">
+                    <div class="flex flex-col space-y-4">
+                        <a href="index.html" class="text-[16px] font-helvetica font-light nav-link relative">Home</a>
+                        <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link relative">Projects</a>
+                        <a href="https://docs.google.com/document/d/1RXj2iDbQUYEA5Zh2meN2EXdoaU2CWZfN_qSqDnq9CNY/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
+                        <a href="about.html" class="text-[16px] font-helvetica font-light nav-link relative">About</a>
+                        <div class="relative" id="mobile-contact-dropdown">
+                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown" onclick="toggleMobileContact()">Contact</button>
+                            <div class="mt-2 opacity-0 invisible contact-dropdown-menu transition-all duration-200" id="mobile-contact-menu">
+                                <div class="relative pl-2">
+                                    <div class="px-3 py-2">
+                                        <div class="space-y-2 text-left">
+                                            <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
+                                            <div class="space-y-1">
+                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-left w-full">c.a.rodriguez1999@gmail.com</button>
+                                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="absolute top-0 left-0 w-0.5 bg-black h-0 transition-all duration-500 ease-out" id="mobile-contact-line"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
 
         <!-- Main Content -->
-        <div class="max-w-[960px] mx-auto px-12 pt-32">
+        <div class="max-w-[960px] mx-auto pt-20 md:pt-32 px-4 md:px-12">
             <!-- Article Header -->
-            <div class="mb-16">
-                <h1 class="text-[40px] font-helvetica font-medium text-black leading-[40px] mb-2">
+            <div class="mb-8 md:mb-16">
+                <h1 class="text-[28px] md:text-[40px] font-helvetica font-medium text-black leading-[28px] md:leading-[40px] mb-2">
                     The Power of Reframing Everyday
                 </h1>
-                <p class="text-[16px] font-helvetica font-light text-black leading-[20px]">
+                <p class="text-[14px] md:text-[16px] font-helvetica font-light text-black leading-[18px] md:leading-[20px]">
                     March 31, 2025
                 </p>
             </div>
             
             <!-- Hero Card -->
-            <div class="relative h-[378px] w-full mb-16 overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
-                <div class="absolute inset-0 bg-[#9a472f] px-[43px] py-[41px]">
+            <div class="relative h-64 md:h-[378px] w-full mb-8 md:mb-16 overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                <div class="absolute inset-0 bg-[#9a472f] px-4 md:px-[43px] py-4 md:py-[41px]">
                     <!-- Top Left: Better Problems -->
-                    <div class="absolute top-[41px] left-[43px] text-white">
-                        <h2 class="text-[56px] font-helvetica font-bold leading-[45px]">
+                    <div class="absolute top-4 md:top-[41px] left-4 md:left-[43px] text-white">
+                        <h2 class="text-[32px] md:text-[56px] font-helvetica font-bold leading-[28px] md:leading-[45px]">
                             better
                         </h2>
-                        <h2 class="text-[56px] font-helvetica font-bold leading-[62px]">
+                        <h2 class="text-[32px] md:text-[56px] font-helvetica font-bold leading-[36px] md:leading-[62px]">
                             problems
                         </h2>
                     </div>
                     <!-- Bottom Right: Reframing Everyday -->
-                    <div class="absolute bottom-[41px] right-[43px] text-white text-right">
-                        <p class="text-[32px] font-helvetica font-bold leading-[45px]">
+                    <div class="absolute bottom-4 md:bottom-[41px] right-4 md:right-[43px] text-white text-right">
+                        <p class="text-[18px] md:text-[32px] font-helvetica font-bold leading-[22px] md:leading-[45px]">
                             reframing everyday
                         </p>
                     </div>
@@ -163,7 +381,7 @@
             </div>
             
             <!-- Article Content -->
-            <div class="max-w-[1135px] text-[20px] font-helvetica font-light text-black leading-[normal] space-y-6">
+            <div class="max-w-[1135px] text-[16px] md:text-[20px] font-helvetica font-light text-black leading-[normal] space-y-4 md:space-y-6">
                 <p>
                     At Better Problems, we believe in the power of reframing. Every day, we're faced with challenges, questions, and decisions that shape the course of our lives and the world around us. What if we could approach each of these moments not as obstacles, but as opportunities to ask better questions? To reframe the way we think, feel, and act? Reframing is not about seeking perfect answers or rigid solutions — it's about being open to new perspectives, challenging assumptions, and embracing the complexity of human experience.
                 </p>
@@ -237,38 +455,62 @@
             </div>
 
             <!-- Navigation -->
-            <div class="flex justify-between mt-16">
+            <div class="flex justify-between mt-8 md:mt-16">
                 <div></div>
                 <a href="ai-beyond-chat.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors">
-                    <span>AI Beyond the Chat</span>
+                    <span class="text-left">AI Beyond the Chat</span>
                     <span class="text-[20px]">&gt;</span>
                 </a>
             </div>
 
             <!-- Footer -->
-            <footer class="bg-white border-t border-gray-200 mt-20">
-                <div class="max-w-7xl mx-auto px-12 py-8">
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-8">
+            <footer class="bg-white border-t border-gray-200 mt-12 md:mt-20">
+                <!-- Desktop Footer -->
+                <div class="hidden md:block max-w-7xl mx-auto px-4 md:px-12 py-6 md:py-8">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
+                        <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8">
                             <div>
-                                <h3 class="text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
-                                <p class="text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                                <h3 class="text-[18px] md:text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                                <p class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
                             </div>
-                            <div class="border-l border-gray-300 h-12"></div>
-                            <div>
-                                <p class="text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                            <div class="hidden md:block border-l border-gray-300 h-12"></div>
+                            <div class="hidden md:block">
+                                <p class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
                                 <div class="flex space-x-4">
-                                    <button onclick="copyEmail()" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
-                                    <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                    <a href="https://github.com/CRodriguez245" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                                    <button onclick="copyEmail()" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
+                                    <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                    <a href="https://github.com/CRodriguez245" target="_blank" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="text-right">
+                        <div class="hidden md:block text-center md:text-right">
                             <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
                             <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
-                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by Cursor AI, Figma, and GPT</p>
+                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by <span class="text-[#18a000]">Cursor AI</span>, Figma, and GPT</p>
                         </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Footer -->
+                <div class="md:hidden px-4 py-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-[18px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                            <p class="text-[12px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                        </div>
+                        <div>
+                            <p class="text-[12px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                            <div class="flex space-x-4">
+                                <button onclick="copyEmail()" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
+                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                <a href="https://github.com/CRodriguez245" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by <span class="text-[#18a000]">Cursor AI</span>, Figma, and GPT</p>
                     </div>
                 </div>
             </footer>
@@ -283,24 +525,26 @@
     </div>
 
     <!-- AI Sidekick -->
-    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col z-[9999]" id="ai-sidekick">
-        <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
-            <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
-        </div>
-        <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex">
-            <span class="text-black mt-[2px]">></span>
-            <div class="relative flex-1 ml-2">
-                <textarea 
-                    class="bg-transparent border-none font-['IBM_Plex_Mono'] text-[14px] w-full outline-none text-black resize-none overflow-hidden p-0 leading-normal"
-                    placeholder="Ask me anything..."
-                    id="chat-input"
-                    rows="1"
-                    style="height: 20px;"
-                ></textarea>
+    <div class="fixed bottom-0 right-2 md:right-8 w-[calc(100vw-16px)] md:w-1/4 md:max-w-[394px] flex flex-col z-[9999] transition-all duration-500 ease-in-out" id="ai-sidekick">
+        <div class="overflow-hidden transition-all duration-500 ease-in-out" id="chat-container">
+            <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
+                <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
+            </div>
+            <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex" id="chat-input-container">
+                <span class="text-black mt-[2px]">></span>
+                <div class="relative flex-1 ml-2">
+                    <textarea 
+                        class="bg-transparent border-none font-['IBM_Plex_Mono'] text-[14px] w-full outline-none text-black resize-none overflow-hidden p-0 leading-normal"
+                        placeholder="Ask me anything..."
+                        id="chat-input"
+                        rows="1"
+                        style="height: 20px;"
+                    ></textarea>
+                </div>
             </div>
         </div>
-        <div class="bg-[#18a000] p-4">
-            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold">AI Sidekick</h3>
+        <div class="bg-[#18a000] p-4 cursor-pointer" id="sidekick-button" onclick="toggleSidekick()">
+            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold" id="sidekick-text">AI Sidekick</h3>
         </div>
     </div>
 
@@ -449,6 +693,163 @@
                     popup.style.display = 'none';
                 }, 300);
             }, 3000);
+        }
+        
+        // Mobile sidekick functionality
+        let sidekickCollapsed = false;
+        
+        function toggleSidekick() {
+            const aiSidekick = document.getElementById('ai-sidekick');
+            const chatContainer = document.getElementById('chat-container');
+            const sidekickText = document.getElementById('sidekick-text');
+            const mainContent = document.getElementById('main-content');
+            const chatInput = document.getElementById('chat-input');
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                if (sidekickCollapsed) {
+                    // Expand on mobile
+                    aiSidekick.classList.add('mobile-fullscreen');
+                    mainContent.classList.add('mobile-hidden');
+                    chatContainer.style.display = 'block';
+                    sidekickText.textContent = '×';
+                } else {
+                    // Collapse on mobile
+                    aiSidekick.classList.remove('mobile-fullscreen');
+                    mainContent.classList.remove('mobile-hidden');
+                    chatContainer.style.display = 'none';
+                    sidekickText.textContent = 'AI';
+                }
+            } else {
+                // Desktop behavior
+                if (sidekickCollapsed) {
+                    // Expand
+                    aiSidekick.style.width = '25%';
+                    aiSidekick.style.maxWidth = '394px';
+                    chatContainer.style.display = 'block';
+                    sidekickText.textContent = 'AI Sidekick';
+                    mainContent.style.marginLeft = '0';
+                } else {
+                    // Collapse
+                    aiSidekick.style.width = '60px';
+                    aiSidekick.style.maxWidth = '60px';
+                    chatContainer.style.display = 'none';
+                    sidekickText.textContent = 'AI';
+                    mainContent.style.marginLeft = '0';
+                }
+            }
+            
+            sidekickCollapsed = !sidekickCollapsed;
+            sessionStorage.setItem('sidekickCollapsed', sidekickCollapsed.toString());
+        }
+        
+        // Initialize sidekick state
+        function initializeSidekickState() {
+            const savedState = sessionStorage.getItem('sidekickCollapsed');
+            const isMobile = window.innerWidth <= 768;
+            const aiSidekick = document.getElementById('ai-sidekick');
+            const chatContainer = document.getElementById('chat-container');
+            const sidekickText = document.getElementById('sidekick-text');
+            const mainContent = document.getElementById('main-content');
+            
+            if (savedState === null) {
+                if (isMobile) {
+                    sidekickCollapsed = true;
+                    sessionStorage.setItem('sidekickCollapsed', 'true');
+                    // Ensure mobile styling is applied immediately
+                    if (aiSidekick) { aiSidekick.classList.remove('mobile-fullscreen'); }
+                    if (mainContent) { mainContent.classList.remove('mobile-hidden'); }
+                    if (chatContainer) { chatContainer.style.display = 'none'; }
+                    if (sidekickText) { sidekickText.textContent = 'AI'; }
+                }
+            } else {
+                sidekickCollapsed = savedState === 'true';
+                if (isMobile) {
+                    if (sidekickCollapsed) {
+                        // Collapsed state
+                        if (aiSidekick) { aiSidekick.classList.remove('mobile-fullscreen'); }
+                        if (mainContent) { mainContent.classList.remove('mobile-hidden'); }
+                        if (chatContainer) { chatContainer.style.display = 'none'; }
+                        if (sidekickText) { sidekickText.textContent = 'AI'; }
+                    } else {
+                        // Expanded state
+                        if (aiSidekick) { aiSidekick.classList.add('mobile-fullscreen'); }
+                        if (mainContent) { mainContent.classList.add('mobile-hidden'); }
+                        if (chatContainer) { chatContainer.style.display = 'block'; }
+                        if (sidekickText) { sidekickText.textContent = '×'; }
+                    }
+                } else {
+                    // Desktop state
+                    if (sidekickText) { sidekickText.textContent = sidekickCollapsed ? 'AI' : 'AI Sidekick'; }
+                }
+            }
+        }
+        
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    
+                    // Animate hamburger to X
+                    const lines = this.querySelectorAll('div');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        // Back to hamburger
+                        lines[0].style.transform = 'none';
+                        lines[1].style.opacity = '1';
+                        lines[2].style.transform = 'none';
+                    } else {
+                        // To X
+                        lines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                        lines[1].style.opacity = '0';
+                        lines[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                    }
+                });
+            }
+            
+            // Initialize sidekick state
+            initializeSidekickState();
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const isMobile = window.innerWidth <= 768;
+            const aiSidekick = document.getElementById('ai-sidekick');
+            const mainContent = document.getElementById('main-content');
+            
+            if (isMobile) {
+                aiSidekick.classList.remove('mobile-fullscreen');
+                mainContent.classList.remove('mobile-hidden');
+            }
+        });
+        
+        // Mobile Contact dropdown toggle function
+        function toggleMobileContact() {
+            const contactMenu = document.getElementById('mobile-contact-menu');
+            const contactLine = document.getElementById('mobile-contact-line');
+            
+            if (contactMenu.classList.contains('invisible')) {
+                // Show dropdown
+                contactMenu.classList.remove('invisible', 'opacity-0');
+                contactMenu.classList.add('opacity-100');
+                contactLine.style.height = '100%';
+            } else {
+                // Hide dropdown
+                contactMenu.classList.add('invisible', 'opacity-0');
+                contactMenu.classList.remove('opacity-100');
+                contactLine.style.height = '0';
+            }
+        }
+        
+        // Initialize immediately if DOM is already ready
+        if (document.readyState === 'loading') {
+            // DOM is still loading, wait for DOMContentLoaded
+        } else {
+            // DOM is already ready, initialize immediately
+            initializeSidekickState();
         }
     </script>
 </body>
