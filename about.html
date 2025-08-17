@@ -1028,20 +1028,30 @@
                 console.log('Expanding sidekick...');
                 
                 if (isMobile) {
-                    // Mobile fullscreen mode
+                    // Mobile: Full-screen mode
+                    console.log('Mobile: Expanding to full-screen mode');
                     aiSidekick.classList.add('mobile-fullscreen');
                     mainContent.classList.add('mobile-hidden');
-                    sidekickText.textContent = '✕';
+                    chatContainer.style.display = 'block';
+                    chatContainer.style.visibility = 'visible';
+                    chatContainer.style.opacity = '1';
+                    sidekickText.textContent = '×';
+                    
+                    // Ensure input is visible and functional (but don't focus on mobile)
+                    if (chatInput) {
+                        chatInput.style.display = 'block';
+                        chatInput.style.visibility = 'visible';
+                        chatInput.style.opacity = '1';
+                        console.log('Mobile input field restored successfully');
+                    }
                 } else {
-                    // Desktop mode
-                    // Force show the container - remove all conflicting styles
+                    // Desktop: Original behavior
+                    console.log('Desktop: Expanding to sidebar mode');
                     chatContainer.style.display = 'block';
                     chatContainer.style.visibility = 'visible';
                     chatContainer.style.opacity = '1';
                     chatContainer.style.maxHeight = 'none';
                     chatContainer.style.overflow = 'visible';
-                    chatContainer.style.height = 'auto';
-                    chatContainer.style.width = '100%';
                     
                     aiSidekick.style.width = '25%';
                     aiSidekick.style.maxWidth = '394px';
@@ -1049,15 +1059,15 @@
                     sidekickText.textContent = 'AI Sidekick';
                     mainContent.style.width = '75%';
                     mainContent.style.marginLeft = '0';
-                }
-                
-                // Ensure input is visible and functional
-                if (chatInput) {
-                    chatInput.style.display = 'block';
-                    chatInput.style.visibility = 'visible';
-                    chatInput.style.opacity = '1';
-                    chatInput.focus();
-                    console.log('Input field restored successfully');
+                    
+                    // Ensure input is visible and functional
+                    if (chatInput) {
+                        chatInput.style.display = 'block';
+                        chatInput.style.visibility = 'visible';
+                        chatInput.style.opacity = '1';
+                        chatInput.focus();
+                        console.log('Desktop input field restored successfully');
+                    }
                 }
                 
                 sidekickCollapsed = false;
@@ -1067,12 +1077,15 @@
                 console.log('Collapsing sidekick...');
                 
                 if (isMobile) {
-                    // Mobile collapse mode
+                    // Mobile: Exit full-screen mode
+                    console.log('Mobile: Exiting full-screen mode');
                     aiSidekick.classList.remove('mobile-fullscreen');
                     mainContent.classList.remove('mobile-hidden');
+                    chatContainer.style.display = 'none';
                     sidekickText.textContent = 'AI';
                 } else {
-                    // Desktop collapse mode
+                    // Desktop: Original collapse behavior
+                    console.log('Desktop: Collapsing to sidebar mode');
                     chatContainer.style.display = 'none';
                     aiSidekick.style.width = '80px';
                     aiSidekick.style.maxWidth = '80px';
@@ -1838,9 +1851,26 @@
                 if (isMobile) {
                     sidekickCollapsed = true;
                     sessionStorage.setItem('sidekickCollapsed', 'true');
+                    
+                    // Set the text to "AI" for mobile
+                    const sidekickText = document.getElementById('sidekick-text');
+                    if (sidekickText) {
+                        sidekickText.textContent = 'AI';
+                    }
                 }
             } else {
                 sidekickCollapsed = savedState === 'true';
+                
+                // Ensure correct text is displayed
+                const isMobile = window.innerWidth <= 768;
+                const sidekickText = document.getElementById('sidekick-text');
+                if (sidekickText) {
+                    if (isMobile) {
+                        sidekickText.textContent = sidekickCollapsed ? 'AI' : '×';
+                    } else {
+                        sidekickText.textContent = sidekickCollapsed ? 'AI' : 'AI Sidekick';
+                    }
+                }
             }
         }
         
