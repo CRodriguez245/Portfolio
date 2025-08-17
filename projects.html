@@ -1518,26 +1518,29 @@
             const projectImageContainers = document.querySelectorAll('#projects-tab .project-card > div > div:last-child');
             projectImageContainers.forEach(container => {
                 let isAnimating = false;
+                let animationTimeout;
                 
-                // Touch start - trigger animation
                 container.addEventListener('touchstart', function(e) {
                     if (isAnimating) return;
                     isAnimating = true;
                     
+                    // Clear any existing timeout
+                    if (animationTimeout) {
+                        clearTimeout(animationTimeout);
+                    }
+                    
                     // Add hover classes to trigger animation
                     this.classList.add('hover:shadow-2xl', 'hover:scale-105');
-                    
-                    // Remove classes after animation duration
-                    setTimeout(() => {
-                        this.classList.remove('hover:shadow-2xl', 'hover:scale-105');
-                        isAnimating = false;
-                    }, 300); // Match the transition duration
                 });
                 
-                // Allow link to work while keeping animation
                 container.addEventListener('touchend', function(e) {
-                    // Don't prevent default - allow the link to work
-                    // The animation will still play from touchstart
+                    // Don't prevent default - allow navigation to work
+                    
+                    // Remove classes after animation duration
+                    animationTimeout = setTimeout(() => {
+                        this.classList.remove('hover:shadow-2xl', 'hover:scale-105');
+                        isAnimating = false;
+                    }, 300);
                 });
             });
             
@@ -1545,26 +1548,29 @@
             const sideProjectImageContainers = document.querySelectorAll('#side-projects-tab .project-card > div > div:last-child');
             sideProjectImageContainers.forEach(container => {
                 let isAnimating = false;
+                let animationTimeout;
                 
-                // Touch start - trigger animation
                 container.addEventListener('touchstart', function(e) {
                     if (isAnimating) return;
                     isAnimating = true;
                     
+                    // Clear any existing timeout
+                    if (animationTimeout) {
+                        clearTimeout(animationTimeout);
+                    }
+                    
                     // Add hover classes to trigger animation
                     this.classList.add('hover:shadow-2xl', 'hover:scale-105');
-                    
-                    // Remove classes after animation duration
-                    setTimeout(() => {
-                        this.classList.remove('hover:shadow-2xl', 'hover:scale-105');
-                        isAnimating = false;
-                    }, 300); // Match the transition duration
                 });
                 
-                // Allow link to work while keeping animation
                 container.addEventListener('touchend', function(e) {
-                    // Don't prevent default - allow the link to work
-                    // The animation will still play from touchstart
+                    // Don't prevent default - allow navigation to work
+                    
+                    // Remove classes after animation duration
+                    animationTimeout = setTimeout(() => {
+                        this.classList.remove('hover:shadow-2xl', 'hover:scale-105');
+                        isAnimating = false;
+                    }, 300);
                 });
             });
         });
