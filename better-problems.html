@@ -310,10 +310,15 @@
                     </div>
                     
                     <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-button" class="md:hidden flex flex-col space-y-1">
-                        <div class="w-6 h-0.5 bg-black transition-all duration-300"></div>
-                        <div class="w-6 h-0.5 bg-black transition-all duration-300"></div>
-                        <div class="w-6 h-0.5 bg-black transition-all duration-300"></div>
+                    <button id="mobile-menu-btn" class="md:hidden text-black">
+                        <!-- Hamburger Icon -->
+                        <svg class="w-6 h-6" id="hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <!-- X Icon -->
+                        <svg class="w-6 h-6 hidden" id="x-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
                     </button>
                 </div>
                 
@@ -787,25 +792,22 @@
         
         // Mobile menu functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const xIcon = document.getElementById('x-icon');
             
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', function() {
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
                     mobileMenu.classList.toggle('hidden');
                     
-                    // Animate hamburger to X
-                    const lines = this.querySelectorAll('div');
+                    // Toggle icons
                     if (mobileMenu.classList.contains('hidden')) {
-                        // Back to hamburger
-                        lines[0].style.transform = 'none';
-                        lines[1].style.opacity = '1';
-                        lines[2].style.transform = 'none';
+                        hamburgerIcon.classList.remove('hidden');
+                        xIcon.classList.add('hidden');
                     } else {
-                        // To X
-                        lines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                        lines[1].style.opacity = '0';
-                        lines[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                        hamburgerIcon.classList.add('hidden');
+                        xIcon.classList.remove('hidden');
                     }
                 });
             }
