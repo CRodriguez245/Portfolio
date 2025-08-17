@@ -141,6 +141,7 @@
                 transform: none !important;
                 height: -webkit-fill-available !important;
                 min-height: -webkit-fill-available !important;
+                transition: all 0.3s ease-in-out !important;
             }
             
             #ai-sidekick.mobile-fullscreen #chat-container {
@@ -196,6 +197,7 @@
                 left: auto !important;
                 transform: none !important;
                 pointer-events: auto !important;
+                transition: all 0.3s ease-in-out !important;
             }
             
             /* White bar to cut off chat log before X button */
@@ -217,6 +219,7 @@
                 font-weight: bold !important;
                 color: #18a000 !important;
                 z-index: 99999 !important;
+                transition: all 0.3s ease-in-out !important;
             }
             
             #ai-sidekick.mobile-fullscreen input,
@@ -227,6 +230,7 @@
             
             #main-content.mobile-hidden {
                 display: none;
+                transition: opacity 0.3s ease-in-out !important;
             }
             
             /* Mobile email popup positioning */
@@ -469,7 +473,7 @@
 
     <!-- AI Sidekick -->
     <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col z-[9999] transition-all duration-500 ease-in-out" id="ai-sidekick">
-        <div class="transition-all duration-500 ease-in-out" id="chat-container">
+        <div class="overflow-hidden transition-all duration-500 ease-in-out" id="chat-container">
             <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
                 <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
             </div>
