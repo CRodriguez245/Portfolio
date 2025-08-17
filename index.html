@@ -383,8 +383,13 @@
                     
                     <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn" class="md:hidden text-black">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <!-- Hamburger Icon -->
+                        <svg class="w-6 h-6" id="hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <!-- X Icon -->
+                        <svg class="w-6 h-6 hidden" id="x-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
                 </div>
@@ -396,10 +401,10 @@
                         <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link relative">Projects</a>
                         <a href="https://docs.google.com/document/d/1RXj2iDbQUYEA5Zh2meN2EXdoaU2CWZfN_qSqDnq9CNY/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
                         <a href="about.html" class="text-[16px] font-helvetica font-light nav-link relative">About</a>
-                        <div class="relative group">
-                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown">Contact</button>
-                            <div class="mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible contact-dropdown-menu transition-all duration-200">
-                                <div class="relative pl-4">
+                        <div class="relative" id="mobile-contact-dropdown">
+                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown" onclick="toggleMobileContact()">Contact</button>
+                            <div class="mt-2 opacity-0 invisible contact-dropdown-menu transition-all duration-200" id="mobile-contact-menu">
+                                <div class="relative pl-2">
                                     <div class="bg-white/80 backdrop-blur-sm rounded-sm px-3 py-2">
                                         <div class="space-y-2 text-left">
                                             <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
@@ -410,7 +415,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="absolute top-0 left-0 w-0.5 bg-black h-0 group-hover:h-full transition-all duration-500 ease-out"></div>
+                                    <div class="absolute top-0 left-0 w-0.5 bg-black h-0 transition-all duration-500 ease-out" id="mobile-contact-line"></div>
                                 </div>
                             </div>
                         </div>
@@ -2569,23 +2574,36 @@
             }, 3000);
         }
         
-        // Mobile menu functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            if (mobileMenuBtn && mobileMenu) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
-            
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!mobileMenuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
-                    mobileMenu.classList.add('hidden');
+                    // Mobile menu functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const hamburgerIcon = document.getElementById('hamburger-icon');
+                const xIcon = document.getElementById('x-icon');
+                
+                if (mobileMenuBtn && mobileMenu) {
+                    mobileMenuBtn.addEventListener('click', function() {
+                        mobileMenu.classList.toggle('hidden');
+                        
+                        // Toggle icons
+                        if (mobileMenu.classList.contains('hidden')) {
+                            hamburgerIcon.classList.remove('hidden');
+                            xIcon.classList.add('hidden');
+                        } else {
+                            hamburgerIcon.classList.add('hidden');
+                            xIcon.classList.remove('hidden');
+                        }
+                    });
                 }
-            });
+                
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                        hamburgerIcon.classList.remove('hidden');
+                        xIcon.classList.add('hidden');
+                    }
+                });
             
             // Mobile touch support for Featured Projects animations
             const projectCards = document.querySelectorAll('#projects .overflow-hidden');
@@ -2614,33 +2632,51 @@
                 });
             });
             
-            // Mobile touch support for Blog section animations
-            const blogCards = document.querySelectorAll('#blog .overflow-hidden');
+                    // Mobile touch support for Blog section animations
+        const blogCards = document.querySelectorAll('#blog .overflow-hidden');
+        
+        blogCards.forEach(card => {
+            let isAnimating = false;
             
-            blogCards.forEach(card => {
-                let isAnimating = false;
+            // Touch start - trigger animation
+            card.addEventListener('touchstart', function(e) {
+                if (isAnimating) return;
+                isAnimating = true;
                 
-                // Touch start - trigger animation
-                card.addEventListener('touchstart', function(e) {
-                    if (isAnimating) return;
-                    isAnimating = true;
-                    
-                    // Add hover classes to trigger animation
-                    this.classList.add('hover:shadow-2xl', 'hover:scale-105');
-                    
-                    // Remove classes after animation duration
-                    setTimeout(() => {
-                        this.classList.remove('hover:shadow-2xl', 'hover:scale-105');
-                        isAnimating = false;
-                    }, 300); // Match the transition duration
-                });
+                // Add hover classes to trigger animation
+                this.classList.add('hover:shadow-2xl', 'hover:scale-105');
                 
-                // Prevent default touch behavior to avoid conflicts
-                card.addEventListener('touchend', function(e) {
-                    e.preventDefault();
-                });
+                // Remove classes after animation duration
+                setTimeout(() => {
+                    this.classList.remove('hover:shadow-2xl', 'hover:scale-105');
+                    isAnimating = false;
+                }, 300); // Match the transition duration
+            });
+            
+            // Prevent default touch behavior to avoid conflicts
+            card.addEventListener('touchend', function(e) {
+                e.preventDefault();
             });
         });
+    });
+    
+    // Mobile Contact dropdown toggle function
+    function toggleMobileContact() {
+        const contactMenu = document.getElementById('mobile-contact-menu');
+        const contactLine = document.getElementById('mobile-contact-line');
+        
+        if (contactMenu.classList.contains('invisible')) {
+            // Show dropdown
+            contactMenu.classList.remove('invisible', 'opacity-0');
+            contactMenu.classList.add('opacity-100');
+            contactLine.style.height = '100%';
+        } else {
+            // Hide dropdown
+            contactMenu.classList.add('invisible', 'opacity-0');
+            contactMenu.classList.remove('opacity-100');
+            contactLine.style.height = '0';
+        }
+    }
         
         // Disable custom cursor on mobile devices
         function isMobile() {
