@@ -1517,18 +1517,7 @@
             // Mobile touch support for Featured Projects animations (images only)
             const projectImageContainers = document.querySelectorAll('#projects-tab .project-card > div > div:last-child');
             projectImageContainers.forEach(container => {
-                let isAnimating = false;
-                let animationTimeout;
-                
                 container.addEventListener('touchstart', function(e) {
-                    if (isAnimating) return;
-                    isAnimating = true;
-                    
-                    // Clear any existing timeout
-                    if (animationTimeout) {
-                        clearTimeout(animationTimeout);
-                    }
-                    
                     // Add hover classes to trigger animation
                     this.classList.add('hover:shadow-2xl', 'hover:scale-105');
                 });
@@ -1536,29 +1525,17 @@
                 container.addEventListener('touchend', function(e) {
                     // Don't prevent default - allow navigation to work
                     
-                    // Remove classes after animation duration
-                    animationTimeout = setTimeout(() => {
+                    // Remove classes immediately with a small delay to show animation
+                    setTimeout(() => {
                         this.classList.remove('hover:shadow-2xl', 'hover:scale-105');
-                        isAnimating = false;
-                    }, 300);
+                    }, 150);
                 });
             });
             
             // Mobile touch support for Side Projects animations (images only)
             const sideProjectImageContainers = document.querySelectorAll('#side-projects-tab .project-card > div > div:last-child');
             sideProjectImageContainers.forEach(container => {
-                let isAnimating = false;
-                let animationTimeout;
-                
                 container.addEventListener('touchstart', function(e) {
-                    if (isAnimating) return;
-                    isAnimating = true;
-                    
-                    // Clear any existing timeout
-                    if (animationTimeout) {
-                        clearTimeout(animationTimeout);
-                    }
-                    
                     // Add hover classes to trigger animation
                     this.classList.add('hover:shadow-2xl', 'hover:scale-105');
                 });
@@ -1566,11 +1543,10 @@
                 container.addEventListener('touchend', function(e) {
                     // Don't prevent default - allow navigation to work
                     
-                    // Remove classes after animation duration
-                    animationTimeout = setTimeout(() => {
+                    // Remove classes immediately with a small delay to show animation
+                    setTimeout(() => {
                         this.classList.remove('hover:shadow-2xl', 'hover:scale-105');
-                        isAnimating = false;
-                    }, 300);
+                    }, 150);
                 });
             });
         });
