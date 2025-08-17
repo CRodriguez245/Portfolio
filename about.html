@@ -92,7 +92,7 @@
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
             .nav-link::after {
-                width: 100%;
+                display: none !important;
             }
             
             #ai-sidekick {
@@ -1946,6 +1946,24 @@
         } else {
             // DOM is already ready, initialize immediately
             initializeSidekickState();
+        }
+        
+        // Mobile Contact dropdown toggle function
+        function toggleMobileContact() {
+            const contactMenu = document.getElementById('mobile-contact-menu');
+            const contactLine = document.getElementById('mobile-contact-line');
+            
+            if (contactMenu.classList.contains('invisible')) {
+                // Show dropdown
+                contactMenu.classList.remove('invisible', 'opacity-0');
+                contactMenu.classList.add('opacity-100');
+                contactLine.style.height = '100%';
+            } else {
+                // Hide dropdown
+                contactMenu.classList.add('invisible', 'opacity-0');
+                contactMenu.classList.remove('opacity-100');
+                contactLine.style.height = '0';
+            }
         }
     </script>
     <style>
