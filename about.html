@@ -117,7 +117,7 @@
             }
             
             #ai-sidekick #sidekick-text {
-                font-size: 16px !important;
+                font-size: 12px !important;
                 font-weight: bold !important;
             }
             
@@ -149,14 +149,24 @@
                 display: flex !important;
                 flex-direction: column !important;
                 padding: 0 !important;
+                background: white !important;
+                position: relative !important;
+                width: 100% !important;
+                overflow: hidden !important;
             }
             
             #ai-sidekick.mobile-fullscreen #chat-messages {
                 flex: 1 !important;
-                padding: 20px !important;
+                padding: 80px 20px 0 20px !important;
+                overflow-y: auto !important;
+                max-height: none !important;
+                width: 100% !important;
+                display: flex !important;
                 flex-direction: column !important;
+                min-height: 0 !important;
                 justify-content: flex-end !important;
                 margin-top: 60px !important;
+                /* Safari-specific fixes */
                 -webkit-overflow-scrolling: touch !important;
                 -webkit-transform: translateZ(0) !important;
                 transform: translateZ(0) !important;
@@ -472,7 +482,7 @@
     </div>
 
     <!-- AI Sidekick -->
-    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col z-[9999] transition-all duration-500 ease-in-out" id="ai-sidekick">
+    <div class="fixed bottom-0 right-2 md:right-8 w-[calc(100vw-16px)] md:w-1/4 md:max-w-[394px] flex flex-col z-[9999] transition-all duration-500 ease-in-out" id="ai-sidekick">
         <div class="overflow-hidden transition-all duration-500 ease-in-out" id="chat-container">
             <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
                 <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
@@ -1446,6 +1456,105 @@
                     }, index * 50);
                 });
             });
+            
+            // Mobile touch support for animation
+            let touchStartTime = 0;
+            let touchEndTime = 0;
+            
+            aboutAnimation.addEventListener('touchstart', (e) => {
+                touchStartTime = Date.now();
+                isHovering = true;
+                activeAnimations.clear();
+                
+                // Trigger animation on touch
+                const touch = e.touches[0];
+                const rect = aboutAnimation.getBoundingClientRect();
+                mouseX = touch.clientX - rect.left;
+                mouseY = touch.clientY - rect.top;
+                
+                // Trigger animations immediately on touch
+                triggerTouchAnimation(mouseX, mouseY);
+            });
+            
+            aboutAnimation.addEventListener('touchend', (e) => {
+                touchEndTime = Date.now();
+                const touchDuration = touchEndTime - touchStartTime;
+                
+                // If touch was brief, roll away animations
+                if (touchDuration < 1000) {
+                    setTimeout(() => {
+                        isHovering = false;
+                        const allAnimations = Array.from(animations);
+                        allAnimations.forEach((anim, index) => {
+                            setTimeout(() => {
+                                if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                                    anim.style.transform = 'scaleY(0)';
+                                } else {
+                                    anim.style.transform = 'scaleX(0)';
+                                }
+                            }, index * 50);
+                        });
+                    }, 500);
+                }
+            });
+            
+            function triggerTouchAnimation(x, y) {
+                // Get all available animations
+                const allAnimations = Array.from(animations);
+                const availableAnimations = allAnimations.filter(anim => !activeAnimations.has(anim.dataset.animation));
+                
+                // Randomly select 2-3 animations to trigger
+                const numToTrigger = Math.floor(Math.random() * 2) + 2;
+                const selectedAnimations = [];
+                
+                for (let i = 0; i < numToTrigger && availableAnimations.length > 0; i++) {
+                    const randomIndex = Math.floor(Math.random() * availableAnimations.length);
+                    const selectedAnim = availableAnimations.splice(randomIndex, 1)[0];
+                    selectedAnimations.push(selectedAnim);
+                }
+                
+                // Trigger selected animations with random delays
+                selectedAnimations.forEach((anim, index) => {
+                    if (!activeAnimations.has(anim.dataset.animation)) {
+                        activeAnimations.add(anim.dataset.animation);
+                        const randomDelay = Math.random() * 200 + 100;
+                        
+                        setTimeout(() => {
+                            // Generate random opacity between 0.6 and 1.0
+                            const randomOpacity = Math.random() * 0.4 + 0.6;
+                            anim.style.opacity = randomOpacity;
+                            
+                            // Generate random line length scaling between 50% and 150%
+                            const randomLengthScale = Math.random() * 1.0 + 0.5;
+                            
+                            // Apply random length scaling
+                            if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                                const currentHeight = anim.style.height || '25%';
+                                const newHeight = `calc(${currentHeight} * ${randomLengthScale})`;
+                                anim.style.height = newHeight;
+                            } else {
+                                const currentWidth = anim.style.width || '25%';
+                                const newWidth = `calc(${currentWidth} * ${randomLengthScale})`;
+                                anim.style.width = newWidth;
+                            }
+                            
+                            // Position near touch point but stay within animation area
+                            const rect = aboutAnimation.getBoundingClientRect();
+                            const maxLeft = rect.width * 0.9; // Stay within 90% of animation area
+                            
+                            if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
+                                const newLeft = Math.max(4, Math.min(maxLeft, x - 10));
+                                anim.style.left = newLeft + 'px';
+                                anim.style.transform = 'scaleY(1)';
+                            } else {
+                                const newTop = Math.max(4, Math.min(rect.height - 20, y - 10));
+                                anim.style.top = newTop + 'px';
+                                anim.style.transform = 'scaleX(1)';
+                            }
+                        }, randomDelay);
+                    }
+                });
+            }
             
             let mouseX = 0;
             let mouseY = 0;
