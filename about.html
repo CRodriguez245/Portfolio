@@ -88,6 +88,176 @@
         .contact-dropdown + div a {
             cursor: none;
         }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-link::after {
+                width: 100%;
+            }
+            
+            #ai-sidekick {
+                width: 60px !important;
+                height: 60px !important;
+                max-width: 60px !important;
+                border-radius: 0 !important;
+                bottom: 20px !important;
+                right: 20px !important;
+                margin: 0 !important;
+                left: auto !important;
+            }
+            
+            #ai-sidekick #sidekick-button {
+                width: 100% !important;
+                height: 100% !important;
+                padding: 0 !important;
+                border-radius: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            
+            #ai-sidekick #sidekick-text {
+                font-size: 16px !important;
+                font-weight: bold !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                z-index: 10000 !important;
+                background: white !important;
+                border-radius: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                max-width: none !important;
+                max-height: none !important;
+                transform: none !important;
+                height: -webkit-fill-available !important;
+                min-height: -webkit-fill-available !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-container {
+                flex: 1 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                padding: 0 !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-messages {
+                flex: 1 !important;
+                padding: 20px !important;
+                flex-direction: column !important;
+                justify-content: flex-end !important;
+                margin-top: 60px !important;
+                -webkit-overflow-scrolling: touch !important;
+                -webkit-transform: translateZ(0) !important;
+                transform: translateZ(0) !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-messages p {
+                margin: 0 !important;
+                padding: 8px 0 !important;
+                flex-shrink: 0 !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-input-container {
+                position: sticky !important;
+                bottom: 0 !important;
+                background: white !important;
+                padding: 20px !important;
+                border-top: 1px solid #e5e7eb !important;
+                width: 100% !important;
+                flex-shrink: 0 !important;
+                -webkit-transform: translateZ(0) !important;
+                transform: translateZ(0) !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #sidekick-button {
+                position: fixed !important;
+                top: 10px !important;
+                right: 10px !important;
+                width: 40px !important;
+                height: 40px !important;
+                padding: 0 !important;
+                border-radius: 0 !important;
+                background: rgba(255, 255, 255, 0.9) !important;
+                z-index: 99999 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                border: none !important;
+                left: auto !important;
+                transform: none !important;
+                pointer-events: auto !important;
+            }
+            
+            /* White bar to cut off chat log before X button */
+            #ai-sidekick.mobile-fullscreen::before {
+                content: '' !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                width: 100% !important;
+                height: 60px !important;
+                background: white !important;
+                z-index: 99998 !important;
+                pointer-events: none !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #sidekick-text {
+                font-size: 24px !important;
+                font-weight: bold !important;
+                color: #18a000 !important;
+                z-index: 99999 !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen input,
+            #ai-sidekick.mobile-fullscreen textarea {
+                font-size: 16px !important;
+                transform: none !important;
+            }
+            
+            #main-content.mobile-hidden {
+                display: none;
+            }
+            
+            /* Mobile email popup positioning */
+            #email-popup {
+                position: fixed !important;
+                top: 16px !important;
+                left: 65% !important;
+                transform: translateX(-50%) !important;
+                bottom: auto !important;
+                right: auto !important;
+                z-index: 10001 !important;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                border: none !important;
+                border-radius: 0 !important;
+                padding: 8px 12px !important;
+                box-shadow: none !important;
+                font-size: 12px !important;
+                font-weight: 500 !important;
+                color: #374151 !important;
+                white-space: nowrap !important;
+            }
+            
+            /* Hide custom cursor on mobile */
+            * {
+                cursor: auto;
+            }
+            .cursor {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -95,12 +265,16 @@
     <div class="cursor" id="cursor"></div>
 
     <!-- Main Content Area (responsive width) -->
-    <div class="w-3/4 overflow-x-hidden transition-all duration-500 ease-in-out" id="main-content">
+    <div class="w-full md:w-3/4 overflow-x-hidden transition-all duration-500 ease-in-out" id="main-content">
         <!-- Navigation -->
-        <nav class="fixed w-3/4 z-50 transition-all duration-500 ease-in-out" id="main-nav">
-            <div class="bg-white/80 backdrop-blur-lg px-12 py-6">
+        <nav class="fixed w-full md:w-3/4 z-50 transition-all duration-500 ease-in-out" id="main-nav">
+            <div class="bg-white/80 backdrop-blur-lg px-4 md:px-12 py-4 md:py-6">
                 <div class="flex justify-between items-center">
-                    <h1 class="text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    <h1 class="text-[20px] md:text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    
+                    <!-- Mobile Email Popup Space -->
+                    <div class="md:hidden flex-1 mx-4"></div>
+                    
                     <div class="hidden md:flex space-x-12">
                         <a href="index.html" class="text-[16px] font-helvetica font-light nav-link relative">Home</a>
                         <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link relative">Projects</a>
@@ -125,15 +299,55 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden text-black">
+                        <!-- Hamburger Icon -->
+                        <svg class="w-6 h-6" id="hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <!-- X Icon -->
+                        <svg class="w-6 h-6 hidden" id="x-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Mobile Navigation Menu -->
+                <div id="mobile-menu" class="md:hidden hidden pt-4">
+                    <div class="flex flex-col space-y-4">
+                        <a href="index.html" class="text-[16px] font-helvetica font-light nav-link relative">Home</a>
+                        <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link relative">Projects</a>
+                        <a href="https://docs.google.com/document/d/1RXj2iDbQUYEA5Zh2meN2EXdoaU2CWZfN_qSqDnq9CNY/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
+                        <a href="about.html" class="text-[16px] font-helvetica font-light nav-link active relative">About</a>
+                        <div class="relative" id="mobile-contact-dropdown">
+                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown" onclick="toggleMobileContact()">Contact</button>
+                            <div class="mt-2 opacity-0 invisible contact-dropdown-menu transition-all duration-200" id="mobile-contact-menu">
+                                <div class="relative pl-2">
+                                    <div class="px-3 py-2">
+                                        <div class="space-y-2 text-left">
+                                            <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
+                                            <div class="space-y-1">
+                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-left w-full">c.a.rodriguez1999@gmail.com</button>
+                                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="absolute top-0 left-0 w-0.5 bg-black h-0 transition-all duration-500 ease-out" id="mobile-contact-line"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
 
         <!-- Content Section -->
-        <div class="max-w-[960px] mx-auto pt-24" style="padding-left: 48px; padding-right: 48px;">
+        <div class="max-w-[960px] mx-auto pt-20 md:pt-24 px-4 md:px-12">
             <!-- Hero Text -->
-            <div class="mb-32">
-                <h2 class="text-[32px] font-helvetica font-medium">How I think, build, and show up.</h2>
+            <div class="mb-16 md:mb-32">
+                <h2 class="text-[24px] md:text-[32px] font-helvetica font-medium">How I think, build, and show up.</h2>
             </div>
 
             <!-- About Content -->
@@ -173,8 +387,8 @@
 
                 <!-- About Text -->
                 <div class="max-w-[800px] mx-auto">
-                    <h2 class="text-[36px] font-nuosu mb-4">About Me</h2>
-                    <div class="text-[16px] font-helvetica space-y-6">
+                    <h2 class="text-[28px] md:text-[36px] font-nuosu mb-4">About Me</h2>
+                    <div class="text-[14px] md:text-[16px] font-helvetica space-y-4 md:space-y-6">
                         <p>I'm Carlos Rodriguez, a product manager and design strategist working at the intersection of healthcare, education, and human-centered AI. I lead products and programs from concept to scaled impact—defining vision, prioritizing features, aligning cross-functional teams, and delivering measurable outcomes.</p>
                         
                         <p>With a background in computer science and a graduate education in design strategy from the Institute of Design, I've launched AI-powered research tools for first-generation students, embedded Microsoft Copilot into healthcare education, and re-architected cohort-based programs to remove structural barriers.</p>
@@ -193,29 +407,53 @@
             </div>
 
             <!-- Footer -->
-            <footer class="bg-white border-t border-gray-200 mt-20">
-                <div class="max-w-7xl mx-auto px-12 py-8">
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-8">
+            <footer class="bg-white border-t border-gray-200 mt-12 md:mt-20">
+                <!-- Desktop Footer -->
+                <div class="hidden md:block max-w-7xl mx-auto px-4 md:px-12 py-6 md:py-8">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
+                        <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8">
                             <div>
-                                <h3 class="text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
-                                <p class="text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                                <h3 class="text-[18px] md:text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                                <p class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
                             </div>
-                            <div class="border-l border-gray-300 h-12"></div>
-                            <div>
-                                <p class="text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                            <div class="hidden md:block border-l border-gray-300 h-12"></div>
+                            <div class="hidden md:block">
+                                <p class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
                                 <div class="flex space-x-4">
-                                    <button onclick="copyEmail()" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
-                                    <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                    <a href="https://github.com/CRodriguez245" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                                    <button onclick="copyEmail()" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
+                                    <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                    <a href="https://github.com/CRodriguez245" target="_blank" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="text-right">
+                        <div class="hidden md:block text-center md:text-right">
                             <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
                             <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
-                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by Cursor AI, Figma, and GPT</p>
+                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by <span class="text-[#18a000]">Cursor AI</span>, Figma, and GPT</p>
                         </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Footer -->
+                <div class="md:hidden px-4 py-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-[18px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                            <p class="text-[12px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                        </div>
+                        <div>
+                            <p class="text-[12px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                            <div class="flex space-x-4">
+                                <button onclick="copyEmail()" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
+                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                <a href="https://github.com/CRodriguez245" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by <span class="text-[#18a000]">Cursor AI</span>, Figma, and GPT</p>
                     </div>
                 </div>
             </footer>
@@ -235,7 +473,7 @@
             <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
                 <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
             </div>
-            <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex">
+            <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex" id="chat-input-container">
                 <span class="text-black mt-[2px]">></span>
                 <div class="relative flex-1 ml-2">
                     <textarea 
@@ -769,24 +1007,35 @@
                 chatInput: !!chatInput
             });
             
+            // Check if we're on mobile
+            const isMobile = window.innerWidth <= 768;
+            
             if (sidekickCollapsed) {
                 console.log('Expanding sidekick...');
                 
-                // Force show the container - remove all conflicting styles
-                chatContainer.style.display = 'block';
-                chatContainer.style.visibility = 'visible';
-                chatContainer.style.opacity = '1';
-                chatContainer.style.maxHeight = 'none';
-                chatContainer.style.overflow = 'visible';
-                chatContainer.style.height = 'auto';
-                chatContainer.style.width = '100%';
-                
-                aiSidekick.style.width = '25%';
-                aiSidekick.style.maxWidth = '394px';
-                sidekickText.style.fontSize = '14px';
-                sidekickText.textContent = 'AI Sidekick';
-                mainContent.style.width = '75%';
-                mainContent.style.marginLeft = '0';
+                if (isMobile) {
+                    // Mobile fullscreen mode
+                    aiSidekick.classList.add('mobile-fullscreen');
+                    mainContent.classList.add('mobile-hidden');
+                    sidekickText.textContent = '✕';
+                } else {
+                    // Desktop mode
+                    // Force show the container - remove all conflicting styles
+                    chatContainer.style.display = 'block';
+                    chatContainer.style.visibility = 'visible';
+                    chatContainer.style.opacity = '1';
+                    chatContainer.style.maxHeight = 'none';
+                    chatContainer.style.overflow = 'visible';
+                    chatContainer.style.height = 'auto';
+                    chatContainer.style.width = '100%';
+                    
+                    aiSidekick.style.width = '25%';
+                    aiSidekick.style.maxWidth = '394px';
+                    sidekickText.style.fontSize = '14px';
+                    sidekickText.textContent = 'AI Sidekick';
+                    mainContent.style.width = '75%';
+                    mainContent.style.marginLeft = '0';
+                }
                 
                 // Ensure input is visible and functional
                 if (chatInput) {
@@ -802,14 +1051,23 @@
                 console.log('Sidekick expanded, state saved');
             } else {
                 console.log('Collapsing sidekick...');
-                // Collapse sidekick - hide the container
-                chatContainer.style.display = 'none';
-                aiSidekick.style.width = '80px';
-                aiSidekick.style.maxWidth = '80px';
-                sidekickText.style.fontSize = '14px';
-                sidekickText.textContent = 'AI';
-                mainContent.style.width = '75%';
-                mainContent.style.marginLeft = '12.5%'; // Center the 75% content
+                
+                if (isMobile) {
+                    // Mobile collapse mode
+                    aiSidekick.classList.remove('mobile-fullscreen');
+                    mainContent.classList.remove('mobile-hidden');
+                    sidekickText.textContent = 'AI';
+                } else {
+                    // Desktop collapse mode
+                    chatContainer.style.display = 'none';
+                    aiSidekick.style.width = '80px';
+                    aiSidekick.style.maxWidth = '80px';
+                    sidekickText.style.fontSize = '14px';
+                    sidekickText.textContent = 'AI';
+                    mainContent.style.width = '75%';
+                    mainContent.style.marginLeft = '12.5%'; // Center the 75% content
+                }
+                
                 sidekickCollapsed = true;
                 sessionStorage.setItem('sidekickCollapsed', 'true');
                 console.log('Sidekick collapsed, state saved');
@@ -1406,6 +1664,96 @@
                 }, 300);
             }, 3000);
         }
+        
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const xIcon = document.getElementById('x-icon');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    const isVisible = mobileMenu.classList.contains('hidden');
+                    
+                    if (isVisible) {
+                        mobileMenu.classList.remove('hidden');
+                        hamburgerIcon.classList.add('hidden');
+                        xIcon.classList.remove('hidden');
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                        hamburgerIcon.classList.remove('hidden');
+                        xIcon.classList.add('hidden');
+                    }
+                });
+            }
+            
+            // Mobile contact dropdown functionality
+            const contactButton = document.getElementById('mobile-contact-dropdown');
+            const contactDropdownMenu = document.getElementById('mobile-contact-menu');
+            const contactLine = document.getElementById('mobile-contact-line');
+            
+            if (contactButton && contactDropdownMenu) {
+                contactButton.addEventListener('click', () => {
+                    const isVisible = contactDropdownMenu.classList.contains('visible');
+                    
+                    if (isVisible) {
+                        contactDropdownMenu.classList.remove('opacity-100', 'visible');
+                        contactDropdownMenu.classList.add('opacity-0', 'invisible');
+                    } else {
+                        contactDropdownMenu.classList.remove('invisible', 'opacity-0');
+                        contactDropdownMenu.classList.add('opacity-100', 'visible');
+                    }
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (event) => {
+                    if (!contactDropdownMenu.contains(event.target) && !contactButton.contains(event.target)) {
+                        contactDropdownMenu.classList.remove('opacity-100', 'visible');
+                        contactDropdownMenu.classList.add('opacity-0', 'invisible');
+                    }
+                });
+            }
+        });
+        
+        // Initialize sidekick state for mobile
+        function initializeSidekickState() {
+            const savedState = sessionStorage.getItem('sidekickCollapsed');
+            if (savedState === null) {
+                // Default to collapsed on mobile
+                const isMobile = window.innerWidth <= 768;
+                if (isMobile) {
+                    sidekickCollapsed = true;
+                    sessionStorage.setItem('sidekickCollapsed', 'true');
+                }
+            } else {
+                sidekickCollapsed = savedState === 'true';
+            }
+        }
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const isMobile = window.innerWidth <= 768;
+            const aiSidekick = document.getElementById('ai-sidekick');
+            const mainContent = document.getElementById('main-content');
+            
+            if (isMobile) {
+                // On mobile, ensure proper mobile styling
+                if (sidekickCollapsed) {
+                    aiSidekick.classList.remove('mobile-fullscreen');
+                    mainContent.classList.remove('mobile-hidden');
+                }
+            } else {
+                // On desktop, remove mobile classes
+                aiSidekick.classList.remove('mobile-fullscreen');
+                mainContent.classList.remove('mobile-hidden');
+            }
+        });
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeSidekickState();
+        });
     </script>
     <style>
         /* Add custom scrollbar styling */
