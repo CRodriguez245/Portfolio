@@ -62,6 +62,18 @@
                 width: auto;
                 min-width: 0;
             }
+            
+            /* Ensure active state shows the line */
+            .nav-link.active::after {
+                transform: scaleX(1);
+                transform-origin: bottom left;
+            }
+            
+            /* Ensure hover state works on mobile */
+            .nav-link:hover::after {
+                transform: scaleX(1);
+                transform-origin: bottom left;
+            }
         }
         .nav-link:hover::after {
             transform: scaleX(1);
@@ -387,18 +399,18 @@
                         <div class="relative group">
                             <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown">Contact</button>
                             <div class="mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible contact-dropdown-menu transition-all duration-200">
-                                <div class="relative pr-4">
+                                <div class="relative pl-4">
                                     <div class="bg-white/80 backdrop-blur-sm rounded-sm px-3 py-2">
-                                        <div class="space-y-2 text-right">
+                                        <div class="space-y-2 text-left">
                                             <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
                                             <div class="space-y-1">
-                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-right w-full">c.a.rodriguez1999@gmail.com</button>
+                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-left w-full">c.a.rodriguez1999@gmail.com</button>
                                                 <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
                                                 <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="absolute top-0 right-0 w-0.5 bg-black h-0 group-hover:h-full transition-all duration-500 ease-out"></div>
+                                    <div class="absolute top-0 left-0 w-0.5 bg-black h-0 group-hover:h-full transition-all duration-500 ease-out"></div>
                                 </div>
                             </div>
                         </div>
