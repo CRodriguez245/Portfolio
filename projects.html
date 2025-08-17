@@ -1505,13 +1505,13 @@
                     if (isAnimating) return;
                     isAnimating = true;
                     this.classList.add('hover:shadow-2xl', 'hover:scale-105');
+                });
+                container.addEventListener('touchend', function(e) {
+                    // Don't prevent default - allow navigation to work
                     setTimeout(() => {
                         this.classList.remove('hover:shadow-2xl', 'hover:scale-105');
                         isAnimating = false;
                     }, 300);
-                });
-                container.addEventListener('touchend', function(e) {
-                    e.preventDefault();
                 });
             });
             
@@ -1523,13 +1523,13 @@
                     if (isAnimating) return;
                     isAnimating = true;
                     this.classList.add('hover:shadow-2xl', 'hover:scale-105');
+                });
+                container.addEventListener('touchend', function(e) {
+                    // Don't prevent default - allow navigation to work
                     setTimeout(() => {
                         this.classList.remove('hover:shadow-2xl', 'hover:scale-105');
                         isAnimating = false;
                     }, 300);
-                });
-                container.addEventListener('touchend', function(e) {
-                    e.preventDefault();
                 });
             });
         });
