@@ -151,23 +151,26 @@
             }
             
             #ai-sidekick.mobile-fullscreen #chat-messages {
+                flex: 1 !important;
                 padding: 80px 20px 0 20px !important;
-                flex-direction: column !important;
-                justify-content: flex-end !important;
-                margin-top: 60px !important;
-                -webkit-overflow-scrolling: touch !important;
-                -webkit-transform: translateZ(0) !important;
-                transform: translateZ(0) !important;
                 overflow-y: auto !important;
                 max-height: none !important;
                 width: 100% !important;
                 display: flex !important;
+                flex-direction: column !important;
                 min-height: 0 !important;
+                justify-content: flex-end !important;
+                margin-top: 60px !important;
+                /* Safari-specific fixes */
+                -webkit-overflow-scrolling: touch !important;
+                -webkit-transform: translateZ(0) !important;
+                transform: translateZ(0) !important;
             }
             
+            /* Mobile-only: Chat messages display from bottom to top */
             #ai-sidekick.mobile-fullscreen #chat-messages p {
-                margin: 0 0 16px 0 !important;
-                padding: 0 !important;
+                margin: 0 !important;
+                padding: 8px 0 !important;
                 flex-shrink: 0 !important;
             }
             
