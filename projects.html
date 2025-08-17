@@ -1518,17 +1518,26 @@
             const projectImageContainers = document.querySelectorAll('#projects-tab .project-card > div > div:last-child');
             projectImageContainers.forEach(container => {
                 let isAnimating = false;
+                
+                // Touch start - trigger animation
                 container.addEventListener('touchstart', function(e) {
                     if (isAnimating) return;
                     isAnimating = true;
+                    
+                    // Add hover classes to trigger animation
                     this.classList.add('hover:shadow-2xl', 'hover:scale-105');
-                });
-                container.addEventListener('touchend', function(e) {
-                    // Don't prevent default - allow navigation to work
+                    
+                    // Remove classes after animation duration
                     setTimeout(() => {
                         this.classList.remove('hover:shadow-2xl', 'hover:scale-105');
                         isAnimating = false;
-                    }, 300);
+                    }, 300); // Match the transition duration
+                });
+                
+                // Allow link to work while keeping animation
+                container.addEventListener('touchend', function(e) {
+                    // Don't prevent default - allow the link to work
+                    // The animation will still play from touchstart
                 });
             });
             
@@ -1536,17 +1545,26 @@
             const sideProjectImageContainers = document.querySelectorAll('#side-projects-tab .project-card > div > div:last-child');
             sideProjectImageContainers.forEach(container => {
                 let isAnimating = false;
+                
+                // Touch start - trigger animation
                 container.addEventListener('touchstart', function(e) {
                     if (isAnimating) return;
                     isAnimating = true;
+                    
+                    // Add hover classes to trigger animation
                     this.classList.add('hover:shadow-2xl', 'hover:scale-105');
-                });
-                container.addEventListener('touchend', function(e) {
-                    // Don't prevent default - allow navigation to work
+                    
+                    // Remove classes after animation duration
                     setTimeout(() => {
                         this.classList.remove('hover:shadow-2xl', 'hover:scale-105');
                         isAnimating = false;
-                    }, 300);
+                    }, 300); // Match the transition duration
+                });
+                
+                // Allow link to work while keeping animation
+                container.addEventListener('touchend', function(e) {
+                    // Don't prevent default - allow the link to work
+                    // The animation will still play from touchstart
                 });
             });
         });
