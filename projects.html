@@ -91,6 +91,104 @@
         .nav-link.active::after {
             transform: scaleX(1);
         }
+        
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            .nav-link::after {
+                width: auto;
+                min-width: 0;
+            }
+            .nav-link.active::after {
+                transform: scaleX(1);
+                transform-origin: bottom left;
+            }
+            .nav-link:hover::after {
+                transform: scaleX(1);
+                transform-origin: bottom left;
+            }
+            
+            /* Mobile AI Sidekick Full-Screen */
+            #ai-sidekick.mobile-fullscreen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 100vw !important;
+                height: 100vh !important;
+                z-index: 10000;
+                background: white;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-container {
+                display: flex !important;
+                flex-direction: column;
+                height: 100vh;
+                padding: 20px;
+                padding-top: 60px;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-messages {
+                flex: 1;
+                overflow-y: auto;
+                margin-bottom: 20px;
+                display: flex;
+                flex-direction: column-reverse;
+                justify-content: flex-start;
+                min-height: 0;
+                flex-shrink: 0;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-input-container {
+                flex-shrink: 0;
+                margin-top: auto;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #sidekick-button {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: transparent;
+                color: #18a000;
+                font-size: 24px;
+                padding: 0;
+                width: auto;
+                height: auto;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #sidekick-text {
+                color: #18a000;
+                font-size: 24px;
+            }
+            
+            #ai-sidekick.mobile-fullscreen input,
+            #ai-sidekick.mobile-fullscreen textarea {
+                font-size: 16px !important;
+                transform: none !important;
+            }
+            
+            #main-content.mobile-hidden {
+                display: none;
+            }
+            
+            #ai-sidekick.mobile-fullscreen::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 60px;
+                background: white;
+                z-index: 1;
+            }
+            
+            /* Mobile email popup positioning */
+            #email-popup {
+                bottom: 180px !important;
+                right: 16px !important;
+                top: auto !important;
+            }
+        }
         .tab-button {
             position: relative;
             transition: all 0.3s ease;
@@ -164,12 +262,14 @@
     <div class="cursor" id="cursor"></div>
 
     <!-- Main Content Area (responsive width) -->
-    <div class="w-3/4 overflow-x-hidden transition-all duration-500 ease-in-out" id="main-content">
+    <div class="w-full md:w-3/4 overflow-x-hidden transition-all duration-500 ease-in-out" id="main-content">
         <!-- Navigation -->
-        <nav class="fixed w-3/4 z-50 transition-all duration-500 ease-in-out" id="main-nav">
-            <div class="bg-white/80 backdrop-blur-lg px-12 py-6">
+        <nav class="fixed w-3/4 md:w-3/4 z-50 transition-all duration-500 ease-in-out" id="main-nav">
+            <div class="bg-white/80 backdrop-blur-lg px-4 md:px-12 py-4 md:py-6">
                 <div class="flex justify-between items-center">
-                    <h1 class="text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    <h1 class="text-[20px] md:text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    
+                    <!-- Desktop Navigation -->
                     <div class="hidden md:flex space-x-12">
                         <a href="index.html" class="text-[16px] font-helvetica font-light nav-link relative">Home</a>
                         <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link active relative">Projects</a>
@@ -194,21 +294,61 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden text-black">
+                        <!-- Hamburger Icon -->
+                        <svg class="w-6 h-6" id="hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <!-- X Icon -->
+                        <svg class="w-6 h-6 hidden" id="x-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Mobile Navigation Menu -->
+                <div id="mobile-menu" class="md:hidden hidden pt-4">
+                    <div class="flex flex-col space-y-4">
+                        <a href="index.html" class="text-[16px] font-helvetica font-light nav-link relative">Home</a>
+                        <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link active relative">Projects</a>
+                        <a href="https://docs.google.com/document/d/1RXj2iDbQUYEA5Zh2meN2EXdoaU2CWZfN_qSqDnq9CNY/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
+                        <a href="about.html" class="text-[16px] font-helvetica font-light nav-link relative">About</a>
+                        <div class="relative" id="mobile-contact-dropdown">
+                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown" onclick="toggleMobileContact()">Contact</button>
+                            <div class="mt-2 opacity-0 invisible contact-dropdown-menu transition-all duration-200" id="mobile-contact-menu">
+                                <div class="relative pl-2">
+                                    <div class="px-3 py-2">
+                                        <div class="space-y-2 text-left">
+                                            <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
+                                            <div class="space-y-1">
+                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-left w-full">c.a.rodriguez1999@gmail.com</button>
+                                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="absolute top-0 left-0 w-0.5 bg-black h-0 transition-all duration-500 ease-out" id="mobile-contact-line"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
 
         <!-- Content Section -->
-        <div class="max-w-[960px] mx-auto pt-24" style="padding-left: 48px; padding-right: 48px;">
+        <div class="max-w-[960px] mx-auto pt-20 md:pt-24 px-4 md:px-12">
             <!-- Hero Text -->
-            <div class="mb-32">
-                <h2 class="text-[32px] font-helvetica font-medium">Explore my work further.</h2>
+            <div class="mb-16 md:mb-32">
+                <h2 class="text-[24px] md:text-[32px] font-helvetica font-medium">Explore my work further.</h2>
             </div>
 
             <!-- Tab Navigation -->
-            <div class="flex space-x-8 mb-12">
-                <button class="tab-button active text-[36px] font-nuosu" onclick="switchTab('projects')">Projects</button>
-                <button class="tab-button text-[36px] font-nuosu" onclick="switchTab('side-projects')">Side Projects</button>
+            <div class="flex space-x-4 md:space-x-8 mb-8 md:mb-12">
+                <button class="tab-button active text-[24px] md:text-[36px] font-nuosu" onclick="switchTab('projects')">Projects</button>
+                <button class="tab-button text-[24px] md:text-[36px] font-nuosu" onclick="switchTab('side-projects')">Side Projects</button>
             </div>
 
             <!-- Projects Section -->
@@ -217,42 +357,42 @@
                 <!-- Project Grid -->
                 <div>
                     <!-- AI Research Workbook -->
-                    <a href="ai-research-workbook.html" class="block mb-10 group project-card">
-                        <div class="flex justify-between items-start gap-[120px]">
-                            <div class="w-[420px]">
-                                <h3 class="text-[20px] font-helvetica font-bold mb-1 whitespace-nowrap">AI Research Workbook</h3>
-                                <p class="text-[14px] font-helvetica font-light mb-8">Product Manager, Northwestern Medicine</p>
+                    <a href="ai-research-workbook.html" class="block mb-8 md:mb-10 group project-card">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 md:gap-[120px]">
+                            <div class="w-full md:w-[420px] order-2 md:order-1">
+                                <h3 class="text-[18px] md:text-[20px] font-helvetica font-bold mb-1 whitespace-nowrap">AI Research Workbook</h3>
+                                <p class="text-[14px] font-helvetica font-light mb-4 md:mb-8">Product Manager, Northwestern Medicine</p>
                                 <p class="text-[14px] font-helvetica font-light leading-relaxed">Built a GPT-supported research tool to help students scale inquiry and critical thinking at Northwestern Medicine.</p>
                             </div>
-                            <div class="w-[500px] h-[280px] transition-all duration-300 ease-out group-hover:scale-[1.05] group-hover:shadow-2xl">
+                            <div class="w-full md:w-[500px] h-48 md:h-[280px] transition-all duration-300 ease-out group-hover:scale-[1.05] group-hover:shadow-2xl order-1 md:order-2">
                                 <img src="images/BeyondChat.webp" alt="AI Research Workbook" class="w-full h-full object-cover">
                             </div>
                         </div>
                     </a>
 
                     <!-- NM Scholars -->
-                    <a href="nm-scholars-program.html" class="block mb-10 group project-card">
-                        <div class="flex justify-between items-start gap-[120px]">
-                            <div class="w-[420px]">
-                                <h3 class="text-[20px] font-helvetica font-bold mb-1 whitespace-nowrap">NM Scholars Program</h3>
-                                <p class="text-[14px] font-helvetica font-light mb-8">Design Strategist, Northwestern Medicine</p>
+                    <a href="nm-scholars-program.html" class="block mb-8 md:mb-10 group project-card">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 md:gap-[120px]">
+                            <div class="w-full md:w-[420px] order-2 md:order-1">
+                                <h3 class="text-[18px] md:text-[20px] font-helvetica font-bold mb-1 whitespace-nowrap">NM Scholars Program</h3>
+                                <p class="text-[14px] font-helvetica font-light mb-4 md:mb-8">Design Strategist, Northwestern Medicine</p>
                                 <p class="text-[14px] font-helvetica font-light leading-relaxed">Redesigned a clinical learning experience for high school students. Integrated systems mapping, ethnographic insights, and stakeholder alignment.</p>
                             </div>
-                            <div class="w-[500px] h-[280px] transition-all duration-300 ease-out group-hover:scale-[1.05] group-hover:shadow-2xl">
+                            <div class="w-full md:w-[500px] h-48 md:h-[280px] transition-all duration-300 ease-out group-hover:scale-[1.05] group-hover:shadow-2xl order-1 md:order-2">
                                 <img src="images/NM-Scholars-ProjectsCard.jpg" alt="NM Scholars Program" class="w-full h-full object-cover">
                             </div>
                         </div>
                     </a>
 
                     <!-- Bachelors in Microsoft Health -->
-                    <a href="bachelors-microsoft-health.html" class="block mb-10 group project-card">
-                        <div class="flex justify-between items-start gap-[120px]">
-                            <div class="w-[420px]">
-                                <h3 class="text-[20px] font-helvetica font-bold mb-1 whitespace-nowrap">Bachelors in Microsoft Health</h3>
-                                <p class="text-[14px] font-helvetica font-light mb-8">Program Manager, Microsoft Corporation</p>
+                    <a href="bachelors-microsoft-health.html" class="block mb-8 md:mb-10 group project-card">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 md:gap-[120px]">
+                            <div class="w-full md:w-[420px] order-2 md:order-1">
+                                <h3 class="text-[18px] md:text-[20px] font-helvetica font-bold mb-1 whitespace-nowrap">Bachelors in Microsoft Health</h3>
+                                <p class="text-[14px] font-helvetica font-light mb-4 md:mb-8">Program Manager, Microsoft Corporation</p>
                                 <p class="text-[14px] font-helvetica font-light leading-relaxed">A systems-led academic program exploring healthcare through product strategy, equity, and emerging technology.</p>
                             </div>
-                            <div class="w-[500px] h-[280px] transition-all duration-300 ease-out group-hover:scale-[1.05] group-hover:shadow-2xl">
+                            <div class="w-full md:w-[500px] h-48 md:h-[280px] transition-all duration-300 ease-out group-hover:scale-[1.05] group-hover:shadow-2xl order-1 md:order-2">
                                 <img src="images/BMH-ProjectCard.jpg" alt="Bachelors in Microsoft Health" class="w-full h-full object-cover">
                             </div>
                         </div>
@@ -292,14 +432,14 @@
                     </a>
 
                     <!-- GA.V.NO -->
-                    <a href="gavno.html" class="block mb-10 group project-card">
-                        <div class="flex justify-between items-start gap-[120px]">
-                            <div class="w-[420px]">
-                                <h3 class="text-[20px] font-helvetica font-bold mb-1 whitespace-nowrap">GA.V.NO</h3>
-                                <p class="text-[14px] font-helvetica font-light mb-8">Creative Director & Founder</p>
+                    <a href="gavno.html" class="block mb-8 md:mb-10 group project-card">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 md:gap-[120px]">
+                            <div class="w-full md:w-[420px] order-2 md:order-1">
+                                <h3 class="text-[18px] md:text-[20px] font-helvetica font-bold mb-1 whitespace-nowrap">GA.V.NO</h3>
+                                <p class="text-[14px] font-helvetica font-light mb-4 md:mb-8">Creative Director & Founder</p>
                                 <p class="text-[14px] font-helvetica font-light leading-relaxed">A creative studio exploring the intersection of design, technology, and culture through innovative projects and collaborations.</p>
                             </div>
-                            <div class="w-[500px] h-[280px] transition-all duration-300 ease-out group-hover:scale-[1.05] group-hover:shadow-2xl">
+                            <div class="w-full md:w-[500px] h-48 md:h-[280px] transition-all duration-300 ease-out group-hover:scale-[1.05] group-hover:shadow-2xl order-1 md:order-2">
                                 <img src="images/gavnoradiologocenter copy.jpg" alt="GA.V.NO" class="w-full h-full object-contain">
                             </div>
                         </div>
@@ -308,29 +448,53 @@
             </section>
 
             <!-- Footer -->
-            <footer class="bg-white border-t border-gray-200 mt-20">
-                <div class="max-w-7xl mx-auto px-12 py-8">
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-8">
+            <footer class="bg-white border-t border-gray-200 mt-12 md:mt-20">
+                <!-- Desktop Footer -->
+                <div class="hidden md:block max-w-7xl mx-auto px-4 md:px-12 py-6 md:py-8">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
+                        <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8">
                             <div>
-                                <h3 class="text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
-                                <p class="text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                                <h3 class="text-[18px] md:text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                                <p class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
                             </div>
-                            <div class="border-l border-gray-300 h-12"></div>
-                            <div>
-                                <p class="text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                            <div class="hidden md:block border-l border-gray-300 h-12"></div>
+                            <div class="hidden md:block">
+                                <p class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
                                 <div class="flex space-x-4">
-                                    <button onclick="copyEmail()" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
-                                    <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                    <a href="https://github.com/CRodriguez245" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                                    <button onclick="copyEmail()" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
+                                    <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                    <a href="https://github.com/CRodriguez245" target="_blank" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="text-right">
+                        <div class="hidden md:block text-center md:text-right">
                             <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
                             <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
-                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by Cursor AI, Figma, and GPT</p>
+                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by <span class="text-[#18a000]">Cursor AI</span>, Figma, and GPT</p>
                         </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Footer -->
+                <div class="md:hidden px-4 py-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-[18px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                            <p class="text-[12px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                        </div>
+                        <div>
+                            <p class="text-[12px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                            <div class="flex space-x-4">
+                                <button onclick="copyEmail()" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
+                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                <a href="https://github.com/CRodriguez245" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by <span class="text-[#18a000]">Cursor AI</span>, Figma, and GPT</p>
                     </div>
                 </div>
             </footer>
@@ -345,7 +509,7 @@
     </div>
 
     <!-- AI Sidekick -->
-    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col z-[9999] transition-all duration-500 ease-in-out" id="ai-sidekick">
+    <div class="fixed bottom-0 right-2 md:right-8 w-[calc(100vw-16px)] md:w-1/4 md:max-w-[394px] flex flex-col z-[9999] transition-all duration-500 ease-in-out" id="ai-sidekick">
         <div class="transition-all duration-500 ease-in-out" id="chat-container">
             <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
                 <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
@@ -364,7 +528,7 @@
             </div>
         </div>
         <div class="bg-[#18a000] p-4 cursor-pointer transition-all duration-500 ease-in-out" id="sidekick-button" onclick="toggleSidekick()">
-            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold transition-all duration-500 ease-in-out" id="sidekick-text">AI Sidekick</h3>
+            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold transition-all duration-500 ease-in-out" id="sidekick-text">AI</h3>
         </div>
     </div>
 
@@ -828,8 +992,7 @@
         let enhancedSidekick = null;
         enhancedSidekick = new EnhancedAISidekick();
         
-        // Sidekick toggle state
-        let sidekickCollapsed = false;
+
         
         // Track if this is a navigation (not refresh)
         let isNavigation = false;
@@ -861,123 +1024,127 @@
         
         // Initialize sidekick state from sessionStorage
         function initializeSidekickState() {
-            console.log('=== INITIALIZATION DEBUG ===');
             const savedState = sessionStorage.getItem('sidekickCollapsed');
             const wasNavigation = sessionStorage.getItem('isNavigation');
-            
-            console.log('Initializing sidekick state:', savedState);
-            console.log('Was navigation:', wasNavigation);
             
             // Clear the navigation flag
             sessionStorage.removeItem('isNavigation');
             sessionStorage.removeItem('nextUrl');
             
-            // Apply collapsed state if it was a navigation and sidekick was collapsed
             if (savedState === 'true' && wasNavigation === 'true') {
-                console.log('Applying collapsed state from navigation...');
-                // Apply collapsed state on page load
+                // Apply collapsed state from navigation
                 const aiSidekick = document.getElementById('ai-sidekick');
                 const chatContainer = document.getElementById('chat-container');
                 const sidekickText = document.getElementById('sidekick-text');
                 const mainContent = document.getElementById('main-content');
                 
-                console.log('Elements found during initialization:', {
-                    aiSidekick: !!aiSidekick,
-                    chatContainer: !!chatContainer,
-                    sidekickText: !!sidekickText,
-                    mainContent: !!mainContent
-                });
-                
                 if (aiSidekick && chatContainer && sidekickText && mainContent) {
-                    // Set initial collapsed state
-                    console.log('Setting collapsed state...');
-                    chatContainer.style.display = 'none';
-                    aiSidekick.style.width = '80px';
-                    aiSidekick.style.maxWidth = '80px';
-                    sidekickText.style.fontSize = '14px';
-                    sidekickText.textContent = 'AI';
-                    mainContent.style.width = '75%';
-                    mainContent.style.marginLeft = '12.5%'; // Center the 75% content
-                    sidekickCollapsed = true;
+                    const isMobile = window.innerWidth <= 768;
                     
-                    console.log('Applied collapsed state successfully');
-                } else {
-                    console.error('Some elements not found during initialization');
+                    if (isMobile) {
+                        // Mobile: Ensure we're not in full-screen mode
+                        aiSidekick.classList.remove('mobile-fullscreen');
+                        mainContent.classList.remove('mobile-hidden');
+                        chatContainer.style.display = 'none';
+                        sidekickText.textContent = 'AI';
+                    } else {
+                        // Desktop: Original collapsed state
+                        chatContainer.style.display = 'none';
+                        aiSidekick.style.width = '80px';
+                        aiSidekick.style.maxWidth = '80px';
+                        sidekickText.style.fontSize = '14px';
+                        sidekickText.textContent = 'AI';
+                        mainContent.style.width = '75%';
+                        mainContent.style.marginLeft = '12.5%';
+                    }
+                    
+                    sidekickCollapsed = true;
                 }
             } else {
-                console.log('Not navigation or no saved state - resetting to expanded state');
-                // Reset to expanded state on refresh, direct access, or external navigation
-                sessionStorage.setItem('sidekickCollapsed', 'false');
-                sidekickCollapsed = false;
+                const isMobile = window.innerWidth <= 768;
+                
+                if (isMobile) {
+                    // Mobile: Start collapsed by default
+                    const aiSidekick = document.getElementById('ai-sidekick');
+                    const chatContainer = document.getElementById('chat-container');
+                    const sidekickText = document.getElementById('sidekick-text');
+                    const mainContent = document.getElementById('main-content');
+                    
+                    if (aiSidekick && chatContainer && sidekickText && mainContent) {
+                        aiSidekick.classList.remove('mobile-fullscreen');
+                        mainContent.classList.remove('mobile-hidden');
+                        chatContainer.style.display = 'none';
+                        sidekickText.textContent = 'AI';
+                        sidekickCollapsed = true;
+                        sessionStorage.setItem('sidekickCollapsed', 'true');
+                    }
+                } else {
+                    // Desktop: Reset to expanded state on refresh, direct access, or external navigation
+                    sessionStorage.setItem('sidekickCollapsed', 'false');
+                    sidekickCollapsed = false;
+                }
             }
-            console.log('=== END INITIALIZATION DEBUG ===');
         }
         
         // Toggle AI Sidekick function
         function toggleSidekick() {
-            console.log('=== TOGGLE SIDEKICK DEBUG ===');
-            console.log('Toggle sidekick called, current state:', sidekickCollapsed);
-            
             const aiSidekick = document.getElementById('ai-sidekick');
             const chatContainer = document.getElementById('chat-container');
             const sidekickText = document.getElementById('sidekick-text');
             const mainContent = document.getElementById('main-content');
             const chatInput = document.getElementById('chat-input');
             
-            console.log('Elements found:', {
-                aiSidekick: !!aiSidekick,
-                chatContainer: !!chatContainer,
-                sidekickText: !!sidekickText,
-                mainContent: !!mainContent,
-                chatInput: !!chatInput
-            });
+            const isMobile = window.innerWidth <= 768;
             
-            if (sidekickCollapsed) {
-                console.log('Expanding sidekick...');
-                
-                // Force show the container - remove all conflicting styles
-                chatContainer.style.display = 'block';
-                chatContainer.style.visibility = 'visible';
-                chatContainer.style.opacity = '1';
-                chatContainer.style.maxHeight = 'none';
-                chatContainer.style.overflow = 'visible';
-                chatContainer.style.height = 'auto';
-                chatContainer.style.width = '100%';
-                
-                aiSidekick.style.width = '25%';
-                aiSidekick.style.maxWidth = '394px';
-                sidekickText.style.fontSize = '14px';
-                sidekickText.textContent = 'AI Sidekick';
-                mainContent.style.width = '75%';
-                mainContent.style.marginLeft = '0';
-                
-                // Ensure input is visible and functional
-                if (chatInput) {
-                    chatInput.style.display = 'block';
-                    chatInput.style.visibility = 'visible';
-                    chatInput.style.opacity = '1';
-                    chatInput.focus();
-                    console.log('Input field restored successfully');
+            if (isMobile) {
+                // Mobile: Toggle full-screen mode
+                if (aiSidekick.classList.contains('mobile-fullscreen')) {
+                    // Close full-screen mode
+                    aiSidekick.classList.remove('mobile-fullscreen');
+                    mainContent.classList.remove('mobile-hidden');
+                    chatContainer.style.display = 'none';
+                    sidekickText.textContent = 'AI';
+                    sidekickCollapsed = true;
+                } else {
+                    // Open full-screen mode
+                    aiSidekick.classList.add('mobile-fullscreen');
+                    mainContent.classList.add('mobile-hidden');
+                    chatContainer.style.display = 'flex';
+                    sidekickText.textContent = '✕';
+                    sidekickCollapsed = false;
+                    
+                    // Focus on input after a brief delay
+                    setTimeout(() => {
+                        chatInput.focus();
+                    }, 100);
                 }
-                
-                sidekickCollapsed = false;
-                sessionStorage.setItem('sidekickCollapsed', 'false');
-                console.log('Sidekick expanded, state saved');
             } else {
-                console.log('Collapsing sidekick...');
-                // Collapse sidekick - hide the container
-                chatContainer.style.display = 'none';
-                aiSidekick.style.width = '80px';
-                aiSidekick.style.maxWidth = '80px';
-                sidekickText.style.fontSize = '14px';
-                sidekickText.textContent = 'AI';
-                mainContent.style.width = '75%';
-                mainContent.style.marginLeft = '12.5%'; // Center the 75% content
-                sidekickCollapsed = true;
-                sessionStorage.setItem('sidekickCollapsed', 'true');
-                console.log('Sidekick collapsed, state saved');
+                // Desktop: Original toggle behavior
+                if (sidekickCollapsed) {
+                    // Expand
+                    chatContainer.style.display = 'block';
+                    aiSidekick.style.width = '25%';
+                    aiSidekick.style.maxWidth = '394px';
+                    sidekickText.style.fontSize = '16px';
+                    sidekickText.textContent = 'AI Sidekick';
+                    mainContent.style.width = '75%';
+                    mainContent.style.marginLeft = '12.5%';
+                    sidekickCollapsed = false;
+                } else {
+                    // Collapse
+                    chatContainer.style.display = 'none';
+                    aiSidekick.style.width = '80px';
+                    aiSidekick.style.maxWidth = '80px';
+                    sidekickText.style.fontSize = '14px';
+                    sidekickText.textContent = 'AI';
+                    mainContent.style.width = '75%';
+                    mainContent.style.marginLeft = '12.5%';
+                    sidekickCollapsed = true;
+                }
             }
-            console.log('=== END TOGGLE DEBUG ===');
+            
+            // Save state to sessionStorage
+            sessionStorage.setItem('sidekickCollapsed', sidekickCollapsed.toString());
         }
 
         function addMessage(text, isUser = false, animate = true) {
@@ -1094,6 +1261,48 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize sidekick state from sessionStorage AFTER DOM is ready
             initializeSidekickState();
+            
+            // Mobile menu functionality
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const xIcon = document.getElementById('x-icon');
+            
+            if (mobileMenuBtn && mobileMenu && hamburgerIcon && xIcon) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    hamburgerIcon.classList.toggle('hidden');
+                    xIcon.classList.toggle('hidden');
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', (event) => {
+                    if (!mobileMenuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                        hamburgerIcon.classList.remove('hidden');
+                        xIcon.classList.add('hidden');
+                    }
+                });
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                const isMobile = window.innerWidth <= 768;
+                const aiSidekick = document.getElementById('ai-sidekick');
+                const mainContent = document.getElementById('main-content');
+                
+                if (isMobile) {
+                    // Ensure mobile styles are applied
+                    if (aiSidekick) {
+                        aiSidekick.style.width = '';
+                        aiSidekick.style.maxWidth = '';
+                    }
+                    if (mainContent) {
+                        mainContent.style.width = '';
+                        mainContent.style.marginLeft = '';
+                    }
+                }
+            });
             
             const contactButton = document.querySelector('.contact-dropdown');
             const contactDropdownMenu = document.querySelector('.contact-dropdown-menu');
@@ -1278,6 +1487,28 @@
                 }, 300);
             }, 3000);
         }
+        
+
+        
+        // Mobile Contact dropdown toggle function
+        function toggleMobileContact() {
+            const contactMenu = document.getElementById('mobile-contact-menu');
+            const contactLine = document.getElementById('mobile-contact-line');
+            
+            if (contactMenu.classList.contains('invisible')) {
+                // Show dropdown
+                contactMenu.classList.remove('invisible', 'opacity-0');
+                contactMenu.classList.add('opacity-100');
+                contactLine.style.height = '100%';
+            } else {
+                // Hide dropdown
+                contactMenu.classList.add('invisible', 'opacity-0');
+                contactMenu.classList.remove('opacity-100');
+                contactLine.style.height = '0';
+            }
+        }
+        
+
     </script>
     <style>
         /* Add custom scrollbar styling */
