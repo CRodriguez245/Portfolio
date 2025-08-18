@@ -262,45 +262,7 @@
                 word-wrap: break-word !important;
             }
             
-            /* Mobile footer styles */
-            footer {
-                margin-top: 12px !important;
-            }
-            
-            footer .max-w-[960px] {
-                padding: 16px !important;
-            }
-            
-            footer .flex.justify-between {
-                flex-direction: column !important;
-                gap: 16px !important;
-            }
-            
-            footer .flex.items-center.space-x-8 {
-                flex-direction: column !important;
-                gap: 16px !important;
-                align-items: flex-start !important;
-            }
-            
-            footer .border-l.border-gray-300 {
-                display: none !important;
-            }
-            
-            footer .text-right {
-                text-align: center !important;
-            }
-            
-            footer h3 {
-                font-size: 18px !important;
-            }
-            
-            footer p {
-                font-size: 12px !important;
-            }
-            
-            footer .flex.space-x-4 {
-                justify-content: flex-end !important;
-            }
+
         }
     </style>
 </head>
@@ -526,29 +488,53 @@
             </div>
 
             <!-- Footer -->
-            <footer class="bg-white border-t border-gray-200 mt-20">
-                <div class="max-w-7xl mx-auto px-12 py-8">
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-8">
+            <footer class="bg-white border-t border-gray-200 mt-12 md:mt-20">
+                <!-- Desktop Footer -->
+                <div class="hidden md:block max-w-7xl mx-auto px-4 md:px-12 py-6 md:py-8">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
+                        <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8">
                             <div>
-                                <h3 class="text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
-                                <p class="text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                                <h3 class="text-[18px] md:text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                                <p class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
                             </div>
-                            <div class="border-l border-gray-300 h-12"></div>
-                            <div>
-                                <p class="text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                            <div class="hidden md:block border-l border-gray-300 h-12"></div>
+                            <div class="hidden md:block">
+                                <p class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
                                 <div class="flex space-x-4">
-                                    <button onclick="copyEmail()" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
-                                    <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                    <a href="https://github.com/CRodriguez245" target="_blank" class="text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                                    <button onclick="copyEmail()" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
+                                    <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                    <a href="https://github.com/CRodriguez245" target="_blank" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="text-right">
+                        <div class="hidden md:block text-center md:text-right">
                             <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
                             <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
-                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by Cursor AI, Figma, and GPT</p>
+                            <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by <span class="text-[#18a000]">Cursor AI</span>, Figma, and GPT</p>
                         </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Footer -->
+                <div class="md:hidden px-4 py-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-[18px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                            <p class="text-[12px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                        </div>
+                        <div>
+                            <p class="text-[12px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                            <div class="flex space-x-4">
+                                <button onclick="copyEmail()" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
+                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                <a href="https://github.com/CRodriguez245" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by <span class="text-[#18a000]">Cursor AI</span>, Figma, and GPT</p>
                     </div>
                 </div>
             </footer>
