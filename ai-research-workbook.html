@@ -88,6 +88,220 @@
         .contact-dropdown + div a {
             cursor: none;
         }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            /* Hide custom cursor on mobile */
+            .cursor {
+                display: none !important;
+            }
+            
+            /* Re-enable default cursor on mobile */
+            * {
+                cursor: auto !important;
+            }
+            
+            /* Mobile AI Sidekick Styles */
+            /* Mobile collapsed state - small square button */
+            #ai-sidekick {
+                width: 60px !important;
+                height: 60px !important;
+                max-width: 60px !important;
+                border-radius: 0 !important;
+                bottom: 20px !important;
+                right: 20px !important;
+                margin: 0 !important;
+                left: auto !important;
+            }
+            
+            #ai-sidekick #sidekick-button {
+                width: 100% !important;
+                height: 100% !important;
+                padding: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                border-radius: 0 !important;
+            }
+            
+            #ai-sidekick #sidekick-text {
+                font-size: 12px !important;
+                font-weight: bold !important;
+            }
+            
+            /* Mobile full-screen mode */
+            #ai-sidekick.mobile-fullscreen {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                z-index: 10000 !important;
+                background: white !important;
+                border-radius: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                max-width: none !important;
+                max-height: none !important;
+                transform: none !important;
+                /* Safari-specific viewport fixes */
+                height: -webkit-fill-available !important;
+                min-height: -webkit-fill-available !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-container {
+                flex: 1 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                padding: 0 !important;
+                background: white !important;
+                position: relative !important;
+                width: 100% !important;
+                overflow: hidden !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-messages {
+                flex: 1 !important;
+                padding: 80px 20px 0 20px !important;
+                overflow-y: auto !important;
+                max-height: none !important;
+                width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                min-height: 0 !important;
+                justify-content: flex-end !important;
+                margin-top: 60px !important;
+                /* Safari-specific fixes */
+                -webkit-overflow-scrolling: touch !important;
+                -webkit-transform: translateZ(0) !important;
+                transform: translateZ(0) !important;
+            }
+            
+            /* Mobile-only: Chat messages display from bottom to top */
+            #ai-sidekick.mobile-fullscreen #chat-messages p {
+                margin: 0 !important;
+                padding: 8px 0 !important;
+                flex-shrink: 0 !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #chat-input-container {
+                position: sticky !important;
+                bottom: 0 !important;
+                background: white !important;
+                padding: 20px !important;
+                border-top: 1px solid #e5e7eb !important;
+                width: 100% !important;
+                flex-shrink: 0 !important;
+                /* Safari-specific fixes */
+                -webkit-transform: translateZ(0) !important;
+                transform: translateZ(0) !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #sidekick-button {
+                position: fixed !important;
+                top: 10px !important;
+                right: 10px !important;
+                width: 40px !important;
+                height: 40px !important;
+                padding: 0 !important;
+                border-radius: 0 !important;
+                background: rgba(255, 255, 255, 0.9) !important;
+                z-index: 99999 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                border: none !important;
+                left: auto !important;
+                transform: none !important;
+                pointer-events: auto !important;
+            }
+            
+            /* White bar to cut off chat log before X button */
+            #ai-sidekick.mobile-fullscreen::before {
+                content: '' !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                width: 100% !important;
+                height: 60px !important;
+                background: white !important;
+                z-index: 99998 !important;
+                pointer-events: none !important;
+            }
+            
+            #ai-sidekick.mobile-fullscreen #sidekick-text {
+                font-size: 24px !important;
+                font-weight: bold !important;
+                color: #18a000 !important;
+                z-index: 99999 !important;
+            }
+            
+            /* Hide main content when sidekick is fullscreen on mobile */
+            #main-content.mobile-hidden {
+                display: none !important;
+            }
+            
+            /* Email popup positioning for mobile */
+            #email-popup {
+                position: fixed !important;
+                top: 20px !important;
+                right: 80px !important;
+                z-index: 99999 !important;
+                background: transparent !important;
+                box-shadow: none !important;
+            }
+            
+            /* Mobile navigation text wrapping */
+            .nav-link {
+                white-space: normal !important;
+                word-wrap: break-word !important;
+            }
+            
+            /* Mobile footer styles */
+            footer {
+                margin-top: 12px !important;
+            }
+            
+            footer .max-w-[960px] {
+                padding: 16px !important;
+            }
+            
+            footer .flex.justify-between {
+                flex-direction: column !important;
+                gap: 16px !important;
+            }
+            
+            footer .flex.items-center.space-x-8 {
+                flex-direction: column !important;
+                gap: 16px !important;
+                align-items: flex-start !important;
+            }
+            
+            footer .border-l.border-gray-300 {
+                display: none !important;
+            }
+            
+            footer .text-right {
+                text-align: center !important;
+            }
+            
+            footer h3 {
+                font-size: 18px !important;
+            }
+            
+            footer p {
+                font-size: 12px !important;
+            }
+            
+            footer .flex.space-x-4 {
+                justify-content: flex-end !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -95,12 +309,14 @@
     <div class="cursor" id="cursor"></div>
 
     <!-- Main Content Area (responsive width) -->
-    <div class="w-3/4 overflow-x-hidden transition-all duration-500 ease-in-out" id="main-content">
+    <div class="w-full md:w-3/4 overflow-x-hidden transition-all duration-500 ease-in-out" id="main-content">
         <!-- Navigation -->
-        <nav class="fixed w-3/4 z-50 transition-all duration-500 ease-in-out" id="main-nav">
-            <div class="bg-white/80 backdrop-blur-lg px-12 py-6">
+        <nav class="fixed w-full md:w-3/4 z-50 transition-all duration-500 ease-in-out" id="main-nav">
+            <div class="bg-white/80 backdrop-blur-lg px-4 md:px-12 py-4 md:py-6">
                 <div class="flex justify-between items-center">
-                    <h1 class="text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    <h1 class="text-[20px] md:text-[28px] font-nuosu">Carlos Rodriguez</h1>
+                    
+                    <!-- Desktop Navigation -->
                     <div class="hidden md:flex space-x-12">
                         <a href="index.html" class="text-[16px] font-helvetica font-light nav-link relative">Home</a>
                         <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link active relative">Projects</a>
@@ -125,22 +341,62 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden text-black">
+                        <!-- Hamburger Icon -->
+                        <svg class="w-6 h-6" id="hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <!-- X Icon -->
+                        <svg class="w-6 h-6 hidden" id="x-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Mobile Navigation Menu -->
+                <div id="mobile-menu" class="md:hidden hidden mt-4 pt-4 border-t border-gray-200">
+                    <div class="flex flex-col space-y-4">
+                        <a href="index.html" class="text-[16px] font-helvetica font-light nav-link relative">Home</a>
+                        <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link active relative">Projects</a>
+                        <a href="https://docs.google.com/document/d/1RXj2iDbQUYEA5Zh2meN2EXdoaU2CWZfN_qSqDnq9CNY/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
+                        <a href="about.html" class="text-[16px] font-helvetica font-light nav-link relative">About</a>
+                        <div class="relative" id="mobile-contact-dropdown">
+                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown" onclick="toggleMobileContact()">Contact</button>
+                            <div class="mt-2 opacity-0 invisible contact-dropdown-menu transition-all duration-200" id="mobile-contact-menu">
+                                <div class="relative pl-2">
+                                    <div class="px-3 py-2">
+                                        <div class="space-y-2 text-left">
+                                            <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
+                                            <div class="space-y-1">
+                                                <button onclick="copyEmail()" class="block text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors text-left w-full">c.a.rodriguez1999@gmail.com</button>
+                                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="absolute top-0 left-0 w-0.5 bg-black h-0 transition-all duration-500 ease-out" id="mobile-contact-line"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
 
         <!-- Content Section -->
-        <div class="max-w-[960px] mx-auto pt-24" style="padding-left: 48px; padding-right: 48px;">
+        <div class="max-w-[960px] mx-auto pt-20 md:pt-24 px-4 md:px-12">
             <!-- Project Header -->
-            <div class="mb-24">
-                <h2 class="text-[32px] font-helvetica font-medium mb-2">AI Research Workbook</h2>
-                <p class="text-[20px] font-helvetica text-gray-800">Designing for scale, fluency, and belonging through AI and critical thinking.</p>
+            <div class="mb-8 md:mb-24">
+                <h2 class="text-[24px] md:text-[32px] font-helvetica font-medium mb-2">AI Research Workbook</h2>
+                <p class="text-[16px] md:text-[20px] font-helvetica text-gray-800">Designing for scale, fluency, and belonging through AI and critical thinking.</p>
             </div>
 
             <!-- Project Details Grid -->
-            <div class="flex gap-[120px] mb-32">
+            <div class="flex flex-col md:flex-row gap-8 md:gap-[120px] mb-16 md:mb-32">
                 <!-- Left Column - Project Info -->
-                <div class="w-[280px]">
+                <div class="w-full md:w-[280px]">
                     <div class="mb-6">
                         <h3 class="text-[20px] font-helvetica font-bold mb-1">Role</h3>
                         <p class="text-[16px] font-helvetica whitespace-nowrap">Product strategy</p>
@@ -171,18 +427,18 @@
                 </div>
 
                 <!-- Right Column - Hero Image -->
-                <div class="w-[740px] h-[592px] bg-gray-100">
-                                            <img src="images/BeyondChat.webp" alt="AI Research Workbook Hero" class="w-full h-full object-cover">
+                <div class="w-full md:w-[740px] h-64 md:h-[592px] bg-gray-100">
+                    <img src="images/BeyondChat.webp" alt="AI Research Workbook Hero" class="w-full h-full object-cover">
                 </div>
             </div>
 
             <!-- Summary Section -->
-            <div class="flex gap-24 mb-32">
-                <div class="w-[402px] h-[402px] bg-gray-100">
+            <div class="flex flex-col md:flex-row gap-8 md:gap-24 mb-16 md:mb-32">
+                <div class="w-full md:w-[402px] h-64 md:h-[402px] bg-gray-100">
                     <img src="summary-image.jpg" alt="Summary" class="w-full h-full object-cover">
                 </div>
-                <div class="w-[450px]">
-                    <h2 class="text-[28px] font-nuosu mb-4">Summary</h2>
+                <div class="w-full md:w-[450px]">
+                    <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Summary</h2>
                     <div class="text-[16px] font-helvetica space-y-4 mb-8">
                         <p>I led product strategy and AI integration for a research workbook designed for first-generation, underrepresented high school students—many of whom had never conducted academic research or meaningfully engaged with AI tools.</p>
                         <p>We co-designed a scaffolded GPT-powered experience to help them build confidence, ask better questions, and generate deeper insights. As the NM Scholars program doubled in size, the challenge wasn't just access—it was scaling equity.</p>
@@ -291,12 +547,12 @@
     </div>
 
     <!-- AI Sidekick -->
-    <div class="fixed bottom-0 right-8 w-1/4 max-w-[394px] flex flex-col z-[9999] transition-all duration-500 ease-in-out" id="ai-sidekick">
-        <div class="transition-all duration-500 ease-in-out" id="chat-container">
+    <div class="fixed bottom-0 right-2 md:right-8 w-[calc(100vw-16px)] md:w-1/4 md:max-w-[394px] flex flex-col z-[9999] transition-all duration-500 ease-in-out" id="ai-sidekick">
+        <div class="overflow-hidden transition-all duration-500 ease-in-out" id="chat-container">
             <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
                 <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
             </div>
-            <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex">
+            <div class="font-['IBM_Plex_Mono'] text-[14px] mb-4 flex" id="chat-input-container">
                 <span class="text-black mt-[2px]">></span>
                 <div class="relative flex-1 ml-2">
                     <textarea 
@@ -944,50 +1200,73 @@
                 chatInput: !!chatInput
             });
             
-            if (sidekickCollapsed) {
-                console.log('Expanding sidekick...');
-                
-                // Force show the container - remove all conflicting styles
-                chatContainer.style.display = 'block';
-                chatContainer.style.visibility = 'visible';
-                chatContainer.style.opacity = '1';
-                chatContainer.style.maxHeight = 'none';
-                chatContainer.style.overflow = 'visible';
-                chatContainer.style.height = 'auto';
-                chatContainer.style.width = '100%';
-                
-                aiSidekick.style.width = '25%';
-                aiSidekick.style.maxWidth = '394px';
-                sidekickText.style.fontSize = '14px';
-                sidekickText.textContent = 'AI Sidekick';
-                mainContent.style.width = '75%';
-                mainContent.style.marginLeft = '0';
-                
-                // Ensure input is visible and functional
-                if (chatInput) {
-                    chatInput.style.display = 'block';
-                    chatInput.style.visibility = 'visible';
-                    chatInput.style.opacity = '1';
-                    chatInput.focus();
-                    console.log('Input field restored successfully');
+            // Check if mobile
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                // Mobile behavior
+                if (sidekickCollapsed) {
+                    console.log('Expanding sidekick on mobile...');
+                    aiSidekick.classList.add('mobile-fullscreen');
+                    mainContent.classList.add('mobile-hidden');
+                    sidekickText.textContent = '×';
+                    sidekickCollapsed = false;
+                    sessionStorage.setItem('sidekickCollapsed', 'false');
+                } else {
+                    console.log('Collapsing sidekick on mobile...');
+                    aiSidekick.classList.remove('mobile-fullscreen');
+                    mainContent.classList.remove('mobile-hidden');
+                    sidekickText.textContent = 'AI';
+                    sidekickCollapsed = true;
+                    sessionStorage.setItem('sidekickCollapsed', 'true');
                 }
-                
-                sidekickCollapsed = false;
-                sessionStorage.setItem('sidekickCollapsed', 'false');
-                console.log('Sidekick expanded, state saved');
             } else {
-                console.log('Collapsing sidekick...');
-                // Collapse sidekick - hide the container
-                chatContainer.style.display = 'none';
-                aiSidekick.style.width = '80px';
-                aiSidekick.style.maxWidth = '80px';
-                sidekickText.style.fontSize = '14px';
-                sidekickText.textContent = 'AI';
-                mainContent.style.width = '75%';
-                mainContent.style.marginLeft = '12.5%'; // Center the 75% content
-                sidekickCollapsed = true;
-                sessionStorage.setItem('sidekickCollapsed', 'true');
-                console.log('Sidekick collapsed, state saved');
+                // Desktop behavior
+                if (sidekickCollapsed) {
+                    console.log('Expanding sidekick on desktop...');
+                    
+                    // Force show the container - remove all conflicting styles
+                    chatContainer.style.display = 'block';
+                    chatContainer.style.visibility = 'visible';
+                    chatContainer.style.opacity = '1';
+                    chatContainer.style.maxHeight = 'none';
+                    chatContainer.style.overflow = 'visible';
+                    chatContainer.style.height = 'auto';
+                    chatContainer.style.width = '100%';
+                    
+                    aiSidekick.style.width = '25%';
+                    aiSidekick.style.maxWidth = '394px';
+                    sidekickText.style.fontSize = '14px';
+                    sidekickText.textContent = 'AI Sidekick';
+                    mainContent.style.width = '75%';
+                    mainContent.style.marginLeft = '0';
+                    
+                    // Ensure input is visible and functional
+                    if (chatInput) {
+                        chatInput.style.display = 'block';
+                        chatInput.style.visibility = 'visible';
+                        chatInput.style.opacity = '1';
+                        chatInput.focus();
+                        console.log('Input field restored successfully');
+                    }
+                    
+                    sidekickCollapsed = false;
+                    sessionStorage.setItem('sidekickCollapsed', 'false');
+                    console.log('Sidekick expanded, state saved');
+                } else {
+                    console.log('Collapsing sidekick on desktop...');
+                    // Collapse sidekick - hide the container
+                    chatContainer.style.display = 'none';
+                    aiSidekick.style.width = '80px';
+                    aiSidekick.style.maxWidth = '80px';
+                    sidekickText.style.fontSize = '14px';
+                    sidekickText.textContent = 'AI';
+                    mainContent.style.width = '75%';
+                    mainContent.style.marginLeft = '12.5%'; // Center the 75% content
+                    sidekickCollapsed = true;
+                    sessionStorage.setItem('sidekickCollapsed', 'true');
+                    console.log('Sidekick collapsed, state saved');
+                }
             }
             console.log('=== END TOGGLE DEBUG ===');
         }
@@ -1219,6 +1498,111 @@
                 }, 300);
             }, 3000);
         }
+        
+        // Mobile functionality
+        function initializeSidekickState() {
+            const savedState = sessionStorage.getItem('sidekickCollapsed');
+            const isMobile = window.innerWidth <= 768;
+            
+            if (savedState === 'true') {
+                const aiSidekick = document.getElementById('ai-sidekick');
+                const sidekickText = document.getElementById('sidekick-text');
+                const mainContent = document.getElementById('main-content');
+                const chatContainer = document.getElementById('chat-container');
+                
+                if (isMobile) {
+                    aiSidekick.classList.remove('mobile-fullscreen');
+                    mainContent.classList.remove('mobile-hidden');
+                    chatContainer.style.display = 'none';
+                    sidekickText.textContent = 'AI';
+                } else {
+                    chatContainer.style.display = 'none';
+                    aiSidekick.style.width = '80px';
+                    aiSidekick.style.maxWidth = '80px';
+                    sidekickText.textContent = 'AI';
+                    mainContent.style.width = '75%';
+                    mainContent.style.marginLeft = '12.5%';
+                }
+                sidekickCollapsed = true;
+            } else {
+                // Check if mobile and set default collapsed state
+                if (isMobile) {
+                    const aiSidekick = document.getElementById('ai-sidekick');
+                    const chatContainer = document.getElementById('chat-container');
+                    const sidekickText = document.getElementById('sidekick-text');
+                    const mainContent = document.getElementById('main-content');
+                    
+                    if (aiSidekick && chatContainer && sidekickText && mainContent) {
+                        aiSidekick.classList.remove('mobile-fullscreen');
+                        mainContent.classList.remove('mobile-hidden');
+                        chatContainer.style.display = 'none';
+                        sidekickText.textContent = 'AI';
+                        sidekickCollapsed = true;
+                        sessionStorage.setItem('sidekickCollapsed', 'true');
+                    }
+                } else {
+                    sidekickCollapsed = false;
+                }
+            }
+        }
+        
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const xIcon = document.getElementById('x-icon');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    hamburgerIcon.classList.toggle('hidden');
+                    xIcon.classList.toggle('hidden');
+                });
+            }
+        });
+        
+        // Mobile contact dropdown functionality
+        function toggleMobileContact() {
+            const mobileContactMenu = document.getElementById('mobile-contact-menu');
+            const mobileContactLine = document.getElementById('mobile-contact-line');
+            
+            if (mobileContactMenu) {
+                const isVisible = !mobileContactMenu.classList.contains('invisible');
+                
+                if (isVisible) {
+                    // Hide menu
+                    mobileContactMenu.classList.add('opacity-0', 'invisible');
+                    if (mobileContactLine) {
+                        mobileContactLine.style.height = '0';
+                    }
+                } else {
+                    // Show menu
+                    mobileContactMenu.classList.remove('opacity-0', 'invisible');
+                    if (mobileContactLine) {
+                        setTimeout(() => {
+                            mobileContactLine.style.height = '100%';
+                        }, 100);
+                    }
+                }
+            }
+        }
+        
+        // Handle window resize for mobile/desktop transitions
+        window.addEventListener('resize', function() {
+            const isMobile = window.innerWidth <= 768;
+            const aiSidekick = document.getElementById('ai-sidekick');
+            const mainContent = document.getElementById('main-content');
+            
+            // If switching from mobile to desktop or vice versa, reset sidekick state
+            if (aiSidekick && mainContent) {
+                if (!isMobile) {
+                    // Switching to desktop - ensure mobile classes are removed
+                    aiSidekick.classList.remove('mobile-fullscreen');
+                    mainContent.classList.remove('mobile-hidden');
+                }
+            }
+        });
     </script>
     <style>
         /* Add custom scrollbar styling */
