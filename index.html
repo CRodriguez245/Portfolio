@@ -2545,8 +2545,8 @@
                     
                     // Only trigger if we have available animations
                     if (availableAnimations.length > 0) {
-                        // Randomly select 1-2 animations to trigger
-                        const numToTrigger = Math.floor(Math.random() * 2) + 1;
+                        // Randomly select 2-3 animations to trigger (more prominent)
+                        const numToTrigger = Math.floor(Math.random() * 2) + 2;
                         const selectedAnimations = [];
                         
                         for (let i = 0; i < numToTrigger && availableAnimations.length > 0; i++) {
@@ -2560,12 +2560,12 @@
                             if (!activeAnimations.has(anim.dataset.animation)) {
                                 activeAnimations.add(anim.dataset.animation);
                                 
-                                // Generate random opacity between 0.3 and 0.7 (subtle background animation)
-                                const randomOpacity = Math.random() * 0.4 + 0.3;
+                                // Generate random opacity between 0.6 and 1.0 (more prominent like hover)
+                                const randomOpacity = Math.random() * 0.4 + 0.6;
                                 anim.style.opacity = randomOpacity;
                                 
-                                // Generate random line length scaling between 30% and 80% (shorter for background)
-                                const randomLengthScale = Math.random() * 0.5 + 0.3;
+                                // Generate random line length scaling between 50% and 150% (longer like hover)
+                                const randomLengthScale = Math.random() * 1.0 + 0.5;
                                 
                                 // Apply random length scaling
                                 if (anim.dataset.animation.includes('vertical') || anim.style.transform.includes('scaleY')) {
@@ -2597,11 +2597,11 @@
                                         anim.style.transform = 'scaleX(0)';
                                     }
                                     activeAnimations.delete(anim.dataset.animation);
-                                }, Math.random() * 2000 + 2000); // 2-4 seconds
+                                }, Math.random() * 2000 + 3000); // 3-5 seconds (longer duration)
                             }
                         });
                     }
-                }, Math.random() * 2000 + 3000); // Random interval between 3-5 seconds
+                }, Math.random() * 1500 + 2000); // Random interval between 2-3.5 seconds (more frequent)
             }
             
             // Stop continuous animation function
