@@ -266,6 +266,46 @@
                 white-space: normal !important;
                 word-wrap: break-word !important;
             }
+            
+            /* Mobile footer styles */
+            footer {
+                margin-top: 12px !important;
+            }
+            
+            footer .max-w-[960px] {
+                padding: 16px !important;
+            }
+            
+            footer .flex.justify-between {
+                flex-direction: column !important;
+                gap: 16px !important;
+            }
+            
+            footer .flex.items-center.space-x-8 {
+                flex-direction: column !important;
+                gap: 16px !important;
+                align-items: flex-start !important;
+            }
+            
+            footer .border-l.border-gray-300 {
+                display: none !important;
+            }
+            
+            footer .text-right {
+                text-align: center !important;
+            }
+            
+            footer h3 {
+                font-size: 18px !important;
+            }
+            
+            footer p {
+                font-size: 12px !important;
+            }
+            
+            footer .flex.space-x-4 {
+                justify-content: flex-end !important;
+            }
         }
     </style>
 </head>
@@ -495,8 +535,7 @@
         <!-- Footer -->
         <footer class="bg-white mt-20">
             <div class="max-w-[960px] mx-auto px-12 py-8" style="padding-left: 48px; padding-right: 48px;">
-                <!-- Desktop Footer -->
-                <div class="hidden md:block border-t border-gray-200 pt-8">
+                <div class="border-t border-gray-200 pt-8">
                     <div class="flex justify-between items-center">
                         <div class="flex items-center space-x-8">
                             <div>
@@ -518,29 +557,6 @@
                             <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
                             <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by Cursor AI, Figma, and GPT</p>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Mobile Footer -->
-                <div class="md:hidden border-t border-gray-200 pt-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-[18px] font-nuosu mb-0">Carlos Rodriguez</h3>
-                            <p class="text-[12px] font-helvetica font-light text-gray-600">AI Product Manager</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-[12px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
-                            <div class="flex space-x-4 justify-end">
-                                <button onclick="copyEmail()" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
-                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                <a href="https://github.com/CRodriguez245" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
-                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
-                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by Cursor AI, Figma, and GPT</p>
                     </div>
                 </div>
             </div>
