@@ -161,24 +161,49 @@
             }
             
             #ai-sidekick.mobile-fullscreen #chat-input-container {
-                flex-shrink: 0 !important;
+                position: sticky !important;
+                bottom: 0 !important;
+                background: white !important;
                 padding: 20px !important;
                 border-top: 1px solid #e5e7eb !important;
-                background: white !important;
+                width: 100% !important;
+                flex-shrink: 0 !important;
+                /* Safari-specific fixes */
+                -webkit-transform: translateZ(0) !important;
+                transform: translateZ(0) !important;
             }
             
             #ai-sidekick.mobile-fullscreen #sidekick-button {
                 position: fixed !important;
                 top: 10px !important;
                 right: 10px !important;
-                width: 60px !important;
-                height: 60px !important;
+                width: 40px !important;
+                height: 40px !important;
+                padding: 0 !important;
                 border-radius: 0 !important;
-                background: #18a000 !important;
+                background: rgba(255, 255, 255, 0.9) !important;
+                z-index: 99999 !important;
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
-                z-index: 99999 !important;
+                border: none !important;
+                left: auto !important;
+                transform: none !important;
+                pointer-events: auto !important;
+            }
+            
+            /* White bar to cut off chat log before X button */
+            #ai-sidekick.mobile-fullscreen::before {
+                content: '' !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                width: 100% !important;
+                height: 60px !important;
+                background: white !important;
+                z-index: 99998 !important;
+                pointer-events: none !important;
             }
             
             #ai-sidekick.mobile-fullscreen #sidekick-text {
