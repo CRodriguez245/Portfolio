@@ -513,7 +513,8 @@
 
         <!-- Footer -->
         <footer class="bg-white border-t border-gray-200 mt-12 md:mt-20">
-            <div class="max-w-[960px] mx-auto px-4 md:px-12 py-6 md:py-8">
+            <!-- Desktop Footer -->
+            <div class="hidden md:block max-w-7xl mx-auto px-4 md:px-12 py-6 md:py-8">
                 <div class="hidden md:flex md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
                     <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8">
                         <div>
@@ -557,8 +558,31 @@
                     <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
                     <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by Cursor AI, Figma, and GPT</p>
                 </div>
-            </div>
-        </footer>
+                            </div>
+                
+                <!-- Mobile Footer -->
+                <div class="md:hidden px-4 py-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-[18px] font-nuosu mb-0">Carlos Rodriguez</h3>
+                            <p class="text-[12px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                        </div>
+                        <div>
+                            <p class="text-[12px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                            <div class="flex space-x-4">
+                                <button onclick="copyEmail()" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
+                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
+                                <a href="https://github.com/CRodriguez245" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by <span class="text-[#18a000]">Cursor AI</span>, Figma, and GPT</p>
+                    </div>
+                </div>
+            </footer>
     </div>
 
     <!-- Email Copy Popup -->
