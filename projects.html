@@ -372,8 +372,14 @@
             opacity: 0 !important;
         }
         
-        .contact-dropdown-menu.visible {
+        .contact-dropdown-menu.visible,
+        .peer:hover + .contact-dropdown-menu {
             opacity: 1 !important;
+        }
+        
+        /* Contact dropdown rolling line animation */
+        .peer:hover + .contact-dropdown-menu .peer-hover\:h-full {
+            height: 100% !important;
         }
         
         /* Footer text colors */
@@ -451,9 +457,9 @@
                         <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link active relative">Projects</a>
                         <a href="https://docs.google.com/document/d/1RXj2iDbQUYEA5Zh2meN2EXdoaU2CWZfN_qSqDnq9CNY/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
                         <a href="about.html" class="text-[16px] font-helvetica font-light nav-link relative">About</a>
-                        <div class="relative group">
-                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown">Contact</button>
-                            <div class="absolute top-full right-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible contact-dropdown-menu transition-all duration-200 z-[9999]">
+                        <div class="relative">
+                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown peer">Contact</button>
+                            <div class="absolute top-full right-0 mt-2 opacity-0 invisible peer-hover:opacity-100 peer-hover:visible contact-dropdown-menu transition-all duration-200 z-[9999]">
                                 <div class="relative pr-4">
                                     <div class="bg-white/80 backdrop-blur-sm rounded-sm px-3 py-2">
                                         <div class="space-y-2 text-right">
@@ -465,7 +471,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="absolute top-0 right-0 w-0.5 bg-black h-0 group-hover:h-full transition-all duration-500 ease-out"></div>
+                                    <div class="absolute top-0 right-0 w-0.5 bg-black h-0 peer-hover:h-full transition-all duration-500 ease-out rolling-line"></div>
                                 </div>
                             </div>
                         </div>
@@ -532,7 +538,7 @@
                 
                 <!-- Project Grid -->
                 <div>
-                    <!-- AI Research Workbook -->
+                    <!-- AI Research Platform -->
                     <a href="ai-research-workbook.html" class="block mb-12 md:mb-10 group project-card">
                         <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 md:gap-[120px]">
                             <div class="w-full md:w-[420px] order-2 md:order-1">
@@ -541,7 +547,7 @@
                                 <p class="text-[14px] font-helvetica font-light leading-relaxed">Built ResearchBridge, an AI research platform that boosts student inquiry and confidence while giving instructors insight into engagement and equity.</p>
                             </div>
                             <div class="w-full md:w-[500px] h-64 md:h-[280px] transition-all duration-300 ease-out group-hover:scale-[1.05] group-hover:shadow-2xl order-1 md:order-2">
-                                <img src="images/Cu-RB-PP.jpg" alt="AI Research Workbook" class="w-full h-full object-cover">
+                                <img src="images/Cu-RB-PP.jpg" alt="AI Research Platform" class="w-full h-full object-cover">
                             </div>
                         </div>
                     </a>
@@ -1483,31 +1489,7 @@
             const contactButton = document.querySelector('.contact-dropdown');
             const contactDropdownMenu = document.querySelector('.contact-dropdown-menu');
             
-            if (contactButton && contactDropdownMenu) {
-                contactButton.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    // Toggle dropdown visibility
-                    const isVisible = contactDropdownMenu.classList.contains('visible');
-                    
-                    if (isVisible) {
-                        contactDropdownMenu.classList.remove('opacity-100', 'visible');
-                        contactDropdownMenu.classList.add('opacity-0', 'invisible');
-                    } else {
-                        contactDropdownMenu.classList.remove('invisible', 'opacity-0');
-                        contactDropdownMenu.classList.add('opacity-100', 'visible');
-                    }
-                });
-                
-                // Close dropdown when clicking outside
-                document.addEventListener('click', (event) => {
-                    if (!contactDropdownMenu.contains(event.target) && !contactButton.contains(event.target)) {
-                        contactDropdownMenu.classList.remove('opacity-100', 'visible');
-                        contactDropdownMenu.classList.add('opacity-0', 'invisible');
-                    }
-                });
-            }
+
         });
 
         // Auto-resize textarea
