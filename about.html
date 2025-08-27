@@ -79,15 +79,7 @@
         a, button {
             cursor: none;
         }
-        .contact-dropdown {
-            cursor: none;
-        }
-        .contact-dropdown:hover {
-            cursor: none;
-        }
-        .contact-dropdown + div a {
-            cursor: none;
-        }
+
         
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
@@ -271,6 +263,90 @@
             .cursor {
                 display: none !important;
             }
+        }
+        
+        /* Global text visibility fixes */
+        body, div, p, h1, h2, h3, h4, h5, h6, span, a, button, li:not(.text-white) {
+            color: black !important;
+            visibility: visible !important;
+        }
+        
+        /* AI Sidekick text colors */
+        #chat-messages p {
+            color: #18a000 !important;
+        }
+        
+        #chat-input {
+            color: black !important;
+        }
+        
+        #chat-input::placeholder {
+            color: #666 !important;
+        }
+        
+        #sidekick-text {
+            color: white !important;
+        }
+        
+        /* Contact dropdown visibility exceptions */
+        .contact-dropdown-menu {
+            visibility: visible !important;
+            opacity: 0 !important;
+        }
+        
+        .contact-dropdown-menu.visible {
+            opacity: 1 !important;
+        }
+        
+        /* Footer text colors */
+        .text-gray-600 {
+            color: #666 !important;
+        }
+        
+        .text-gray-500 {
+            color: #6b7280 !important;
+        }
+        
+        .text-\[#9a472f\] {
+            color: #9a472f !important;
+        }
+        
+        /* Footer button hover effects */
+        button.text-gray-600:hover,
+        a.text-gray-600:hover {
+            color: #18a000 !important;
+        }
+        
+        /* Bottom navigation animation */
+        .bottom-nav-link {
+            transition: color 0.3s ease-in-out;
+        }
+        
+        .bottom-nav-link:hover,
+        .bottom-nav-link:hover span {
+            color: #18a000 !important;
+        }
+        
+        .bottom-nav-link .arrow,
+        .bottom-nav-link .arrow-left {
+            transition: transform 0.3s ease-in-out !important;
+        }
+        
+        .bottom-nav-link:hover .arrow {
+            transform: translateX(5px);
+        }
+        
+        .bottom-nav-link:hover .arrow-left {
+            transform: translateX(-5px);
+        }
+        
+        /* White text exceptions */
+        .text-white,
+        .text-white h2,
+        .text-white h3,
+        .text-white p,
+        .text-white span {
+            color: white !important;
         }
     </style>
 </head>
