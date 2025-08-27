@@ -351,16 +351,22 @@
         
         /* Global fixes for text visibility, AI sidekick colors, and other issues */
         body, div, p, h1, h2, h3, h4, h5, h6, span, a, li, button, input, textarea, label, select, option {
-            color: black !important;
             visibility: visible !important;
         }
         
+        /* General text color - but exclude specific elements */
+        body, div, p, h1, h2, h3, h4, h5, h6, span, a, li, button, input, textarea, label, select, option:not(.ai-message):not(.user-message):not(.text-gray-600):not(.text-gray-500):not(.text-\[#9a472f\]):not(#ai-sidekick-button):not(.text-white) {
+            color: black !important;
+        }
+        
         /* AI Sidekick text colors */
-        #chat-messages .ai-message {
+        #chat-messages .ai-message,
+        .ai-message {
             color: #18a000 !important;
         }
         
-        #chat-messages .user-message {
+        #chat-messages .user-message,
+        .user-message {
             color: black !important;
         }
         
@@ -368,7 +374,8 @@
             color: #666 !important;
         }
         
-        #ai-sidekick-button {
+        #ai-sidekick-button,
+        button#ai-sidekick-button {
             color: white !important;
         }
         
@@ -385,15 +392,27 @@
         }
         
         /* Footer text colors */
-        .text-gray-600 {
+        .text-gray-600,
+        footer .text-gray-600,
+        div.text-gray-600,
+        p.text-gray-600,
+        span.text-gray-600 {
             color: #666 !important;
         }
         
-        .text-gray-500 {
+        .text-gray-500,
+        footer .text-gray-500,
+        div.text-gray-500,
+        p.text-gray-500,
+        span.text-gray-500 {
             color: #6b7280 !important;
         }
         
-        .text-\[#9a472f\] {
+        .text-\[#9a472f\],
+        footer .text-\[#9a472f\],
+        div.text-\[#9a472f\],
+        p.text-\[#9a472f\],
+        span.text-\[#9a472f\] {
             color: #9a472f !important;
         }
         
