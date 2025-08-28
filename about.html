@@ -80,6 +80,31 @@
             cursor: none;
         }
 
+        /* Prevent text fading while keeping smooth transitions */
+        /* Ensure main content and navigation text stays visible */
+        #main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6,
+        #main-content p, #main-content span, #main-content a, #main-content button,
+        #main-nav h1, #main-nav a, #main-nav button {
+            color: black !important;
+            visibility: visible !important;
+        }
+        
+        /* Ensure footer colors are preserved */
+        #main-content footer .text-\[#9a472f\],
+        #main-content footer span.text-\[#9a472f\] {
+            color: #9a472f !important;
+        }
+        #main-content footer .text-\[#18a000\],
+        #main-content footer span.text-\[#18a000\] {
+            color: #18a000 !important;
+        }
+        
+        /* Ensure AI sidekick text colors are correct */
+        #ai-sidekick #chat-messages p,
+        #ai-sidekick #chat-messages .text-\[#18a000\] {
+            color: #18a000 !important;
+        }
+
         
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
