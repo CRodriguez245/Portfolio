@@ -120,7 +120,8 @@
             color: black !important;
         }
         
-        .bottom-nav-link:hover {
+        .bottom-nav-link:hover,
+        .bottom-nav-link:hover span {
             color: #18a000 !important;
         }
         
@@ -508,7 +509,7 @@
 
             <!-- Next Project Navigation -->
             <div class="flex justify-end mt-16 mb-8">
-                <a href="nm-scholars-program.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light transition-colors group bottom-nav-link">
+                <a href="nm-scholars-program.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light transition-colors group bottom-nav-link" style="color: black !important;" onmouseenter="this.style.setProperty('color', '#18a000', 'important'); this.querySelector('span:first-child').style.setProperty('color', '#18a000', 'important'); this.querySelector('span:last-child').style.setProperty('transform', 'translateX(4px)', 'important')" onmouseleave="this.style.setProperty('color', 'black', 'important'); this.querySelector('span:first-child').style.setProperty('color', 'black', 'important'); this.querySelector('span:last-child').style.setProperty('transform', 'translateX(0)', 'important')">
                     <span>NM Scholars Program</span>
                     <span class="text-[18px] transition-transform duration-300 ease-in-out">></span>
                 </a>
