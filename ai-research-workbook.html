@@ -92,7 +92,7 @@
         /* Prevent text fading while keeping smooth transitions */
         /* Ensure main content and navigation text stays visible */
         #main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6,
-        #main-content p, #main-content span, #main-content a, #main-content button,
+        #main-content p, #main-content span, #main-content a:not(.bottom-nav-link), #main-content button,
         #main-nav h1, #main-nav a, #main-nav button {
             color: black !important;
             visibility: visible !important;
@@ -117,6 +117,11 @@
         /* Bottom navigation link animations */
         .bottom-nav-link {
             transition: color 0.3s ease-in-out !important;
+            color: black !important;
+        }
+        
+        .bottom-nav-link:hover {
+            color: #18a000 !important;
         }
         
         .bottom-nav-link span:last-child {
