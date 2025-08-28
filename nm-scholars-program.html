@@ -98,6 +98,18 @@
             visibility: visible !important;
         }
         
+        /* Additional specificity for content text */
+        #main-content div, #main-content li, #main-content ul, #main-content ol {
+            color: black !important;
+            visibility: visible !important;
+        }
+        
+        /* Ensure all text elements in main content are visible */
+        #main-content *:not(footer *):not(#ai-sidekick *) {
+            color: black !important;
+            visibility: visible !important;
+        }
+        
         /* Ensure footer colors are preserved */
         #main-content footer .text-\[#9a472f\],
         #main-content footer span.text-\[#9a472f\] {
