@@ -465,9 +465,9 @@
     <div class="cursor" id="cursor"></div>
 
     <!-- Main Content Area (responsive width) -->
-    <div class="w-full md:w-3/4 overflow-x-hidden transition-all duration-500 ease-in-out" id="main-content">
+    <div class="w-full md:w-3/4 overflow-x-hidden transition-[width,margin-left] duration-500 ease-in-out" id="main-content">
         <!-- Navigation -->
-        <nav class="fixed w-full md:w-3/4 z-50 transition-all duration-500 ease-in-out" id="main-nav">
+        <nav class="fixed w-full md:w-3/4 z-50 transition-[width,margin-left] duration-500 ease-in-out" id="main-nav">
             <div class="bg-white/80 backdrop-blur-lg px-4 md:px-12 py-4 md:py-6">
                 <div class="flex justify-between items-center">
                     <h1 class="text-[20px] md:text-[28px] font-nuosu">Carlos Rodriguez</h1>
@@ -831,8 +831,8 @@
     </div>
 
     <!-- AI Sidekick -->
-    <div class="fixed bottom-0 right-2 md:right-8 w-[calc(100vw-16px)] md:w-1/4 md:max-w-[394px] flex flex-col z-[9999] transition-all duration-500 ease-in-out" id="ai-sidekick">
-        <div class="overflow-hidden transition-all duration-500 ease-in-out" id="chat-container">
+    <div class="fixed bottom-0 right-2 md:right-8 w-[calc(100vw-16px)] md:w-1/4 md:max-w-[394px] flex flex-col z-[9999] transition-[width,height] duration-500 ease-in-out" id="ai-sidekick">
+        <div class="overflow-hidden transition-[width,height] duration-500 ease-in-out" id="chat-container">
             <div class="font-['IBM_Plex_Mono'] text-[14px] space-y-4 mb-4 max-h-[calc(100vh-200px)] overflow-y-auto pr-2" id="chat-messages">
                 <p class="text-[#18a000]">Hi! I'm Carlos's AI sidekick. I can navigate you through his portfolio and share insights about his process, values, and strategic thinking. Ask me anything about his projects, experience, or dive deeper into his approach!</p>
             </div>
@@ -860,8 +860,8 @@
                 <button onclick="testSidekickExpansion()" style="margin-top: 5px; padding: 3px 8px; font-size: 10px; background: #18a000; color: white; border: none; border-radius: 3px;">Test Sidekick</button>
             </div>
         </div>
-        <div class="bg-[#18a000] p-4 cursor-pointer transition-all duration-500 ease-in-out" id="sidekick-button" onclick="toggleSidekick()">
-            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold transition-all duration-500 ease-in-out" id="sidekick-text">AI Sidekick</h3>
+        <div class="bg-[#18a000] p-4 cursor-pointer transition-[width,height] duration-500 ease-in-out" id="sidekick-button" onclick="toggleSidekick()">
+            <h3 class="text-white text-center font-['IBM_Plex_Mono'] font-bold transition-[width,height] duration-500 ease-in-out" id="sidekick-text">AI Sidekick</h3>
         </div>
     </div>
 
