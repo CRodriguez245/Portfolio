@@ -90,9 +90,25 @@
             transform: scaleX(1);
         }
         /* Prevent text fading while keeping smooth transitions */
-        body, div, p, h1, h2, h3, h4, h5, h6, span, a, button, li:not(.text-white) {
+        body, div, p, h1, h2, h3, h4, h5, h6, span, a, button, li:not(.text-white):not(.text-\[#18a000\]):not(.text-\[#9a472f\]) {
             color: black !important;
             visibility: visible !important;
+        }
+        
+        /* Ensure AI sidekick text colors are correct */
+        #ai-sidekick #chat-messages p,
+        #ai-sidekick #chat-messages .text-\[#18a000\] {
+            color: #18a000 !important;
+        }
+        
+        /* Ensure footer colors are correct */
+        footer .text-\[#9a472f\],
+        footer span.text-\[#9a472f\] {
+            color: #9a472f !important;
+        }
+        footer .text-\[#18a000\],
+        footer span.text-\[#18a000\] {
+            color: #18a000 !important;
         }
         
         .chat-input {
