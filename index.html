@@ -90,7 +90,10 @@
             transform: scaleX(1);
         }
         /* Prevent text fading while keeping smooth transitions */
-        body, div, p, h1, h2, h3, h4, h5, h6, span, a, button, li:not(.text-white):not(.text-\[#18a000\]):not(.text-\[#9a472f\]) {
+        /* Ensure main content and navigation text stays visible */
+        #main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6,
+        #main-content p, #main-content span, #main-content a, #main-content button,
+        #main-nav h1, #main-nav a, #main-nav button {
             color: black !important;
             visibility: visible !important;
         }
