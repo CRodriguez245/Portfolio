@@ -89,6 +89,25 @@
             cursor: none;
         }
         
+        /* Bottom navigation animation */
+        .bottom-nav-link {
+            transition: color 0.3s ease-in-out;
+        }
+        .bottom-nav-link:hover,
+        .bottom-nav-link:hover span {
+            color: #18a000 !important;
+        }
+        .bottom-nav-link .arrow,
+        .bottom-nav-link .arrow-left {
+            transition: transform 0.3s ease-in-out !important;
+        }
+        .bottom-nav-link:hover .arrow {
+            transform: translateX(5px);
+        }
+        .bottom-nav-link:hover .arrow-left {
+            transform: translateX(-5px);
+        }
+        
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
             .nav-link::after {
@@ -471,13 +490,13 @@
 
             <!-- Navigation -->
             <div class="flex justify-between mt-8 md:mt-16">
-                <a href="ai-beyond-chat.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors">
-                    <span class="text-[20px]">&lt;</span>
+                <a href="ai-beyond-chat.html" class="bottom-nav-link flex items-center space-x-2 text-[16px] font-helvetica font-light">
+                    <span class="arrow-left text-[20px]">&lt;</span>
                     <span>AI Beyond the Chat</span>
                 </a>
-                <a href="trust-is-the-product.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors">
+                <a href="trust-is-the-product.html" class="bottom-nav-link flex items-center space-x-2 text-[16px] font-helvetica font-light">
                     <span class="text-left">Trust Is The Product</span>
-                    <span class="text-[20px]">&gt;</span>
+                    <span class="arrow text-[20px]">&gt;</span>
                 </a>
             </div>
 
