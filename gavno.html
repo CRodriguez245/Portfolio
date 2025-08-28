@@ -95,6 +95,43 @@
         .scrollbar-hide::-webkit-scrollbar {
             display: none;
         }
+
+        /* Prevent text fading while keeping smooth transitions */
+        /* Ensure main content and navigation text stays visible */
+        #main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6,
+        #main-content p, #main-content span, #main-content a, #main-content button,
+        #main-nav h1, #main-nav a, #main-nav button {
+            color: black !important;
+            visibility: visible !important;
+        }
+        
+        /* Additional specificity for content text */
+        #main-content div, #main-content li, #main-content ul, #main-content ol {
+            color: black !important;
+            visibility: visible !important;
+        }
+        
+        /* Ensure all text elements in main content are visible */
+        #main-content *:not(footer *):not(#ai-sidekick *) {
+            color: black !important;
+            visibility: visible !important;
+        }
+        
+        /* Ensure footer colors are preserved */
+        #main-content footer .text-\[#9a472f\],
+        #main-content footer span.text-\[#9a472f\] {
+            color: #9a472f !important;
+        }
+        #main-content footer .text-\[#18a000\],
+        #main-content footer span.text-\[#18a000\] {
+            color: #18a000 !important;
+        }
+        
+        /* Ensure AI sidekick text colors are correct */
+        #ai-sidekick #chat-messages p,
+        #ai-sidekick #chat-messages .text-\[#18a000\] {
+            color: #18a000 !important;
+        }
         
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
@@ -505,8 +542,8 @@
 
             <!-- Navigation -->
             <div class="flex justify-between mt-16 mb-8">
-                <a href="epicac.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light hover:text-[#18a000] transition-colors group">
-                    <span class="text-[18px] transform group-hover:-translate-x-1 transition-transform"><</span>
+                <a href="epicac.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light transition-colors group" style="color: black !important;" onmouseenter="this.style.setProperty('color', '#18a000', 'important'); this.querySelector('span:first-child').style.setProperty('color', '#18a000', 'important'); this.querySelector('span:last-child').style.setProperty('color', '#18a000', 'important'); this.querySelector('span:first-child').style.setProperty('transform', 'translateX(-4px)', 'important')" onmouseleave="this.style.setProperty('color', 'black', 'important'); this.querySelector('span:first-child').style.setProperty('color', 'black', 'important'); this.querySelector('span:last-child').style.setProperty('color', 'black', 'important'); this.querySelector('span:first-child').style.setProperty('transform', 'translateX(0)', 'important')">
+                    <span class="text-[18px] transition-transform duration-300 ease-in-out"><</span>
                     <span>EPICAC</span>
                 </a>
             </div>
@@ -520,22 +557,22 @@
                     <div class="flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-8">
                         <div>
                             <h3 class="text-[18px] md:text-[20px] font-nuosu mb-0">Carlos Rodriguez</h3>
-                            <p class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                            <p class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600" style="color: #666 !important;">AI Product Manager</p>
                         </div>
                         <div class="hidden md:block border-l border-gray-300 h-12"></div>
                         <div class="hidden md:block">
-                            <p class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                            <p class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 mb-1" style="color: #666 !important;">Let's build something thoughtful.</p>
                             <div class="flex space-x-4">
-                                <button onclick="copyEmail()" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
-                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                <a href="https://github.com/CRodriguez245" target="_blank" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                                <button onclick="copyEmail()" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 transition-colors" style="color: #666 !important;" onmouseenter="this.style.setProperty('color', '#18a000', 'important')" onmouseleave="this.style.setProperty('color', '#666', 'important')">Email</button>
+                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 transition-colors" style="color: #666 !important;" onmouseenter="this.style.setProperty('color', '#18a000', 'important')" onmouseleave="this.style.setProperty('color', '#666', 'important')">LinkedIn</a>
+                                <a href="https://github.com/CRodriguez245" target="_blank" class="text-[12px] md:text-[14px] font-helvetica font-light text-gray-600 transition-colors" style="color: #666 !important;" onmouseenter="this.style.setProperty('color', '#18a000', 'important')" onmouseleave="this.style.setProperty('color', '#666', 'important')">GitHub</a>
                             </div>
                         </div>
                     </div>
                     <div class="hidden md:block text-center md:text-right">
-                        <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
-                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
-                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by <span class="text-[#18a000]">Cursor AI</span>, Figma, and GPT</p>
+                        <p class="text-[14px] font-helvetica font-light text-gray-600" style="color: #666 !important;">© 2025 Carlos Rodriguez</p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1" style="color: #6b7280 !important;">Co-founder of <span class="text-[#9a472f]" style="color: #9a472f !important;">Better Problems</span></p>
+                        <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1" style="color: #6b7280 !important;">Powered by <span class="text-[#18a000]" style="color: #18a000 !important;">Cursor AI</span>, Figma, and GPT</p>
                     </div>
                 </div>
             </div>
@@ -545,21 +582,21 @@
                 <div class="flex justify-between items-start mb-4">
                     <div>
                         <h3 class="text-[18px] font-nuosu mb-0">Carlos Rodriguez</h3>
-                        <p class="text-[12px] font-helvetica font-light text-gray-600">AI Product Manager</p>
+                                                    <p class="text-[12px] font-helvetica font-light text-gray-600" style="color: #666 !important;">AI Product Manager</p>
                     </div>
                     <div>
-                        <p class="text-[12px] font-helvetica font-light text-gray-600 mb-1">Let's build something thoughtful.</p>
+                                                    <p class="text-[12px] font-helvetica font-light text-gray-600 mb-1" style="color: #666 !important;">Let's build something thoughtful.</p>
                         <div class="flex space-x-4">
-                            <button onclick="copyEmail()" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">Email</button>
-                            <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">LinkedIn</a>
-                            <a href="https://github.com/CRodriguez245" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 hover:text-[#18a000] transition-colors">GitHub</a>
+                                                            <button onclick="copyEmail()" class="text-[12px] font-helvetica font-light text-gray-600 transition-colors" style="color: #666 !important;" onmouseenter="this.style.setProperty('color', '#18a000', 'important')" onmouseleave="this.style.setProperty('color', '#666', 'important')">Email</button>
+                                                            <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 transition-colors" style="color: #666 !important;" onmouseenter="this.style.setProperty('color', '#18a000', 'important')" onmouseleave="this.style.setProperty('color', '#666', 'important')">LinkedIn</a>
+                                                            <a href="https://github.com/CRodriguez245" target="_blank" class="text-[12px] font-helvetica font-light text-gray-600 transition-colors" style="color: #666 !important;" onmouseenter="this.style.setProperty('color', '#18a000', 'important')" onmouseleave="this.style.setProperty('color', '#666', 'important')">GitHub</a>
                         </div>
                     </div>
                 </div>
                 <div class="text-center">
-                    <p class="text-[14px] font-helvetica font-light text-gray-600">© 2025 Carlos Rodriguez</p>
-                    <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Co-founder of <span class="text-[#9a472f]">Better Problems</span></p>
-                    <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1">Powered by <span class="text-[#18a000]">Cursor AI</span>, Figma, and GPT</p>
+                    <p class="text-[14px] font-helvetica font-light text-gray-600" style="color: #666 !important;">© 2025 Carlos Rodriguez</p>
+                    <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1" style="color: #6b7280 !important;">Co-founder of <span class="text-[#9a472f]" style="color: #9a472f !important;">Better Problems</span></p>
+                    <p class="text-[12px] font-helvetica font-light text-gray-500 mt-1" style="color: #6b7280 !important;">Powered by <span class="text-[#18a000]" style="color: #18a000 !important;">Cursor AI</span>, Figma, and GPT</p>
                 </div>
             </div>
         </footer>
