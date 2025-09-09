@@ -189,7 +189,7 @@
             }
             
             /* Mobile-only: Chat messages display from bottom to top */
-            #ai-sidekick.mobile-fullscreen #chat-messages p {
+            #ai-sidekick.mobile-fullscreen #chat-messages p:not(.text-black) {
                 margin: 0 !important;
                 padding: 8px 0 !important;
                 flex-shrink: 0 !important;
@@ -363,7 +363,7 @@
         }
         
         /* AI Sidekick text colors */
-        #chat-messages p {
+        #chat-messages p:not(.text-black) {
             color: #18a000 !important;
         }
         
@@ -386,13 +386,21 @@
         }
         
         .contact-dropdown-menu.visible,
-        .peer:hover + .contact-dropdown-menu {
+        .group:hover .contact-dropdown-menu {
             opacity: 1 !important;
         }
         
         /* Contact dropdown rolling line animation */
-        .peer:hover + .contact-dropdown-menu .peer-hover\:h-full {
+        .group:hover .contact-dropdown-menu .group-hover\:h-full {
             height: 100% !important;
+        }
+        
+        /* Contact dropdown link hover effects */
+        .contact-dropdown-menu button:hover,
+        .contact-dropdown-menu a:hover,
+        #main-nav .contact-dropdown-menu button:hover,
+        #main-nav .contact-dropdown-menu a:hover {
+            color: #18a000 !important;
         }
         
         /* Footer text colors */
@@ -479,9 +487,9 @@
                         <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link active relative">Projects</a>
                         <a href="https://docs.google.com/document/d/1RXj2iDbQUYEA5Zh2meN2EXdoaU2CWZfN_qSqDnq9CNY/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
                         <a href="about.html" class="text-[16px] font-helvetica font-light nav-link relative">About</a>
-                        <div class="relative">
-                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown peer">Contact</button>
-                            <div class="absolute top-full right-0 mt-2 opacity-0 invisible peer-hover:opacity-100 peer-hover:visible contact-dropdown-menu transition-all duration-200 z-[9999]">
+                        <div class="relative group">
+                            <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown">Contact</button>
+                            <div class="absolute top-full right-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible contact-dropdown-menu transition-all duration-200 z-[9999]">
                                 <div class="relative pr-4">
                                     <div class="bg-white/80 backdrop-blur-sm rounded-sm px-3 py-2">
                                         <div class="space-y-2 text-right">
@@ -569,7 +577,7 @@
                                 <p class="text-[14px] font-helvetica font-light leading-relaxed">Built ResearchBridge, an AI research platform that boosts student inquiry and confidence while giving instructors insight into engagement and equity.</p>
                             </div>
                             <div class="w-full md:w-[500px] h-64 md:h-[280px] transition-all duration-300 ease-out group-hover:scale-[1.05] group-hover:shadow-2xl order-1 md:order-2">
-                                <img src="images/Cu-RB-PP.jpg" alt="AI Research Platform" class="w-full h-full object-cover">
+                                <img src="images/Cu-RB-PP2.jpg" alt="AI Research Platform" class="w-full h-full object-cover">
                             </div>
                         </div>
                     </a>

@@ -133,6 +133,14 @@
             transform: translateX(4px) !important;
         }
         
+        /* Contact dropdown link hover effects */
+        .contact-dropdown-menu button:hover,
+        .contact-dropdown-menu a:hover,
+        #main-nav .contact-dropdown-menu button:hover,
+        #main-nav .contact-dropdown-menu a:hover {
+            color: #18a000 !important;
+        }
+        
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
             /* Hide custom cursor on mobile */
@@ -395,8 +403,8 @@
         <div class="max-w-[960px] mx-auto pt-20 md:pt-24 px-4 md:px-12">
             <!-- Project Header -->
             <div class="mb-8 md:mb-24">
-                <h2 class="text-[24px] md:text-[32px] font-helvetica font-medium mb-2">AI Research Workbook</h2>
-                <p class="text-[16px] md:text-[20px] font-helvetica text-gray-800">Designing for scale, fluency, and belonging through AI and critical thinking.</p>
+                <h2 class="text-[24px] md:text-[32px] font-helvetica font-medium mb-2">AI Research Platform</h2>
+                <p class="text-[16px] md:text-[20px] font-helvetica text-gray-800">ResearchBridge is a multi-modal research companion for students and instructors</p>
             </div>
 
             <!-- Project Details Grid -->
@@ -433,33 +441,35 @@
                 </div>
 
                 <!-- Right Column - Hero Image -->
-                <div class="w-full md:w-[740px] h-64 md:h-[592px] bg-gray-100">
-                    <img src="images/BeyondChat.webp" alt="AI Research Workbook Hero" class="w-full h-full object-cover">
+                <div class="w-full md:w-[740px] h-64 md:h-[592px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                    <img src="images/Cu-Hero-RB.jpg" alt="AI Research Platform Hero" class="w-full h-full object-cover">
                 </div>
             </div>
 
-            <!-- Summary Section -->
+            <!-- Overview Section -->
             <div class="flex flex-col md:flex-row gap-8 md:gap-24 mb-16 md:mb-32">
-                <div class="w-full md:w-[402px] h-64 md:h-[402px] bg-gray-100">
-                    <img src="summary-image.jpg" alt="Summary" class="w-full h-full object-cover">
+                <div class="w-full md:w-[402px] h-64 md:h-[402px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                    <img src="images/Cu-RB-PPL.jpeg" alt="ResearchBridge Overview" class="w-full h-full object-cover">
                 </div>
                 <div class="w-full md:w-[450px]">
-                    <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Summary</h2>
+                    <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Overview</h2>
                     <div class="text-[16px] font-helvetica space-y-4 mb-8">
-                        <p>I led product strategy and AI integration for a research workbook designed for first-generation, underrepresented high school students—many of whom had never conducted academic research or meaningfully engaged with AI tools.</p>
-                        <p>We co-designed a scaffolded GPT-powered experience to help them build confidence, ask better questions, and generate deeper insights. As the NM Scholars program doubled in size, the challenge wasn't just access—it was scaling equity.</p>
-                        <p>The result: a 3× increase in insight quality, 95% reported confidence gains, and full adoption into NM's next-year curriculum as a foundational AI learning tool.</p>
+                        <p>ResearchBridge is a platform I led from concept to adoption, designed to make academic research less intimidating and more equitable for first-generation and underrepresented high school students. What began as an AI workbook grew into a multi-modal research companion serving both sides of the learning experience:</p>
+                        <ul class="list-disc pl-8 space-y-2">
+                            <li>Students gain scaffolds that boost confidence, curiosity, and fluency in research.</li>
+                            <li>Instructors gain visibility and tools to guide engagement equitably at scale.</li>
+                        </ul>
                     </div>
-                    <div class="flex gap-20">
-                        <div class="w-[140px]">
+                    <div class="flex gap-12">
+                        <div class="w-[120px]">
                             <p class="text-[20px] font-helvetica font-bold">3x</p>
                             <p class="text-[16px] font-helvetica whitespace-nowrap">Insight quality</p>
                         </div>
-                        <div class="w-[140px]">
+                        <div class="w-[120px]">
                             <p class="text-[20px] font-helvetica font-bold">95%</p>
                             <p class="text-[16px] font-helvetica whitespace-nowrap">Confidence gains</p>
                         </div>
-                        <div class="w-[140px]">
+                        <div class="w-[120px]">
                             <p class="text-[20px] font-helvetica font-bold">100%</p>
                             <p class="text-[16px] font-helvetica whitespace-nowrap">Adoption rate</p>
                         </div>
@@ -477,19 +487,48 @@
                 <div class="w-[624px]">
                     <h2 class="text-[28px] font-nuosu mb-4">Challenge</h2>
                     <div class="text-[16px] font-helvetica space-y-4">
-                        <p>Students in the NM Scholars Program—predominantly first-generation, underrepresented high schoolers—are asked to conduct academic research on complex topics in healthcare. Yet most have <span class="font-bold">limited exposure to AI tools</span>, minimal prior experience with independent research, and often lack confidence in how to ask, explore, and synthesize information.</p>
-                        <p>As the program doubled in size this year, those gaps became more visible and more urgent. The challenge was no longer just about delivering content—it was about <span class="font-bold">scaling equitable engagement</span>.</p>
+                        <p><strong>For students:</strong> Research was overwhelming. Most had limited exposure to scholarly work, AI tools, or independent synthesis, which eroded confidence.</p>
+                        <p><strong>For instructors:</strong> With program size doubling, it was nearly impossible to track engagement, spot inequities, or provide timely, individualized support.</p>
+                        <p>The challenge wasn't just delivering research skills — it was scaling equitable engagement on both sides.</p>
                     </div>
                 </div>
-                <div class="w-[541px] h-[361px] bg-gray-100">
-                    <img src="challenge-image.jpg" alt="Challenge" class="w-full h-full object-cover">
+                <div class="w-[541px] h-[361px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                    <img src="images/Cu-RB-Challenge.png" alt="ResearchBridge Challenge" class="w-full h-full object-cover">
                 </div>
             </div>
 
             <!-- Solution Section -->
             <div class="mb-32">
                 <h2 class="text-[28px] font-nuosu mb-4">Solution</h2>
-                <p class="text-[16px] font-helvetica max-w-[620px]">I led the design of a GPT-powered research workbook, structured to guide students from idea generation to insight refinement. The experience was scaffolded with prompts, ethical check-ins, and reflection sections, co-designed with student feedback.</p>
+                <div class="text-[16px] font-helvetica space-y-4 max-w-[800px]">
+                    <p>I designed ResearchBridge as a two-sided system:</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mt-6">
+                        <div>
+                            <h3 class="text-[20px] font-helvetica font-bold mb-3">For Students</h3>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>Scaffolded GPT-powered modules for summarizing, questioning, and outlining.</li>
+                                <li>Multi-modal outputs: text, visuals, and reflections.</li>
+                                <li>Built-in ethical check-ins and prompts for critical thinking.</li>
+                                <li>Personalization: everyday vs academic tone, examples tied to student context.</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-[20px] font-helvetica font-bold mb-3">For Instructors</h3>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>A lightweight dashboard surfacing:</li>
+                                <li>Mode usage patterns (summarize, ask, outline, cite).</li>
+                                <li>Confidence signals and reflection depth.</li>
+                                <li>Source quality breakdowns (peer-reviewed, gov, news, etc.).</li>
+                                <li>Alerts for "stuck" students (repeated clarifications, low activity).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <p class="mt-6">Designed as support, not surveillance — focusing on trends and equity, not micromanagement.</p>
+                    <p>Scalable insights for program leads to shape curriculum.</p>
+                </div>
             </div>
 
             <!-- Solution Image -->
@@ -497,13 +536,39 @@
                 <img src="solution-image.jpg" alt="Solution" class="w-full h-auto">
             </div>
 
+            <!-- Impact Section -->
+            <div class="mb-32">
+                <h2 class="text-[28px] font-nuosu mb-4">Impact</h2>
+                <div class="text-[16px] font-helvetica space-y-4 max-w-[800px]">
+                    <ul class="list-disc pl-8 space-y-2">
+                        <li><strong>Students:</strong> 3× improvement in insight quality, 95% reported confidence gains.</li>
+                        <li><strong>Instructors:</strong> First-ever visibility into research engagement at scale, enabling equitable interventions.</li>
+                        <li><strong>Program:</strong> 100% adoption into next-year curriculum, plus a roadmap for NM Scholars to expand AI equity initiatives.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Reflection Section -->
+            <div class="flex gap-12 mb-32">
+                <div class="w-[500px]">
+                    <h2 class="text-[28px] font-nuosu mb-4">Reflection</h2>
+                    <div class="text-[16px] font-helvetica space-y-4">
+                        <p>ResearchBridge is more than an AI tool — it's a platform that rethinks how research can be learned, taught, and scaled equitably. By designing for both students and instructors, I helped NM Scholars move from a one-off workbook experiment to a sustainable system for building research confidence and equity.</p>
+                    </div>
+                </div>
+                <div class="w-[600px] h-auto overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                    <img src="images/Cu-RB-Reflection.jpg" alt="ResearchBridge Reflection" class="w-full h-auto">
+                </div>
+            </div>
+
             <!-- Key Decisions -->
-            <div class="max-w-[600px] mb-32">
+            <div class="max-w-[800px] mb-32">
                 <h2 class="text-[28px] font-nuosu mb-4">Key Decisions</h2>
                 <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
-                    <li>Scoped GPT prompts to build confidence, not just speed</li>
-                    <li>Removed open-ended tasks after testing showed cognitive overload</li>
-                    <li>Integrated reflection questions to surface ethical reasoning</li>
+                    <li>Scoped GPT prompts to build confidence, not shortcuts.</li>
+                    <li>Removed open-ended tasks that caused cognitive overload.</li>
+                    <li>Integrated reflection checkpoints for ethical reasoning.</li>
+                    <li>Created instructor-facing summaries that are aggregate, not invasive, to balance student trust with program needs.</li>
                 </ul>
             </div>
 

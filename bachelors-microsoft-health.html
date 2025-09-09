@@ -105,7 +105,7 @@
         }
         
         /* Ensure all text elements in main content are visible */
-        #main-content *:not(footer *):not(#ai-sidekick *) {
+        #main-content *:not(footer *):not(#ai-sidekick *):not(.contact-dropdown-menu *) {
             color: black !important;
             visibility: visible !important;
         }
@@ -127,6 +127,14 @@
         }
         
         /* Navigation link animations handled by JavaScript */
+        
+        /* Contact dropdown link hover effects */
+        .contact-dropdown-menu button:hover,
+        .contact-dropdown-menu a:hover,
+        #main-nav .contact-dropdown-menu button:hover,
+        #main-nav .contact-dropdown-menu a:hover {
+            color: #18a000 !important;
+        }
         
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {

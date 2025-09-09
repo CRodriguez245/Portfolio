@@ -104,10 +104,16 @@
             visibility: visible !important;
         }
         
-        /* Ensure all text elements in main content are visible */
-        #main-content *:not(footer *):not(#ai-sidekick *) {
+        /* Ensure all text elements in main content are visible - exclude hover states */
+        #main-content *:not(footer *):not(#ai-sidekick *):not(.contact-dropdown-menu *):not(:hover) {
             color: black !important;
             visibility: visible !important;
+        }
+        
+        /* Override for contact dropdown hover states */
+        #main-content .contact-dropdown-menu button:hover,
+        #main-content .contact-dropdown-menu a:hover {
+            color: #18a000 !important;
         }
         
         /* Ensure footer colors are preserved */
@@ -159,6 +165,91 @@
         footer .text-\[#18a000\],
         footer span.text-\[#18a000\] {
             color: #18a000 !important;
+        }
+        
+        /* Contact dropdown link hover effects - Override everything */
+        .contact-dropdown-menu button:hover,
+        .contact-dropdown-menu a:hover,
+        #main-nav .contact-dropdown-menu button:hover,
+        #main-nav .contact-dropdown-menu a:hover,
+        .group:hover .contact-dropdown-menu button:hover,
+        .group:hover .contact-dropdown-menu a:hover {
+            color: #18a000 !important;
+            background-color: transparent !important;
+            border-color: transparent !important;
+            outline-color: transparent !important;
+            text-decoration-color: transparent !important;
+            fill: transparent !important;
+            stroke: transparent !important;
+        }
+        
+        /* Force override with maximum specificity */
+        #main-nav .contact-dropdown-menu button:hover,
+        #main-nav .contact-dropdown-menu a:hover,
+        .contact-dropdown-menu button:hover,
+        .contact-dropdown-menu a:hover {
+            color: #18a000 !important;
+        }
+        
+        /* Use CSS custom properties with !important */
+        .contact-dropdown-menu button:hover,
+        .contact-dropdown-menu a:hover {
+            color: #18a000 !important;
+            --hover-color: #18a000 !important;
+        }
+        
+        /* Additional override attempts */
+        .contact-dropdown-menu button:hover,
+        .contact-dropdown-menu a:hover {
+            color: #18a000 !important;
+        }
+        
+        /* Use CSS animations to force color change */
+        @keyframes forceGreen {
+            0% { color: inherit; }
+            100% { color: #18a000 !important; }
+        }
+        
+        .contact-dropdown-menu button:hover,
+        .contact-dropdown-menu a:hover {
+            animation: forceGreen 0.1s forwards !important;
+        }
+        
+        /* Force override with CSS that should beat everything */
+        .contact-dropdown-menu button:hover,
+        .contact-dropdown-menu a:hover {
+            color: #18a000 !important;
+            animation: none !important;
+        }
+        
+        /* Try using attribute selectors for maximum specificity */
+        button[onclick="copyEmail()"]:hover,
+        a[href*="linkedin"]:hover,
+        a[href*="github"]:hover {
+            color: #18a000 !important;
+        }
+        
+        /* Use pseudo-elements to force color */
+        .contact-dropdown-menu button:hover::before,
+        .contact-dropdown-menu a:hover::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: transparent;
+            pointer-events: none;
+        }
+        
+        /* Force color with pseudo-element content */
+        .contact-dropdown-menu button:hover::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #18a000 !important;
+            pointer-events: none;
         }
         
         /* Mobile Responsive Styles */
@@ -364,21 +455,21 @@
                         <a href="projects.html" class="text-[16px] font-helvetica font-light nav-link relative">Projects</a>
                         <a href="https://docs.google.com/document/d/1RXj2iDbQUYEA5Zh2meN2EXdoaU2CWZfN_qSqDnq9CNY/edit?tab=t.0" target="_blank" class="text-[16px] font-helvetica font-light nav-link relative">Resume</a>
                         <a href="about.html" class="text-[16px] font-helvetica font-light nav-link relative">About</a>
-                        <div class="relative group">
+                        <div class="relative group" onmouseenter="this.querySelector('.contact-dropdown-menu').classList.remove('invisible', 'opacity-0'); this.querySelector('.contact-dropdown-menu').classList.add('opacity-100', 'visible'); this.querySelector('#desktop-contact-line').style.height='100%';" onmouseleave="this.querySelector('.contact-dropdown-menu').classList.add('invisible', 'opacity-0'); this.querySelector('.contact-dropdown-menu').classList.remove('opacity-100', 'visible'); this.querySelector('#desktop-contact-line').style.height='0';">
                             <button class="text-[16px] font-helvetica font-light nav-link relative contact-dropdown">Contact</button>
-                            <div class="absolute top-full right-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible contact-dropdown-menu transition-all duration-200 z-[9999]">
+                            <div class="absolute top-full right-0 mt-2 opacity-0 invisible contact-dropdown-menu transition-all duration-200 z-[9999]">
                                 <div class="relative pr-4">
                                     <div class="bg-white/80 backdrop-blur-sm rounded-sm px-3 py-2">
                                         <div class="space-y-2 text-right">
                                             <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
                                             <div class="space-y-1">
-                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-right w-full">c.a.rodriguez1999@gmail.com</button>
-                                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-right w-full" onmouseenter="console.log('Email hover'); this.style.setProperty('color', '#18a000', 'important');" onmouseleave="console.log('Email leave'); this.style.removeProperty('color');">c.a.rodriguez1999@gmail.com</button>
+                                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors" onmouseenter="console.log('LinkedIn hover'); this.style.setProperty('color', '#18a000', 'important');" onmouseleave="console.log('LinkedIn leave'); this.style.removeProperty('color');">LinkedIn</a>
+                                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors" onmouseenter="console.log('GitHub hover'); this.style.setProperty('color', '#18a000', 'important');" onmouseleave="console.log('GitHub leave'); this.style.removeProperty('color');">GitHub</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="absolute top-0 right-0 w-0.5 bg-black h-0 group-hover:h-full transition-all duration-500 ease-out"></div>
+                                    <div class="absolute top-0 right-0 w-0.5 bg-black h-0 transition-all duration-500 ease-out" id="desktop-contact-line"></div>
                                 </div>
                             </div>
                         </div>
@@ -412,9 +503,9 @@
                                         <div class="space-y-2 text-left">
                                             <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
                                             <div class="space-y-1">
-                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-left w-full">c.a.rodriguez1999@gmail.com</button>
-                                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-left w-full" onmouseenter="this.style.color='#18a000'" onmouseleave="this.style.color=''">c.a.rodriguez1999@gmail.com</button>
+                                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors" onmouseenter="this.style.color='#18a000'" onmouseleave="this.style.color=''">LinkedIn</a>
+                                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors" onmouseenter="this.style.color='#18a000'" onmouseleave="this.style.color=''">GitHub</a>
                                             </div>
                                         </div>
                                     </div>
@@ -940,6 +1031,111 @@
             // DOM is already ready, initialize immediately
             initializeSidekickState();
         }
+        
+        // Contact dropdown hover effects with debugging
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, setting up contact dropdown hover effects...');
+            
+            const contactDropdown = document.querySelector('.contact-dropdown');
+            const dropdownMenu = document.querySelector('.contact-dropdown-menu');
+            const emailButton = dropdownMenu?.querySelector('button[onclick="copyEmail()"]');
+            const linkedinLink = dropdownMenu?.querySelector('a[href*="linkedin"]');
+            const githubLink = dropdownMenu?.querySelector('a[href*="github"]');
+            
+            console.log('Elements found:', {
+                contactDropdown: !!contactDropdown,
+                dropdownMenu: !!dropdownMenu,
+                emailButton: !!emailButton,
+                linkedinLink: !!linkedinLink,
+                githubLink: !!githubLink
+            });
+            
+            if (emailButton) {
+                console.log('Setting up email button hover effects');
+                emailButton.addEventListener('mouseenter', function() {
+                    console.log('Email button hover - changing color to green');
+                    this.style.setProperty('color', '#18a000', 'important');
+                });
+                emailButton.addEventListener('mouseleave', function() {
+                    console.log('Email button leave - resetting color');
+                    this.style.removeProperty('color');
+                });
+            }
+            
+            if (linkedinLink) {
+                console.log('Setting up LinkedIn link hover effects');
+                linkedinLink.addEventListener('mouseenter', function() {
+                    console.log('LinkedIn link hover - changing color to green');
+                    this.style.setProperty('color', '#18a000', 'important');
+                });
+                linkedinLink.addEventListener('mouseleave', function() {
+                    console.log('LinkedIn link leave - resetting color');
+                    this.style.removeProperty('color');
+                });
+            }
+            
+            if (githubLink) {
+                console.log('Setting up GitHub link hover effects');
+                githubLink.addEventListener('mouseenter', function() {
+                    console.log('GitHub link hover - changing color to green');
+                    this.style.setProperty('color', '#18a000', 'important');
+                });
+                githubLink.addEventListener('mouseleave', function() {
+                    console.log('GitHub link leave - resetting color');
+                    this.style.removeProperty('color');
+                });
+            }
+        });
+        
+        // Also try setting up hover effects immediately
+        function setupContactHoverEffects() {
+            console.log('Setting up contact hover effects immediately...');
+            
+            const emailButton = document.querySelector('button[onclick="copyEmail()"]');
+            const linkedinLink = document.querySelector('a[href*="linkedin"]');
+            const githubLink = document.querySelector('a[href*="github"]');
+            
+            console.log('Immediate elements found:', {
+                emailButton: !!emailButton,
+                linkedinLink: !!linkedinLink,
+                githubLink: !!githubLink
+            });
+            
+            if (emailButton) {
+                emailButton.addEventListener('mouseenter', function() {
+                    console.log('Email button hover (immediate)');
+                    this.style.setProperty('color', '#18a000', 'important');
+                });
+                emailButton.addEventListener('mouseleave', function() {
+                    this.style.removeProperty('color');
+                });
+            }
+            
+            if (linkedinLink) {
+                linkedinLink.addEventListener('mouseenter', function() {
+                    console.log('LinkedIn link hover (immediate)');
+                    this.style.setProperty('color', '#18a000', 'important');
+                });
+                linkedinLink.addEventListener('mouseleave', function() {
+                    this.style.removeProperty('color');
+                });
+            }
+            
+            if (githubLink) {
+                githubLink.addEventListener('mouseenter', function() {
+                    console.log('GitHub link hover (immediate)');
+                    this.style.setProperty('color', '#18a000', 'important');
+                });
+                githubLink.addEventListener('mouseleave', function() {
+                    this.style.removeProperty('color');
+                });
+            }
+        }
+        
+        // Try to set up immediately and also after a delay
+        setupContactHoverEffects();
+        setTimeout(setupContactHoverEffects, 1000);
+        setTimeout(setupContactHoverEffects, 2000);
     </script>
 </body>
 </html> 

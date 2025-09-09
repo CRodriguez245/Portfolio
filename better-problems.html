@@ -104,10 +104,16 @@
             visibility: visible !important;
         }
         
-        /* Ensure all text elements in main content are visible */
-        #main-content *:not(footer *):not(#ai-sidekick *) {
+        /* Ensure all text elements in main content are visible - exclude hover states */
+        #main-content *:not(footer *):not(#ai-sidekick *):not(.contact-dropdown-menu *):not(:hover) {
             color: black !important;
             visibility: visible !important;
+        }
+        
+        /* Override for contact dropdown hover states */
+        #main-content .contact-dropdown-menu button:hover,
+        #main-content .contact-dropdown-menu a:hover {
+            color: #18a000 !important;
         }
         
         /* Ensure footer colors are preserved */
@@ -170,6 +176,28 @@
         }
         footer .text-\[#18a000\],
         footer span.text-\[#18a000\] {
+            color: #18a000 !important;
+        }
+        
+        /* Contact dropdown link hover effects - High specificity */
+        .contact-dropdown-menu button:hover,
+        .contact-dropdown-menu a:hover,
+        #main-nav .contact-dropdown-menu button:hover,
+        #main-nav .contact-dropdown-menu a:hover,
+        .group:hover .contact-dropdown-menu button:hover,
+        .group:hover .contact-dropdown-menu a:hover {
+            color: #18a000 !important;
+        }
+        
+        /* Additional specificity for contact dropdown */
+        .contact-dropdown-menu button:hover,
+        .contact-dropdown-menu a:hover {
+            color: #18a000 !important;
+        }
+        
+        /* Force override for any conflicting styles */
+        .contact-dropdown-menu button:hover,
+        .contact-dropdown-menu a:hover {
             color: #18a000 !important;
         }
         
@@ -384,9 +412,9 @@
                                         <div class="space-y-2 text-right">
                                             <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
                                             <div class="space-y-1">
-                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-right w-full">c.a.rodriguez1999@gmail.com</button>
-                                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-right w-full" onmouseenter="this.style.color='#18a000'" onmouseleave="this.style.color=''">c.a.rodriguez1999@gmail.com</button>
+                                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors" onmouseenter="this.style.color='#18a000'" onmouseleave="this.style.color=''">LinkedIn</a>
+                                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors" onmouseenter="this.style.color='#18a000'" onmouseleave="this.style.color=''">GitHub</a>
                                             </div>
                                         </div>
                                     </div>
@@ -424,9 +452,9 @@
                                         <div class="space-y-2 text-left">
                                             <p class="text-[14px] font-helvetica font-bold text-black whitespace-nowrap">Let's build something thoughtful.</p>
                                             <div class="space-y-1">
-                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-left w-full">c.a.rodriguez1999@gmail.com</button>
-                                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">LinkedIn</a>
-                                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors">GitHub</a>
+                                                <button onclick="copyEmail()" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors text-left w-full" onmouseenter="this.style.color='#18a000'" onmouseleave="this.style.color=''">c.a.rodriguez1999@gmail.com</button>
+                                                <a href="https://www.linkedin.com/in/carloscoding/" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors" onmouseenter="this.style.color='#18a000'" onmouseleave="this.style.color=''">LinkedIn</a>
+                                                <a href="https://github.com/CRodriguez245" target="_blank" class="block text-[14px] font-helvetica font-light hover:text-[#18a000] transition-colors" onmouseenter="this.style.color='#18a000'" onmouseleave="this.style.color=''">GitHub</a>
                                             </div>
                                         </div>
                                     </div>
@@ -942,6 +970,42 @@
             // DOM is already ready, initialize immediately
             initializeSidekickState();
         }
+        
+        // Contact dropdown hover effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactDropdown = document.querySelector('.contact-dropdown');
+            const dropdownMenu = document.querySelector('.contact-dropdown-menu');
+            const emailButton = dropdownMenu?.querySelector('button[onclick="copyEmail()"]');
+            const linkedinLink = dropdownMenu?.querySelector('a[href*="linkedin"]');
+            const githubLink = dropdownMenu?.querySelector('a[href*="github"]');
+            
+            if (emailButton) {
+                emailButton.addEventListener('mouseenter', function() {
+                    this.style.color = '#18a000';
+                });
+                emailButton.addEventListener('mouseleave', function() {
+                    this.style.color = '';
+                });
+            }
+            
+            if (linkedinLink) {
+                linkedinLink.addEventListener('mouseenter', function() {
+                    this.style.color = '#18a000';
+                });
+                linkedinLink.addEventListener('mouseleave', function() {
+                    this.style.color = '';
+                });
+            }
+            
+            if (githubLink) {
+                githubLink.addEventListener('mouseenter', function() {
+                    this.style.color = '#18a000';
+                });
+                githubLink.addEventListener('mouseleave', function() {
+                    this.style.color = '';
+                });
+            }
+        });
     </script>
 </body>
 </html> 

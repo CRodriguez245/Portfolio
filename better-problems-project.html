@@ -70,7 +70,7 @@
         }
         
         /* Ensure all text elements in main content are visible */
-        #main-content *:not(footer *):not(#ai-sidekick *) {
+        #main-content *:not(footer *):not(#ai-sidekick *):not(.contact-dropdown-menu *) {
             color: black !important;
             visibility: visible !important;
         }
@@ -88,6 +88,14 @@
         /* Ensure AI sidekick text colors are correct */
         #ai-sidekick #chat-messages p,
         #ai-sidekick #chat-messages .text-\[#18a000\] {
+            color: #18a000 !important;
+        }
+        
+        /* Contact dropdown link hover effects */
+        .contact-dropdown-menu button:hover,
+        .contact-dropdown-menu a:hover,
+        #main-nav .contact-dropdown-menu button:hover,
+        #main-nav .contact-dropdown-menu a:hover {
             color: #18a000 !important;
         }
         
