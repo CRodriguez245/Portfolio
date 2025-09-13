@@ -204,9 +204,10 @@
       "title": "Tools & Technologies",
       "description": "Carlos uses a modern toolkit that combines AI-powered development tools with traditional design and product management software. He leverages these tools to create efficient, high-quality products that serve both users and business needs.",
       "development_tools": [
-                  "Cursor AI - AI-powered code editor for rapid development and prototyping",
+        "Cursor AI - AI-powered code editor for rapid development and prototyping",
         "GitHub - Version control and collaboration",
-        "VS Code - Code editing and development environment"
+        "VS Code - Code editing and development environment",
+        "Tailwind CSS - Utility-first CSS framework for responsive design"
       ],
       "design_tools": [
         "Figma - UI/UX design and prototyping",
@@ -223,7 +224,13 @@
         "OpenAI API - AI integration and development",
         "Claude - AI research and writing assistance"
       ],
-              "keywords": ["cursor", "cursor ai", "figma", "gpt", "openai", "notion", "slack", "linear", "github", "vscode", "adobe", "miro", "claude", "tools", "technologies", "software", "platforms"]
+      "web_technologies": [
+        "HTML5 - Semantic markup and structure",
+        "CSS3 - Styling and responsive design",
+        "JavaScript - Interactive functionality and user experience",
+        "Responsive Design - Mobile-first approach with Tailwind CSS breakpoints"
+      ],
+      "keywords": ["cursor", "cursor ai", "figma", "gpt", "openai", "notion", "slack", "linear", "github", "vscode", "adobe", "miro", "claude", "tools", "technologies", "software", "platforms", "tailwind", "responsive", "mobile", "html", "css", "javascript"]
     },
     "decision_making": {
       "title": "Product Decision-Making Frameworks",
@@ -419,35 +426,56 @@
   },
   "projects": {
     "microsoft_health": {
-      "title": "Microsoft Health Product Management Insights",
+      "title": "Bachelors in Microsoft Health Product Management Insights",
       "description": "Carlos's work on Microsoft Health revealed that internal education is often more about cultural permission than curriculum. Many experts needed validation that their tacit knowledge mattered. This insight shaped the product strategy to focus on building confidence and recognition rather than just delivering content.",
       "key_learning": "Internal education products need to address cultural permission, not just curriculum delivery",
-      "business_impact": "Improved expert engagement and knowledge sharing across the organization",
+      "business_impact": "50% boost in student participation, 35% improved student clarity",
       "product_strategy": "Designed AI-powered tools that validated and amplified expert knowledge",
-      "keywords": ["microsoft", "health", "internal education", "cultural permission", "expert knowledge", "product strategy", "tell me more", "more about", "details", "what is", "explain", "describe"]
+      "project_details": {
+        "role": "Program Manager and AI Integration Strategist",
+        "organization": "Microsoft Corporation Health and Life Sciences",
+        "timeline": "12 months",
+        "tools": ["Figma", "Mural", "Microsoft Copilot"],
+        "focus": ["Product Education Design", "Healthcare Systems Fluency", "Cross-functional Learning Strategy"]
+      },
+      "keywords": ["microsoft", "health", "bachelors", "internal education", "cultural permission", "expert knowledge", "product strategy", "program manager", "ai integration", "tell me more", "more about", "details", "what is", "explain", "describe"]
     },
-    "ai_research_workbook": {
-      "title": "AI Research Workbook Product Insights",
+    "ai_research_platform": {
+      "title": "AI Research Platform Product Insights",
       "description": "Students didn't trust the AI at first—and Carlos didn't want them to 'obey' it either. The breakthrough came when they began *challenging* it—that's when he knew it was scaffolding thought, not replacing it. This insight shaped the product strategy to focus on building user confidence and agency.",
       "challenge": "Students didn't trust the AI initially",
       "breakthrough": "Students began challenging the AI - that's when he knew it was scaffolding thought, not replacing it",
       "product_strategy": "Design AI tools that build user confidence and agency rather than dependency",
       "business_impact": "Increased student engagement and research confidence",
-      "keywords": ["ai", "research workbook", "students", "trust", "challenging", "scaffolding", "product strategy", "tell me more", "more about", "details", "what is", "explain", "describe"]
+      "project_details": {
+        "role": "AI Product Manager",
+        "organization": "Northwestern Medicine",
+        "timeline": "6 months",
+        "tools": ["Figma", "Mural", "Cursor AI"],
+        "focus": ["AI Integration", "Research Support", "Student Confidence"]
+      },
+      "keywords": ["ai", "research platform", "students", "trust", "challenging", "scaffolding", "product strategy", "northwestern", "medicine", "tell me more", "more about", "details", "what is", "explain", "describe"]
     },
     "nm_scholars": {
-      "title": "NM Scholars Product Management Insights",
+      "title": "NM Scholars Program Product Management Insights",
       "description": "Carlos reframed the cohort structure to group students not by age or grade but by identity resonance. Then he formalized APC roles to create student-led engagement. Confidence—not research ability—was the strongest predictor of engagement. Once students felt they belonged, everything changed.",
       "strategic_decision": "Reframed cohort structure by identity resonance, not age or grade",
       "product_strategy": "Designed for belonging and confidence rather than just academic achievement",
       "key_insight": "Confidence—not research ability—was the strongest predictor of engagement",
-      "business_impact": "Increased student engagement and program retention",
+      "business_impact": "50% boost in student participation, 35% improved student clarity",
       "breakthrough": "Once students felt they belonged, everything changed",
-      "keywords": ["nm scholars", "cohort", "identity", "confidence", "belonging", "engagement", "product strategy", "tell me more", "more about", "details", "what is", "explain", "describe"]
+      "project_details": {
+        "role": "Design Strategist",
+        "organization": "Northwestern Medicine Youth Programming",
+        "timeline": "3 months",
+        "tools": ["Figma", "Mural", "Cursor AI"],
+        "focus": ["Systems Mapping", "Instructional Coordination", "Scalable Learning Equity"]
+      },
+      "keywords": ["nm scholars", "northwestern medicine", "cohort", "identity", "confidence", "belonging", "engagement", "product strategy", "youth programming", "tell me more", "more about", "details", "what is", "explain", "describe"]
     },
     "epicac": {
       "title": "EPICAC — Interactive Poetry Printer",
-      "description": "An interactive installation where a Raspberry Pi and Epson thermal printer generate and print original love poems in real time — a reinterpretation of Kurt Vonnegut’s EPICAC exploring emotional AI, disposable intimacy, and literary HCI.",
+      "description": "A thermal printer that writes love poems on behalf of a machine with a broken heart. An interactive installation where a Raspberry Pi and Epson thermal printer generate and print original love poems in real time — a reinterpretation of Kurt Vonnegut's EPICAC exploring emotional AI, disposable intimacy, and literary HCI.",
       "how_it_works": [
         "Input: corpus of love poems, fragments from Vonnegut, and generative templates",
         "Engine: Python prompt logic on Raspberry Pi with GPT-based models and constraints for emotional intensity",
@@ -455,14 +483,28 @@
         "Interface: Physical box inspired by early terminals; the printer hums softly"
       ],
       "themes": ["Emotional AI", "Disposable Intimacy", "Speculative Empathy", "Literary Interaction"],
-      "keywords": ["epicac", "thermal printer", "vonnegut", "poetry", "gallery", "interactive", "love poems", "explain", "what is", "details"]
+      "project_details": {
+        "role": "Interaction Designer and Human-Computer Interaction Researcher",
+        "organization": "Independent Research Project",
+        "timeline": "Gallery Installation",
+        "tools": ["Raspberry Pi", "Python + OpenAI API", "Thermal Printer"],
+        "focus": ["Emotional AI", "Generative Poetry", "Speculative Design"]
+      },
+      "keywords": ["epicac", "thermal printer", "vonnegut", "poetry", "gallery", "interactive", "love poems", "raspberry pi", "emotional ai", "explain", "what is", "details"]
     },
     "gavno": {
       "title": "GA.V.NO — Radio + Design Platform",
       "description": "A storytelling platform exploring Brazilian music, culture, and design. Lives between studio and sound booth — part mixtape, part design reflection — tying rhythms and identity to modular product concepts.",
       "components": ["Radio Show", "Platform", "Modular Product Design"],
       "themes": ["Music as method", "Cultural storytelling", "Rhythm and improvisation", "Craftsmanship as conversation"],
-      "keywords": ["ga.v.no", "radio", "brazilian music", "storytelling", "platform", "episodes", "design reflection", "explain", "what is", "details"]
+      "project_details": {
+        "role": "Creative Director and Founder",
+        "organization": "Independent Platform",
+        "timeline": "Ongoing (2024-Present)",
+        "tools": ["Audio Production", "Product Design", "Storytelling"],
+        "focus": ["Brazilian Music", "Cultural Narrative", "Modular Design"]
+      },
+      "keywords": ["ga.v.no", "radio", "brazilian music", "storytelling", "platform", "episodes", "design reflection", "creative director", "founder", "explain", "what is", "details"]
     },
     "better_problems_project": {
       "title": "Better Problems — Independent Practice",
@@ -489,7 +531,14 @@
           "Institutions facing ethical or cultural tension"
         ]
       },
-      "keywords": ["better problems", "consultancy", "blog", "strategy", "systems mapping", "equity", "ai framing", "what is", "explain", "details"]
+      "project_details": {
+        "role": "Founder, Writer, and Principal Strategist",
+        "organization": "Independent Practice",
+        "timeline": "Ongoing",
+        "tools": ["Writing", "Strategic Framing", "Systems Mapping"],
+        "focus": ["Problem Reframing", "Critical Design", "Strategic Storytelling"]
+      },
+      "keywords": ["better problems", "consultancy", "blog", "strategy", "systems mapping", "equity", "ai framing", "founder", "writer", "what is", "explain", "details"]
     }
   },
   "blog": {
