@@ -405,6 +405,11 @@
             <div class="mb-8 md:mb-24">
                 <h2 class="text-[24px] md:text-[32px] font-helvetica font-medium mb-2">AI Research Platform</h2>
                 <p class="text-[16px] md:text-[20px] font-helvetica text-gray-800">ResearchBridge is a multi-modal research companion for students and instructors</p>
+                
+                <!-- Mobile Hero Image - positioned below subtitle -->
+                <div class="w-full h-auto md:hidden mt-6 transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 cursor-pointer" onclick="openImageModal('images/Cu-Hero-RB.jpg', 'AI Research Platform Hero')">
+                    <img src="images/Cu-Hero-RB.jpg" alt="AI Research Platform Hero" class="w-full h-auto">
+                </div>
             </div>
 
             <!-- Project Details Grid -->
@@ -440,16 +445,16 @@
                     </div>
                 </div>
 
-                <!-- Right Column - Hero Image -->
-                <div class="w-full md:w-[740px] h-64 md:h-[592px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 cursor-pointer" onclick="openImageModal('images/Cu-Hero-RB.jpg', 'AI Research Platform Hero')">
+                <!-- Desktop Hero Image - hidden on mobile -->
+                <div class="hidden md:block w-[740px] h-[592px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 cursor-pointer" onclick="openImageModal('images/Cu-Hero-RB.jpg', 'AI Research Platform Hero')">
                     <img src="images/Cu-Hero-RB.jpg" alt="AI Research Platform Hero" class="w-full h-full object-cover">
                 </div>
             </div>
 
             <!-- Overview Section -->
             <div class="flex flex-col md:flex-row gap-8 md:gap-8 mb-16 md:mb-32">
-                <div class="w-full md:w-[540px] h-64 md:h-[700px] transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 cursor-pointer" onclick="openImageModal('images/RBBO.png', 'ResearchBridge Overview')">
-                    <img src="images/RBBO.png" alt="ResearchBridge Overview" class="w-full h-full object-cover shadow-2xl">
+                <div class="w-full md:w-[540px] h-auto md:h-[700px] transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 cursor-pointer" onclick="openImageModal('images/RBBO.png', 'ResearchBridge Overview')">
+                    <img src="images/RBBO.png" alt="ResearchBridge Overview" class="w-full h-auto md:h-full md:object-cover shadow-2xl">
                 </div>
                 <div class="w-full md:w-[360px]">
                     <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Overview</h2>
