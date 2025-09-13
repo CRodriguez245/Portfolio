@@ -408,7 +408,7 @@
                 
                 <!-- Mobile Hero Image - positioned below subtitle -->
                 <div class="w-full h-auto md:hidden mt-6 transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 cursor-pointer" onclick="openImageModal('images/Cu-Hero-RB.jpg', 'AI Research Platform Hero')">
-                    <img src="images/Cu-Hero-RB.jpg" alt="AI Research Platform Hero" class="w-full h-auto">
+                    <img src="images/Cu-Hero-RB.jpg" alt="AI Research Platform Hero" class="w-full h-auto" onerror="console.error('Failed to load Cu-Hero-RB.jpg'); this.style.border='2px solid red';" onload="console.log('Cu-Hero-RB.jpg loaded successfully');">
                 </div>
             </div>
 
