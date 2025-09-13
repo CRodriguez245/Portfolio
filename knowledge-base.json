@@ -483,7 +483,31 @@
         "tools": ["Figma", "GPT-4", "Cursor AI"],
         "focus": ["AI-assisted Learning", "Research Equity", "Curriculum Prototyping"]
       },
-      "keywords": ["researchbridge", "ai research platform", "multi-modal", "research companion", "students", "instructors", "equity", "first-generation", "underrepresented", "high school", "northwestern medicine", "youth programming", "gpt-4", "scaffolding", "confidence", "curiosity", "fluency", "dashboard", "engagement", "interventions", "adoption", "curriculum", "tell me more", "more about", "details", "what is", "explain", "describe"]
+      "keywords": ["researchbridge", "ResearchBridge", "research bridge", "ai research platform", "multi-modal", "research companion", "students", "instructors", "equity", "first-generation", "underrepresented", "high school", "northwestern medicine", "youth programming", "gpt-4", "scaffolding", "confidence", "curiosity", "fluency", "dashboard", "engagement", "interventions", "adoption", "curriculum", "tell me more", "more about", "details", "what is", "explain", "describe"]
+    },
+    "researchbridge": {
+      "title": "ResearchBridge - Multi-modal Research Companion",
+      "description": "ResearchBridge is Carlos's AI research platform that he led from concept to adoption at Northwestern Medicine. It's a multi-modal research companion designed to make academic research less intimidating and more equitable for first-generation and underrepresented high school students.",
+      "platform_type": "Two-sided system serving both students and instructors",
+      "student_features": [
+        "Scaffolded GPT-powered modules for summarizing, questioning, and outlining",
+        "Multi-modal outputs: text, visuals, and reflections",
+        "Built-in ethical check-ins and prompts for critical thinking",
+        "Personalization: everyday vs academic tone, examples tied to student context"
+      ],
+      "instructor_features": [
+        "Lightweight dashboard surfacing mode usage patterns",
+        "Confidence signals and reflection depth tracking",
+        "Source quality breakdowns (peer-reviewed, gov, news, etc.)",
+        "Alerts for 'stuck' students needing support"
+      ],
+      "impact_metrics": {
+        "insight_quality": "3× improvement",
+        "confidence_gains": "95% of students reported gains",
+        "adoption_rate": "100% adoption into next-year curriculum"
+      },
+      "project_context": "Part of Northwestern Medicine Youth Programming, evolved from an AI workbook into a comprehensive research platform",
+      "keywords": ["researchbridge", "ResearchBridge", "research bridge", "ai research platform", "multi-modal", "research companion", "northwestern medicine", "youth programming", "gpt-4", "scaffolding", "confidence", "equity", "first-generation", "underrepresented", "high school", "dashboard", "engagement", "interventions", "adoption", "curriculum", "tell me more", "more about", "details", "what is", "explain", "describe"]
     },
     "nm_scholars": {
       "title": "NM Scholars Program Product Management Insights",
