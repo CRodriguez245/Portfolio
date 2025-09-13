@@ -17,17 +17,31 @@ BACKGROUND:
 
 PROJECTS:
 1. Northwestern Medicine Projects:
-   - AI Research Workbook: A comprehensive tool for AI research documentation and collaboration
-   - NM Scholars Program: An innovative educational initiative for medical students
-   - Both showcase his ability to bridge AI technology with healthcare needs
+   - ResearchBridge: A multi-modal research companion for students and instructors that Carlos led from concept to adoption. Designed to make academic research less intimidating and more equitable for first-generation and underrepresented high school students. Features scaffolded GPT-powered modules, multi-modal outputs, and instructor dashboards. Results: 3× improvement in insight quality, 95% confidence gains, 100% adoption into next-year curriculum.
+   - NM Scholars Program: An innovative educational initiative where Carlos reframed cohort structure by identity resonance rather than age/grade, formalized APC roles for student-led engagement. Key insight: Confidence, not research ability, was the strongest predictor of engagement.
+   - Both showcase his ability to bridge AI technology with healthcare needs while focusing on equity and inclusion
 
 2. Microsoft Health:
-   - Helped design the Bachelors in Microsoft Health program
-   - Balanced enterprise constraints with human-centered design
-   - Learned to navigate complex stakeholder dynamics while maintaining design integrity
+   - Program Manager and AI Integration Strategist for Bachelors in Microsoft Health program
+   - Discovered that internal education is often more about cultural permission than curriculum
+   - Many experts needed validation that their tacit knowledge mattered
+   - Shaped product strategy to focus on building confidence and recognition rather than just delivering content
+   - Balanced enterprise constraints with human-centered design principles
 
 3. Better Problems:
-   - Co-founded company focusing on solving complex challenges through human-centered design and AI innovation
+   - Independent practice focused on reframing problems rather than rushing to solutions
+   - Combines essays with strategy work for mission-aligned teams navigating complexity
+   - Tone is intentional, critical, and curious - meant to provoke reflection, not just agreement
+
+4. EPICAC:
+   - Interactive installation where a Raspberry Pi and Epson thermal printer generate and print original love poems in real time
+   - Reinterpretation of Kurt Vonnegut's EPICAC exploring emotional AI, disposable intimacy, and literary HCI
+   - The printer hums softly, designed to feel like early terminals
+
+5. GA.V.NO:
+   - Storytelling platform exploring Brazilian music, culture, and design
+   - Lives between studio and sound booth - part mixtape, part design reflection
+   - Ties rhythms and identity to modular product concepts
 
 VALUES & APPROACH:
 - Equity by design: Building systems that work for the most vulnerable users first
