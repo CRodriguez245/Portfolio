@@ -403,6 +403,11 @@
             <div class="mb-8 md:mb-24">
                 <h2 class="text-[24px] md:text-[32px] font-helvetica font-medium mb-2">EPICAC</h2>
                 <p class="text-[16px] md:text-[20px] font-helvetica text-gray-800">A thermal printer that writes love poems on behalf of a machine with a broken heart.</p>
+                
+                <!-- Mobile Hero Image - positioned below subtitle -->
+                <div class="w-full h-auto md:hidden mt-6 transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 cursor-pointer" onclick="openImageModal('images/epson2.webp', 'EPICAC Hero')">
+                    <img src="images/epson2.webp" alt="EPICAC Hero" class="w-full h-auto">
+                </div>
             </div>
 
             <!-- Project Details Grid -->
@@ -439,8 +444,8 @@
                     </div>
                 </div>
 
-                <!-- Right Column - Hero Image -->
-                <div class="w-full md:w-[740px] h-64 md:h-[538px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                <!-- Desktop Hero Image - hidden on mobile -->
+                <div class="hidden md:block w-[740px] h-[538px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
                     <img src="images/epson2.webp" alt="EPICAC Hero" class="w-full h-full object-cover">
                 </div>
             </div>

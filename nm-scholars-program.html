@@ -398,6 +398,11 @@
             <div class="mb-8 md:mb-24">
                 <h2 class="text-[24px] md:text-[32px] font-helvetica font-medium mb-2">Northwestern Medicine Scholars Program</h2>
                 <p class="text-[16px] md:text-[20px] font-helvetica text-gray-800">Programs like NM Scholars don't just scale by adding more students. They scale through intentional systems design that ensures equity, structure, and community stay intact as complexity grows.</p>
+                
+                <!-- Mobile Hero Image - positioned below subtitle -->
+                <div class="w-full h-auto md:hidden mt-6 transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 cursor-pointer" onclick="openImageModal('images/NM-Scholars-2.jpg', 'NM Scholars Program Hero')">
+                    <img src="images/NM-Scholars-2.jpg" alt="NM Scholars Program Hero" class="w-full h-auto">
+                </div>
             </div>
 
             <!-- Project Details Grid -->
@@ -432,16 +437,16 @@
                     </div>
                 </div>
 
-                <!-- Right Column - Hero Image -->
-                <div class="w-full md:w-[740px] h-64 md:h-[538px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                <!-- Desktop Hero Image - hidden on mobile -->
+                <div class="hidden md:block w-[740px] h-[538px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
                     <img src="images/NM-Scholars-2.jpg" alt="NM Scholars Program Hero" class="w-full h-full object-cover">
                 </div>
             </div>
 
             <!-- Summary Section -->
             <div class="flex flex-col md:flex-row gap-8 md:gap-24 mb-16 md:mb-32">
-                <div class="w-full md:w-[435px] h-64 md:h-[435px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
-                    <img src="images/NMScholars3.jpg" alt="Summary" class="w-full h-full object-cover">
+                <div class="w-full md:w-[435px] h-auto md:h-[435px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                    <img src="images/NMScholars3.jpg" alt="Summary" class="w-full h-auto md:h-full md:object-cover">
                 </div>
                 <div class="w-full md:w-[450px]">
                     <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Summary</h2>
@@ -512,7 +517,7 @@
                         <li>+35% improvement in post-program student clarity scores (schedule, expectations, roles)</li>
                     </ul>
                 </div>
-                <div class="w-[700px] mt-16 cursor-pointer" onclick="openImageModal('images/NMImpact.jpg', 'Impact')">
+                <div class="w-[700px] mt-16 cursor-pointer transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105" onclick="openImageModal('images/NMImpact.jpg', 'Impact')">
                     <img src="images/NMImpact.jpg" alt="Impact" class="w-full h-auto">
                 </div>
             </div>

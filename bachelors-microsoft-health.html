@@ -400,6 +400,11 @@
             <div class="mb-8 md:mb-24">
                 <h2 class="text-[24px] md:text-[32px] font-helvetica font-medium mb-2">Bachelors in Microsoft Health</h2>
                 <p class="text-[16px] md:text-[20px] font-helvetica text-gray-800">Pipeline programs often fail by copying corporate expectations into academic formats. BMH was different. We designed a learning system around the lived realities of underrepresented students, not just the job titles they aspire to.</p>
+                
+                <!-- Mobile Hero Image - positioned below subtitle -->
+                <div class="w-full h-auto md:hidden mt-6 transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 cursor-pointer" onclick="openImageModal('images/BMH-ProjectCard copy.jpg', 'Bachelors in Microsoft Health Hero')">
+                    <img src="images/BMH-ProjectCard copy.jpg" alt="Bachelors in Microsoft Health Hero" class="w-full h-auto">
+                </div>
             </div>
 
             <!-- Project Details Grid -->
@@ -435,16 +440,16 @@
                     </div>
                 </div>
 
-                <!-- Right Column - Hero Image -->
-                <div class="w-full md:w-[740px] h-64 md:h-[538px] bg-gray-100 transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
+                <!-- Desktop Hero Image - hidden on mobile -->
+                <div class="hidden md:block w-[740px] h-[538px] bg-gray-100 transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
                     <img src="images/BMH-ProjectCard copy.jpg" alt="Bachelors in Microsoft Health Hero" class="w-full h-full object-cover">
                 </div>
             </div>
 
             <!-- Summary Section -->
             <div class="flex flex-col md:flex-row gap-8 md:gap-24 mb-16 md:mb-32">
-                <div class="w-full md:w-[435px] h-64 md:h-[435px] overflow-hidden">
-                    <img src="images/BMH-Badge.webp" alt="Summary" class="w-full h-full object-contain">
+                <div class="w-full md:w-[435px] h-auto md:h-[435px] overflow-hidden">
+                    <img src="images/BMH-Badge.webp" alt="Summary" class="w-full h-auto md:h-full md:object-contain">
                 </div>
                 <div class="w-full md:w-[450px]">
                     <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Summary</h2>
