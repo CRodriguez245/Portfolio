@@ -441,20 +441,49 @@
       "keywords": ["microsoft", "health", "bachelors", "internal education", "cultural permission", "expert knowledge", "product strategy", "program manager", "ai integration", "tell me more", "more about", "details", "what is", "explain", "describe"]
     },
     "ai_research_platform": {
-      "title": "AI Research Platform Product Insights",
-      "description": "Students didn't trust the AI at first—and Carlos didn't want them to 'obey' it either. The breakthrough came when they began *challenging* it—that's when he knew it was scaffolding thought, not replacing it. This insight shaped the product strategy to focus on building user confidence and agency.",
-      "challenge": "Students didn't trust the AI initially",
-      "breakthrough": "Students began challenging the AI - that's when he knew it was scaffolding thought, not replacing it",
-      "product_strategy": "Design AI tools that build user confidence and agency rather than dependency",
-      "business_impact": "Increased student engagement and research confidence",
-      "project_details": {
-        "role": "AI Product Manager",
-        "organization": "Northwestern Medicine",
-        "timeline": "6 months",
-        "tools": ["Figma", "Mural", "Cursor AI"],
-        "focus": ["AI Integration", "Research Support", "Student Confidence"]
+      "title": "ResearchBridge - AI Research Platform",
+      "description": "ResearchBridge is a multi-modal research companion for students and instructors that Carlos led from concept to adoption. Designed to make academic research less intimidating and more equitable for first-generation and underrepresented high school students. What began as an AI workbook grew into a multi-modal research companion serving both sides of the learning experience.",
+      "platform_overview": "ResearchBridge is a two-sided system: Students gain scaffolds that boost confidence, curiosity, and fluency in research. Instructors gain visibility and tools to guide engagement equitably at scale.",
+      "challenge": {
+        "students": "Research was overwhelming. Most had limited exposure to scholarly work, AI tools, or independent synthesis, which eroded confidence.",
+        "instructors": "With program size doubling, it was nearly impossible to track engagement, spot inequities, or provide timely, individualized support.",
+        "overall": "The challenge wasn't just delivering research skills — it was scaling equitable engagement on both sides."
       },
-      "keywords": ["ai", "research platform", "students", "trust", "challenging", "scaffolding", "product strategy", "northwestern", "medicine", "tell me more", "more about", "details", "what is", "explain", "describe"]
+      "solution": {
+        "for_students": [
+          "Scaffolded GPT-powered modules for summarizing, questioning, and outlining",
+          "Multi-modal outputs: text, visuals, and reflections",
+          "Built-in ethical check-ins and prompts for critical thinking",
+          "Personalization: everyday vs academic tone, examples tied to student context"
+        ],
+        "for_instructors": [
+          "Lightweight dashboard surfacing mode usage patterns (summarize, ask, outline, cite)",
+          "Confidence signals and reflection depth",
+          "Source quality breakdowns (peer-reviewed, gov, news, etc.)",
+          "Alerts for 'stuck' students (repeated clarifications, low activity)",
+          "Designed as support, not surveillance — focusing on trends and equity, not micromanagement"
+        ]
+      },
+      "impact": {
+        "students": "3× improvement in insight quality, 95% reported confidence gains",
+        "instructors": "First-ever visibility into research engagement at scale, enabling equitable interventions",
+        "program": "100% adoption into next-year curriculum, plus a roadmap for NM Scholars to expand AI equity initiatives"
+      },
+      "key_decisions": [
+        "Scoped GPT prompts to build confidence, not shortcuts",
+        "Removed open-ended tasks that caused cognitive overload",
+        "Integrated reflection checkpoints for ethical reasoning",
+        "Created instructor-facing summaries that are aggregate, not invasive, to balance student trust with program needs"
+      ],
+      "reflection": "ResearchBridge is more than an AI tool — it's a platform that rethinks how research can be learned, taught, and scaled equitably. By designing for both students and instructors, Carlos helped NM Scholars move from a one-off workbook experiment to a sustainable system for building research confidence and equity.",
+      "project_details": {
+        "role": "Product Strategy AI-PM Intern",
+        "organization": "Northwestern Medicine Youth Programming",
+        "timeline": "6 months (Spring & Summer 2025)",
+        "tools": ["Figma", "GPT-4", "Cursor AI"],
+        "focus": ["AI-assisted Learning", "Research Equity", "Curriculum Prototyping"]
+      },
+      "keywords": ["researchbridge", "ai research platform", "multi-modal", "research companion", "students", "instructors", "equity", "first-generation", "underrepresented", "high school", "northwestern medicine", "youth programming", "gpt-4", "scaffolding", "confidence", "curiosity", "fluency", "dashboard", "engagement", "interventions", "adoption", "curriculum", "tell me more", "more about", "details", "what is", "explain", "describe"]
     },
     "nm_scholars": {
       "title": "NM Scholars Program Product Management Insights",
