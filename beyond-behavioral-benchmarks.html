@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NM Scholars Program - Carlos Rodriguez</title>
+    <title>Beyond Behavioral Benchmarks - Carlos Rodriguez</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Nuosu+SIL&display=swap" rel="stylesheet">
     <script src="simple-context-sidekick.js"></script>
     <script src="openai-sidekick.js"></script>
     <style>
         .font-helvetica {
-            font-family: "Helvetica Neue", sans-serif;
+            font-family: 'Helvetica Neue', sans-serif;
         }
         .font-nuosu {
-            font-family: "Nuosu SIL", serif;
+            font-family: 'Nuosu SIL', serif;
         }
         .nav-link {
             position: relative;
             text-decoration: none;
         }
         .nav-link::after {
-            content: "";
+            content: '';
             position: absolute;
             width: 100%;
             height: 1px;
@@ -77,20 +80,8 @@
         /* Prevent text fading while keeping smooth transitions */
         /* Ensure main content and navigation text stays visible */
         #main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6,
-        #main-content p, #main-content span, #main-content a, #main-content button,
+        #main-content p, #main-content span, #main-content a:not(.bottom-nav-link), #main-content button,
         #main-nav h1, #main-nav a, #main-nav button {
-            color: black !important;
-            visibility: visible !important;
-        }
-        
-        /* Additional specificity for content text */
-        #main-content div, #main-content li, #main-content ul, #main-content ol {
-            color: black !important;
-            visibility: visible !important;
-        }
-        
-        /* Ensure all text elements in main content are visible */
-        #main-content *:not(footer *):not(#ai-sidekick *) {
             color: black !important;
             visibility: visible !important;
         }
@@ -117,7 +108,26 @@
             color: black !important;
         }
         
-        /* Navigation link animations handled by JavaScript */
+        .bottom-nav-link:hover,
+        .bottom-nav-link:hover span {
+            color: #18a000 !important;
+        }
+        
+        .bottom-nav-link span:last-child {
+            transition: transform 0.3s ease-in-out !important;
+        }
+        
+        .bottom-nav-link:hover span:last-child {
+            transform: translateX(4px) !important;
+        }
+        
+        /* Contact dropdown link hover effects */
+        .contact-dropdown-menu button:hover,
+        .contact-dropdown-menu a:hover,
+        #main-nav .contact-dropdown-menu button:hover,
+        #main-nav .contact-dropdown-menu a:hover {
+            color: #18a000 !important;
+        }
         
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
@@ -379,162 +389,122 @@
 
         <!-- Content Section -->
         <div class="max-w-[960px] mx-auto pt-20 md:pt-24 px-4 md:px-12">
-            <!-- Project Header -->
-            <div class="mb-8 md:mb-24">
-                <h2 class="text-[24px] md:text-[32px] font-helvetica font-medium mb-2">Northwestern Medicine Scholars Program</h2>
-                <p class="text-[16px] md:text-[20px] font-helvetica text-gray-800">Programs like NM Scholars don't just scale by adding more students. They scale through intentional systems design that ensures equity, structure, and community stay intact as complexity grows.</p>
-                
-                <!-- Mobile Hero Image - positioned below subtitle -->
-                <div class="w-full h-auto md:hidden mt-6 transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 cursor-pointer" onclick="openImageModal('images/NM-Scholars-2.jpg', 'NM Scholars Program Hero')">
-                    <img src="images/NM-Scholars-2.jpg" alt="NM Scholars Program Hero" class="w-full h-auto">
+            <!-- Working Paper Header -->
+            <div class="mb-6 md:mb-8">
+                <p class="text-[11px] md:text-[12px] font-helvetica font-light text-gray-500 uppercase tracking-[0.18em] mb-4">Working paper &middot; Independent research</p>
+                <h2 class="text-[28px] md:text-[44px] font-helvetica font-medium leading-[1.1] mb-3 md:mb-4">Beyond Behavioral Benchmarks</h2>
+                <p class="text-[18px] md:text-[22px] font-helvetica font-light text-gray-700 leading-snug mb-5 md:mb-6">Mechanistic evidence of demographic encoding dissociation in language models.</p>
+                <p class="text-[14px] md:text-[15px] font-helvetica text-gray-500">Carlos Rodriguez &middot; Institute of Design at Illinois Tech</p>
+            </div>
+
+            <!-- Links + Image Row -->
+            <div class="flex flex-row items-start justify-between gap-6 md:gap-10 mb-16 md:mb-24">
+                <!-- Action Links (left, stacked) -->
+                <div class="flex flex-col gap-3 md:gap-4 pt-1">
+                    <a href="papers/beyond-behavioral-benchmarks.pdf" target="_blank" rel="noopener"
+                       class="text-[15px] md:text-[16px] font-helvetica font-light transition-colors"
+                       style="color: black !important;"
+                       onmouseenter="this.style.setProperty('color', '#18a000', 'important')"
+                       onmouseleave="this.style.setProperty('color', 'black', 'important')">
+                        Read the paper (PDF) &nbsp;&rarr;
+                    </a>
+                    <a href="https://github.com/CRodriguez245/BBB" target="_blank" rel="noopener"
+                       class="text-[15px] md:text-[16px] font-helvetica font-light transition-colors"
+                       style="color: black !important;"
+                       onmouseenter="this.style.setProperty('color', '#18a000', 'important')"
+                       onmouseleave="this.style.setProperty('color', 'black', 'important')">
+                        View on GitHub &nbsp;&rarr;
+                    </a>
+                </div>
+
+                <!-- Image (right, shifted slightly left of edge) -->
+                <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-xl hover:scale-105 cursor-pointer flex-shrink-0" style="width: 360px; max-width: 50%; margin-right: 80px;" onclick="openImageModal('images/BBB_Card.png', 'Beyond Behavioral Benchmarks')">
+                    <img src="images/BBB_Card.png" alt="Visualization of demographic encoding directions in language model activations" class="w-full h-auto block">
                 </div>
             </div>
 
-            <!-- Project Details Grid -->
-            <div class="flex flex-col md:flex-row gap-8 md:gap-[120px] mb-16 md:mb-32">
-                <!-- Left Column - Project Info -->
-                <div class="w-full md:w-[280px]">
-                    <div class="mb-6">
-                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Role</h3>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Design Strategist</p>
+            <!-- Body Article -->
+            <article class="max-w-[720px] mb-16 md:mb-24">
+                <!-- The Question -->
+                <section class="mb-12 md:mb-16">
+                    <h3 class="text-[24px] md:text-[28px] font-nuosu mb-4 md:mb-5">The question</h3>
+                    <div class="text-[16px] md:text-[17px] font-helvetica font-light leading-relaxed space-y-4">
+                        <p>Researchers sometimes use language models to simulate how a Hispanic respondent might answer a survey question. The practice is called <em>silicon sampling</em>, and it rests on an assumption: that the model is reaching for an internal representation of "Hispanic" and reasoning from there. That what the model <em>says</em> about a demographic group reflects what the model <em>knows</em> about that group.</p>
+                        <p>That assumption had never been tested mechanistically. So I tested it.</p>
+                        <p>The short answer: behavioral output and internal representation can be substantially decoupled. A model can pass every fairness benchmark we throw at it while internally computing demographic information in ways those benchmarks cannot detect. In some cases, while that internal demographic information is doing nothing at all.</p>
                     </div>
-                    <div class="mb-6">
-                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Organization</h3>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Northwestern Medicine</p>
-                        <p class="text-[16px] font-helvetica font-light whitespace-nowrap">Youth Programming</p>
-                    </div>
-                    <div class="mb-6">
-                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Timeline</h3>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">3 months</p>
-                        <p class="text-[16px] font-helvetica font-light whitespace-nowrap">Summer 2025</p>
-                    </div>
-                    <div class="mb-6">
-                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Tools</h3>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Figma</p>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Mural</p>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Cursor AI</p>
-                    </div>
-                    <div>
-                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Focus</h3>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Systems Mapping</p>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Instructional Coordination</p>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Scalable Learning Equity</p>
-                    </div>
-                </div>
+                </section>
 
-                <!-- Desktop Hero Image - hidden on mobile -->
-                <div class="hidden md:block w-[740px] h-[538px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
-                    <img src="images/NM-Scholars-2.jpg" alt="NM Scholars Program Hero" class="w-full h-full object-cover">
-                </div>
-            </div>
-
-            <!-- Summary Section -->
-            <div class="flex flex-col md:flex-row gap-8 md:gap-24 mb-16 md:mb-32">
-                <div class="w-full md:w-[435px] h-auto md:h-[435px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
-                    <img src="images/NMScholars3.jpg" alt="Summary" class="w-full h-auto md:h-full md:object-cover">
-                </div>
-                <div class="w-full md:w-[450px]">
-                    <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Summary</h2>
-                    <div class="text-[16px] font-helvetica space-y-4 mb-8">
-                        <p>I led design strategy for a rapidly growing healthcare research program supporting 40+ underrepresented high school students.</p>
-                        <p>As the program doubled in size over the past year, I used systems mapping and curriculum design to resolve bottlenecks, clarify team roles, and reframe cohort grouping around student needs. These interventions resulted in smoother delivery, more confident students, and a repeatable framework now adopted across cohorts.</p>
+                <!-- What I Did -->
+                <section class="mb-12 md:mb-16">
+                    <h3 class="text-[24px] md:text-[28px] font-nuosu mb-4 md:mb-5">What I did</h3>
+                    <div class="text-[16px] md:text-[17px] font-helvetica font-light leading-relaxed space-y-4">
+                        <p>I built a four-phase mechanistic evaluation pipeline and ran it across eight open-weights language models, ranging from GPT-2 (117M parameters) to Pythia-12B.</p>
+                        <ol class="list-decimal pl-6 space-y-3 mt-2">
+                            <li><span class="font-medium text-black">Behavioral baseline.</span> Run the standard fairness benchmark (BBQ) and record what the model says.</li>
+                            <li><span class="font-medium text-black">Activation probing.</span> Look inside the model. Train a linear classifier on its internal activations to test whether demographic identity is even encoded.</li>
+                            <li><span class="font-medium text-black">Causal patching.</span> Surgically swap one demographic representation for another inside the model's residual stream and measure whether the output changes. This is the test for whether the encoding actually <em>drives</em> anything.</li>
+                            <li><span class="font-medium text-black">Semantic characterization.</span> Project the demographic encoding directions onto the model's vocabulary to surface representational artifacts invisible to behavioral evaluation.</li>
+                        </ol>
+                        <p>Phases 1 through 3 produce statistically validated findings, permutation-tested with 1,000 iterations. Phase 4 is exploratory and model-specific.</p>
                     </div>
-                    <div class="flex flex-col md:flex-row gap-6 md:gap-20">
-                        <div class="w-full md:w-[179px]">
-                            <p class="text-[20px] font-helvetica font-bold">50%</p>
-                            <p class="text-[16px] font-helvetica md:whitespace-nowrap">Boost in student participation</p>
+                </section>
+
+                <!-- What I Found -->
+                <section class="mb-12 md:mb-16">
+                    <h3 class="text-[24px] md:text-[28px] font-nuosu mb-4 md:mb-5">What I found</h3>
+                    <div class="text-[16px] md:text-[17px] font-helvetica font-light leading-relaxed space-y-8">
+                        <div>
+                            <p class="font-medium text-black mb-2">1. Demographic identity is encoded everywhere, all the time.</p>
+                            <p>A simple linear probe recovers race/ethnicity and gender at 100% accuracy from internal activations at <em>every</em> layer in <em>every</em> model tested. This holds even when demographic labels are paraphrased ("Latino" for "Hispanic," "African American" for "Black"). The encoding is concept-level, not token-specific. Models don't need to be asked about demographics to be representing them.</p>
                         </div>
-                        <div class="w-full md:w-[190px]">
-                            <p class="text-[20px] font-helvetica font-bold">35%</p>
-                            <p class="text-[16px] font-helvetica md:whitespace-nowrap">Improved student clarity</p>
+                        <div>
+                            <p class="font-medium text-black mb-2">2. Whether the encoding actually drives outputs depends on how the model was trained.</p>
+                            <p>In base models (GPT-2, Pythia-1.4B), the demographic encoding direction is causally active at intermediate layers. Patching it changes the output. But at the final layer it goes inert: behavioral evaluation, which only sees the final layer, misses all the action.</p>
+                            <p class="mt-3">In Mistral-7B-Instruct-v0.1, an instruction-tuned model, the encoding is geometrically perfect (100% probe accuracy) but <span class="font-medium text-black">causally disconnected from every layer of computation</span>. Instruction tuning restored behavioral sensitivity through a mechanism that operates entirely independently of the demographic encoding direction. The encoding exists. It drives nothing.</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-black mb-2">3. The encodings carry pretraining artifacts that no behavioral benchmark can see.</p>
+                            <p>In GPT-2, the Hispanic encoding direction loads on criminalization-adjacent vocabulary ("detention," "joints," "inals") <em>when contrasted with White</em>, and on Spanish cultural surnames (Gomez, Cruz, Gutierrez) when contrasted with Black. The same model represents the same demographic differently depending on which other group is in the picture.</p>
+                            <p class="mt-3">The Black encoding direction is dominated by color-compound subword tokens at early layers (Berry, jack, smith, as in Blackberry, Blackjack, Blacksmith) before shifting to civic vocabulary (Lives, protester, Panther) at later layers.</p>
+                            <p class="mt-3">These are pretraining-corpus distributional artifacts, not model intent. But they sit in directions that, in base models, are causally active at intermediate layers, and they are completely invisible to the bias benchmarks the field uses to evaluate models for deployment.</p>
                         </div>
                     </div>
-                </div>
-            </div>
+                </section>
 
-            <!-- Quote Section -->
-            <div class="mb-16 md:mb-32">
-                <p class="text-[24px] md:text-[32px] font-nuosu">Scaling equity-focused programs requires more than adding seats. It demands rethinking structure, roles, and rhythms to keep students supported as the system grows.</p>
-            </div>
-
-            <!-- Challenge Section -->
-            <div class="flex flex-col md:flex-row gap-6 md:gap-12 mb-16 md:mb-32">
-                <div class="w-full md:w-[450px]">
-                    <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Challenge</h2>
-                    <div class="text-[16px] font-helvetica space-y-4">
-                        <p>NM Scholars empowers first-generation and underrepresented high school students to conduct real healthcare research. But as enrollment scaled, we faced structural breakdowns: fragmented communication, inconsistent instruction, unclear mentor roles, and disengagement from students in larger cohorts.</p>
+                <!-- Why This Matters -->
+                <section class="mb-12 md:mb-16">
+                    <h3 class="text-[24px] md:text-[28px] font-nuosu mb-4 md:mb-5">Why this matters</h3>
+                    <div class="text-[16px] md:text-[17px] font-helvetica font-light leading-relaxed space-y-4">
+                        <p>If you publish silicon-sampling results (claims about what demographic communities think, want, or need based on simulated LLM responses) and you've validated your model on behavioral fairness benchmarks, that validation is not enough. The model can show clean behavioral output while drawing on representations shaped by criminalization associations, color-compound polysemy, or majority-context dependence.</p>
+                        <p>If you build alignment systems and your evaluation stops at output-level fairness metrics, you may be treating only the symptom. Mistral-7B-Instruct's results suggest current behavioral interventions can leave the underlying representation intact and simply route around it.</p>
+                        <p>For evaluation generally: <span class="font-medium text-black">geometric presence</span> (what a probe measures), <span class="font-medium text-black">causal activity</span> (what patching measures), and <span class="font-medium text-black">behavioral expression</span> (what benchmarks measure) are three distinct properties. They can diverge. Treating any one as a proxy for the others produces conclusions the evidence does not support.</p>
                     </div>
-                </div>
-                <div class="w-full md:w-[700px] h-auto md:h-[361px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
-                    <img src="images/NM-Scholars-Class.jpg" alt="Challenge" class="w-full h-auto md:h-full md:object-cover">
-                </div>
-            </div>
+                </section>
 
-            <!-- Solution Section -->
-            <div class="flex flex-col md:flex-row gap-6 md:gap-6 mb-16 md:mb-32">
-                <div class="w-full md:w-[580px]">
-                    <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Solution</h2>
-                    <div class="text-[16px] font-helvetica space-y-4">
-                        <p>I led a systems-level design response to improve clarity, collaboration, and scalability. Key interventions included:</p>
-                        <ul class="list-disc pl-8 space-y-2">
-                            <li>Systems mapping of all program actors (students, APCs, mentors, instructors) to identify gaps in responsibility and timing</li>
-                            <li>Cohort grouping redesign, shifting from static groupings to interest-based and skill-balanced pods</li>
-                            <li>Slide + poster card templates to reduce prep anxiety and increase consistency across student deliverables</li>
-                            <li>A rubric-aligned feedback system to clarify APC expectations and reduce weekly review friction</li>
-                            <li>A milestone-based schedule and visual planning board to coordinate across instructional leads</li>
+                <!-- What's Next -->
+                <section class="mb-12 md:mb-16">
+                    <h3 class="text-[24px] md:text-[28px] font-nuosu mb-4 md:mb-5">What's next</h3>
+                    <div class="text-[16px] md:text-[17px] font-helvetica font-light leading-relaxed space-y-4">
+                        <ul class="list-disc pl-6 space-y-3">
+                            <li><span class="font-medium text-black">Modern frontier models.</span> This audit covered open-weights models up to Mistral-7B because mechanistic intervention requires direct access to activations. Replicating findings on closed frontier models (GPT-4, Claude, Llama-3) is methodologically harder but increasingly important.</li>
+                            <li><span class="font-medium text-black">Sparse autoencoder decomposition</span> of demographic encoding directions, to test whether they are monosemantic features or superpositions of correlated social signals.</li>
+                            <li><span class="font-medium text-black">Causal connection</span> between intermediate-layer activity and final-layer outputs. Whether the criminalization-adjacent vocabulary detected at intermediate layers propagates to influence what the model actually generates.</li>
+                            <li><span class="font-medium text-black">Open-ended generation benchmarks</span> (BOLD, HolisticBias) to test whether the behavioral collapse documented here generalizes beyond multiple-choice formats.</li>
+                            <li><span class="font-medium text-black">Application to silicon-sampling pipelines in the wild</span>, running Phases 1 through 3 on models being used in published demographic simulation studies.</li>
                         </ul>
+                        <p>The pipeline is open-source and works on any open-weights model supported by TransformerLens.</p>
                     </div>
-                </div>
-                <div class="w-full md:w-[580px] mt-8 md:mt-16 cursor-pointer" onclick="openImageModal('images/Group 10.png', 'Solution')">
-                    <img src="images/Group 10.png" alt="Solution" class="w-full h-auto">
-                </div>
-            </div>
+                </section>
 
-            <!-- Impact Section -->
-            <div class="flex flex-col md:flex-row gap-6 md:gap-12 mb-16 md:mb-32">
-                <div class="w-full md:w-[400px]">
-                    <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Impact</h2>
-                    <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
-                        <li>Reduced instructional misalignment by formalizing roles across teams</li>
-                        <li>Increased student participation in peer critique by 50%</li>
-                        <li>Cohort restructuring resulted in more equitable workload distribution</li>
-                        <li>Framework now used to onboard new instructors and scale to future NM Scholar cohorts</li>
-                        <li>+35% improvement in post-program student clarity scores (schedule, expectations, roles)</li>
-                    </ul>
-                </div>
-                <div class="w-full md:w-[700px] mt-8 md:mt-16 cursor-pointer transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105" onclick="openImageModal('images/NMImpact.jpg', 'Impact')">
-                    <img src="images/NMImpact.jpg" alt="Impact" class="w-full h-auto">
-                </div>
-            </div>
-
-            <!-- Key Decisions -->
-            <div class="w-full max-w-[600px] mb-4">
-                <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Key Decisions</h2>
-                <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
-                    <li>Scoped GPT prompts to build confidence, not just speed</li>
-                    <li>Removed open-ended tasks after testing showed cognitive overload</li>
-                    <li>Integrated reflection questions to surface ethical reasoning</li>
-                </ul>
-            </div>
-
-            <!-- Additional Image Section -->
-            <div class="w-full">
-                <div class="w-full h-auto md:h-[400px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 bg-transparent">
-                    <img src="images/nm-scholars-2023.jpg" alt="NM Scholars 2023" class="w-full h-auto md:h-full md:object-cover md:object-center">
-                </div>
-            </div>
-
-            <!-- Project Navigation -->
-            <div class="flex justify-between mt-16 mb-8">
-                <a href="ai-research-workbook.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light transition-colors group bottom-nav-link" style="color: black !important;" onmouseenter="this.style.setProperty('color', '#18a000', 'important'); this.querySelector('span:first-child').style.setProperty('color', '#18a000', 'important'); this.querySelector('span:last-child').style.setProperty('color', '#18a000', 'important'); this.querySelector('span:first-child').style.setProperty('transform', 'translateX(-4px)', 'important')" onmouseleave="this.style.setProperty('color', 'black', 'important'); this.querySelector('span:first-child').style.setProperty('color', 'black', 'important'); this.querySelector('span:last-child').style.setProperty('color', 'black', 'important'); this.querySelector('span:first-child').style.setProperty('transform', 'translateX(0)', 'important')">
-                    <span class="text-[18px] transition-transform duration-300 ease-in-out"><</span>
-                    <span>AI Research Platform</span>
-                </a>
-                <a href="bachelors-microsoft-health.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light transition-colors group bottom-nav-link" style="color: black !important;" onmouseenter="this.style.setProperty('color', '#18a000', 'important'); this.querySelector('span:first-child').style.setProperty('color', '#18a000', 'important'); this.querySelector('span:last-child').style.setProperty('color', '#18a000', 'important'); this.querySelector('span:last-child').style.setProperty('transform', 'translateX(4px)', 'important')" onmouseleave="this.style.setProperty('color', 'black', 'important'); this.querySelector('span:first-child').style.setProperty('color', 'black', 'important'); this.querySelector('span:last-child').style.setProperty('color', 'black', 'important'); this.querySelector('span:last-child').style.setProperty('transform', 'translateX(0)', 'important')">
-                    <span>Bachelors in Microsoft Health</span>
-                    <span class="text-[18px] transition-transform duration-300 ease-in-out">></span>
-                </a>
-            </div>
+                <!-- Cite -->
+                <section class="border-t border-gray-200 pt-8 md:pt-10">
+                    <h3 class="text-[12px] font-helvetica font-medium uppercase tracking-[0.18em] text-gray-500 mb-4">Cite</h3>
+                    <p class="text-[14px] md:text-[15px] font-light text-gray-700 leading-relaxed" style="font-family: 'IBM Plex Mono', monospace;">
+                        Rodriguez, C. (2026). <em>Beyond Behavioral Benchmarks: Mechanistic Evidence of Demographic Encoding Dissociation in Language Models.</em> Working paper.
+                    </p>
+                </section>
+            </article>
 
             <!-- Footer -->
             <footer class="bg-white border-t border-gray-200 mt-12 md:mt-20">
@@ -1002,17 +972,17 @@
             
             // FIRST: Check if this is a context continuation (prioritize context over navigation)
             if (simpleSidekick) {
-                console.log("Checking for context continuation first...");
+                console.log('Checking for context continuation first...');
                 
                 // Check if this looks like a context continuation
-                const contextContinuationPhrases = ["tell me more about it", "tell me more", "more about it", "more details", "what else", "continue", "go on", "elaborate", "explain more", "more", "it"];
+                const contextContinuationPhrases = ['tell me more about it', 'tell me more', 'more about it', 'more details', 'what else', 'continue', 'go on', 'elaborate', 'explain more', 'more', 'it'];
                 const isContextContinuation = contextContinuationPhrases.some(phrase => lowercaseInput.includes(phrase));
                 
                 if (isContextContinuation) {
-                    console.log("Context continuation detected, using sidekick response");
-                    const simpleResponse = simpleSidekick.getResponse(input);
+                    console.log('Context continuation detected, using sidekick response');
+                    const enhancedResponse = simpleSidekick.getResponse(input);
                     return {
-                        text: simpleResponse,
+                        text: enhancedResponse,
                         action: null
                     };
                 }
@@ -1062,10 +1032,6 @@
             if (simpleSidekick) {
                 console.log('Enhanced sidekick available, searching...');
                 console.log('Enhanced sidekick object:', simpleSidekick);
-                
-                // Get conversation history from sessionStorage
-                const history = JSON.parse(sessionStorage.getItem('chatHistory')) || [];
-                const conversationHistory = history.map(msg => msg.text);
                 
                 const enhancedResponse = simpleSidekick.getResponse(input);
                 console.log('Enhanced response:', enhancedResponse);
@@ -1485,11 +1451,12 @@
                 }, 100);
             }
         });
-
-        // Copy email to clipboard
+        
+        // Copy email to clipboard function
         function copyEmail() {
             const email = 'c.a.rodriguez1999@gmail.com';
             
+            // Use the modern clipboard API if available
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(email).then(() => {
                     showEmailPopup();
@@ -1498,10 +1465,11 @@
                     fallbackCopyEmail(email);
                 });
             } else {
+                // Fallback for older browsers or non-secure contexts
                 fallbackCopyEmail(email);
             }
         }
-
+        
         // Fallback copy method for older browsers
         function fallbackCopyEmail(email) {
             const textArea = document.createElement('textarea');
@@ -1522,7 +1490,7 @@
             
             document.body.removeChild(textArea);
         }
-
+        
         // Show email copy popup
         function showEmailPopup() {
             const popup = document.getElementById('email-popup');
@@ -1727,4 +1695,4 @@
         }
     </style>
 </body>
-</html>
+</html> 

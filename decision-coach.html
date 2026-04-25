@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NM Scholars Program - Carlos Rodriguez</title>
+    <title>Decision Coach - Carlos Rodriguez</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Nuosu+SIL&display=swap" rel="stylesheet">
     <script src="simple-context-sidekick.js"></script>
     <script src="openai-sidekick.js"></script>
     <style>
         .font-helvetica {
-            font-family: "Helvetica Neue", sans-serif;
+            font-family: 'Helvetica Neue', sans-serif;
         }
         .font-nuosu {
-            font-family: "Nuosu SIL", serif;
+            font-family: 'Nuosu SIL', serif;
         }
         .nav-link {
             position: relative;
             text-decoration: none;
         }
         .nav-link::after {
-            content: "";
+            content: '';
             position: absolute;
             width: 100%;
             height: 1px;
@@ -77,20 +80,8 @@
         /* Prevent text fading while keeping smooth transitions */
         /* Ensure main content and navigation text stays visible */
         #main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6,
-        #main-content p, #main-content span, #main-content a, #main-content button,
+        #main-content p, #main-content span, #main-content a:not(.bottom-nav-link), #main-content button,
         #main-nav h1, #main-nav a, #main-nav button {
-            color: black !important;
-            visibility: visible !important;
-        }
-        
-        /* Additional specificity for content text */
-        #main-content div, #main-content li, #main-content ul, #main-content ol {
-            color: black !important;
-            visibility: visible !important;
-        }
-        
-        /* Ensure all text elements in main content are visible */
-        #main-content *:not(footer *):not(#ai-sidekick *) {
             color: black !important;
             visibility: visible !important;
         }
@@ -117,7 +108,26 @@
             color: black !important;
         }
         
-        /* Navigation link animations handled by JavaScript */
+        .bottom-nav-link:hover,
+        .bottom-nav-link:hover span {
+            color: #18a000 !important;
+        }
+        
+        .bottom-nav-link span:last-child {
+            transition: transform 0.3s ease-in-out !important;
+        }
+        
+        .bottom-nav-link:hover span:last-child {
+            transform: translateX(4px) !important;
+        }
+        
+        /* Contact dropdown link hover effects */
+        .contact-dropdown-menu button:hover,
+        .contact-dropdown-menu a:hover,
+        #main-nav .contact-dropdown-menu button:hover,
+        #main-nav .contact-dropdown-menu a:hover {
+            color: #18a000 !important;
+        }
         
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
@@ -379,162 +389,148 @@
 
         <!-- Content Section -->
         <div class="max-w-[960px] mx-auto pt-20 md:pt-24 px-4 md:px-12">
-            <!-- Project Header -->
-            <div class="mb-8 md:mb-24">
-                <h2 class="text-[24px] md:text-[32px] font-helvetica font-medium mb-2">Northwestern Medicine Scholars Program</h2>
-                <p class="text-[16px] md:text-[20px] font-helvetica text-gray-800">Programs like NM Scholars don't just scale by adding more students. They scale through intentional systems design that ensures equity, structure, and community stay intact as complexity grows.</p>
-                
-                <!-- Mobile Hero Image - positioned below subtitle -->
-                <div class="w-full h-auto md:hidden mt-6 transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 cursor-pointer" onclick="openImageModal('images/NM-Scholars-2.jpg', 'NM Scholars Program Hero')">
-                    <img src="images/NM-Scholars-2.jpg" alt="NM Scholars Program Hero" class="w-full h-auto">
+            <!-- Working Paper Header -->
+            <div class="mb-6 md:mb-8">
+                <p class="text-[11px] md:text-[12px] font-helvetica font-light text-gray-500 uppercase tracking-[0.18em] mb-4">Live system &middot; Working paper</p>
+                <h2 class="text-[28px] md:text-[44px] font-helvetica font-medium leading-[1.1] mb-3 md:mb-4">Decision Coach</h2>
+                <p class="text-[18px] md:text-[22px] font-helvetica font-light text-gray-700 leading-snug mb-5 md:mb-6">A six-dimension rubric, an LLM judge that scores it turn by turn, and a coaching persona designed not to answer.</p>
+                <p class="text-[14px] md:text-[15px] font-helvetica text-gray-500">Carlos Rodriguez &middot; Decision Education Foundation at Stanford</p>
+            </div>
+
+            <!-- Links + Image Row -->
+            <div class="flex flex-row items-start justify-between gap-6 md:gap-10 mb-16 md:mb-24">
+                <!-- Action Links (left, stacked) -->
+                <div class="flex flex-col gap-3 md:gap-4 pt-1">
+                    <a href="https://decisioncoach.io" target="_blank" rel="noopener"
+                       class="text-[15px] md:text-[16px] font-helvetica font-light transition-colors"
+                       style="color: black !important;"
+                       onmouseenter="this.style.setProperty('color', '#18a000', 'important')"
+                       onmouseleave="this.style.setProperty('color', 'black', 'important')">
+                        Visit decisioncoach.io &nbsp;&rarr;
+                    </a>
+                    <a href="papers/decision-coach.pdf" target="_blank" rel="noopener"
+                       class="text-[15px] md:text-[16px] font-helvetica font-light transition-colors"
+                       style="color: black !important;"
+                       onmouseenter="this.style.setProperty('color', '#18a000', 'important')"
+                       onmouseleave="this.style.setProperty('color', 'black', 'important')">
+                        Read the paper (PDF) &nbsp;&rarr;
+                    </a>
+                </div>
+
+                <!-- Image (right, shifted slightly left of edge) -->
+                <div class="overflow-hidden transition-all duration-300 ease-out hover:shadow-xl hover:scale-105 cursor-pointer flex-shrink-0" style="width: 600px; max-width: 70%; margin-right: 0;" onclick="openImageModal('images/dc_projectpage.png', 'Decision Coach')">
+                    <img src="images/dc_projectpage.png" alt="Decision Coach interface showing the Jamie persona and per-turn DQ scoring" class="w-full h-auto block">
                 </div>
             </div>
 
-            <!-- Project Details Grid -->
-            <div class="flex flex-col md:flex-row gap-8 md:gap-[120px] mb-16 md:mb-32">
-                <!-- Left Column - Project Info -->
-                <div class="w-full md:w-[280px]">
-                    <div class="mb-6">
-                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Role</h3>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Design Strategist</p>
+            <!-- Body Article -->
+            <article class="max-w-[720px] mb-16 md:mb-24">
+                <!-- The Question -->
+                <section class="mb-12 md:mb-16">
+                    <h3 class="text-[24px] md:text-[28px] font-nuosu mb-4 md:mb-5">The question</h3>
+                    <div class="text-[16px] md:text-[17px] font-helvetica font-light leading-relaxed space-y-4">
+                        <p>People make consequential decisions, career changes, financial commitments, life transitions, with very little structured support. Generic LLM chatbots haven't filled the gap. They answer <em>for</em> users, replacing reasoning with instruction. They make the decision-maker more dependent, not more capable.</p>
+                        <p>What if you built a coaching system designed <em>not</em> to answer? An LLM whose pedagogy is restraint. And how would you measure whether it actually produced better decisions, when "good decision" is famously slippery?</p>
+                        <p>Decision Coach is my answer to those questions. It's a deployed system at <a href="https://decisioncoach.io" target="_blank" rel="noopener" class="underline" style="color: inherit;">decisioncoach.io</a>. It's also a working paper. The contribution that matters isn't the chat interface. It's the measurement instrument.</p>
                     </div>
-                    <div class="mb-6">
-                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Organization</h3>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Northwestern Medicine</p>
-                        <p class="text-[16px] font-helvetica font-light whitespace-nowrap">Youth Programming</p>
-                    </div>
-                    <div class="mb-6">
-                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Timeline</h3>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">3 months</p>
-                        <p class="text-[16px] font-helvetica font-light whitespace-nowrap">Summer 2025</p>
-                    </div>
-                    <div class="mb-6">
-                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Tools</h3>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Figma</p>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Mural</p>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Cursor AI</p>
-                    </div>
-                    <div>
-                        <h3 class="text-[20px] font-helvetica font-bold mb-1">Focus</h3>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Systems Mapping</p>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Instructional Coordination</p>
-                        <p class="text-[16px] font-helvetica whitespace-nowrap">Scalable Learning Equity</p>
-                    </div>
-                </div>
+                </section>
 
-                <!-- Desktop Hero Image - hidden on mobile -->
-                <div class="hidden md:block w-[740px] h-[538px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
-                    <img src="images/NM-Scholars-2.jpg" alt="NM Scholars Program Hero" class="w-full h-full object-cover">
-                </div>
-            </div>
-
-            <!-- Summary Section -->
-            <div class="flex flex-col md:flex-row gap-8 md:gap-24 mb-16 md:mb-32">
-                <div class="w-full md:w-[435px] h-auto md:h-[435px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
-                    <img src="images/NMScholars3.jpg" alt="Summary" class="w-full h-auto md:h-full md:object-cover">
-                </div>
-                <div class="w-full md:w-[450px]">
-                    <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Summary</h2>
-                    <div class="text-[16px] font-helvetica space-y-4 mb-8">
-                        <p>I led design strategy for a rapidly growing healthcare research program supporting 40+ underrepresented high school students.</p>
-                        <p>As the program doubled in size over the past year, I used systems mapping and curriculum design to resolve bottlenecks, clarify team roles, and reframe cohort grouping around student needs. These interventions resulted in smoother delivery, more confident students, and a repeatable framework now adopted across cohorts.</p>
+                <!-- How I Measured It -->
+                <section class="mb-12 md:mb-16">
+                    <h3 class="text-[24px] md:text-[28px] font-nuosu mb-4 md:mb-5">How I measured it</h3>
+                    <div class="text-[16px] md:text-[17px] font-helvetica font-light leading-relaxed space-y-4">
+                        <p>Decision quality is hard to evaluate after the fact because outcome and process get conflated. A bad decision can produce a good outcome through luck. A sound decision can produce a bad outcome through circumstance. Decision Quality Science separates them by scoring the <em>process</em> across six elements: Frame, Values, Alternatives, Information, Reasoning, and Commitment.</p>
+                        <p>I built an automated assessment engine that scores each user turn against this six-dimension rubric on a 0 to 1 scale, with behaviorally anchored levels at each band. The aggregate is intentionally <span class="font-medium text-black">not a mean</span>. It's the minimum across dimensions, the weakest link. A coaching session with strong framing but no commitment-to-action is incomplete, and a mean-based score would hide that.</p>
+                        <p>Calibration against expert practitioners showed acceptable preliminary inter-rater reliability (r = 0.71). Broader validation against multiple human annotators is ongoing.</p>
+                        <p>Why automated scoring matters: turn-level human coding doesn't scale past about 50 sessions per study wave. The LLM evaluator replaces roughly 100 hours of human coding per wave, which is what makes the rest of the research design feasible.</p>
+                        <p class="font-medium text-black mt-6">The reward-hacking story.</p>
+                        <p>The technical anecdote that anchors the whole methodology came early. In the first version, I used a single LLM instance to both generate Jamie's responses <em>and</em> score the user's turns. Scores looked excellent. When I split them into two separate LLM calls with separate prompts and separate contexts, average scores dropped about 0.10. That delta is the methodological argument for separation. A generator that also evaluates inflates its own scores. It's a textbook reward-hacking failure mode, and it's the moment Decision Coach became a research artifact rather than a demo.</p>
                     </div>
-                    <div class="flex flex-col md:flex-row gap-6 md:gap-20">
-                        <div class="w-full md:w-[179px]">
-                            <p class="text-[20px] font-helvetica font-bold">50%</p>
-                            <p class="text-[16px] font-helvetica md:whitespace-nowrap">Boost in student participation</p>
+                </section>
+
+                <!-- The System -->
+                <section class="mb-12 md:mb-16">
+                    <h3 class="text-[24px] md:text-[28px] font-nuosu mb-4 md:mb-5">The system</h3>
+                    <div class="text-[16px] md:text-[17px] font-helvetica font-light leading-relaxed space-y-4">
+                        <p>The system is built around the measurement, not around the chat. The architecture has two LLMs in separate contexts:</p>
+                        <ul class="list-disc pl-6 space-y-3">
+                            <li><span class="font-medium text-black">Persona LLM ("Jamie").</span> Simulates a college sophomore navigating a major-switching decision. Jamie has a backstory, an emotional state machine (confused, uncertain, thoughtful, confident), and cognitive constraints encoded in the system prompt. Jamie refuses to advance through the Decision Chain stages until the current dimension has been adequately covered. <span class="font-medium text-black">The refusal is the pedagogy.</span></li>
+                            <li><span class="font-medium text-black">Evaluation LLM.</span> Scores each user turn against the DQ rubric in a separate context, returning per-dimension scores and rationale.</li>
+                        </ul>
+                        <p>Five personas were shipped; one (Jamie) was used in the pilot. The system enforces a 10-turn session limit, which transforms coaching from open-ended conversation into purposeful practice.</p>
+                        <p><span class="font-medium text-black">Stack.</span> React frontend; Node/Express backend; Supabase Postgres with row-level security for participant data isolation; OpenAI GPT-4o for both agents; Python (pandas) for analysis. The data pipeline is IRB-compliant, with research-code pseudonymization and no PII in research exports.</p>
+                        <p>There is also a prototype AI-to-AI feedback loop, RLAIF-style: an evaluator critiques the persona's coaching and proposes prompt refinements, with a human validation gate to prevent drift. This was not used in the pilot results below.</p>
+                    </div>
+                </section>
+
+                <!-- What the Pilot Showed -->
+                <section class="mb-12 md:mb-16">
+                    <h3 class="text-[24px] md:text-[28px] font-nuosu mb-4 md:mb-5">What the pilot showed</h3>
+                    <div class="text-[16px] md:text-[17px] font-helvetica font-light leading-relaxed space-y-4">
+                        <p>IRB-approved pilot. 52 participants, 75 sessions, 68 with full turn-level scoring. College students, mixed undergrad and grad. Mean engagement: 11 turns per session.</p>
+                        <p>Mean DQ Overall went from <span class="font-medium text-black">0.145</span> at first turn to <span class="font-medium text-black">0.366</span> at last turn. That's a within-session improvement of <span class="font-medium text-black">+0.220 (+151% relative)</span>. <span class="font-medium text-black">91%</span> of sessions (62 of 68) showed improvement; 4% declined; 4% were unchanged.</p>
+                        <p>Important caveat: this is <em>within-session</em> improvement, not a between-condition causal effect. The falsifiable test (not-knowing persona vs. all-knowing persona) is in the planned full study (target n &asymp; 200, between-subjects, with a 2 to 4 week longitudinal follow-up for skill transfer).</p>
+                        <p class="font-medium text-black mt-6">The honest research note.</p>
+                        <p>I started with a hypothesis that <em>Commitment</em> would be the weakest dimension at session-end. Per-dimension finals showed something different:</p>
+                        <div class="font-helvetica font-light text-[13px] mt-4" style="max-width: 380px; display: grid; grid-template-columns: 1fr auto 80px; column-gap: 24px;">
+                            <div class="border-t border-gray-200 py-1.5 text-black font-medium">Alternatives</div>
+                            <div class="border-t border-gray-200 py-1.5 text-right text-black font-medium">0.310</div>
+                            <div class="border-t border-gray-200 py-1.5 text-gray-400">weakest</div>
+
+                            <div class="border-t border-gray-100 py-1.5 text-gray-700">Frame</div>
+                            <div class="border-t border-gray-100 py-1.5 text-right text-gray-700">0.334</div>
+                            <div class="border-t border-gray-100 py-1.5"></div>
+
+                            <div class="border-t border-gray-100 py-1.5 text-gray-700">Reasoning</div>
+                            <div class="border-t border-gray-100 py-1.5 text-right text-gray-700">0.356</div>
+                            <div class="border-t border-gray-100 py-1.5"></div>
+
+                            <div class="border-t border-gray-100 py-1.5 text-gray-700">Information</div>
+                            <div class="border-t border-gray-100 py-1.5 text-right text-gray-700">0.357</div>
+                            <div class="border-t border-gray-100 py-1.5"></div>
+
+                            <div class="border-t border-gray-100 py-1.5 text-gray-700">Commitment</div>
+                            <div class="border-t border-gray-100 py-1.5 text-right text-gray-700">0.381</div>
+                            <div class="border-t border-gray-100 py-1.5"></div>
+
+                            <div class="border-t border-b border-gray-200 py-1.5 text-black font-medium">Values</div>
+                            <div class="border-t border-b border-gray-200 py-1.5 text-right text-black font-medium">0.384</div>
+                            <div class="border-t border-b border-gray-200 py-1.5 text-gray-400">strongest</div>
                         </div>
-                        <div class="w-full md:w-[190px]">
-                            <p class="text-[20px] font-helvetica font-bold">35%</p>
-                            <p class="text-[16px] font-helvetica md:whitespace-nowrap">Improved student clarity</p>
-                        </div>
+                        <p class="mt-4">Binary thinking is the ceiling. Emotional and value exploration is natural. That's quantitative evaluation overturning a design assumption, which is exactly what a properly designed measurement instrument should do.</p>
                     </div>
-                </div>
-            </div>
+                </section>
 
-            <!-- Quote Section -->
-            <div class="mb-16 md:mb-32">
-                <p class="text-[24px] md:text-[32px] font-nuosu">Scaling equity-focused programs requires more than adding seats. It demands rethinking structure, roles, and rhythms to keep students supported as the system grows.</p>
-            </div>
-
-            <!-- Challenge Section -->
-            <div class="flex flex-col md:flex-row gap-6 md:gap-12 mb-16 md:mb-32">
-                <div class="w-full md:w-[450px]">
-                    <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Challenge</h2>
-                    <div class="text-[16px] font-helvetica space-y-4">
-                        <p>NM Scholars empowers first-generation and underrepresented high school students to conduct real healthcare research. But as enrollment scaled, we faced structural breakdowns: fragmented communication, inconsistent instruction, unclear mentor roles, and disengagement from students in larger cohorts.</p>
+                <!-- Why This Matters -->
+                <section class="mb-12 md:mb-16">
+                    <h3 class="text-[24px] md:text-[28px] font-nuosu mb-4 md:mb-5">Why this matters</h3>
+                    <div class="text-[16px] md:text-[17px] font-helvetica font-light leading-relaxed space-y-4">
+                        <p>The defensible contribution isn't the chat UI. It's the rubric plus LLM judge as a measurement instrument that scales beyond what human coding can support. The same instrument is, in principle, portable: it can evaluate human decision coaches, compare coaching approaches, or train practitioners. It operationalizes "good judgment" into observable, scoreable behaviors.</p>
+                        <p>The system-level claim is more pointed: a coaching LLM that <em>refuses to answer</em> can produce measurable within-session learning. That doesn't yet establish that the not-knowing persona is causally responsible (the planned between-subjects study is what tests that). But it does demonstrate that a measurement instrument designed to detect process improvement can detect it.</p>
                     </div>
-                </div>
-                <div class="w-full md:w-[700px] h-auto md:h-[361px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105">
-                    <img src="images/NM-Scholars-Class.jpg" alt="Challenge" class="w-full h-auto md:h-full md:object-cover">
-                </div>
-            </div>
+                </section>
 
-            <!-- Solution Section -->
-            <div class="flex flex-col md:flex-row gap-6 md:gap-6 mb-16 md:mb-32">
-                <div class="w-full md:w-[580px]">
-                    <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Solution</h2>
-                    <div class="text-[16px] font-helvetica space-y-4">
-                        <p>I led a systems-level design response to improve clarity, collaboration, and scalability. Key interventions included:</p>
-                        <ul class="list-disc pl-8 space-y-2">
-                            <li>Systems mapping of all program actors (students, APCs, mentors, instructors) to identify gaps in responsibility and timing</li>
-                            <li>Cohort grouping redesign, shifting from static groupings to interest-based and skill-balanced pods</li>
-                            <li>Slide + poster card templates to reduce prep anxiety and increase consistency across student deliverables</li>
-                            <li>A rubric-aligned feedback system to clarify APC expectations and reduce weekly review friction</li>
-                            <li>A milestone-based schedule and visual planning board to coordinate across instructional leads</li>
+                <!-- What's Next -->
+                <section class="mb-12 md:mb-16">
+                    <h3 class="text-[24px] md:text-[28px] font-nuosu mb-4 md:mb-5">What's next</h3>
+                    <div class="text-[16px] md:text-[17px] font-helvetica font-light leading-relaxed space-y-4">
+                        <ul class="list-disc pl-6 space-y-3">
+                            <li><span class="font-medium text-black">Run the full study</span> (n &asymp; 200, between-subjects: not-knowing vs. all-knowing persona, with mediation by user agency and moderation by educational level). This is the falsifiable test.</li>
+                            <li><span class="font-medium text-black">Longitudinal follow-up</span> at 2 to 4 weeks to test whether coaching skills transfer to participants' own decisions.</li>
+                            <li><span class="font-medium text-black">Comprehensive inter-rater reliability</span> against multiple human annotators to validate the LLM judge beyond the preliminary r = 0.71.</li>
+                            <li><span class="font-medium text-black">Roll out the four additional personas</span> (international students with visa constraints, returning adult students balancing education and family, students facing financial pressure, and others) to test cross-scenario skill transfer.</li>
                         </ul>
                     </div>
-                </div>
-                <div class="w-full md:w-[580px] mt-8 md:mt-16 cursor-pointer" onclick="openImageModal('images/Group 10.png', 'Solution')">
-                    <img src="images/Group 10.png" alt="Solution" class="w-full h-auto">
-                </div>
-            </div>
+                </section>
 
-            <!-- Impact Section -->
-            <div class="flex flex-col md:flex-row gap-6 md:gap-12 mb-16 md:mb-32">
-                <div class="w-full md:w-[400px]">
-                    <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Impact</h2>
-                    <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
-                        <li>Reduced instructional misalignment by formalizing roles across teams</li>
-                        <li>Increased student participation in peer critique by 50%</li>
-                        <li>Cohort restructuring resulted in more equitable workload distribution</li>
-                        <li>Framework now used to onboard new instructors and scale to future NM Scholar cohorts</li>
-                        <li>+35% improvement in post-program student clarity scores (schedule, expectations, roles)</li>
-                    </ul>
-                </div>
-                <div class="w-full md:w-[700px] mt-8 md:mt-16 cursor-pointer transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105" onclick="openImageModal('images/NMImpact.jpg', 'Impact')">
-                    <img src="images/NMImpact.jpg" alt="Impact" class="w-full h-auto">
-                </div>
-            </div>
-
-            <!-- Key Decisions -->
-            <div class="w-full max-w-[600px] mb-4">
-                <h2 class="text-[24px] md:text-[28px] font-nuosu mb-4">Key Decisions</h2>
-                <ul class="text-[16px] font-helvetica list-disc pl-8 space-y-2">
-                    <li>Scoped GPT prompts to build confidence, not just speed</li>
-                    <li>Removed open-ended tasks after testing showed cognitive overload</li>
-                    <li>Integrated reflection questions to surface ethical reasoning</li>
-                </ul>
-            </div>
-
-            <!-- Additional Image Section -->
-            <div class="w-full">
-                <div class="w-full h-auto md:h-[400px] overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:scale-105 bg-transparent">
-                    <img src="images/nm-scholars-2023.jpg" alt="NM Scholars 2023" class="w-full h-auto md:h-full md:object-cover md:object-center">
-                </div>
-            </div>
-
-            <!-- Project Navigation -->
-            <div class="flex justify-between mt-16 mb-8">
-                <a href="ai-research-workbook.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light transition-colors group bottom-nav-link" style="color: black !important;" onmouseenter="this.style.setProperty('color', '#18a000', 'important'); this.querySelector('span:first-child').style.setProperty('color', '#18a000', 'important'); this.querySelector('span:last-child').style.setProperty('color', '#18a000', 'important'); this.querySelector('span:first-child').style.setProperty('transform', 'translateX(-4px)', 'important')" onmouseleave="this.style.setProperty('color', 'black', 'important'); this.querySelector('span:first-child').style.setProperty('color', 'black', 'important'); this.querySelector('span:last-child').style.setProperty('color', 'black', 'important'); this.querySelector('span:first-child').style.setProperty('transform', 'translateX(0)', 'important')">
-                    <span class="text-[18px] transition-transform duration-300 ease-in-out"><</span>
-                    <span>AI Research Platform</span>
-                </a>
-                <a href="bachelors-microsoft-health.html" class="flex items-center space-x-2 text-[16px] font-helvetica font-light transition-colors group bottom-nav-link" style="color: black !important;" onmouseenter="this.style.setProperty('color', '#18a000', 'important'); this.querySelector('span:first-child').style.setProperty('color', '#18a000', 'important'); this.querySelector('span:last-child').style.setProperty('color', '#18a000', 'important'); this.querySelector('span:last-child').style.setProperty('transform', 'translateX(4px)', 'important')" onmouseleave="this.style.setProperty('color', 'black', 'important'); this.querySelector('span:first-child').style.setProperty('color', 'black', 'important'); this.querySelector('span:last-child').style.setProperty('color', 'black', 'important'); this.querySelector('span:last-child').style.setProperty('transform', 'translateX(0)', 'important')">
-                    <span>Bachelors in Microsoft Health</span>
-                    <span class="text-[18px] transition-transform duration-300 ease-in-out">></span>
-                </a>
-            </div>
+                <!-- Cite -->
+                <section class="border-t border-gray-200 pt-8 md:pt-10">
+                    <h3 class="text-[12px] font-helvetica font-medium uppercase tracking-[0.18em] text-gray-500 mb-4">Cite</h3>
+                    <p class="text-[14px] md:text-[15px] font-light text-gray-700 leading-relaxed" style="font-family: 'IBM Plex Mono', monospace;">
+                        Rodriguez, C. (2026). <em>DecisionCoach: A Multi-Agent Conversational System for Developing Decision-Making Competence Through Coaching Practice.</em> Working paper.
+                    </p>
+                </section>
+            </article>
 
             <!-- Footer -->
             <footer class="bg-white border-t border-gray-200 mt-12 md:mt-20">
@@ -1002,17 +998,17 @@
             
             // FIRST: Check if this is a context continuation (prioritize context over navigation)
             if (simpleSidekick) {
-                console.log("Checking for context continuation first...");
+                console.log('Checking for context continuation first...');
                 
                 // Check if this looks like a context continuation
-                const contextContinuationPhrases = ["tell me more about it", "tell me more", "more about it", "more details", "what else", "continue", "go on", "elaborate", "explain more", "more", "it"];
+                const contextContinuationPhrases = ['tell me more about it', 'tell me more', 'more about it', 'more details', 'what else', 'continue', 'go on', 'elaborate', 'explain more', 'more', 'it'];
                 const isContextContinuation = contextContinuationPhrases.some(phrase => lowercaseInput.includes(phrase));
                 
                 if (isContextContinuation) {
-                    console.log("Context continuation detected, using sidekick response");
-                    const simpleResponse = simpleSidekick.getResponse(input);
+                    console.log('Context continuation detected, using sidekick response');
+                    const enhancedResponse = simpleSidekick.getResponse(input);
                     return {
-                        text: simpleResponse,
+                        text: enhancedResponse,
                         action: null
                     };
                 }
@@ -1062,10 +1058,6 @@
             if (simpleSidekick) {
                 console.log('Enhanced sidekick available, searching...');
                 console.log('Enhanced sidekick object:', simpleSidekick);
-                
-                // Get conversation history from sessionStorage
-                const history = JSON.parse(sessionStorage.getItem('chatHistory')) || [];
-                const conversationHistory = history.map(msg => msg.text);
                 
                 const enhancedResponse = simpleSidekick.getResponse(input);
                 console.log('Enhanced response:', enhancedResponse);
@@ -1485,11 +1477,12 @@
                 }, 100);
             }
         });
-
-        // Copy email to clipboard
+        
+        // Copy email to clipboard function
         function copyEmail() {
             const email = 'c.a.rodriguez1999@gmail.com';
             
+            // Use the modern clipboard API if available
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(email).then(() => {
                     showEmailPopup();
@@ -1498,10 +1491,11 @@
                     fallbackCopyEmail(email);
                 });
             } else {
+                // Fallback for older browsers or non-secure contexts
                 fallbackCopyEmail(email);
             }
         }
-
+        
         // Fallback copy method for older browsers
         function fallbackCopyEmail(email) {
             const textArea = document.createElement('textarea');
@@ -1522,7 +1516,7 @@
             
             document.body.removeChild(textArea);
         }
-
+        
         // Show email copy popup
         function showEmailPopup() {
             const popup = document.getElementById('email-popup');
@@ -1727,4 +1721,4 @@
         }
     </style>
 </body>
-</html>
+</html> 

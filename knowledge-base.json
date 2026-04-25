@@ -425,6 +425,93 @@
     }
   },
   "projects": {
+    "beyond_behavioral_benchmarks": {
+      "title": "Beyond Behavioral Benchmarks - Mechanistic Evaluation of LLM Demographic Encoding",
+      "description": "Carlos's working paper presents a four-phase mechanistic evaluation pipeline that audits how language models internally encode demographic identity, and whether those internal representations actually drive what the models say. The headline finding: behavioral output and internal representation can be substantially decoupled. A model can pass every fairness benchmark while internally computing demographic information in ways those benchmarks cannot detect, and in some cases while that internal information is doing nothing at all.",
+      "the_question": "When researchers use a language model to simulate how a Hispanic respondent might answer a survey question (a practice called silicon sampling), they assume the model is reaching for an internal representation of 'Hispanic' and reasoning from there. That assumption had never been tested mechanistically. So Carlos tested it.",
+      "methodology": {
+        "summary": "A four-phase mechanistic pipeline run across eight open-weights language models, from GPT-2 (117M) to Pythia-12B.",
+        "phases": [
+          "Behavioral baseline: Run the BBQ fairness benchmark and record what the model says",
+          "Activation probing: Train a linear classifier on internal activations to test whether demographic identity is encoded",
+          "Causal patching: Surgically swap one demographic representation for another inside the residual stream and measure whether the output changes (this is the test for whether the encoding actually drives anything)",
+          "Semantic characterization: Project demographic encoding directions onto the model's vocabulary to surface representational artifacts invisible to behavioral evaluation"
+        ],
+        "validation": "Phases 1 through 3 produce statistically validated findings, permutation-tested with 1,000 iterations. Phase 4 is exploratory and model-specific."
+      },
+      "key_findings": [
+        "Demographic identity is encoded everywhere, all the time. A simple linear probe recovers race/ethnicity and gender at 100% accuracy from internal activations at every layer in every model tested. The encoding is concept-level, not token-specific (it survives paraphrasing 'Latino' for 'Hispanic').",
+        "Whether the encoding drives outputs depends on training. In base models like GPT-2 and Pythia-1.4B, the demographic encoding is causally active at intermediate layers but goes inert at the final layer (where behavioral evaluation looks). In Mistral-7B-Instruct-v0.1 the encoding is geometrically perfect (100% probe accuracy) but causally disconnected from every layer of computation. Instruction tuning restored behavioral sensitivity through a mechanism that operates entirely independently of the demographic encoding direction.",
+        "The encodings carry pretraining artifacts that no behavioral benchmark can see. In GPT-2, the Hispanic encoding direction loads on criminalization-adjacent vocabulary (detention, joints) when contrasted with White, and on Spanish surnames (Gomez, Cruz) when contrasted with Black. The Black encoding is dominated by color-compound subword tokens (Berry, jack, smith for Blackberry, Blackjack, Blacksmith) at early layers before shifting to civic vocabulary at later layers."
+      ],
+      "why_it_matters": "If you publish silicon-sampling results and validated your model on behavioral fairness benchmarks, that validation is not enough. The model can show clean behavioral output while drawing on representations shaped by criminalization associations or majority-context dependence. Geometric presence (what a probe measures), causal activity (what patching measures), and behavioral expression (what benchmarks measure) are three distinct properties that can diverge. Treating any one as a proxy for the others produces conclusions the evidence does not support.",
+      "what_next": [
+        "Replicate findings on closed frontier models (GPT-4, Claude, Llama-3)",
+        "Sparse autoencoder decomposition of demographic encoding directions",
+        "Trace causal connection between intermediate-layer activity and final-layer outputs",
+        "Open-ended generation benchmarks (BOLD, HolisticBias) to test generalization beyond multiple-choice formats",
+        "Apply Phases 1-3 to models being used in published silicon-sampling studies"
+      ],
+      "links": {
+        "paper_pdf": "papers/beyond-behavioral-benchmarks.pdf",
+        "github": "https://github.com/CRodriguez245/beyond-behavioral-benchmarks",
+        "project_page": "beyond-behavioral-benchmarks.html"
+      },
+      "project_details": {
+        "role": "AI Researcher",
+        "organization": "Institute of Design at Illinois Tech",
+        "timeline": "Working paper, 2026",
+        "tools": ["Python", "TransformerLens", "PyTorch", "BBQ benchmark"],
+        "focus": ["Mechanistic Interpretability", "AI Fairness Evaluation", "Representational Fidelity"]
+      },
+      "keywords": ["beyond behavioral benchmarks", "BBB", "mechanistic interpretability", "demographic encoding", "silicon sampling", "activation probing", "causal patching", "TransformerLens", "GPT-2", "Pythia", "Mistral", "BBQ benchmark", "fairness", "representational fidelity", "linear probe", "instruction tuning", "ai researcher", "institute of design", "illinois tech", "working paper", "what is", "tell me more", "explain", "describe", "details"]
+    },
+    "decision_coach": {
+      "title": "Decision Coach - A Dual-LLM Coaching System with Six-Dimension Assessment",
+      "description": "Decision Coach (decisioncoach.io) is an AI-mediated coaching platform Carlos designed and deployed where users practice coaching an LLM persona through a real decision. The contribution that matters isn't the chat interface; it's the measurement instrument: a six-dimension Decision Quality rubric scored turn-by-turn by a separate LLM judge. Built around the principle that a coaching LLM should be designed not to answer.",
+      "the_question": "Generic LLM chatbots haven't helped people make better decisions. They answer for users, replacing reasoning with instruction. What if you built a coaching system designed not to answer, an LLM whose pedagogy is restraint? And how would you measure whether it actually produced better decisions, when 'good decision' is famously slippery?",
+      "system_architecture": {
+        "summary": "Dual-LLM architecture with two agents in separate contexts, built around the measurement, not around the chat.",
+        "persona_llm": "Jamie, a college sophomore navigating a major-switching decision. Has a backstory, an emotional state machine (confused, uncertain, thoughtful, confident), and cognitive constraints encoded in the system prompt. Jamie refuses to advance through the Decision Chain stages until the current dimension has been adequately covered. The refusal is the pedagogy.",
+        "evaluation_llm": "Separate LLM that scores each user turn against the six-dimension Decision Quality rubric in a separate context, returning per-dimension scores and rationale.",
+        "session_design": "10-turn session limit transforms coaching from open-ended conversation into purposeful practice. Five personas shipped; one (Jamie) used in the pilot.",
+        "stack": ["React frontend", "Node/Express backend", "Supabase Postgres with row-level security for participant data isolation", "OpenAI GPT-4o for both agents", "Python/pandas for analysis"],
+        "data_pipeline": "IRB-compliant. Research-code pseudonymization with no PII in research exports."
+      },
+      "measurement_instrument": {
+        "framework": "Decision Quality Science (Decision Education Foundation) six elements: Frame, Values, Alternatives, Information, Reasoning, Commitment.",
+        "scoring": "Each user turn scored 0 to 1 on each dimension with behaviorally anchored levels. Aggregate is intentionally NOT a mean; it's the minimum across dimensions, the weakest link. A coaching session with strong framing but no commitment-to-action is incomplete, and a mean-based score would hide that.",
+        "calibration": "Acceptable preliminary inter-rater reliability against expert practitioners (r = 0.71). Broader validation against multiple human annotators is ongoing.",
+        "why_automated": "Turn-level human coding doesn't scale past about 50 sessions per study wave. The LLM evaluator replaces roughly 100 hours of human coding per wave, which is what makes the rest of the research design feasible."
+      },
+      "reward_hacking_story": "The technical anecdote that anchors the whole methodology came early. In the first version, Carlos used a single LLM instance to both generate Jamie's responses and score the user's turns. Scores looked excellent. When he split them into two separate LLM calls with separate prompts and separate contexts, average scores dropped about 0.10. That delta is the methodological argument for separation. A generator that also evaluates inflates its own scores. It's a textbook reward-hacking failure mode, and it's the moment Decision Coach became a research artifact rather than a demo.",
+      "pilot_results": {
+        "design": "IRB-approved pilot. 52 participants, 75 sessions, 68 with full turn-level scoring. College students, mixed undergrad and grad. Mean engagement: 11 turns per session.",
+        "headline": "91% of 68 sessions showed within-session improvement (+0.220 mean DQ, +151% relative). Mean DQ Overall went from 0.145 at first turn to 0.366 at last turn. 4% of sessions declined; 4% were unchanged.",
+        "caveat": "This is within-session improvement, not a between-condition causal effect. The falsifiable test (not-knowing persona vs. all-knowing persona) is in the planned full study (target n approximately 200, between-subjects, with a 2 to 4 week longitudinal follow-up for skill transfer).",
+        "honest_research_note": "Carlos's design hypothesis was that Commitment would be the weakest dimension at session-end. Per-dimension finals showed Alternatives is weakest (0.310), then Frame (0.334), Reasoning (0.356), Information (0.357), Commitment (0.381), Values (0.384). Binary thinking is the ceiling, not commitment. That's quantitative evaluation overturning a design assumption, which is exactly what a properly designed measurement instrument should do."
+      },
+      "why_it_matters": "The defensible contribution isn't the chat UI. It's the rubric plus LLM judge as a measurement instrument that scales beyond what human coding can support. The same instrument is, in principle, portable: it can evaluate human decision coaches, compare coaching approaches, or train practitioners. It operationalizes 'good judgment' into observable, scoreable behaviors. The system-level claim is more pointed: a coaching LLM that refuses to answer can produce measurable within-session learning.",
+      "what_next": [
+        "Run the full study (n approximately 200, between-subjects: not-knowing vs. all-knowing persona, with mediation by user agency and moderation by educational level)",
+        "Longitudinal follow-up at 2 to 4 weeks to test whether coaching skills transfer to participants' own decisions",
+        "Comprehensive inter-rater reliability against multiple human annotators",
+        "Roll out the four additional personas (international students with visa constraints, returning adult students balancing education and family, students facing financial pressure, etc.) to test cross-scenario skill transfer"
+      ],
+      "links": {
+        "live_site": "https://decisioncoach.io",
+        "paper_pdf": "papers/decision-coach.pdf",
+        "project_page": "decision-coach.html"
+      },
+      "project_details": {
+        "role": "Applied AI Scientist",
+        "organization": "Decision Education Foundation at Stanford (multi-institutional with Illinois Tech)",
+        "timeline": "2025 - Present",
+        "tools": ["GPT-4o", "React", "Node/Express", "Supabase Postgres", "Python", "pandas"],
+        "focus": ["Evaluation Engineering", "Multi-Agent LLM Systems", "Reward-Hacking Mitigation", "Experimental Design", "IRB-Compliant Research Data Pipelines"]
+      },
+      "keywords": ["decision coach", "decisioncoach", "decisioncoach.io", "jamie", "decision quality", "DQ", "decision education foundation", "DEF", "stanford", "dual-llm", "llm judge", "llm-as-judge", "evaluation engineering", "reward hacking", "rubric", "six-dimension", "weakest link", "applied ai scientist", "rlaif", "multi-agent", "coaching", "persona", "GPT-4o", "supabase", "IRB", "pilot", "within-session improvement", "what is", "tell me more", "explain", "describe", "details"]
+    },
     "microsoft_health": {
       "title": "Bachelors in Microsoft Health Product Management Insights",
       "description": "Carlos's work on Microsoft Health revealed that internal education is often more about cultural permission than curriculum. Many experts needed validation that their tacit knowledge mattered. This insight shaped the product strategy to focus on building confidence and recognition rather than just delivering content.",
